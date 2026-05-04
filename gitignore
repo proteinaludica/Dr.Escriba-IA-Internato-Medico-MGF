@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDEs / Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Anthropic / Claude Code
+.claude/cache/
+*.log
+
+# Backups locais
+*.bak
+*.backup
+*~
+
+# Node (caso futuro vitest/test harness seja replicado)
+node_modules/
+npm-debug.log*
+.npm
+
+# Build artifacts (não devem existir, single-file por design)
+dist/
+build/
