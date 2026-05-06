@@ -847,6 +847,46 @@ body.dark .jc-entry .je-score{color:#dcc480}
 body.dark .jc-entry .je-body .jb-q b{color:#dde1f0}
 body.dark .jc-entry .je-body .jb-c{color:#7a80a0}
 body.dark .jc-entry .je-body .jb-concl{border-color:#2a2d40}
+
+/* ── Heurísticas SOAP (B1) — banner de avisos ────────────────────── */
+.dx-soap-alerts{margin:10px 14px 0;display:flex;flex-direction:column;gap:6px}
+.dx-alert{display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:flex-start;padding:9px 12px;border-radius:7px;font-size:12.5px;line-height:1.45;background:#fef7e0;border:1px solid #e5cf8c;color:#5a4010}
+.dx-alert-err{background:#fce5e5;border-color:#d09090;color:#5a1010}
+.dx-alert .da-ic{font-size:14px;line-height:1.4;text-align:center}
+.dx-alert .da-m b{font-weight:600;display:block;margin-bottom:1px}
+.dx-alert .da-m .da-d{font-family:'SF Mono',Consolas,monospace;font-size:11px;color:rgba(0,0,0,0.55)}
+.dx-alert .da-x{background:none;border:0;color:inherit;cursor:pointer;font-size:16px;line-height:1;padding:2px 6px;border-radius:4px;font-family:inherit;opacity:.5}
+.dx-alert .da-x:hover{opacity:1;background:rgba(0,0,0,0.08)}
+body.dark .dx-alert{background:#3a2e10;border-color:#5a4020;color:#f0d890}
+body.dark .dx-alert-err{background:#3a1010;border-color:#5a2020;color:#f0a0a0}
+body.dark .dx-alert .da-m .da-d{color:rgba(255,255,255,0.55)}
+
+/* ── Cross-feature buttons (C1, C2) ──────────────────────────────── */
+.av-fld-pull{display:flex;gap:6px;align-items:flex-end}
+.av-fld-pull > .av-fld{flex:1}
+.av-pull-btn{font-size:10px;padding:6px 10px;border:1px solid #bda060;background:#fbf3da;color:#7a5c20;border-radius:5px;cursor:pointer;font-family:inherit;white-space:nowrap;font-weight:600;height:34px;line-height:1}
+.av-pull-btn:hover{background:#bda060;color:#fff}
+body.dark .av-pull-btn{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .av-pull-btn:hover{background:#bda060;color:#1a1916}
+
+/* ── Auto-classificado badge (B2) ────────────────────────────────── */
+.lb-entry-auto.lb-entry-inf .le-auto-ic{background:#e8e8f0;border-color:#a0a0c0;color:#404060}
+body.dark .lb-entry-auto.lb-entry-inf .le-auto-ic{background:#1e2030;border-color:#3a3d50;color:#a0a8c0}
+
+/* ── Acessibilidade (D1) ─────────────────────────────────────────── */
+button:focus-visible, [role="tab"]:focus-visible, [role="button"]:focus-visible,
+input:focus-visible, select:focus-visible, textarea:focus-visible, a:focus-visible,
+.tab-int:focus-visible, .om-scale-btn:focus-visible, .jc-radio:focus-visible,
+.le-chip:focus-visible, .dia-tag-pill button:focus-visible, .sgg:focus-visible{
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  .dia-mic.on{animation:none !important}
+  .lb-toast{transition:none !important}
+}
 </style>
 </head>
 <body>
@@ -3445,6 +3485,7 @@ body.dark .jc-entry .je-body .jb-concl{border-color:#2a2d40}
 
 <!-- ========= R ========= -->
 <div class="panel" id="panel-r" role="tabpanel" aria-labelledby="tab-r">
+<div class="dx-soap-alerts" id="dx-soap-alerts" role="region" aria-live="polite" aria-label="Avisos automáticos do SOAP" style="display:none"></div>
 <div class="gen-w">
   <button class="btn-g" onclick="generate()">
     <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -3484,10 +3525,10 @@ body.dark .jc-entry .je-body .jb-concl{border-color:#2a2d40}
      Visível apenas quando body.dx-mode-internato (ver dxModeSet).
      ═══════════════════════════════════════════════════════════════════ -->
 <div id="tabs-internato" role="tablist" aria-label="Secções Internato MGF">
-  <div class="tab-int on" id="tab-int-log" role="tab" tabindex="0" aria-selected="true" aria-controls="pi-log" onclick="dxIntTab('log')"><div class="tib" aria-hidden="true">L</div>Logbook</div>
-  <div class="tab-int" id="tab-int-aval" role="tab" tabindex="-1" aria-selected="false" aria-controls="pi-aval" onclick="dxIntTab('aval')"><div class="tib" aria-hidden="true">A</div>Avaliações</div>
-  <div class="tab-int" id="tab-int-dia" role="tab" tabindex="-1" aria-selected="false" aria-controls="pi-dia" onclick="dxIntTab('dia')"><div class="tib" aria-hidden="true">D</div>Diário</div>
-  <div class="tab-int" id="tab-int-jc" role="tab" tabindex="-1" aria-selected="false" aria-controls="pi-jc" onclick="dxIntTab('jc')"><div class="tib" aria-hidden="true">J</div>Journal Club</div>
+  <div class="tab-int on" id="tab-int-log" role="tab" tabindex="0" aria-selected="true" aria-controls="pi-log" onclick="dxIntTab('log')" onkeydown="dxIntTabKey(event,'log')"><div class="tib" aria-hidden="true">L</div>Logbook</div>
+  <div class="tab-int" id="tab-int-aval" role="tab" tabindex="-1" aria-selected="false" aria-controls="pi-aval" onclick="dxIntTab('aval')" onkeydown="dxIntTabKey(event,'aval')"><div class="tib" aria-hidden="true">A</div>Avaliações</div>
+  <div class="tab-int" id="tab-int-dia" role="tab" tabindex="-1" aria-selected="false" aria-controls="pi-dia" onclick="dxIntTab('dia')" onkeydown="dxIntTabKey(event,'dia')"><div class="tib" aria-hidden="true">D</div>Diário</div>
+  <div class="tab-int" id="tab-int-jc" role="tab" tabindex="-1" aria-selected="false" aria-controls="pi-jc" onclick="dxIntTab('jc')" onkeydown="dxIntTabKey(event,'jc')"><div class="tib" aria-hidden="true">J</div>Journal Club</div>
 </div>
 
 <div id="panel-internato" role="region" aria-label="Internato MGF">
@@ -3625,7 +3666,10 @@ body.dark .jc-entry .je-body .jb-concl{border-color:#2a2d40}
     <!-- Avaliação anual de desempenho (Caderneta IM ARS Norte 2024) -->
     <div class="om-card" style="margin-top:14px">
       <div class="om-h">Avaliação anual de desempenho
-        <span style="margin-left:auto;font-weight:400;text-transform:none;letter-spacing:normal;font-size:11px;color:var(--muted)">4 parâmetros ponderados · escala 0-20</span>
+        <span style="margin-left:auto;display:flex;gap:6px;align-items:center;font-weight:400;text-transform:none;letter-spacing:normal;font-size:11px;color:var(--muted)">
+          <button type="button" class="av-pull-btn" onclick="dxAnualSugerir()" title="Pré-preencher P1 e P3 a partir das Mini-CEX/DOPS/CbD/MSF do ano">↺ sugerir das formativas</button>
+          <span>4 parâmetros · 0-20</span>
+        </span>
       </div>
       <div class="av-grid">
         <div class="av-fld">
@@ -3694,7 +3738,7 @@ body.dark .jc-entry .je-body .jb-concl{border-color:#2a2d40}
           <input type="number" id="av-f-disc" min="0" max="20" step="0.01" oninput="dxFinalCalc()">
         </div>
         <div class="av-fld">
-          <label>Média dos estágios <span class="opt">peso 40%</span></label>
+          <label>Média dos estágios <span class="opt">peso 40%</span> <button type="button" class="av-pull-btn" style="float:right;height:auto;padding:2px 8px;font-size:10px" onclick="dxFinalUseMediaEstagios()" title="Calcular média a partir das avaliações anuais guardadas">↺ usar média</button></label>
           <input type="number" id="av-f-est" min="0" max="20" step="0.01" oninput="dxFinalCalc()">
         </div>
         <div class="av-fld">
@@ -10880,10 +10924,10 @@ function relAdd(el, kind){
       var estLabel = est ? est.label : e.estagio;
       var d = e.data || (new Date(e.ts)).toISOString().slice(0,10);
       var isAuto = !!e.auto;
-      var icon = isAuto ? '<span class="le-auto-ic" title="Origem: SOAP automático (auto-contabilização)">↻ SOAP</span> ' : '';
+      var icon = isAuto ? '<span class="le-auto-ic" title="' + (e.inferred ? 'Origem: SOAP — auto-classificado por palavras-chave' : 'Origem: SOAP automático') + '">↻ SOAP' + (e.inferred ? ' · auto-classificado' : '') + '</span> ' : '';
       var warn = e.warn ? '<span class="le-warn" title="SOAP contabilizado mas estágio não estava seleccionado — reclassifique se necessário">⚠ estágio default</span> ' : '';
       var chips = isAuto ? lbReclassChips(e) : '';
-      return '<div class="lb-entry' + (isAuto ? ' lb-entry-auto' : '') + '">'
+      return '<div class="lb-entry' + (isAuto ? ' lb-entry-auto' : '') + (e.inferred ? ' lb-entry-inf' : '') + '">'
            + '<span class="le-d">' + lbEscHtml(d) + '</span>'
            + '<span class="le-e" title="' + lbEscHtml(estLabel) + '">' + lbEscHtml(estLabel) + '</span>'
            + '<span class="le-t">' + icon + warn
@@ -11189,6 +11233,307 @@ function relAdd(el, kind){
     dxCursoRender();
   }
 
+  // ══════════════════════════════════════════════════════════════════════
+  // PR #2 — INTELIGÊNCIA APLICADA (B1+B2+C1+C2+D1+D5)
+  // Heurísticas locais (sem IA externa) + cross-feature awareness +
+  // acessibilidade + UX subtil. Mantém princípios: zero CDN nova,
+  // zero backend, zero telemetria, dados só no browser.
+  // ══════════════════════════════════════════════════════════════════════
+
+  // ── B1: Detecção de contradições no SOAP ────────────────────────────
+  function _bg(id){ var el = document.getElementById(id); return el ? (el.value != null ? el.value : (el.innerText||el.textContent||'')) : ''; }
+  function _txt(id){ return ((_bg(id)||'')).toString().toLowerCase(); }
+  function _num(id){ var v = parseFloat(_bg(id)); return isNaN(v) ? null : v; }
+
+  var SOAP_RULES = [
+    { id:'febre', sev:'warn', msg:'Doente registado como afebril mas T objectiva ≥ 38°C',
+      test: function(){
+        var t = _num('o-tmp'); if (t == null || t < 38) return null;
+        var s = _txt('s-out');
+        if (/(sem\s+febre|afebril|sem\s+altera[çc][õo]es?\s+t[eé]rmicas?)/.test(s))
+          return 'T = ' + t + '°C objectiva (S diz "afebril/sem febre")';
+        return null;
+      }},
+    { id:'hipoxia', sev:'warn', msg:'SpO₂ baixa apesar de S sem queixa respiratória',
+      test: function(){
+        var sat = _num('o-spo'); if (sat == null || sat >= 92) return null;
+        var s = _txt('s-out');
+        if (/(sem\s+dispneia|sem\s+altera[çc][õo]es?\s+respirat[óo]rias?|respira(\s+|s\s+)bem|sem\s+queixas?\s+respirat[óo]ria)/.test(s))
+          return 'SpO₂ = ' + sat + '% (S sem queixa respiratória)';
+        return null;
+      }},
+    { id:'hta', sev:'warn', msg:'TA elevada (≥160/100) sem ajuste mencionado no Plano',
+      test: function(){
+        var sbp = _num('o-tas'), dbp = _num('o-tad');
+        if ((sbp == null || sbp < 160) && (dbp == null || dbp < 100)) return null;
+        var p = _txt('p-out');
+        if (/(iec[a]|ar[a]|amlodi|losart|valsart|olmesart|enalap|lisinop|peridop|ramip|nebivol|biso(prol|p)|carved|hidroclorot|indapa|titular|titrar|aumentar\s+dose|adicionar?\s+anti.?hiperten|ajusta\s+anti.?hiperten)/.test(p))
+          return null;
+        return 'TA = ' + (sbp == null ? '?' : sbp) + '/' + (dbp == null ? '?' : dbp) + ' mmHg (Plano sem ajuste)';
+      }},
+    { id:'alergia', sev:'err', msg:'Possível conflito com alergia conhecida',
+      test: function(){
+        var aler = _txt('s-aler'); if (!aler) return null;
+        var p = _txt('p-out'); if (!p) return null;
+        var checks = [
+          { aler:/(penicilin|amoxicil|ampicil|beta.?lact[âa]m)/, drug:/(amoxicil|ampicil|peni(c|s)il|flucloxa|cefalex|cefadrox|ceftriax|cefurox|piperacil|imipen|meropen)/, label:'penicilina/beta-lactâmicos' },
+          { aler:/(aas|aspirina|[áa]cido\s+acetilsal|ibuprof|naproxen|nimesul|aines?\b)/, drug:/(ibuprof|naproxen|nimesul|diclofen|cetorol|piroxicam|aspirin|aas\b)/, label:'AINEs' },
+          { aler:/(sulfa(\s|me|s|nilam)|sulfonamid|cotrimox)/, drug:/(cotrimox|sulfa(metoxa|salaz)|trimetop)/, label:'sulfonamidas' },
+          { aler:/(iodo|contraste\s+iod)/, drug:/(contraste\s+iod|amiodar)/, label:'iodo' }
+        ];
+        var hits = [];
+        checks.forEach(function(c){ if (c.aler.test(aler) && c.drug.test(p)) hits.push(c.label); });
+        return hits.length ? ('Alergia a ' + hits.join(', ') + ' — fármaco do mesmo grupo no Plano') : null;
+      }},
+    { id:'hiperglic', sev:'warn', msg:'Glicemia ≥ 250 mg/dL sem ajuste de antidiabéticos',
+      test: function(){
+        var g = _num('o-gli'); if (g == null || g < 250) return null;
+        var p = _txt('p-out');
+        if (/(insulin|metform|gliclaz|empagli|dapagli|sitaglip|liraglu|semaglu|titular|aumentar\s+dose)/.test(p)) return null;
+        return 'Glic = ' + g + ' mg/dL (Plano sem ajuste de antidiabéticos)';
+      }}
+  ];
+
+  function dxSOAPCheck(){
+    var alerts = [];
+    SOAP_RULES.forEach(function(r){
+      try { var d = r.test(); if (d) alerts.push({ id:r.id, msg:r.msg, sev:r.sev, detail: typeof d === 'string' ? d : '' }); } catch(_e){}
+    });
+    return alerts;
+  }
+
+  function dxSOAPAlertsRender(){
+    var box = document.getElementById('dx-soap-alerts');
+    if (!box) return;
+    var alerts = dxSOAPCheck();
+    if (!alerts.length){ box.innerHTML = ''; box.style.display = 'none'; return; }
+    box.innerHTML = alerts.map(function(a){
+      return '<div class="dx-alert dx-alert-' + a.sev + '" role="alert">'
+           + '<span class="da-ic" aria-hidden="true">' + (a.sev === 'err' ? '⛔' : '⚠️') + '</span>'
+           + '<span class="da-m"><b>' + lbEscHtml(a.msg) + '</b>'
+           + (a.detail ? '<span class="da-d">' + lbEscHtml(a.detail) + '</span>' : '')
+           + '</span>'
+           + '<button type="button" class="da-x" aria-label="Dispensar este aviso" onclick="this.parentNode.style.display=\'none\'">×</button>'
+           + '</div>';
+    }).join('');
+    box.style.display = '';
+  }
+  window.dxSOAPAlertsRender = dxSOAPAlertsRender;
+
+  // Hook em generate (cuidado: idempotente, não duplica se chamado 2 vezes)
+  function patchGenerateForAlerts(){
+    if (typeof window.generate !== 'function') return;
+    if (window._dxSOAPAlertsPatched) return;
+    var orig = window.generate;
+    window.generate = function(){
+      var r = orig.apply(this, arguments);
+      try { dxSOAPAlertsRender(); } catch(_e){}
+      return r;
+    };
+    window._dxSOAPAlertsPatched = true;
+  }
+
+  // ── B2: Auto-classificação inteligente do SOAP no Logbook ───────────
+  // Usa palavras-chave do output S/O/P + idade detectada para inferir
+  // sub-categoria mais específica que a default (cons_prog).
+  function dxLogInferTipo(){
+    if (typeof window.getOutputs !== 'function') return null;
+    var outs;
+    try { outs = window.getOutputs() || {}; } catch(_e){ outs = {}; }
+    var s = (outs.s||'').toLowerCase();
+    var o = (outs.o||'').toLowerCase();
+    var p = (outs.p||'').toLowerCase();
+    var txt = s + ' ' + o + ' ' + p;
+    var idadeM = txt.match(/(\d{1,3})\s*(anos|a\.|a\s+de\s+idade)/);
+    var idade = idadeM ? parseInt(idadeM[1], 10) : null;
+    if (idade != null && idade < 18) return 'sd_infantil';
+    if (/\b(rec[ée]m[- ]?nasc|lactente|crian[çc]|adolescen|pedi[áa]tr|infant)/.test(txt)) return 'sd_infantil';
+    if (/\b(gr[áa]vid|gesta[çc][ãa]o|gestacional|p[óo]s[- ]parto|puer|pr[ée][- ]?natal|menopaus|c[óo]l[oi]p|citologi|mama|mamogr|pap[- ]?test)/.test(txt)) return 'sd_mulher';
+    if (/\b(contracetiv|p[íi]lula|diu(\b|de\s)|laqu(ea|eadura)|implant\s+contra|m[ée]todo\s+de\s+barreira|pr[ée][- ]?concep|preservativ|coito|esterilet)/.test(txt)) return 'plan_familiar';
+    if (idade != null && idade >= 65) return 'idoso';
+    var fmcs = (p.match(/\d+\s*(mg|mcg|µg|ui|g|ml)\b/g) || []).length;
+    if (fmcs >= 5) return 'cronico';
+    return null;
+  }
+  window.dxLogInferTipo = dxLogInferTipo;
+
+  // Re-patch dxLogAutoFromSOAP para usar inferência. Mantém fallback se
+  // inferência der null ou for tipo inválido para o estágio actual.
+  if (typeof window.dxLogAutoFromSOAP_orig === 'undefined' && typeof window.dxLogAutoFromSOAP_inner === 'undefined'){
+    var __origAuto = null;
+    // a função original está em closure — fazemos override ao próprio hook
+    // do generate sobrepondo um wrapper que decide o tipo final.
+    function dxLogAutoFromSOAPSmart(){
+      var enc = window.enc || '';
+      if (!enc) return;
+      var tipo = '';
+      if (enc === 'con')      tipo = 'cons_prog';
+      else if (enc === 'urg') tipo = 'cons_aguda';
+      else if (enc === 'vd')  tipo = 'cons_dom';
+      else if (enc === 'int'){
+        var estCur = lsGet(KEY_LOG_ESTAGIO, '') || INT_ESTAGIOS[0].id;
+        tipo = lbInternamentoId(estCur);
+        if (!tipo) return;
+      } else return;
+
+      var estagio = lsGet(KEY_LOG_ESTAGIO, '');
+      var noEstagio = !estagio;
+      if (noEstagio) estagio = INT_ESTAGIOS[0].id;
+      if (enc === 'int' && !lbInternamentoId(estagio)) return;
+
+      // Inferir sub-categoria mais específica (B2)
+      var inferred = null;
+      if (tipo === 'cons_prog' || tipo === 'cons_aguda' || tipo === 'cons_dom'){
+        var e = lbEstagio(estagio);
+        if (e && e.principal){
+          var cand = dxLogInferTipo();
+          if (cand){
+            var ids = e.actos.map(function(a){ return a.id; });
+            if (ids.indexOf(cand) >= 0 && cand !== tipo) inferred = cand;
+          }
+        }
+      }
+      var finalTipo = inferred || tipo;
+
+      var label = '';
+      try { if (typeof window.buildEncounterLabel === 'function') label = window.buildEncounterLabel(); } catch(_e){}
+      if (!label){
+        var encNames = { con:'Consulta', urg:'Urgência', vd:'Visita domiciliária', int:'Internamento' };
+        label = encNames[enc] || enc;
+      }
+
+      var list = lbList();
+      list.unshift({
+        id: 'l' + Date.now() + Math.floor(Math.random()*1000),
+        ts: Date.now(),
+        data: lbToday(),
+        estagio: estagio,
+        tipo: finalTipo,
+        desc: label.slice(0,160),
+        auto: true,
+        src: 'soap',
+        inferred: inferred ? true : undefined,
+        warn: noEstagio || undefined
+      });
+      if (list.length > 5000) list = list.slice(0, 5000);
+      lbSetList(list);
+
+      if (typeof window.dxLogRender === 'function') window.dxLogRender();
+      if (typeof window.dxLogRenderProg === 'function') window.dxLogRenderProg();
+      lbUpdateCount();
+
+      var msg = '✓ SOAP contabilizado' + (inferred ? ' (auto-classificado: ' + (lbActoLabel(estagio, inferred)) + ')' : '') + ' · ' + label;
+      if (noEstagio) msg = '⚠ SOAP em MGF1 (default) — escolha o estágio actual';
+      dxLogToast(msg, noEstagio);
+    }
+    window.dxLogAutoFromSOAP = dxLogAutoFromSOAPSmart;
+  }
+
+  // ── C1: Calculadora final puxa média das avaliações anuais ──────────
+  window.dxFinalUseMediaEstagios = function(){
+    var anuais;
+    try { anuais = JSON.parse(lsGet(KEY_ANUAL_LIST, '[]')) || []; } catch(_e){ anuais = []; }
+    if (!anuais.length){ alert('Sem avaliações anuais guardadas.\n\nPreencha primeiro o card "Avaliação anual de desempenho" para cada ano (1 a 4) e volte aqui.'); return; }
+    var byYear = {};
+    anuais.forEach(function(a){ if (!byYear[a.year] || a.ts > byYear[a.year].ts) byYear[a.year] = a; });
+    var years = Object.keys(byYear);
+    if (!years.length) return;
+    // Média aritmética simples — anos do internato têm a mesma duração efectiva (11 meses cada)
+    var sum = 0, count = 0;
+    years.forEach(function(y){ sum += byYear[y].score; count++; });
+    var media = sum / count;
+    var faltam = ['1','2','3','4'].filter(function(y){ return !byYear[y]; });
+    var lines = ['Média das avaliações anuais (escala 0-20):', '  ' + media.toFixed(2) + '  [' + count + ' ano(s) com avaliação]'];
+    if (faltam.length) lines.push('\nAnos sem avaliação guardada: ' + faltam.join(', '));
+    lines.push('\nPreencher o campo "Média dos estágios"?');
+    if (!confirm(lines.join('\n'))) return;
+    var el = document.getElementById('av-f-est');
+    if (el){ el.value = media.toFixed(2); window.dxFinalCalc(); }
+  };
+
+  // ── C2: Avaliação anual sugere notas a partir das formativas ────────
+  // Conversão escala 1-6 → 0-20: nota_20 = (s-1) * 4
+  // (Mini-CEX/DOPS → P1 execução técnica; CbD/MSF → P3 responsabilidade)
+  window.dxAnualSugerir = function(){
+    var year = (document.getElementById('av-an-year')||{}).value;
+    if (!year){ alert('Escolha primeiro o ano de internato.'); return; }
+    var formativas;
+    try { formativas = JSON.parse(lsGet(KEY_AVAL_LIST, '[]')) || []; } catch(_e){ formativas = []; }
+    formativas = formativas.filter(function(f){ return String(f.year) === String(year); });
+    if (!formativas.length){ alert('Sem avaliações formativas guardadas para o ano ' + year + '.\n\nUse o card "Nova avaliação formativa" no topo desta tab para registar Mini-CEX, DOPS, CbD ou MSF.'); return; }
+    var conv = function(s){ var n = parseInt(s,10); return isNaN(n) ? null : (n - 1) * 4; };
+    var avg = function(arr){ if (!arr.length) return null; var sum = 0, n = 0; arr.forEach(function(f){ var c = conv(f.score); if (c != null){ sum += c; n++; } }); return n ? sum/n : null; };
+    var p1 = formativas.filter(function(f){ return f.instr === 'minicex' || f.instr === 'dops'; });
+    var p3 = formativas.filter(function(f){ return f.instr === 'cbd' || f.instr === 'msf'; });
+    var v1 = avg(p1), v3 = avg(p3);
+    var lines = ['Sugestão a partir de ' + formativas.length + ' avaliações formativas do ano ' + year + ':', ''];
+    lines.push('  P1 — execução técnica: ' + (v1 == null ? '— (sem Mini-CEX/DOPS)' : v1.toFixed(2) + '   [' + p1.length + ' obs]'));
+    lines.push('  P3 — responsabilidade: ' + (v3 == null ? '— (sem CbD/MSF)' : v3.toFixed(2) + '   [' + p3.length + ' obs]'));
+    lines.push('\nP2 (valorização) e P4 (relações humanas) não derivam de instrumentos formativos — preencha manualmente.');
+    lines.push('\nAplicar P1 e P3 sugeridos?');
+    if (!confirm(lines.join('\n'))) return;
+    if (v1 != null){ var e1 = document.getElementById('av-an-p1'); if (e1) e1.value = v1.toFixed(1); }
+    if (v3 != null){ var e3 = document.getElementById('av-an-p3'); if (e3) e3.value = v3.toFixed(1); }
+    if (typeof window.dxAnualScoreCalc === 'function') window.dxAnualScoreCalc();
+  };
+
+  // ── D1: Keyboard navigation nas tabs internas ───────────────────────
+  window.dxIntTabKey = function(ev, k){
+    var tabs = ['log','aval','dia','jc'];
+    var i = tabs.indexOf(k); if (i < 0) return;
+    var target = null;
+    if (ev.key === 'ArrowRight'){ target = tabs[(i+1) % tabs.length]; }
+    else if (ev.key === 'ArrowLeft'){ target = tabs[(i-1+tabs.length) % tabs.length]; }
+    else if (ev.key === 'Home'){ target = tabs[0]; }
+    else if (ev.key === 'End'){ target = tabs[tabs.length-1]; }
+    else return;
+    ev.preventDefault();
+    window.dxIntTab(target);
+    var t = document.getElementById('tab-int-' + target);
+    if (t) t.focus();
+  };
+
+  // ── D5: Confirmação ao apagar entradas com conteúdo significativo ───
+  // Wrapping idempotente das funções de delete.
+  function _wrapDelete(name, getEntry, getPreview, alwaysConfirm){
+    var orig = window[name];
+    if (typeof orig !== 'function' || orig._dxConfirmed) return;
+    window[name] = function(id){
+      var entry = getEntry(id);
+      var doConfirm = alwaysConfirm || (entry && getPreview(entry).length > 30);
+      if (entry && doConfirm){
+        var prev = getPreview(entry);
+        if (prev.length > 90) prev = prev.slice(0, 90) + '…';
+        if (!confirm('Apagar este registo?\n\n"' + prev + '"')) return;
+      }
+      return orig.call(this, id);
+    };
+    window[name]._dxConfirmed = true;
+  }
+
+  function applyDeleteConfirms(){
+    _wrapDelete('dxLogDelete',
+      function(id){ return lbList().filter(function(e){ return e.id === id; })[0]; },
+      function(e){ return e.desc || (e.tipo + ' ' + e.estagio); },
+      false);
+    _wrapDelete('dxDiaDelete',
+      function(id){ var l = JSON.parse(lsGet(KEY_DIA_LIST, '[]')||'[]'); for (var i=0;i<l.length;i++) if (l[i].id===id) return l[i]; },
+      function(e){ return e.titulo || ''; },
+      true);
+    _wrapDelete('dxJCDelete',
+      function(id){ var l = JSON.parse(lsGet(KEY_JC_LIST, '[]')||'[]'); for (var i=0;i<l.length;i++) if (l[i].id===id) return l[i]; },
+      function(e){ return (e.artigo && e.artigo.titulo) || ''; },
+      true);
+    _wrapDelete('dxAnualDelete',
+      function(id){ var l = JSON.parse(lsGet(KEY_ANUAL_LIST, '[]')||'[]'); for (var i=0;i<l.length;i++) if (l[i].id===id) return l[i]; },
+      function(e){ return 'Avaliação anual ano ' + e.year + ' · ' + (e.score||'').toString().slice(0,8); },
+      true);
+    _wrapDelete('dxOMHistDelete',
+      function(id){ var l = JSON.parse(lsGet(KEY_AVAL_LIST, '[]')||'[]'); for (var i=0;i<l.length;i++){ var k = l[i].id || ('ts'+l[i].ts); if (k===id) return l[i]; } },
+      function(e){ return (e.instr||'') + ' ' + (e.score||'') + (e.notes ? ' · ' + e.notes.slice(0,50) : ''); },
+      false);
+  }
+
   // ── Init ────────────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', function(){
     dxIntProfileLoad();
@@ -11202,6 +11547,8 @@ function relAdd(el, kind){
     dxDiaInit();
     dxJCInit();
     patchGenerateForLogbook();
+    patchGenerateForAlerts();
+    applyDeleteConfirms();
     window.dxModeSet(lsGet(KEY_MODE, 'soap'));
     window.dxIntTab(lsGet(KEY_TAB, 'log'));
   });
