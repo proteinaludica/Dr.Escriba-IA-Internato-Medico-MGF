@@ -696,6 +696,69 @@ body.dark .av-hist-row .ah-i,body.dark .av-hist-row .ah-s{background:#2a2010;col
 body.dark .av-hist-row .ah-n{color:#dde1f0}
 body.dark .av-final-out{background:linear-gradient(135deg,#2a2010 0%,#3a2a10 100%);border-color:#bda060}
 body.dark .av-final-out .af-l,body.dark .av-final-out .af-v,body.dark .av-final-out .af-x{color:#dcc480}
+
+/* ── Diário formativo (Fase 4) ───────────────────────────────────── */
+.dia-grid{display:grid;grid-template-columns:140px 1fr;gap:12px;align-items:end;margin-bottom:12px}
+@media (max-width:680px){.dia-grid{grid-template-columns:1fr}}
+.dia-fld label{display:block;font-size:12px;font-weight:500;color:#1a1916;margin-bottom:6px}
+.dia-fld label .opt{font-weight:400;color:var(--muted);font-size:11px}
+.dia-fld input[type="date"],.dia-fld input[type="text"]{width:100%;padding:8px 10px;background:#faf9f7;border:1px solid var(--bd);border-radius:7px;font-family:inherit;font-size:13px;color:#1a1916;outline:none;box-sizing:border-box}
+.dia-fld input:focus{border-color:#bda060;background:#fff}
+.dia-tags-input{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:6px;background:#faf9f7;border:1px solid var(--bd);border-radius:7px;min-height:36px}
+.dia-tags-input:focus-within{border-color:#bda060;background:#fff}
+.dia-tag-pill{display:inline-flex;align-items:center;gap:4px;padding:3px 8px 3px 10px;font-size:11px;background:#fbf3da;border:1px solid #e5cf8c;color:#7a5c20;border-radius:12px;font-weight:500;line-height:1.2}
+.dia-tag-pill button{background:none;border:0;color:#7a5c20;cursor:pointer;font-size:12px;line-height:1;padding:0 0 0 2px;font-family:inherit;opacity:.6}
+.dia-tag-pill button:hover{opacity:1;color:#a02020}
+.dia-tags-input input{flex:1;min-width:120px;border:0;outline:none;background:transparent;font-family:inherit;font-size:12px;padding:3px 4px;color:#1a1916}
+.dia-tags-sugg{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.dia-tags-sugg .sgg{padding:2px 8px;border:1px dashed #d5c79a;border-radius:10px;background:transparent;font-size:11px;color:var(--muted);cursor:pointer;font-family:inherit}
+.dia-tags-sugg .sgg:hover{background:#fbf3da;color:#7a5c20;border-style:solid;border-color:#e5cf8c}
+.dia-area-wrap{position:relative}
+.dia-area-wrap textarea{width:100%;min-height:140px;padding:10px 12px;padding-right:40px;background:#faf9f7;border:1px solid var(--bd);border-radius:7px;font-family:inherit;font-size:13px;line-height:1.6;resize:vertical;color:#1a1916;outline:none;box-sizing:border-box}
+.dia-area-wrap textarea:focus{border-color:#bda060;background:#fff}
+.dia-area-wrap textarea.rec{border-color:#a02020;background:#fcf6f6}
+.dia-mic{position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;border:1px solid #d5c79a;background:#fbf3da;color:#7a5c20;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;font-family:inherit;transition:all .15s}
+.dia-mic:hover{background:#bda060;color:#fff;border-color:#bda060}
+.dia-mic.on{background:#a02020;color:#fff;border-color:#a02020;animation:dia-mic-pulse 1.2s ease-in-out infinite}
+.dia-mic:disabled{opacity:.4;cursor:not-allowed;background:#faf9f7;color:var(--muted)}
+@keyframes dia-mic-pulse{0%,100%{box-shadow:0 0 0 0 rgba(160,32,32,.5)}50%{box-shadow:0 0 0 7px rgba(160,32,32,0)}}
+.dia-bar-r{display:flex;gap:6px;align-items:center;font-weight:400;text-transform:none;letter-spacing:normal;margin-left:auto}
+.dia-bar-r select,.dia-bar-r input{font-size:11px;padding:4px 8px;border-radius:4px;border:1px solid var(--bd);background:#fff;color:#1a1916;font-family:inherit;outline:none}
+.dia-bar-r input{width:140px}
+.dia-bar-r button{font-size:11px;padding:4px 10px;border-radius:4px;border:1px solid #bda060;background:#fbf3da;color:#7a5c20;cursor:pointer;font-family:inherit}
+.dia-bar-r button:hover{background:#f5e5b8}
+.dia-entry{padding:12px 14px;border:1px solid var(--bd);border-radius:8px;margin-bottom:10px;background:#fff}
+.dia-entry:last-child{margin-bottom:0}
+.dia-entry .de-hdr{display:flex;gap:10px;align-items:center;margin-bottom:6px;flex-wrap:wrap}
+.dia-entry .de-d{font-family:'SF Mono',Consolas,monospace;font-size:11px;color:var(--muted)}
+.dia-entry .de-tt{font-size:14px;font-weight:600;color:#1a1916;flex:1;line-height:1.3}
+.dia-entry .de-x{background:none;border:0;color:var(--muted);cursor:pointer;font-size:16px;line-height:1;padding:4px 6px;border-radius:4px;font-family:inherit;margin-left:auto}
+.dia-entry .de-x:hover{background:#f4dfdf;color:#a02020}
+.dia-entry .de-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.dia-entry .de-tag{font-size:10px;padding:2px 7px;background:#fbf3da;border:1px solid #e5cf8c;color:#7a5c20;border-radius:10px;font-weight:500;line-height:1.3}
+.dia-entry .de-body{font-size:13px;color:#1a1916;line-height:1.55;white-space:pre-wrap;word-wrap:break-word}
+.dia-entry .de-est{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-top:8px;padding-top:6px;border-top:1px dashed var(--bd)}
+body.dark .dia-fld label{color:#dde1f0}
+body.dark .dia-fld input{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .dia-fld input:focus{background:#1a1d2e;border-color:#bda060}
+body.dark .dia-tags-input{background:#0f1117;border-color:#2a2d40}
+body.dark .dia-tags-input:focus-within{background:#1a1d2e;border-color:#bda060}
+body.dark .dia-tag-pill{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .dia-tag-pill button{color:#dcc480}
+body.dark .dia-tags-input input{color:#dde1f0}
+body.dark .dia-tags-sugg .sgg{border-color:#5a4020;color:#7a80a0}
+body.dark .dia-tags-sugg .sgg:hover{background:#2a2010;color:#dcc480;border-color:#5a4020}
+body.dark .dia-area-wrap textarea{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .dia-area-wrap textarea:focus{background:#1a1d2e;border-color:#bda060}
+body.dark .dia-area-wrap textarea.rec{border-color:#a02020;background:#2a1010}
+body.dark .dia-mic{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .dia-mic:hover{background:#bda060;color:#1a1916;border-color:#bda060}
+body.dark .dia-bar-r select,body.dark .dia-bar-r input{background:#0f1117;border-color:#3a3d50;color:#dde1f0}
+body.dark .dia-bar-r button{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .dia-entry{background:#1a1d2e;border-color:#2a2d40}
+body.dark .dia-entry .de-tt,body.dark .dia-entry .de-body{color:#dde1f0}
+body.dark .dia-entry .de-tag{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .dia-entry .de-est{color:#7a80a0;border-color:#2a2d40}
 </style>
 </head>
 <body>
@@ -3568,10 +3631,62 @@ body.dark .av-final-out .af-l,body.dark .av-final-out .af-v,body.dark .av-final-
 
   <!-- DIÁRIO -->
   <div class="panel-int" id="pi-dia" role="tabpanel" aria-labelledby="tab-int-dia">
-    <div class="int-stub">
-      <h3>Diário formativo</h3>
-      <p>Reflexão pessoal sobre práticas e aprendizagens. Componente da carteira do interno conforme regulamento OM. Entradas datadas, ditado por voz disponível.</p>
-      <span class="int-fase">Fase 2 — em construção</span>
+    <div class="om-card">
+      <div class="om-h">Nova entrada</div>
+      <div class="dia-grid">
+        <div class="dia-fld">
+          <label>Data</label>
+          <input type="date" id="dia-date" aria-label="Data da entrada">
+        </div>
+        <div class="dia-fld">
+          <label>Título <span class="opt">curto e descritivo</span></label>
+          <input type="text" id="dia-title" maxlength="120" placeholder="ex.: Caso de polimedicação no idoso — revisão Beers" autocomplete="off">
+        </div>
+      </div>
+      <div class="om-fld">
+        <label>Tags <span class="opt">enter para adicionar; clique nas sugestões abaixo</span></label>
+        <div class="dia-tags-input" id="dia-tags-input" onclick="document.getElementById('dia-tag-input').focus()">
+          <input type="text" id="dia-tag-input" placeholder="adicionar tag…" onkeydown="dxDiaTagKey(event)" autocomplete="off">
+        </div>
+        <div class="dia-tags-sugg">
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('caso clínico')">caso clínico</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('reflexão')">reflexão</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('dilema ético')">dilema ético</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('comunicação')">comunicação</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('erro / quase-erro')">erro / quase-erro</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('aprendizagem')">aprendizagem</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('sessão clínica')">sessão clínica</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('reunião')">reunião</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('formação')">formação</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('relação médico-doente')">relação médico-doente</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('multimorbilidade')">multimorbilidade</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('fim de vida')">fim de vida</button>
+        </div>
+      </div>
+      <div class="om-fld">
+        <label>Reflexão / conteúdo <span class="opt">sem PII do doente — use iniciais ou códigos</span></label>
+        <div class="dia-area-wrap">
+          <textarea id="dia-content" rows="6" placeholder="Descreva o caso, a aprendizagem, a reflexão. Use o microfone para ditado em pt-PT."></textarea>
+          <button type="button" class="dia-mic" id="dia-mic" onclick="dxDiaDictate()" aria-label="Ditado por voz" title="Ditar (pt-PT) — clique para iniciar/parar">🎙</button>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;align-items:center;margin-top:12px">
+        <span id="dia-count" style="font-size:11px;color:var(--muted);margin-right:auto"></span>
+        <button class="btn-c" type="button" onclick="dxDiaSave()" style="background:#bda060;color:#fff;border-color:#bda060;padding:7px 16px;font-weight:500">Guardar entrada</button>
+      </div>
+    </div>
+
+    <div class="om-card" style="margin-top:14px">
+      <div class="om-h">Entradas
+        <span class="dia-bar-r">
+          <input type="search" id="dia-filt-q" oninput="dxDiaRender()" placeholder="procurar…" aria-label="Procurar nas entradas do diário">
+          <select id="dia-filt-tag" onchange="dxDiaRender()" aria-label="Filtrar por tag">
+            <option value="">Todas as tags</option>
+          </select>
+          <button type="button" onclick="dxDiaExport()" title="Exportar diário em ficheiro de texto">↓ TXT</button>
+        </span>
+      </div>
+      <div id="dia-list-wrap"></div>
     </div>
   </div>
 
@@ -9236,6 +9351,7 @@ function relAdd(el, kind){
   var KEY_ANUAL_LIST = 'dx_int_aval_anual';      // [{id, ts, year, date, p1, p2, p3, p4, score, notes}]
   var KEY_PROVA_LIST = 'dx_int_aval_provas';     // {1:{date,nota}, 2:{...}, 3:{...}, 4:{...}}
   var KEY_FINAL_SNAP = 'dx_int_aval_final';      // {ts, disc, est, prat, teor, val}
+  var KEY_DIA_LIST   = 'dx_int_diario';          // [{id, ts, data, titulo, tags:[], conteudo, estagio}]
 
   function lsGet(k, dflt){ try { var v = localStorage.getItem(k); return v == null ? dflt : v; } catch(e){ return dflt; } }
   function lsSet(k, v){ try { localStorage.setItem(k, v); } catch(e){} }
@@ -9632,6 +9748,257 @@ function relAdd(el, kind){
     setIf('av-f-prat', snap.prat);
     setIf('av-f-teor', snap.teor);
     window.dxFinalCalc();
+  }
+
+  // ══════════════════════════════════════════════════════════════════════
+  // FASE 4 — Diário formativo
+  // Reflexão pessoal datada, com tags livres + sugestões pré-definidas e
+  // ditado por voz (Web Speech API, pt-PT). Componente da carteira do
+  // interno conforme regulamento OM (Portaria 79/2018 + 125/2019).
+  // ══════════════════════════════════════════════════════════════════════
+
+  var DIA_TAGS_BUFFER = []; // tags da entrada em construção
+
+  function diaList(){
+    try { return JSON.parse(lsGet(KEY_DIA_LIST, '[]')) || []; } catch(e){ return []; }
+  }
+  function diaSetList(arr){ lsSet(KEY_DIA_LIST, JSON.stringify(arr)); }
+
+  function diaToday(){
+    var t = new Date();
+    return t.getFullYear() + '-' + String(t.getMonth()+1).padStart(2,'0') + '-' + String(t.getDate()).padStart(2,'0');
+  }
+
+  function diaRenderTagsBuffer(){
+    var box = document.getElementById('dia-tags-input');
+    var inp = document.getElementById('dia-tag-input');
+    if (!box || !inp) return;
+    box.querySelectorAll('.dia-tag-pill').forEach(function(el){ el.remove(); });
+    DIA_TAGS_BUFFER.forEach(function(t){
+      var pill = document.createElement('span');
+      pill.className = 'dia-tag-pill';
+      pill.textContent = t;
+      var x = document.createElement('button');
+      x.type = 'button'; x.textContent = '×'; x.setAttribute('aria-label', 'Remover tag ' + t);
+      x.onclick = function(ev){ ev.stopPropagation(); window.dxDiaTagRemove(t); };
+      pill.appendChild(x);
+      box.insertBefore(pill, inp);
+    });
+  }
+
+  window.dxDiaTagAdd = function(tag){
+    tag = (tag||'').trim().toLowerCase();
+    if (!tag) return;
+    if (tag.length > 30) tag = tag.slice(0, 30);
+    if (DIA_TAGS_BUFFER.indexOf(tag) >= 0) return;
+    DIA_TAGS_BUFFER.push(tag);
+    diaRenderTagsBuffer();
+  };
+
+  window.dxDiaTagRemove = function(tag){
+    var i = DIA_TAGS_BUFFER.indexOf(tag);
+    if (i >= 0){ DIA_TAGS_BUFFER.splice(i, 1); diaRenderTagsBuffer(); }
+  };
+
+  window.dxDiaTagKey = function(ev){
+    if (ev.key === 'Enter' || ev.key === ',' || ev.key === ';'){
+      ev.preventDefault();
+      window.dxDiaTagAdd(ev.target.value);
+      ev.target.value = '';
+    } else if (ev.key === 'Backspace' && !ev.target.value && DIA_TAGS_BUFFER.length){
+      DIA_TAGS_BUFFER.pop();
+      diaRenderTagsBuffer();
+    }
+  };
+
+  window.dxDiaSave = function(){
+    var date = (document.getElementById('dia-date')||{}).value;
+    var title = ((document.getElementById('dia-title')||{}).value || '').trim();
+    var content = ((document.getElementById('dia-content')||{}).value || '').trim();
+    var inpTag = document.getElementById('dia-tag-input');
+    if (inpTag && inpTag.value.trim()){ window.dxDiaTagAdd(inpTag.value); inpTag.value = ''; }
+    if (!title){ alert('Indique um título para a entrada.'); return; }
+    if (!content){ alert('Escreva o conteúdo / reflexão antes de guardar.'); return; }
+    if (!date) date = diaToday();
+    var list = diaList();
+    list.unshift({
+      id: 'd' + Date.now() + Math.floor(Math.random()*1000),
+      ts: Date.now(),
+      data: date,
+      titulo: title.slice(0, 120),
+      tags: DIA_TAGS_BUFFER.slice(),
+      conteudo: content.slice(0, 8000),
+      estagio: lsGet(KEY_LOG_ESTAGIO, '')
+    });
+    if (list.length > 1000) list = list.slice(0, 1000);
+    diaSetList(list);
+    DIA_TAGS_BUFFER = [];
+    ['dia-title','dia-content'].forEach(function(id){ var el = document.getElementById(id); if (el) el.value = ''; });
+    var dEl = document.getElementById('dia-date'); if (dEl) dEl.value = diaToday();
+    diaRenderTagsBuffer();
+    window.dxDiaRender();
+    diaUpdateCount();
+  };
+
+  window.dxDiaDelete = function(id){
+    var list = diaList().filter(function(e){ return e.id !== id; });
+    diaSetList(list);
+    window.dxDiaRender();
+    diaUpdateCount();
+  };
+
+  function diaUpdateCount(){
+    var c = document.getElementById('dia-count');
+    if (!c) return;
+    var n = diaList().length;
+    c.textContent = n ? (n + ' entradas no total') : '';
+  }
+
+  function diaAllTags(){
+    var s = {};
+    diaList().forEach(function(e){ (e.tags||[]).forEach(function(t){ s[t] = (s[t]||0)+1; }); });
+    return Object.keys(s).sort();
+  }
+
+  function diaFillTagFilter(){
+    var sel = document.getElementById('dia-filt-tag');
+    if (!sel) return;
+    var prev = sel.value;
+    sel.innerHTML = '<option value="">Todas as tags</option>';
+    diaAllTags().forEach(function(t){
+      var o = document.createElement('option');
+      o.value = t; o.textContent = t;
+      sel.appendChild(o);
+    });
+    sel.value = prev;
+  }
+
+  window.dxDiaRender = function(){
+    var wrap = document.getElementById('dia-list-wrap');
+    if (!wrap) return;
+    diaFillTagFilter();
+    var fTag = (document.getElementById('dia-filt-tag')||{}).value || '';
+    var q = ((document.getElementById('dia-filt-q')||{}).value || '').toLowerCase().trim();
+    var list = diaList();
+    if (fTag) list = list.filter(function(e){ return (e.tags||[]).indexOf(fTag) >= 0; });
+    if (q) list = list.filter(function(e){
+      return (e.titulo||'').toLowerCase().indexOf(q) >= 0
+          || (e.conteudo||'').toLowerCase().indexOf(q) >= 0
+          || (e.tags||[]).join(' ').toLowerCase().indexOf(q) >= 0;
+    });
+    if (!list.length){
+      wrap.innerHTML = '<div class="lb-empty">' + (fTag||q ? 'Sem entradas com estes filtros.' : 'Sem entradas ainda. Use o cartão acima para a primeira reflexão.') + '</div>';
+      return;
+    }
+    var max = 30;
+    var html = list.slice(0, max).map(function(e){
+      var est = e.estagio ? lbEstagio(e.estagio) : null;
+      var estLabel = est ? est.label : (e.estagio || '');
+      var tags = (e.tags||[]).map(function(t){ return '<span class="de-tag">' + lbEscHtml(t) + '</span>'; }).join('');
+      return '<div class="dia-entry">'
+           + '<div class="de-hdr">'
+           +   '<span class="de-d">' + lbEscHtml(e.data || avFmtDate(e.ts)) + '</span>'
+           +   '<span class="de-tt">' + lbEscHtml(e.titulo) + '</span>'
+           +   '<button type="button" class="de-x" aria-label="Remover entrada" onclick="dxDiaDelete(\'' + lbEscHtml(e.id) + '\')">×</button>'
+           + '</div>'
+           + (tags ? '<div class="de-tags">' + tags + '</div>' : '')
+           + '<div class="de-body">' + lbEscHtml(e.conteudo) + '</div>'
+           + (estLabel ? '<div class="de-est">Estágio: ' + lbEscHtml(estLabel) + '</div>' : '')
+           + '</div>';
+    }).join('');
+    if (list.length > max) html += '<div class="lb-empty">… mais ' + (list.length-max) + ' entradas — use os filtros</div>';
+    wrap.innerHTML = html;
+  };
+
+  window.dxDiaExport = function(){
+    var list = diaList();
+    if (!list.length){ alert('Sem entradas para exportar.'); return; }
+    var ini = lsGet(KEY_PROF_INIT, ''); var year = lsGet(KEY_PROF_YEAR, ''); var usf = lsGet(KEY_PROF_USF, '');
+    var lines = [
+      'Diário formativo — Internato MGF',
+      'Interno: ' + (ini || '—') + (year ? ' · Ano ' + year : '') + (usf ? ' · ' + usf : ''),
+      'Exportado: ' + (new Date()).toISOString().slice(0,16).replace('T',' '),
+      'Total: ' + list.length + ' entradas',
+      ''.padEnd(70,'═'),
+      ''
+    ];
+    list.slice().reverse().forEach(function(e){
+      lines.push((e.data || avFmtDate(e.ts)) + ' · ' + e.titulo);
+      if (e.tags && e.tags.length) lines.push('  [' + e.tags.join(', ') + ']');
+      lines.push('');
+      lines.push(e.conteudo);
+      lines.push('');
+      lines.push(''.padEnd(70,'─'));
+      lines.push('');
+    });
+    var blob = new Blob([lines.join('\n')], {type:'text/plain;charset=utf-8'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'diario_mgf_' + (new Date()).toISOString().slice(0,10) + '.txt';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  };
+
+  // ── Ditado por voz (Web Speech API, pt-PT) ──────────────────────────
+  var DIA_REC = null;     // instância SpeechRecognition
+  var DIA_REC_ON = false;
+
+  window.dxDiaDictate = function(){
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    var btn = document.getElementById('dia-mic');
+    var ta = document.getElementById('dia-content');
+    if (!SR){
+      if (btn) btn.disabled = true;
+      alert('Reconhecimento de voz não suportado neste navegador.\nUse o Chrome ou o Edge para ditado em pt-PT.');
+      return;
+    }
+    if (DIA_REC_ON && DIA_REC){
+      try { DIA_REC.stop(); } catch(_e){}
+      return;
+    }
+    DIA_REC = new SR();
+    DIA_REC.lang = 'pt-PT';
+    DIA_REC.continuous = true;
+    DIA_REC.interimResults = false;
+    DIA_REC.onstart = function(){
+      DIA_REC_ON = true;
+      if (btn) { btn.classList.add('on'); btn.textContent = '■'; btn.title = 'Parar ditado'; }
+      if (ta) ta.classList.add('rec');
+    };
+    DIA_REC.onresult = function(ev){
+      if (!ta) return;
+      var txt = '';
+      for (var i = ev.resultIndex; i < ev.results.length; i++){
+        if (ev.results[i].isFinal) txt += ev.results[i][0].transcript;
+      }
+      if (txt){
+        var sep = (ta.value && !/\s$/.test(ta.value)) ? ' ' : '';
+        ta.value += sep + txt.trim() + ' ';
+      }
+    };
+    DIA_REC.onerror = function(ev){
+      console.warn('[dia-mic]', ev.error);
+      if (ev.error === 'not-allowed' || ev.error === 'service-not-allowed'){
+        alert('Permissão de microfone negada. Autorize no navegador para usar o ditado.');
+      }
+    };
+    DIA_REC.onend = function(){
+      DIA_REC_ON = false;
+      if (btn) { btn.classList.remove('on'); btn.textContent = '🎙'; btn.title = 'Ditar (pt-PT)'; }
+      if (ta) ta.classList.remove('rec');
+    };
+    try { DIA_REC.start(); } catch(e){ console.warn('[dia-mic start]', e); }
+  };
+
+  function dxDiaInit(){
+    var dEl = document.getElementById('dia-date');
+    if (dEl && !dEl.value) dEl.value = diaToday();
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    var btn = document.getElementById('dia-mic');
+    if (!SR && btn){ btn.disabled = true; btn.title = 'Ditado não suportado neste navegador'; }
+    diaRenderTagsBuffer();
+    window.dxDiaRender();
+    diaUpdateCount();
   }
 
 
@@ -10319,6 +10686,7 @@ function relAdd(el, kind){
     window.dxProvaRender();
     dxFinalRestore();
     dxLogInit();
+    dxDiaInit();
     patchGenerateForLogbook();
     window.dxModeSet(lsGet(KEY_MODE, 'soap'));
     window.dxIntTab(lsGet(KEY_TAB, 'log'));
