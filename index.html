@@ -530,6 +530,323 @@ body.dark .om-scale-btn:hover{border-color:#bda060;background:#262a42}
 body.dark .om-scale-btn.on{background:#bda060;color:#1a1916}
 body.dark .om-fld textarea{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
 body.dark .om-fld textarea:focus{border-color:#bda060;background:#1a1d2e}
+
+/* ── Logbook (Fase 2) ─────────────────────────────────────────────── */
+.lb-bar{background:#fbf3da;border:1px solid #e5cf8c;border-radius:10px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.lb-bar-l{display:flex;align-items:center;gap:8px}
+.lb-bar-l select{padding:5px 9px;border:1px solid #d5c79a;border-radius:5px;font-size:13px;background:#fff;color:#1a1916;font-family:inherit;outline:none;min-width:220px}
+.lb-bar-l select:focus{border-color:#bda060}
+.lb-bar-r{margin-left:auto;font-size:11px;color:#7a5c20;font-style:italic}
+.lb-grid{display:grid;grid-template-columns:150px 1fr 2fr;gap:12px;align-items:end}
+.lb-col label{display:block;font-size:12px;font-weight:500;color:#1a1916;margin-bottom:6px}
+.lb-col label .opt{font-weight:400;color:var(--muted);font-size:11px}
+.lb-col input,.lb-col select{width:100%;padding:8px 10px;background:#faf9f7;border:1px solid var(--bd);border-radius:7px;font-family:inherit;font-size:13px;color:#1a1916;outline:none;box-sizing:border-box}
+.lb-col input:focus,.lb-col select:focus{border-color:#bda060;background:#fff}
+@media (max-width:680px){.lb-grid{grid-template-columns:1fr}}
+.lb-prog-row{display:grid;grid-template-columns:1fr auto 90px;gap:10px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--bd);font-size:13px}
+.lb-prog-row:last-child{border-bottom:0}
+.lb-prog-row .lp-l{color:#1a1916}
+.lb-prog-row .lp-c{font-family:'SF Mono',Consolas,monospace;font-size:12px;color:#7a5c20;font-weight:600;white-space:nowrap}
+.lb-prog-row .lp-bar{height:6px;background:#fbf3da;border-radius:3px;overflow:hidden}
+.lb-prog-row .lp-bar > span{display:block;height:100%;background:#bda060;transition:width .25s}
+.lb-prog-row .lp-bar > span.done{background:#3a8a3a}
+.lb-prog-empty{color:var(--muted);font-size:12px;padding:12px;text-align:center}
+.lb-prog-note{font-size:11px;color:var(--muted);font-style:italic;margin-top:10px;padding-top:8px;border-top:1px dashed var(--bd)}
+.lb-list-bar{display:flex;gap:6px;align-items:center;font-weight:400;text-transform:none;letter-spacing:normal;margin-left:auto}
+.lb-list-bar select,.lb-list-bar input{font-size:11px;padding:4px 8px;border-radius:4px;border:1px solid var(--bd);background:#fff;color:#1a1916;font-family:inherit;outline:none}
+.lb-list-bar input{width:130px}
+.lb-list-bar button{font-size:11px;padding:4px 10px;border-radius:4px;border:1px solid #bda060;background:#fbf3da;color:#7a5c20;cursor:pointer;font-family:inherit}
+.lb-list-bar button:hover{background:#f5e5b8}
+.lb-entry{display:grid;grid-template-columns:90px 170px 1fr auto;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd);font-size:13px;align-items:center}
+.lb-entry:last-child{border-bottom:0}
+.lb-entry .le-d{font-family:'SF Mono',Consolas,monospace;font-size:11px;color:var(--muted)}
+.lb-entry .le-e{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#7a5c20;background:#fbf3da;padding:2px 7px;border-radius:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-entry .le-t{color:#1a1916;line-height:1.4}
+.lb-entry .le-t b{font-weight:600}
+.lb-entry .le-x{background:none;border:0;color:var(--muted);cursor:pointer;font-size:18px;line-height:1;padding:4px 8px;border-radius:4px;font-family:inherit}
+.lb-entry .le-x:hover{background:#f4dfdf;color:#a02020}
+@media (max-width:680px){
+  .lb-entry{grid-template-columns:1fr auto;grid-template-rows:auto auto auto;row-gap:4px}
+  .lb-entry .le-d{grid-row:1;grid-column:1}
+  .lb-entry .le-x{grid-row:1;grid-column:2}
+  .lb-entry .le-e{grid-row:2;grid-column:1}
+  .lb-entry .le-t{grid-row:3;grid-column:1/-1}
+}
+.lb-empty{color:var(--muted);font-size:12px;padding:18px;text-align:center;font-style:italic}
+body.dark .lb-bar{background:#2a2010;border-color:#5a4020}
+body.dark .lb-bar-l select{background:#0f1117;border-color:#3a3d50;color:#dde1f0}
+body.dark .lb-bar-r{color:#dcc480}
+body.dark .lb-col input,body.dark .lb-col select{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .lb-col input:focus,body.dark .lb-col select:focus{background:#1a1d2e;border-color:#bda060}
+body.dark .lb-prog-row .lp-l{color:#dde1f0}
+body.dark .lb-prog-row .lp-c{color:#dcc480}
+body.dark .lb-prog-row .lp-bar{background:#2a2010}
+body.dark .lb-prog-row{border-color:#2a2d40}
+body.dark .lb-prog-note{color:#7a80a0;border-color:#2a2d40}
+body.dark .lb-list-bar select,body.dark .lb-list-bar input{background:#0f1117;border-color:#3a3d50;color:#dde1f0}
+body.dark .lb-list-bar button{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .lb-entry{border-color:#2a2d40}
+body.dark .lb-entry .le-d{color:#7a80a0}
+body.dark .lb-entry .le-e{background:#2a2010;color:#dcc480}
+body.dark .lb-entry .le-t{color:#dde1f0}
+body.dark .lb-empty{color:#7a80a0}
+.lb-prog-row.lb-prog-agg{background:rgba(189,160,96,0.08);border-radius:6px;padding-left:8px;padding-right:8px;font-weight:500}
+.lb-prog-row.lb-prog-agg .lp-l{color:#7a5c20}
+body.dark .lb-prog-row.lb-prog-agg{background:rgba(220,196,128,0.08)}
+body.dark .lb-prog-row.lb-prog-agg .lp-l{color:#dcc480}
+.lb-curso-prog{font-size:11px;color:var(--muted);margin-bottom:10px;font-family:'SF Mono',Consolas,monospace;font-weight:600}
+.lb-curso-grp{margin-bottom:14px}
+.lb-curso-grp:last-child{margin-bottom:0}
+.lb-curso-est{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#7a5c20;font-weight:600;margin-bottom:6px;padding-bottom:4px;border-bottom:1px dashed var(--bd)}
+.lb-curso-row{display:grid;grid-template-columns:1fr 140px;gap:10px;align-items:center;padding:5px 0;font-size:13px}
+.lb-curso-row label{display:flex;align-items:center;gap:8px;cursor:pointer;color:#1a1916;line-height:1.4}
+.lb-curso-row input[type="checkbox"]{accent-color:#bda060;width:15px;height:15px;flex-shrink:0;cursor:pointer}
+.lb-curso-row .lb-curso-d{padding:4px 8px;border:1px solid var(--bd);border-radius:5px;font-size:12px;font-family:'SF Mono',Consolas,monospace;background:#faf9f7;color:#1a1916;outline:none;font-family:inherit}
+.lb-curso-row .lb-curso-d:focus{border-color:#bda060;background:#fff}
+.lb-curso-row .lb-curso-d:disabled{opacity:.4;cursor:not-allowed}
+@media (max-width:680px){.lb-curso-row{grid-template-columns:1fr;gap:4px}.lb-curso-row .lb-curso-d{justify-self:start}}
+body.dark .lb-curso-prog{color:#7a80a0}
+body.dark .lb-curso-est{color:#dcc480;border-color:#2a2d40}
+body.dark .lb-curso-row label{color:#dde1f0}
+body.dark .lb-curso-row .lb-curso-d{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .lb-curso-row .lb-curso-d:focus{background:#1a1d2e;border-color:#bda060}
+
+/* ── Auto-contabilização SOAP (Fase 2.6) ─────────────────────────── */
+.lb-entry-auto{background:linear-gradient(to right, rgba(189,160,96,0.06), transparent 30%);padding-left:8px;border-radius:6px}
+.le-auto-ic{display:inline-block;font-size:10px;font-family:'SF Mono',Consolas,monospace;color:#7a5c20;background:#fbf3da;border:1px solid #e5cf8c;padding:1px 6px;border-radius:3px;letter-spacing:.05em;font-weight:600;vertical-align:middle;margin-right:2px}
+.le-warn{display:inline-block;font-size:10px;color:#a07020;background:#fbe5c8;border:1px solid #e5b888;padding:1px 6px;border-radius:3px;font-weight:500;vertical-align:middle;margin-right:2px}
+.le-chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.le-chip{font-size:10px;padding:2px 8px;border:1px solid #d5c79a;border-radius:10px;background:#faf6e8;color:#7a5c20;cursor:pointer;font-family:inherit;line-height:1.4}
+.le-chip:hover{background:#bda060;color:#fff;border-color:#bda060}
+.le-chip:focus-visible{outline:2px solid #2563eb;outline-offset:1px}
+.lb-toast{position:fixed;bottom:20px;right:20px;padding:11px 16px;background:#1a1916;color:#fff;border-radius:7px;font-size:13px;font-family:inherit;box-shadow:0 4px 14px rgba(0,0,0,0.25);opacity:0;transform:translateY(8px);transition:opacity .2s, transform .2s;pointer-events:none;z-index:10000;max-width:360px;line-height:1.4}
+.lb-toast.on{opacity:1;transform:translateY(0)}
+.lb-toast.warn{background:#7a4a10;border:1px solid #bda060}
+@media (max-width:600px){.lb-toast{left:12px;right:12px;bottom:12px;max-width:none}}
+body.dark .lb-entry-auto{background:linear-gradient(to right, rgba(220,196,128,0.06), transparent 30%)}
+body.dark .le-auto-ic{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .le-warn{background:#3a2a10;border-color:#5a4020;color:#dcc480}
+body.dark .le-chip{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .le-chip:hover{background:#bda060;color:#1a1916;border-color:#bda060}
+body.dark .lb-toast{background:#0f1117;border:1px solid #2a2d40}
+body.dark .lb-toast.warn{background:#3a2a10;border-color:#5a4020}
+
+/* ── Avaliações Fase 3 ─────────────────────────────────────────────── */
+.av-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:end;margin-bottom:14px}
+@media (max-width:680px){.av-grid{grid-template-columns:1fr}}
+.av-grid .av-fld{margin-bottom:0}
+.av-fld label{display:block;font-size:12px;font-weight:500;color:#1a1916;margin-bottom:6px}
+.av-fld label .opt{font-weight:400;color:var(--muted);font-size:11px}
+.av-fld label .pesoEl{float:right;font-family:'SF Mono',Consolas,monospace;font-size:10px;text-transform:uppercase;color:#7a5c20;background:#fbf3da;border:1px solid #e5cf8c;padding:1px 6px;border-radius:3px;font-weight:600}
+.av-fld input[type="number"],.av-fld input[type="date"],.av-fld select{width:100%;padding:8px 10px;background:#faf9f7;border:1px solid var(--bd);border-radius:7px;font-family:inherit;font-size:13px;color:#1a1916;outline:none;box-sizing:border-box}
+.av-fld input:focus,.av-fld select:focus{border-color:#bda060;background:#fff}
+.av-score{display:flex;align-items:center;gap:14px;padding:12px 14px;background:#fbf3da;border:1px solid #e5cf8c;border-radius:8px;margin-top:12px}
+.av-score .av-s-l{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#7a5c20;font-weight:600}
+.av-score .av-s-v{font-family:'SF Mono',Consolas,monospace;font-size:24px;font-weight:600;color:#7a5c20;line-height:1}
+.av-score .av-s-x{font-size:11px;color:var(--muted)}
+.av-score .av-s-formula{margin-left:auto;font-family:'SF Mono',Consolas,monospace;font-size:10px;color:var(--muted);line-height:1.4;text-align:right}
+.av-row{display:grid;grid-template-columns:80px 1fr 110px 110px auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--bd);font-size:13px}
+.av-row:last-child{border-bottom:0}
+.av-row .ar-y{font-family:'SF Mono',Consolas,monospace;font-size:11px;color:var(--muted)}
+.av-row .ar-l{color:#1a1916;line-height:1.4}
+.av-row .ar-l b{font-weight:600}
+.av-row .ar-l .sub{font-size:11px;color:var(--muted);display:block}
+.av-row input[type="date"],.av-row input[type="number"]{padding:5px 8px;border:1px solid var(--bd);border-radius:5px;font-size:12px;font-family:inherit;background:#faf9f7;color:#1a1916;outline:none;width:100%;box-sizing:border-box}
+.av-row input:focus{border-color:#bda060;background:#fff}
+.av-row .ar-st{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;text-align:right;padding:3px 8px;border-radius:4px;white-space:nowrap}
+.av-row .ar-st.ok{background:#e0f0e0;color:#2a6020;border:1px solid #a0d0a0}
+.av-row .ar-st.no{background:#f4dfdf;color:#a02020;border:1px solid #d0a0a0}
+.av-row .ar-st.--{background:#f4f0e0;color:var(--muted);border:1px solid var(--bd)}
+@media (max-width:680px){.av-row{grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto}.av-row .ar-y{grid-column:1}.av-row .ar-st{grid-column:2;text-align:right}.av-row .ar-l{grid-column:1/-1}.av-row input[type="date"]{grid-column:1}.av-row input[type="number"]{grid-column:2}}
+.av-hist-bar{display:flex;gap:6px;align-items:center;font-weight:400;text-transform:none;letter-spacing:normal;margin-left:auto}
+.av-hist-bar select,.av-hist-bar input{font-size:11px;padding:4px 8px;border-radius:4px;border:1px solid var(--bd);background:#fff;color:#1a1916;font-family:inherit;outline:none}
+.av-hist-bar button{font-size:11px;padding:4px 10px;border-radius:4px;border:1px solid #bda060;background:#fbf3da;color:#7a5c20;cursor:pointer;font-family:inherit}
+.av-hist-bar button:hover{background:#f5e5b8}
+.av-hist-row{display:grid;grid-template-columns:90px 100px 70px 1fr auto;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--bd);font-size:13px}
+.av-hist-row:last-child{border-bottom:0}
+.av-hist-row .ah-d{font-family:'SF Mono',Consolas,monospace;font-size:11px;color:var(--muted)}
+.av-hist-row .ah-i{font-size:11px;text-transform:uppercase;letter-spacing:.05em;background:#fbf3da;color:#7a5c20;padding:2px 7px;border-radius:4px;font-weight:600;text-align:center}
+.av-hist-row .ah-s{font-family:'SF Mono',Consolas,monospace;font-size:14px;color:#7a5c20;font-weight:600;text-align:center}
+.av-hist-row .ah-n{color:#1a1916;line-height:1.4;font-size:12px}
+.av-hist-row .ah-x{background:none;border:0;color:var(--muted);cursor:pointer;font-size:16px;line-height:1;padding:4px 6px;border-radius:4px;font-family:inherit}
+.av-hist-row .ah-x:hover{background:#f4dfdf;color:#a02020}
+@media (max-width:680px){.av-hist-row{grid-template-columns:1fr auto;grid-template-rows:auto auto}.av-hist-row .ah-d{grid-row:1;grid-column:1}.av-hist-row .ah-x{grid-row:1;grid-column:2}.av-hist-row .ah-i{grid-row:2;grid-column:1;justify-self:start}.av-hist-row .ah-s{grid-row:2;grid-column:2;text-align:right}.av-hist-row .ah-n{grid-column:1/-1}}
+.av-final-out{padding:14px 18px;background:linear-gradient(135deg,#fbf3da 0%,#f5e5b8 100%);border:1px solid #bda060;border-radius:10px;margin-top:14px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.av-final-out .af-l{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#7a5c20;font-weight:600}
+.av-final-out .af-v{font-family:'SF Mono',Consolas,monospace;font-size:32px;font-weight:600;color:#7a5c20;line-height:1}
+.av-final-out .af-x{font-size:11px;color:#7a5c20;line-height:1.4;flex:1;font-family:'SF Mono',Consolas,monospace}
+.av-final-out.invalid .af-v{color:#a02020}
+body.dark .av-fld label{color:#dde1f0}
+body.dark .av-fld label .pesoEl{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .av-fld input,body.dark .av-fld select{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .av-fld input:focus,body.dark .av-fld select:focus{background:#1a1d2e;border-color:#bda060}
+body.dark .av-score{background:#2a2010;border-color:#5a4020}
+body.dark .av-score .av-s-l,body.dark .av-score .av-s-v{color:#dcc480}
+body.dark .av-row .ar-l{color:#dde1f0}
+body.dark .av-row{border-color:#2a2d40}
+body.dark .av-row input{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .av-row input:focus{background:#1a1d2e;border-color:#bda060}
+body.dark .av-row .ar-st.ok{background:#10301a;color:#80c080;border-color:#2a6020}
+body.dark .av-row .ar-st.no{background:#301010;color:#d08080;border-color:#602020}
+body.dark .av-row .ar-st.--{background:#1a1d2e;color:#7a80a0;border-color:#2a2d40}
+body.dark .av-hist-bar select,body.dark .av-hist-bar input{background:#0f1117;border-color:#3a3d50;color:#dde1f0}
+body.dark .av-hist-bar button{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .av-hist-row{border-color:#2a2d40}
+body.dark .av-hist-row .ah-i,body.dark .av-hist-row .ah-s{background:#2a2010;color:#dcc480}
+body.dark .av-hist-row .ah-n{color:#dde1f0}
+body.dark .av-final-out{background:linear-gradient(135deg,#2a2010 0%,#3a2a10 100%);border-color:#bda060}
+body.dark .av-final-out .af-l,body.dark .av-final-out .af-v,body.dark .av-final-out .af-x{color:#dcc480}
+
+/* ── Diário formativo (Fase 4) ───────────────────────────────────── */
+.dia-grid{display:grid;grid-template-columns:140px 1fr;gap:12px;align-items:end;margin-bottom:12px}
+@media (max-width:680px){.dia-grid{grid-template-columns:1fr}}
+.dia-fld label{display:block;font-size:12px;font-weight:500;color:#1a1916;margin-bottom:6px}
+.dia-fld label .opt{font-weight:400;color:var(--muted);font-size:11px}
+.dia-fld input[type="date"],.dia-fld input[type="text"]{width:100%;padding:8px 10px;background:#faf9f7;border:1px solid var(--bd);border-radius:7px;font-family:inherit;font-size:13px;color:#1a1916;outline:none;box-sizing:border-box}
+.dia-fld input:focus{border-color:#bda060;background:#fff}
+.dia-tags-input{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:6px;background:#faf9f7;border:1px solid var(--bd);border-radius:7px;min-height:36px}
+.dia-tags-input:focus-within{border-color:#bda060;background:#fff}
+.dia-tag-pill{display:inline-flex;align-items:center;gap:4px;padding:3px 8px 3px 10px;font-size:11px;background:#fbf3da;border:1px solid #e5cf8c;color:#7a5c20;border-radius:12px;font-weight:500;line-height:1.2}
+.dia-tag-pill button{background:none;border:0;color:#7a5c20;cursor:pointer;font-size:12px;line-height:1;padding:0 0 0 2px;font-family:inherit;opacity:.6}
+.dia-tag-pill button:hover{opacity:1;color:#a02020}
+.dia-tags-input input{flex:1;min-width:120px;border:0;outline:none;background:transparent;font-family:inherit;font-size:12px;padding:3px 4px;color:#1a1916}
+.dia-tags-sugg{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.dia-tags-sugg .sgg{padding:2px 8px;border:1px dashed #d5c79a;border-radius:10px;background:transparent;font-size:11px;color:var(--muted);cursor:pointer;font-family:inherit}
+.dia-tags-sugg .sgg:hover{background:#fbf3da;color:#7a5c20;border-style:solid;border-color:#e5cf8c}
+.dia-area-wrap{position:relative}
+.dia-area-wrap textarea{width:100%;min-height:140px;padding:10px 12px;padding-right:40px;background:#faf9f7;border:1px solid var(--bd);border-radius:7px;font-family:inherit;font-size:13px;line-height:1.6;resize:vertical;color:#1a1916;outline:none;box-sizing:border-box}
+.dia-area-wrap textarea:focus{border-color:#bda060;background:#fff}
+.dia-area-wrap textarea.rec{border-color:#a02020;background:#fcf6f6}
+.dia-mic{position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;border:1px solid #d5c79a;background:#fbf3da;color:#7a5c20;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;font-family:inherit;transition:all .15s}
+.dia-mic:hover{background:#bda060;color:#fff;border-color:#bda060}
+.dia-mic.on{background:#a02020;color:#fff;border-color:#a02020;animation:dia-mic-pulse 1.2s ease-in-out infinite}
+.dia-mic:disabled{opacity:.4;cursor:not-allowed;background:#faf9f7;color:var(--muted)}
+@keyframes dia-mic-pulse{0%,100%{box-shadow:0 0 0 0 rgba(160,32,32,.5)}50%{box-shadow:0 0 0 7px rgba(160,32,32,0)}}
+.dia-bar-r{display:flex;gap:6px;align-items:center;font-weight:400;text-transform:none;letter-spacing:normal;margin-left:auto}
+.dia-bar-r select,.dia-bar-r input{font-size:11px;padding:4px 8px;border-radius:4px;border:1px solid var(--bd);background:#fff;color:#1a1916;font-family:inherit;outline:none}
+.dia-bar-r input{width:140px}
+.dia-bar-r button{font-size:11px;padding:4px 10px;border-radius:4px;border:1px solid #bda060;background:#fbf3da;color:#7a5c20;cursor:pointer;font-family:inherit}
+.dia-bar-r button:hover{background:#f5e5b8}
+.dia-entry{padding:12px 14px;border:1px solid var(--bd);border-radius:8px;margin-bottom:10px;background:#fff}
+.dia-entry:last-child{margin-bottom:0}
+.dia-entry .de-hdr{display:flex;gap:10px;align-items:center;margin-bottom:6px;flex-wrap:wrap}
+.dia-entry .de-d{font-family:'SF Mono',Consolas,monospace;font-size:11px;color:var(--muted)}
+.dia-entry .de-tt{font-size:14px;font-weight:600;color:#1a1916;flex:1;line-height:1.3}
+.dia-entry .de-x{background:none;border:0;color:var(--muted);cursor:pointer;font-size:16px;line-height:1;padding:4px 6px;border-radius:4px;font-family:inherit;margin-left:auto}
+.dia-entry .de-x:hover{background:#f4dfdf;color:#a02020}
+.dia-entry .de-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.dia-entry .de-tag{font-size:10px;padding:2px 7px;background:#fbf3da;border:1px solid #e5cf8c;color:#7a5c20;border-radius:10px;font-weight:500;line-height:1.3}
+.dia-entry .de-body{font-size:13px;color:#1a1916;line-height:1.55;white-space:pre-wrap;word-wrap:break-word}
+.dia-entry .de-est{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-top:8px;padding-top:6px;border-top:1px dashed var(--bd)}
+body.dark .dia-fld label{color:#dde1f0}
+body.dark .dia-fld input{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .dia-fld input:focus{background:#1a1d2e;border-color:#bda060}
+body.dark .dia-tags-input{background:#0f1117;border-color:#2a2d40}
+body.dark .dia-tags-input:focus-within{background:#1a1d2e;border-color:#bda060}
+body.dark .dia-tag-pill{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .dia-tag-pill button{color:#dcc480}
+body.dark .dia-tags-input input{color:#dde1f0}
+body.dark .dia-tags-sugg .sgg{border-color:#5a4020;color:#7a80a0}
+body.dark .dia-tags-sugg .sgg:hover{background:#2a2010;color:#dcc480;border-color:#5a4020}
+body.dark .dia-area-wrap textarea{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .dia-area-wrap textarea:focus{background:#1a1d2e;border-color:#bda060}
+body.dark .dia-area-wrap textarea.rec{border-color:#a02020;background:#2a1010}
+body.dark .dia-mic{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .dia-mic:hover{background:#bda060;color:#1a1916;border-color:#bda060}
+body.dark .dia-bar-r select,body.dark .dia-bar-r input{background:#0f1117;border-color:#3a3d50;color:#dde1f0}
+body.dark .dia-bar-r button{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .dia-entry{background:#1a1d2e;border-color:#2a2d40}
+body.dark .dia-entry .de-tt,body.dark .dia-entry .de-body{color:#dde1f0}
+body.dark .dia-entry .de-tag{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .dia-entry .de-est{color:#7a80a0;border-color:#2a2d40}
+
+/* ── Journal Club (Fase 5) ─────────────────────────────────────────── */
+.jc-bib{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+@media (max-width:680px){.jc-bib{grid-template-columns:1fr}}
+.jc-bib .jc-fld input{width:100%;padding:8px 10px;background:#faf9f7;border:1px solid var(--bd);border-radius:7px;font-family:inherit;font-size:13px;color:#1a1916;outline:none;box-sizing:border-box}
+.jc-bib .jc-fld input:focus{border-color:#bda060;background:#fff}
+.jc-bib .jc-fld label{display:block;font-size:12px;font-weight:500;color:#1a1916;margin-bottom:6px}
+.jc-bib .jc-fld label .opt{font-weight:400;color:var(--muted);font-size:11px}
+.jc-bib .jc-fld.full{grid-column:1/-1}
+.jc-doi-links{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.jc-doi-links a{font-size:11px;padding:3px 10px;border:1px solid #bda060;background:#fbf3da;color:#7a5c20;border-radius:4px;text-decoration:none;font-family:inherit}
+.jc-doi-links a:hover{background:#bda060;color:#fff}
+.jc-doi-links a.disabled{pointer-events:none;opacity:.4}
+.jc-tpl-bar{display:flex;gap:8px;align-items:center;margin-bottom:14px;padding:10px 14px;background:#fbf3da;border:1px solid #e5cf8c;border-radius:8px;flex-wrap:wrap}
+.jc-tpl-bar label{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#7a5c20;font-weight:600}
+.jc-tpl-bar select{padding:6px 10px;border:1px solid #d5c79a;border-radius:5px;font-size:13px;background:#fff;color:#1a1916;font-family:inherit;outline:none;min-width:240px}
+.jc-tpl-bar select:focus{border-color:#bda060}
+.jc-tpl-bar .jc-prog{margin-left:auto;font-size:11px;color:#7a5c20;font-family:'SF Mono',Consolas,monospace;font-weight:600}
+.jc-item{padding:10px 0;border-bottom:1px dashed var(--bd)}
+.jc-item:last-child{border-bottom:0}
+.jc-item .jc-q{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.5;color:#1a1916}
+.jc-item .jc-q-n{font-family:'SF Mono',Consolas,monospace;font-size:11px;color:#7a5c20;font-weight:600;min-width:24px;flex-shrink:0;padding-top:1px}
+.jc-item .jc-q-t{flex:1}
+.jc-radio-group{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.jc-radio{padding:4px 10px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;border:1px solid var(--bd);border-radius:5px;background:#faf9f7;color:var(--muted);cursor:pointer;font-family:inherit;transition:all .12s}
+.jc-radio:hover{background:#fff;color:#1a1916}
+.jc-radio.on.y{background:#2a6020;color:#fff;border-color:#2a6020}
+.jc-radio.on.n{background:#a02020;color:#fff;border-color:#a02020}
+.jc-radio.on.ct{background:#a07020;color:#fff;border-color:#a07020}
+.jc-radio.on.na{background:#5a5a60;color:#fff;border-color:#5a5a60}
+.jc-com{width:100%;margin-top:8px;padding:6px 10px;background:#faf9f7;border:1px solid var(--bd);border-radius:5px;font-family:inherit;font-size:12px;line-height:1.5;color:#1a1916;outline:none;resize:vertical;min-height:32px;display:none}
+.jc-item.has-resp .jc-com{display:block}
+.jc-com:focus{border-color:#bda060;background:#fff}
+.jc-tpl-empty{text-align:center;color:var(--muted);font-style:italic;padding:18px;font-size:13px}
+.jc-concl{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media (max-width:680px){.jc-concl{grid-template-columns:1fr}}
+.jc-concl textarea{width:100%;padding:8px 10px;background:#faf9f7;border:1px solid var(--bd);border-radius:7px;font-family:inherit;font-size:13px;line-height:1.5;color:#1a1916;outline:none;resize:vertical;min-height:70px;box-sizing:border-box}
+.jc-concl textarea:focus{border-color:#bda060;background:#fff}
+.jc-concl label{display:block;font-size:12px;font-weight:500;color:#1a1916;margin-bottom:6px}
+.jc-concl label .opt{font-weight:400;color:var(--muted);font-size:11px}
+.jc-entry{padding:12px 14px;border:1px solid var(--bd);border-radius:8px;margin-bottom:10px;background:#fff}
+.jc-entry:last-child{margin-bottom:0}
+.jc-entry .je-hdr{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.jc-entry .je-d{font-family:'SF Mono',Consolas,monospace;font-size:11px;color:var(--muted);min-width:90px}
+.jc-entry .je-tt{font-size:14px;font-weight:600;color:#1a1916;flex:1;line-height:1.3;cursor:pointer}
+.jc-entry .je-tt:hover{color:#7a5c20}
+.jc-entry .je-x{background:none;border:0;color:var(--muted);cursor:pointer;font-size:16px;line-height:1;padding:4px 6px;border-radius:4px;font-family:inherit}
+.jc-entry .je-x:hover{background:#f4dfdf;color:#a02020}
+.jc-entry .je-meta{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.4}
+.jc-entry .je-tpl{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#7a5c20;background:#fbf3da;border:1px solid #e5cf8c;padding:1px 7px;border-radius:3px;font-weight:600;display:inline-block}
+.jc-entry .je-score{font-family:'SF Mono',Consolas,monospace;font-size:11px;color:#7a5c20;font-weight:600;margin-left:6px}
+.jc-entry .je-body{display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--bd);font-size:12px;line-height:1.6;color:#1a1916}
+.jc-entry.open .je-body{display:block}
+.jc-entry .je-body .jb-q{margin-bottom:6px}
+.jc-entry .je-body .jb-q b{color:#1a1916;font-weight:600}
+.jc-entry .je-body .jb-q .resp{display:inline-block;font-size:10px;font-weight:600;text-transform:uppercase;padding:1px 6px;border-radius:3px;margin-left:4px}
+.jc-entry .je-body .jb-q .resp.y{background:#2a6020;color:#fff}
+.jc-entry .je-body .jb-q .resp.n{background:#a02020;color:#fff}
+.jc-entry .je-body .jb-q .resp.ct{background:#a07020;color:#fff}
+.jc-entry .je-body .jb-q .resp.na{background:#5a5a60;color:#fff}
+.jc-entry .je-body .jb-c{color:var(--muted);font-style:italic;font-size:11px;margin-left:8px}
+.jc-entry .je-body .jb-concl{margin-top:8px;padding-top:8px;border-top:1px dashed var(--bd)}
+body.dark .jc-bib .jc-fld label{color:#dde1f0}
+body.dark .jc-bib .jc-fld input{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .jc-bib .jc-fld input:focus{background:#1a1d2e;border-color:#bda060}
+body.dark .jc-doi-links a{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .jc-doi-links a:hover{background:#bda060;color:#1a1916}
+body.dark .jc-tpl-bar{background:#2a2010;border-color:#5a4020}
+body.dark .jc-tpl-bar label,body.dark .jc-tpl-bar .jc-prog{color:#dcc480}
+body.dark .jc-tpl-bar select{background:#0f1117;border-color:#3a3d50;color:#dde1f0}
+body.dark .jc-item{border-color:#2a2d40}
+body.dark .jc-item .jc-q{color:#dde1f0}
+body.dark .jc-item .jc-q-n{color:#dcc480}
+body.dark .jc-radio{background:#1e2235;border-color:#2a2d40;color:#7a80a0}
+body.dark .jc-radio:hover{background:#262a42;color:#dde1f0}
+body.dark .jc-com{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .jc-com:focus{background:#1a1d2e;border-color:#bda060}
+body.dark .jc-concl label{color:#dde1f0}
+body.dark .jc-concl textarea{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .jc-concl textarea:focus{background:#1a1d2e;border-color:#bda060}
+body.dark .jc-entry{background:#1a1d2e;border-color:#2a2d40}
+body.dark .jc-entry .je-tt,body.dark .jc-entry .je-body{color:#dde1f0}
+body.dark .jc-entry .je-meta{color:#7a80a0}
+body.dark .jc-entry .je-tpl{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .jc-entry .je-score{color:#dcc480}
+body.dark .jc-entry .je-body .jb-q b{color:#dde1f0}
+body.dark .jc-entry .je-body .jb-c{color:#7a80a0}
+body.dark .jc-entry .je-body .jb-concl{border-color:#2a2d40}
 </style>
 </head>
 <body>
@@ -3191,10 +3508,56 @@ body.dark .om-fld textarea:focus{border-color:#bda060;background:#1a1d2e}
 
   <!-- LOGBOOK -->
   <div class="panel-int on" id="pi-log" role="tabpanel" aria-labelledby="tab-int-log">
-    <div class="int-stub">
-      <h3>Logbook clínico</h3>
-      <p>Registo dos actos clínicos exigidos pela Ordem dos Médicos durante o internato (consultas programadas, urgências, visitas domiciliárias, intervenções, reuniões formativas). Entradas datadas, com tipo e descrição breve.</p>
-      <span class="int-fase">Fase 2 — em construção</span>
+    <div class="lb-bar" role="region" aria-label="Estágio activo">
+      <div class="lb-bar-l">
+        <span class="ip-l">Estágio</span>
+        <select id="lb-estagio" onchange="dxLogEstagioSet(this.value)" aria-label="Estágio em curso"></select>
+      </div>
+      <div class="lb-bar-r" id="lb-bar-meta"></div>
+    </div>
+
+    <div class="om-card">
+      <div class="om-h">Novo registo</div>
+      <div class="lb-grid">
+        <div class="lb-col">
+          <label>Data <span class="opt">obrigatório</span></label>
+          <input type="date" id="lb-data" aria-label="Data do registo">
+        </div>
+        <div class="lb-col">
+          <label>Tipo de acto <span class="opt">conforme estágio</span></label>
+          <select id="lb-tipo" aria-label="Tipo de acto"></select>
+        </div>
+        <div class="lb-col">
+          <label>Descrição <span class="opt">opcional — sem PII do doente</span></label>
+          <input type="text" id="lb-desc" maxlength="160" placeholder="ex.: HTA descompensada, ajuste de IECA + diurético">
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;align-items:center;margin-top:12px">
+        <span id="lb-count" style="font-size:11px;color:var(--muted);margin-right:auto"></span>
+        <button class="btn-c" type="button" onclick="dxLogSave()" style="background:#bda060;color:#fff;border-color:#bda060;padding:7px 16px;font-weight:500">Guardar registo</button>
+      </div>
+    </div>
+
+    <div class="om-card">
+      <div class="om-h">Progresso do estágio actual</div>
+      <div id="lb-prog-wrap"></div>
+      <div class="lb-prog-note">Mínimos confirmados na <b>Caderneta IM ARS Norte 2024</b> (Portaria 125/2019): MGF3 — ≥ 1500 consultas em autonomia, ≥ 200 em saúde infantil/juvenil (≤ 18 a) e ≥ 200 em saúde da mulher; turnos de urgência por área; 1 mês em unidade c/ população diferente em MGF2. Os actos sem mínimo numérico ficam em contagem absoluta — o detalhe por procedimento (ECG, espirometria, citologia, etc.) está na <i>Caderneta de Estágio</i> e <i>Guião de Formação</i>, documentos separados. Horário: 32 h clínicas + 8 h não-clínicas / semana.</div>
+    </div>
+
+    <div class="om-card">
+      <div class="om-h">Cursos curriculares obrigatórios</div>
+      <div id="lb-cursos-wrap"></div>
+    </div>
+
+    <div class="om-card">
+      <div class="om-h">Registos
+        <span class="lb-list-bar">
+          <select id="lb-filt-estagio" onchange="dxLogRender()" aria-label="Filtrar por estágio"><option value="">Todos os estágios</option></select>
+          <input type="search" id="lb-filt-q" oninput="dxLogRender()" placeholder="procurar…" aria-label="Procurar nos registos">
+          <button type="button" onclick="dxLogExport()" title="Exportar logbook em PDF (em construção)">PDF</button>
+        </span>
+      </div>
+      <div id="lb-list-wrap"></div>
     </div>
   </div>
 
@@ -3236,28 +3599,269 @@ body.dark .om-fld textarea:focus{border-color:#bda060;background:#1a1d2e}
       </div>
     </div>
 
-    <div class="int-stub" style="margin-top:14px">
-      <h3>Histórico e relatório periódico</h3>
-      <p>Lista das avaliações guardadas, filtros por instrumento e período, exportação para reunião com tutor / orientador formativo.</p>
-      <span class="int-fase">Fase 2 — em construção</span>
+    <div class="om-card" style="margin-top:14px">
+      <div class="om-h">Histórico de avaliações formativas
+        <span class="av-hist-bar">
+          <select id="av-fh-instr" onchange="dxOMHistRender()" aria-label="Filtrar por instrumento">
+            <option value="">Todos os instrumentos</option>
+            <option value="minicex">Mini-CEX</option>
+            <option value="dops">DOPS</option>
+            <option value="cbd">CbD</option>
+            <option value="msf">MSF</option>
+          </select>
+          <select id="av-fh-year" onchange="dxOMHistRender()" aria-label="Filtrar por ano">
+            <option value="">Todos os anos</option>
+            <option value="1">Ano 1</option>
+            <option value="2">Ano 2</option>
+            <option value="3">Ano 3</option>
+            <option value="4">Ano 4</option>
+          </select>
+          <button type="button" onclick="dxOMHistExport()" title="Exportar para ficheiro de texto">↓ TXT</button>
+        </span>
+      </div>
+      <div id="av-hist-wrap"></div>
+    </div>
+
+    <!-- Avaliação anual de desempenho (Caderneta IM ARS Norte 2024) -->
+    <div class="om-card" style="margin-top:14px">
+      <div class="om-h">Avaliação anual de desempenho
+        <span style="margin-left:auto;font-weight:400;text-transform:none;letter-spacing:normal;font-size:11px;color:var(--muted)">4 parâmetros ponderados · escala 0-20</span>
+      </div>
+      <div class="av-grid">
+        <div class="av-fld">
+          <label>Ano de internato <span class="opt">obrigatório</span></label>
+          <select id="av-an-year" onchange="dxAnualScoreCalc()" aria-label="Ano de internato">
+            <option value="">—</option>
+            <option value="1">Ano 1 (MGF1)</option>
+            <option value="2">Ano 2 (MGF2 — 1.º)</option>
+            <option value="3">Ano 3 (MGF2 — 2.º)</option>
+            <option value="4">Ano 4 (MGF3)</option>
+          </select>
+        </div>
+        <div class="av-fld">
+          <label>Data da avaliação</label>
+          <input type="date" id="av-an-date" aria-label="Data da avaliação anual">
+        </div>
+        <div class="av-fld">
+          <label>Capacidade de execução técnica <span class="pesoEl">peso ×4</span></label>
+          <input type="number" id="av-an-p1" min="0" max="20" step="0.1" oninput="dxAnualScoreCalc()" aria-label="Capacidade de execução técnica (0-20)">
+        </div>
+        <div class="av-fld">
+          <label>Interesse pela valorização profissional <span class="pesoEl">peso ×2</span></label>
+          <input type="number" id="av-an-p2" min="0" max="20" step="0.1" oninput="dxAnualScoreCalc()" aria-label="Interesse pela valorização profissional (0-20)">
+        </div>
+        <div class="av-fld">
+          <label>Responsabilidade profissional <span class="pesoEl">peso ×3</span></label>
+          <input type="number" id="av-an-p3" min="0" max="20" step="0.1" oninput="dxAnualScoreCalc()" aria-label="Responsabilidade profissional (0-20)">
+        </div>
+        <div class="av-fld">
+          <label>Relações humanas no trabalho <span class="pesoEl">peso ×1</span></label>
+          <input type="number" id="av-an-p4" min="0" max="20" step="0.1" oninput="dxAnualScoreCalc()" aria-label="Relações humanas no trabalho (0-20)">
+        </div>
+      </div>
+      <div class="om-fld">
+        <label>Notas <span class="opt">opcional — pontos fortes, áreas a desenvolver</span></label>
+        <textarea id="av-an-notes" rows="2" placeholder="ex.: bom desempenho geral; aprofundar gestão de polimedicação no idoso." oninput="dxAnualScoreCalc()"></textarea>
+      </div>
+      <div class="av-score" role="status" aria-live="polite">
+        <span class="av-s-l">Pontuação ponderada</span>
+        <span class="av-s-v" id="av-an-score">—</span>
+        <span class="av-s-x">/ 20</span>
+        <span class="av-s-formula">(P1×4 + P2×2 + P3×3 + P4×1) / 10</span>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+        <button class="btn-c" type="button" onclick="dxAnualSave()" style="background:#bda060;color:#fff;border-color:#bda060;padding:7px 16px;font-weight:500">Guardar avaliação anual</button>
+      </div>
+      <div id="av-an-hist-wrap" style="margin-top:14px"></div>
+    </div>
+
+    <!-- Avaliação de conhecimentos -->
+    <div class="om-card" style="margin-top:14px">
+      <div class="om-h">Avaliação de conhecimentos
+        <span style="margin-left:auto;font-weight:400;text-transform:none;letter-spacing:normal;font-size:11px;color:var(--muted)">aprovação ≥ 10 / 20</span>
+      </div>
+      <div id="av-prova-wrap"></div>
+    </div>
+
+    <!-- Calculadora da avaliação final -->
+    <div class="om-card" style="margin-top:14px">
+      <div class="om-h">Calculadora da avaliação final
+        <span style="margin-left:auto;font-weight:400;text-transform:none;letter-spacing:normal;font-size:11px;color:var(--muted)">Portaria 125/2019 · 3 provas</span>
+      </div>
+      <div class="av-grid">
+        <div class="av-fld">
+          <label>Discussão curricular — defesa <span class="opt">peso 60%</span></label>
+          <input type="number" id="av-f-disc" min="0" max="20" step="0.01" oninput="dxFinalCalc()">
+        </div>
+        <div class="av-fld">
+          <label>Média dos estágios <span class="opt">peso 40%</span></label>
+          <input type="number" id="av-f-est" min="0" max="20" step="0.01" oninput="dxFinalCalc()">
+        </div>
+        <div class="av-fld">
+          <label>Prova prática <span class="opt">3 casos clínicos</span></label>
+          <input type="number" id="av-f-prat" min="0" max="20" step="0.01" oninput="dxFinalCalc()">
+        </div>
+        <div class="av-fld">
+          <label>Prova teórica <span class="opt">nacional escrita</span></label>
+          <input type="number" id="av-f-teor" min="0" max="20" step="0.01" oninput="dxFinalCalc()">
+        </div>
+      </div>
+      <div class="av-final-out" id="av-f-out">
+        <span class="af-l">Classificação final</span>
+        <span class="af-v" id="av-f-val">—</span>
+        <span class="af-x" id="av-f-bd">((discussão × 0,6 + estágios × 0,4) + prática + teórica) / 3</span>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+        <button class="btn-c" type="button" onclick="dxFinalSave()" style="background:#bda060;color:#fff;border-color:#bda060;padding:7px 16px;font-weight:500">Guardar snapshot final</button>
+      </div>
     </div>
   </div>
 
   <!-- DIÁRIO -->
   <div class="panel-int" id="pi-dia" role="tabpanel" aria-labelledby="tab-int-dia">
-    <div class="int-stub">
-      <h3>Diário formativo</h3>
-      <p>Reflexão pessoal sobre práticas e aprendizagens. Componente da carteira do interno conforme regulamento OM. Entradas datadas, ditado por voz disponível.</p>
-      <span class="int-fase">Fase 2 — em construção</span>
+    <div class="om-card">
+      <div class="om-h">Nova entrada</div>
+      <div class="dia-grid">
+        <div class="dia-fld">
+          <label>Data</label>
+          <input type="date" id="dia-date" aria-label="Data da entrada">
+        </div>
+        <div class="dia-fld">
+          <label>Título <span class="opt">curto e descritivo</span></label>
+          <input type="text" id="dia-title" maxlength="120" placeholder="ex.: Caso de polimedicação no idoso — revisão Beers" autocomplete="off">
+        </div>
+      </div>
+      <div class="om-fld">
+        <label>Tags <span class="opt">enter para adicionar; clique nas sugestões abaixo</span></label>
+        <div class="dia-tags-input" id="dia-tags-input" onclick="document.getElementById('dia-tag-input').focus()">
+          <input type="text" id="dia-tag-input" placeholder="adicionar tag…" onkeydown="dxDiaTagKey(event)" autocomplete="off">
+        </div>
+        <div class="dia-tags-sugg">
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('caso clínico')">caso clínico</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('reflexão')">reflexão</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('dilema ético')">dilema ético</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('comunicação')">comunicação</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('erro / quase-erro')">erro / quase-erro</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('aprendizagem')">aprendizagem</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('sessão clínica')">sessão clínica</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('reunião')">reunião</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('formação')">formação</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('relação médico-doente')">relação médico-doente</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('multimorbilidade')">multimorbilidade</button>
+          <button type="button" class="sgg" onclick="dxDiaTagAdd('fim de vida')">fim de vida</button>
+        </div>
+      </div>
+      <div class="om-fld">
+        <label>Reflexão / conteúdo <span class="opt">sem PII do doente — use iniciais ou códigos</span></label>
+        <div class="dia-area-wrap">
+          <textarea id="dia-content" rows="6" placeholder="Descreva o caso, a aprendizagem, a reflexão. Use o microfone para ditado em pt-PT."></textarea>
+          <button type="button" class="dia-mic" id="dia-mic" onclick="dxDiaDictate()" aria-label="Ditado por voz" title="Ditar (pt-PT) — clique para iniciar/parar">🎙</button>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;align-items:center;margin-top:12px">
+        <span id="dia-count" style="font-size:11px;color:var(--muted);margin-right:auto"></span>
+        <button class="btn-c" type="button" onclick="dxDiaSave()" style="background:#bda060;color:#fff;border-color:#bda060;padding:7px 16px;font-weight:500">Guardar entrada</button>
+      </div>
+    </div>
+
+    <div class="om-card" style="margin-top:14px">
+      <div class="om-h">Entradas
+        <span class="dia-bar-r">
+          <input type="search" id="dia-filt-q" oninput="dxDiaRender()" placeholder="procurar…" aria-label="Procurar nas entradas do diário">
+          <select id="dia-filt-tag" onchange="dxDiaRender()" aria-label="Filtrar por tag">
+            <option value="">Todas as tags</option>
+          </select>
+          <button type="button" onclick="dxDiaExport()" title="Exportar diário em ficheiro de texto">↓ TXT</button>
+        </span>
+      </div>
+      <div id="dia-list-wrap"></div>
     </div>
   </div>
 
   <!-- JOURNAL CLUB -->
   <div class="panel-int" id="pi-jc" role="tabpanel" aria-labelledby="tab-int-jc">
-    <div class="int-stub">
-      <h3>Journal Club</h3>
-      <p>Apontamentos sobre artigos discutidos em sessão. Suporte a citações DOI / PubMed, templates CASP / AMSTAR para apreciação crítica.</p>
-      <span class="int-fase">Fase 2 — em construção</span>
+    <div class="om-card">
+      <div class="om-h">Nova sessão de Journal Club</div>
+
+      <div class="jc-bib">
+        <div class="jc-fld full">
+          <label>Título do artigo <span class="opt">obrigatório</span></label>
+          <input type="text" id="jc-art-tit" maxlength="240" placeholder="ex.: Effect of finerenone on chronic kidney disease outcomes in type 2 diabetes" autocomplete="off">
+        </div>
+        <div class="jc-fld full">
+          <label>Autores <span class="opt">primeiro autor et al. ou lista</span></label>
+          <input type="text" id="jc-art-aut" maxlength="240" placeholder="ex.: Bakris GL, Agarwal R, Anker SD, et al." autocomplete="off">
+        </div>
+        <div class="jc-fld">
+          <label>Revista</label>
+          <input type="text" id="jc-art-rev" maxlength="120" placeholder="ex.: N Engl J Med" autocomplete="off">
+        </div>
+        <div class="jc-fld">
+          <label>Ano</label>
+          <input type="text" id="jc-art-ano" maxlength="6" placeholder="ex.: 2020" autocomplete="off" inputmode="numeric">
+        </div>
+        <div class="jc-fld">
+          <label>DOI <span class="opt">opcional</span></label>
+          <input type="text" id="jc-art-doi" maxlength="120" placeholder="ex.: 10.1056/NEJMoa2025845" oninput="dxJCDoiUpdate()" autocomplete="off">
+        </div>
+        <div class="jc-fld">
+          <label>PMID <span class="opt">opcional</span></label>
+          <input type="text" id="jc-art-pmid" maxlength="20" placeholder="ex.: 33264825" oninput="dxJCDoiUpdate()" autocomplete="off" inputmode="numeric">
+        </div>
+        <div class="jc-fld full">
+          <div class="jc-doi-links" id="jc-doi-links" aria-label="Links externos">
+            <a id="jc-link-doi" class="disabled" href="#" target="_blank" rel="noopener">↗ doi.org</a>
+            <a id="jc-link-pmid" class="disabled" href="#" target="_blank" rel="noopener">↗ PubMed</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="jc-tpl-bar">
+        <label for="jc-tpl">Template de apreciação crítica</label>
+        <select id="jc-tpl" onchange="dxJCRenderTpl()" aria-label="Template CASP / AMSTAR">
+          <option value="">— escolher —</option>
+          <option value="rct">CASP — Ensaio clínico randomizado (RCT)</option>
+          <option value="sr">CASP — Revisão sistemática</option>
+          <option value="cohort">CASP — Coorte</option>
+          <option value="amstar2">AMSTAR-2 — Revisão sistemática (16 itens)</option>
+        </select>
+        <span class="jc-prog" id="jc-prog">—</span>
+      </div>
+
+      <div id="jc-tpl-wrap"></div>
+
+      <div class="jc-concl">
+        <div>
+          <label>Conclusão / mensagem-chave</label>
+          <textarea id="jc-concl" rows="3" placeholder="ex.: finerenone reduziu progressão de DRC e eventos CV na DM2 com albuminúria, mas com risco aumentado de hipercaliemia."></textarea>
+        </div>
+        <div>
+          <label>Aplicabilidade ao meu doente / contexto</label>
+          <textarea id="jc-apli" rows="3" placeholder="ex.: aplicável aos meus utentes DM2+DRC G3 com albuminúria; vigiar K+; rever quando IRA."></textarea>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:8px;justify-content:flex-end;align-items:center;margin-top:12px">
+        <span id="jc-count" style="font-size:11px;color:var(--muted);margin-right:auto"></span>
+        <button class="btn-c" type="button" onclick="dxJCSave()" style="background:#bda060;color:#fff;border-color:#bda060;padding:7px 16px;font-weight:500">Guardar sessão</button>
+      </div>
+    </div>
+
+    <div class="om-card" style="margin-top:14px">
+      <div class="om-h">Sessões anteriores
+        <span class="dia-bar-r">
+          <input type="search" id="jc-filt-q" oninput="dxJCRender()" placeholder="procurar…" aria-label="Procurar nas sessões">
+          <select id="jc-filt-tpl" onchange="dxJCRender()" aria-label="Filtrar por template">
+            <option value="">Todos os templates</option>
+            <option value="rct">RCT</option>
+            <option value="sr">SR</option>
+            <option value="cohort">Coorte</option>
+            <option value="amstar2">AMSTAR-2</option>
+          </select>
+          <button type="button" onclick="dxJCExport()" title="Exportar sessões em ficheiro de texto">↓ TXT</button>
+        </span>
+      </div>
+      <div id="jc-list-wrap"></div>
     </div>
   </div>
 </div>
@@ -8910,6 +9514,11 @@ function relAdd(el, kind){
   var KEY_AVAL_SCORE = 'dx_int_aval_current_score';
   var KEY_AVAL_NOTES = 'dx_int_aval_current_notes';
   var KEY_AVAL_LIST  = 'dx_int_avaliacoes';
+  var KEY_ANUAL_LIST = 'dx_int_aval_anual';      // [{id, ts, year, date, p1, p2, p3, p4, score, notes}]
+  var KEY_PROVA_LIST = 'dx_int_aval_provas';     // {1:{date,nota}, 2:{...}, 3:{...}, 4:{...}}
+  var KEY_FINAL_SNAP = 'dx_int_aval_final';      // {ts, disc, est, prat, teor, val}
+  var KEY_DIA_LIST   = 'dx_int_diario';          // [{id, ts, data, titulo, tags:[], conteudo, estagio}]
+  var KEY_JC_LIST    = 'dx_int_jc_sessoes';      // [{id, ts, data, artigo:{...}, tipo, respostas:{...}, concl, apli}]
 
   function lsGet(k, dflt){ try { var v = localStorage.getItem(k); return v == null ? dflt : v; } catch(e){ return dflt; } }
   function lsSet(k, v){ try { localStorage.setItem(k, v); } catch(e){} }
@@ -9021,13 +9630,14 @@ function relAdd(el, kind){
     var list;
     try { list = JSON.parse(lsGet(KEY_AVAL_LIST, '[]')) || []; } catch(e){ list = []; }
     list.unshift({
+      id: 'a' + Date.now() + Math.floor(Math.random()*1000),
       ts: Date.now(),
       instr: instr,
       score: score,
       notes: notes,
       year: lsGet(KEY_PROF_YEAR, '')
     });
-    if (list.length > 200) list = list.slice(0, 200);
+    if (list.length > 500) list = list.slice(0, 500);
     lsSet(KEY_AVAL_LIST, JSON.stringify(list));
     lsSet(KEY_AVAL_INSTR, '');
     lsSet(KEY_AVAL_SCORE, '');
@@ -9039,14 +9649,1559 @@ function relAdd(el, kind){
     var ne = document.getElementById('int-aval-notes');
     if (ne) ne.value = '';
     dxIntAvalCount();
-    alert('Avaliação guardada (' + list.length + ' no total).\nHistórico filtrável e exportação chegam na Fase 2.');
+    if (typeof window.dxOMHistRender === 'function') window.dxOMHistRender();
   };
+
+  // ══════════════════════════════════════════════════════════════════════
+  // FASE 3 — Avaliações
+  // Caderneta IM ARS Norte 2024 + Portaria 125/2019:
+  //   • Avaliação contínua/formativa (Mini-CEX/DOPS/CbD/MSF) — já existe
+  //   • Avaliação anual de desempenho — 4 parâmetros ponderados
+  //     P1 execução técnica × 4 + P2 valorização × 2 + P3 responsabilidade
+  //     × 3 + P4 relações humanas × 1 = score / 10 (escala 0-20)
+  //   • Avaliação de conhecimentos — uma prova por ano (escrita/oral)
+  //   • Avaliação final — 3 provas combinadas pela fórmula:
+  //     ((discussão × 0,6 + estágios × 0,4) + prática + teórica) / 3
+  // ══════════════════════════════════════════════════════════════════════
+
+  var INSTR_LABELS = { minicex:'Mini-CEX', dops:'DOPS', cbd:'CbD', msf:'MSF' };
+  var SCORE_LABELS = { '1':'muito abaixo','2':'abaixo','3':'limiar','4':'esperado','5':'acima','6':'excelente' };
+
+  function avFmtDate(ts){
+    if (!ts) return '';
+    var d = new Date(ts);
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+
+  // ── Histórico das avaliações formativas ─────────────────────────────
+  window.dxOMHistRender = function(){
+    var wrap = document.getElementById('av-hist-wrap');
+    if (!wrap) return;
+    var list;
+    try { list = JSON.parse(lsGet(KEY_AVAL_LIST, '[]')) || []; } catch(e){ list = []; }
+    var fInstr = (document.getElementById('av-fh-instr')||{}).value || '';
+    var fYear  = (document.getElementById('av-fh-year') ||{}).value || '';
+    if (fInstr) list = list.filter(function(e){ return e.instr === fInstr; });
+    if (fYear)  list = list.filter(function(e){ return String(e.year) === fYear; });
+    if (!list.length){
+      wrap.innerHTML = '<div class="lb-empty">' + (fInstr||fYear ? 'Sem avaliações com estes filtros.' : 'Sem avaliações guardadas. Use o cartão acima para registar a primeira.') + '</div>';
+      return;
+    }
+    var max = 60;
+    var html = list.slice(0, max).map(function(e){
+      var d = avFmtDate(e.ts);
+      var iLabel = INSTR_LABELS[e.instr] || e.instr;
+      var sLabel = SCORE_LABELS[e.score] || '';
+      var yearStr = e.year ? ('Ano ' + e.year + (sLabel ? ' · ' : '')) : '';
+      var notes = e.notes ? lbEscHtml(e.notes) : '<span style="color:var(--muted);font-style:italic">sem notas</span>';
+      return '<div class="av-hist-row">'
+           + '<span class="ah-d">' + lbEscHtml(d) + '</span>'
+           + '<span class="ah-i">' + lbEscHtml(iLabel) + '</span>'
+           + '<span class="ah-s">' + lbEscHtml(e.score) + '/6</span>'
+           + '<span class="ah-n"><i style="color:var(--muted);font-size:11px">' + yearStr + sLabel + '</i><br>' + notes + '</span>'
+           + '<button type="button" class="ah-x" aria-label="Remover" onclick="dxOMHistDelete(\'' + lbEscHtml(e.id || ('ts'+e.ts)) + '\')">×</button>'
+           + '</div>';
+    }).join('');
+    if (list.length > max) html += '<div class="lb-empty">… mais ' + (list.length-max) + ' não mostrados</div>';
+    wrap.innerHTML = html;
+  };
+
+  window.dxOMHistDelete = function(id){
+    var list;
+    try { list = JSON.parse(lsGet(KEY_AVAL_LIST, '[]')) || []; } catch(e){ list = []; }
+    list = list.filter(function(e){ return (e.id || ('ts'+e.ts)) !== id; });
+    lsSet(KEY_AVAL_LIST, JSON.stringify(list));
+    dxIntAvalCount();
+    window.dxOMHistRender();
+  };
+
+  window.dxOMHistExport = function(){
+    var list;
+    try { list = JSON.parse(lsGet(KEY_AVAL_LIST, '[]')) || []; } catch(e){ list = []; }
+    if (!list.length){ alert('Sem avaliações para exportar.'); return; }
+    var ini = lsGet(KEY_PROF_INIT, ''); var year = lsGet(KEY_PROF_YEAR, ''); var usf = lsGet(KEY_PROF_USF, '');
+    var lines = [
+      'Avaliações formativas — Internato MGF',
+      'Interno: ' + (ini || '—') + (year ? ' · Ano ' + year : '') + (usf ? ' · ' + usf : ''),
+      'Exportado: ' + (new Date()).toISOString().slice(0,16).replace('T',' '),
+      'Total: ' + list.length + ' avaliações',
+      ''.padEnd(60,'─'),
+    ];
+    list.forEach(function(e){
+      var iLabel = INSTR_LABELS[e.instr] || e.instr;
+      var sLabel = SCORE_LABELS[e.score] || '';
+      lines.push(avFmtDate(e.ts) + ' · ' + iLabel + ' · ' + e.score + '/6 (' + sLabel + ')' + (e.year ? ' · Ano ' + e.year : ''));
+      if (e.notes) lines.push('  ' + e.notes.replace(/\n/g,'\n  '));
+      lines.push('');
+    });
+    var txt = lines.join('\n');
+    var blob = new Blob([txt], {type:'text/plain;charset=utf-8'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'avaliacoes_mgf_' + (new Date()).toISOString().slice(0,10) + '.txt';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  };
+
+  // ── Avaliação anual de desempenho ────────────────────────────────────
+  function avAnualScore(p1, p2, p3, p4){
+    if (p1 === '' || p2 === '' || p3 === '' || p4 === '') return null;
+    var a = parseFloat(p1), b = parseFloat(p2), c = parseFloat(p3), d = parseFloat(p4);
+    if (isNaN(a)||isNaN(b)||isNaN(c)||isNaN(d)) return null;
+    return (a*4 + b*2 + c*3 + d*1) / 10;
+  }
+
+  window.dxAnualScoreCalc = function(){
+    var p1 = (document.getElementById('av-an-p1')||{}).value;
+    var p2 = (document.getElementById('av-an-p2')||{}).value;
+    var p3 = (document.getElementById('av-an-p3')||{}).value;
+    var p4 = (document.getElementById('av-an-p4')||{}).value;
+    var s = avAnualScore(p1, p2, p3, p4);
+    var el = document.getElementById('av-an-score');
+    if (el) el.textContent = s == null ? '—' : (Math.round(s*100)/100).toFixed(2);
+  };
+
+  window.dxAnualSave = function(){
+    var year = (document.getElementById('av-an-year')||{}).value;
+    var date = (document.getElementById('av-an-date')||{}).value;
+    var p1 = (document.getElementById('av-an-p1')||{}).value;
+    var p2 = (document.getElementById('av-an-p2')||{}).value;
+    var p3 = (document.getElementById('av-an-p3')||{}).value;
+    var p4 = (document.getElementById('av-an-p4')||{}).value;
+    var notes = ((document.getElementById('av-an-notes')||{}).value || '').trim();
+    if (!year){ alert('Indique o ano de internato.'); return; }
+    var s = avAnualScore(p1, p2, p3, p4);
+    if (s == null){ alert('Preencha os 4 parâmetros (escala 0-20).'); return; }
+    if (!date) date = avFmtDate(Date.now());
+    var list;
+    try { list = JSON.parse(lsGet(KEY_ANUAL_LIST, '[]')) || []; } catch(e){ list = []; }
+    list.unshift({
+      id: 'an' + Date.now() + Math.floor(Math.random()*1000),
+      ts: Date.now(), year: year, date: date,
+      p1: parseFloat(p1), p2: parseFloat(p2), p3: parseFloat(p3), p4: parseFloat(p4),
+      score: Math.round(s*100)/100,
+      notes: notes
+    });
+    if (list.length > 50) list = list.slice(0, 50);
+    lsSet(KEY_ANUAL_LIST, JSON.stringify(list));
+    ['av-an-year','av-an-date','av-an-p1','av-an-p2','av-an-p3','av-an-p4','av-an-notes'].forEach(function(id){
+      var el = document.getElementById(id); if (el) el.value = '';
+    });
+    window.dxAnualScoreCalc();
+    window.dxAnualHistRender();
+  };
+
+  window.dxAnualDelete = function(id){
+    var list;
+    try { list = JSON.parse(lsGet(KEY_ANUAL_LIST, '[]')) || []; } catch(e){ list = []; }
+    list = list.filter(function(e){ return e.id !== id; });
+    lsSet(KEY_ANUAL_LIST, JSON.stringify(list));
+    window.dxAnualHistRender();
+  };
+
+  window.dxAnualHistRender = function(){
+    var wrap = document.getElementById('av-an-hist-wrap');
+    if (!wrap) return;
+    var list;
+    try { list = JSON.parse(lsGet(KEY_ANUAL_LIST, '[]')) || []; } catch(e){ list = []; }
+    if (!list.length){ wrap.innerHTML = ''; return; }
+    var rows = list.map(function(e){
+      var aprov = e.score >= 10;
+      return '<div class="av-row">'
+           + '<span class="ar-y">' + lbEscHtml(e.date) + '</span>'
+           + '<span class="ar-l"><b>Ano ' + lbEscHtml(e.year) + '</b>'
+           + '<span class="sub">P1: ' + e.p1 + ' · P2: ' + e.p2 + ' · P3: ' + e.p3 + ' · P4: ' + e.p4 + (e.notes ? ' — ' + lbEscHtml(e.notes.slice(0,80)) + (e.notes.length>80?'…':'') : '') + '</span></span>'
+           + '<span class="ah-s" style="font-size:18px">' + e.score.toFixed(2) + '</span>'
+           + '<span class="ar-st ' + (aprov?'ok':'no') + '">' + (aprov?'Aprovado':'Reprovado') + '</span>'
+           + '<button type="button" class="ah-x" aria-label="Remover" onclick="dxAnualDelete(\'' + lbEscHtml(e.id) + '\')">×</button>'
+           + '</div>';
+    }).join('');
+    wrap.innerHTML = '<div style="font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#7a5c20;font-weight:600;margin-bottom:6px;padding-bottom:4px;border-bottom:1px dashed var(--bd)">Histórico de avaliações anuais</div>' + rows;
+  };
+
+  // ── Provas de conhecimentos (1.º, 2.º, 3.º, 4.º ano) ─────────────────
+  var AV_PROVAS = [
+    { ano:1, label:'1.º ano — final do MGF1', tipo:'prova escrita nacional · ≤ 120 min' },
+    { ano:2, label:'2.º ano — após 1.º ano de MGF2', tipo:'prova oral regional · ≤ 60 min' },
+    { ano:3, label:'3.º ano — final do 2.º ano de MGF2', tipo:'prova escrita nacional · ≤ 120 min' },
+    { ano:4, label:'4.º ano — final do MGF3', tipo:'prova oral regional · ≤ 60 min' },
+  ];
+
+  function avProvas(){
+    try { return JSON.parse(lsGet(KEY_PROVA_LIST, '{}')) || {}; } catch(e){ return {}; }
+  }
+  function avSetProvas(o){ lsSet(KEY_PROVA_LIST, JSON.stringify(o)); }
+
+  window.dxProvaSet = function(ano, campo, valor){
+    var o = avProvas();
+    o[ano] = o[ano] || {};
+    o[ano][campo] = valor;
+    avSetProvas(o);
+    var st = document.getElementById('av-prova-st-' + ano);
+    if (st){
+      var nota = parseFloat(o[ano].nota);
+      if (isNaN(nota) || !o[ano].nota){ st.className = 'ar-st --'; st.textContent = 'Por fazer'; }
+      else if (nota >= 10){ st.className = 'ar-st ok'; st.textContent = 'Aprovado'; }
+      else { st.className = 'ar-st no'; st.textContent = 'Reprovado'; }
+    }
+  };
+
+  window.dxProvaRender = function(){
+    var wrap = document.getElementById('av-prova-wrap');
+    if (!wrap) return;
+    var o = avProvas();
+    var html = AV_PROVAS.map(function(p){
+      var rec = o[p.ano] || {};
+      var nota = parseFloat(rec.nota);
+      var stClass = '--', stTxt = 'Por fazer';
+      if (!isNaN(nota) && rec.nota !== '' && rec.nota != null){
+        if (nota >= 10){ stClass = 'ok'; stTxt = 'Aprovado'; }
+        else { stClass = 'no'; stTxt = 'Reprovado'; }
+      }
+      return '<div class="av-row">'
+           + '<span class="ar-y">Ano ' + p.ano + '</span>'
+           + '<span class="ar-l"><b>' + lbEscHtml(p.label) + '</b><span class="sub">' + lbEscHtml(p.tipo) + '</span></span>'
+           + '<input type="date" value="' + lbEscHtml(rec.date || '') + '" onchange="dxProvaSet(' + p.ano + ',\'date\', this.value)" aria-label="Data da prova ano ' + p.ano + '">'
+           + '<input type="number" min="0" max="20" step="0.01" value="' + lbEscHtml(rec.nota || '') + '" placeholder="—" oninput="dxProvaSet(' + p.ano + ',\'nota\', this.value)" aria-label="Nota da prova ano ' + p.ano + ' (0-20)">'
+           + '<span class="ar-st ' + stClass + '" id="av-prova-st-' + p.ano + '">' + stTxt + '</span>'
+           + '</div>';
+    }).join('');
+    wrap.innerHTML = html;
+  };
+
+  // ── Calculadora da avaliação final ───────────────────────────────────
+  function avFinalCompute(disc, est, prat, teor){
+    var d = parseFloat(disc), e = parseFloat(est), p = parseFloat(prat), t = parseFloat(teor);
+    if (isNaN(d)||isNaN(e)||isNaN(p)||isNaN(t)) return null;
+    var p1 = d*0.6 + e*0.4;
+    return (p1 + p + t) / 3;
+  }
+
+  window.dxFinalCalc = function(){
+    var d = (document.getElementById('av-f-disc')||{}).value;
+    var e = (document.getElementById('av-f-est') ||{}).value;
+    var p = (document.getElementById('av-f-prat')||{}).value;
+    var t = (document.getElementById('av-f-teor')||{}).value;
+    var v = avFinalCompute(d, e, p, t);
+    var elV = document.getElementById('av-f-val');
+    var elB = document.getElementById('av-f-bd');
+    var box = document.getElementById('av-f-out');
+    if (elV) elV.textContent = (v == null) ? '—' : v.toFixed(2);
+    if (elB) elB.textContent = (v == null)
+        ? '((discussão × 0,6 + estágios × 0,4) + prática + teórica) / 3'
+        : '= ((' + d + ' × 0,6 + ' + e + ' × 0,4) + ' + p + ' + ' + t + ') / 3';
+    if (box) box.classList.toggle('invalid', v != null && v < 10);
+  };
+
+  window.dxFinalSave = function(){
+    var d = (document.getElementById('av-f-disc')||{}).value;
+    var e = (document.getElementById('av-f-est') ||{}).value;
+    var p = (document.getElementById('av-f-prat')||{}).value;
+    var t = (document.getElementById('av-f-teor')||{}).value;
+    var v = avFinalCompute(d, e, p, t);
+    if (v == null){ alert('Preencha as 4 notas para guardar o snapshot.'); return; }
+    var snap = { ts: Date.now(), disc: parseFloat(d), est: parseFloat(e), prat: parseFloat(p), teor: parseFloat(t), val: Math.round(v*100)/100 };
+    lsSet(KEY_FINAL_SNAP, JSON.stringify(snap));
+    alert('Snapshot guardado: ' + snap.val.toFixed(2) + ' / 20');
+  };
+
+  function dxFinalRestore(){
+    var snap;
+    try { snap = JSON.parse(lsGet(KEY_FINAL_SNAP, 'null')); } catch(e){ snap = null; }
+    if (!snap) return;
+    var setIf = function(id, v){ var el = document.getElementById(id); if (el && el.value === '') el.value = v; };
+    setIf('av-f-disc', snap.disc);
+    setIf('av-f-est',  snap.est);
+    setIf('av-f-prat', snap.prat);
+    setIf('av-f-teor', snap.teor);
+    window.dxFinalCalc();
+  }
+
+  // ══════════════════════════════════════════════════════════════════════
+  // FASE 4 — Diário formativo
+  // Reflexão pessoal datada, com tags livres + sugestões pré-definidas e
+  // ditado por voz (Web Speech API, pt-PT). Componente da carteira do
+  // interno conforme regulamento OM (Portaria 79/2018 + 125/2019).
+  // ══════════════════════════════════════════════════════════════════════
+
+  var DIA_TAGS_BUFFER = []; // tags da entrada em construção
+
+  function diaList(){
+    try { return JSON.parse(lsGet(KEY_DIA_LIST, '[]')) || []; } catch(e){ return []; }
+  }
+  function diaSetList(arr){ lsSet(KEY_DIA_LIST, JSON.stringify(arr)); }
+
+  function diaToday(){
+    var t = new Date();
+    return t.getFullYear() + '-' + String(t.getMonth()+1).padStart(2,'0') + '-' + String(t.getDate()).padStart(2,'0');
+  }
+
+  function diaRenderTagsBuffer(){
+    var box = document.getElementById('dia-tags-input');
+    var inp = document.getElementById('dia-tag-input');
+    if (!box || !inp) return;
+    box.querySelectorAll('.dia-tag-pill').forEach(function(el){ el.remove(); });
+    DIA_TAGS_BUFFER.forEach(function(t){
+      var pill = document.createElement('span');
+      pill.className = 'dia-tag-pill';
+      pill.textContent = t;
+      var x = document.createElement('button');
+      x.type = 'button'; x.textContent = '×'; x.setAttribute('aria-label', 'Remover tag ' + t);
+      x.onclick = function(ev){ ev.stopPropagation(); window.dxDiaTagRemove(t); };
+      pill.appendChild(x);
+      box.insertBefore(pill, inp);
+    });
+  }
+
+  window.dxDiaTagAdd = function(tag){
+    tag = (tag||'').trim().toLowerCase();
+    if (!tag) return;
+    if (tag.length > 30) tag = tag.slice(0, 30);
+    if (DIA_TAGS_BUFFER.indexOf(tag) >= 0) return;
+    DIA_TAGS_BUFFER.push(tag);
+    diaRenderTagsBuffer();
+  };
+
+  window.dxDiaTagRemove = function(tag){
+    var i = DIA_TAGS_BUFFER.indexOf(tag);
+    if (i >= 0){ DIA_TAGS_BUFFER.splice(i, 1); diaRenderTagsBuffer(); }
+  };
+
+  window.dxDiaTagKey = function(ev){
+    if (ev.key === 'Enter' || ev.key === ',' || ev.key === ';'){
+      ev.preventDefault();
+      window.dxDiaTagAdd(ev.target.value);
+      ev.target.value = '';
+    } else if (ev.key === 'Backspace' && !ev.target.value && DIA_TAGS_BUFFER.length){
+      DIA_TAGS_BUFFER.pop();
+      diaRenderTagsBuffer();
+    }
+  };
+
+  window.dxDiaSave = function(){
+    var date = (document.getElementById('dia-date')||{}).value;
+    var title = ((document.getElementById('dia-title')||{}).value || '').trim();
+    var content = ((document.getElementById('dia-content')||{}).value || '').trim();
+    var inpTag = document.getElementById('dia-tag-input');
+    if (inpTag && inpTag.value.trim()){ window.dxDiaTagAdd(inpTag.value); inpTag.value = ''; }
+    if (!title){ alert('Indique um título para a entrada.'); return; }
+    if (!content){ alert('Escreva o conteúdo / reflexão antes de guardar.'); return; }
+    if (!date) date = diaToday();
+    var list = diaList();
+    list.unshift({
+      id: 'd' + Date.now() + Math.floor(Math.random()*1000),
+      ts: Date.now(),
+      data: date,
+      titulo: title.slice(0, 120),
+      tags: DIA_TAGS_BUFFER.slice(),
+      conteudo: content.slice(0, 8000),
+      estagio: lsGet(KEY_LOG_ESTAGIO, '')
+    });
+    if (list.length > 1000) list = list.slice(0, 1000);
+    diaSetList(list);
+    DIA_TAGS_BUFFER = [];
+    ['dia-title','dia-content'].forEach(function(id){ var el = document.getElementById(id); if (el) el.value = ''; });
+    var dEl = document.getElementById('dia-date'); if (dEl) dEl.value = diaToday();
+    diaRenderTagsBuffer();
+    window.dxDiaRender();
+    diaUpdateCount();
+  };
+
+  window.dxDiaDelete = function(id){
+    var list = diaList().filter(function(e){ return e.id !== id; });
+    diaSetList(list);
+    window.dxDiaRender();
+    diaUpdateCount();
+  };
+
+  function diaUpdateCount(){
+    var c = document.getElementById('dia-count');
+    if (!c) return;
+    var n = diaList().length;
+    c.textContent = n ? (n + ' entradas no total') : '';
+  }
+
+  function diaAllTags(){
+    var s = {};
+    diaList().forEach(function(e){ (e.tags||[]).forEach(function(t){ s[t] = (s[t]||0)+1; }); });
+    return Object.keys(s).sort();
+  }
+
+  function diaFillTagFilter(){
+    var sel = document.getElementById('dia-filt-tag');
+    if (!sel) return;
+    var prev = sel.value;
+    sel.innerHTML = '<option value="">Todas as tags</option>';
+    diaAllTags().forEach(function(t){
+      var o = document.createElement('option');
+      o.value = t; o.textContent = t;
+      sel.appendChild(o);
+    });
+    sel.value = prev;
+  }
+
+  window.dxDiaRender = function(){
+    var wrap = document.getElementById('dia-list-wrap');
+    if (!wrap) return;
+    diaFillTagFilter();
+    var fTag = (document.getElementById('dia-filt-tag')||{}).value || '';
+    var q = ((document.getElementById('dia-filt-q')||{}).value || '').toLowerCase().trim();
+    var list = diaList();
+    if (fTag) list = list.filter(function(e){ return (e.tags||[]).indexOf(fTag) >= 0; });
+    if (q) list = list.filter(function(e){
+      return (e.titulo||'').toLowerCase().indexOf(q) >= 0
+          || (e.conteudo||'').toLowerCase().indexOf(q) >= 0
+          || (e.tags||[]).join(' ').toLowerCase().indexOf(q) >= 0;
+    });
+    if (!list.length){
+      wrap.innerHTML = '<div class="lb-empty">' + (fTag||q ? 'Sem entradas com estes filtros.' : 'Sem entradas ainda. Use o cartão acima para a primeira reflexão.') + '</div>';
+      return;
+    }
+    var max = 30;
+    var html = list.slice(0, max).map(function(e){
+      var est = e.estagio ? lbEstagio(e.estagio) : null;
+      var estLabel = est ? est.label : (e.estagio || '');
+      var tags = (e.tags||[]).map(function(t){ return '<span class="de-tag">' + lbEscHtml(t) + '</span>'; }).join('');
+      return '<div class="dia-entry">'
+           + '<div class="de-hdr">'
+           +   '<span class="de-d">' + lbEscHtml(e.data || avFmtDate(e.ts)) + '</span>'
+           +   '<span class="de-tt">' + lbEscHtml(e.titulo) + '</span>'
+           +   '<button type="button" class="de-x" aria-label="Remover entrada" onclick="dxDiaDelete(\'' + lbEscHtml(e.id) + '\')">×</button>'
+           + '</div>'
+           + (tags ? '<div class="de-tags">' + tags + '</div>' : '')
+           + '<div class="de-body">' + lbEscHtml(e.conteudo) + '</div>'
+           + (estLabel ? '<div class="de-est">Estágio: ' + lbEscHtml(estLabel) + '</div>' : '')
+           + '</div>';
+    }).join('');
+    if (list.length > max) html += '<div class="lb-empty">… mais ' + (list.length-max) + ' entradas — use os filtros</div>';
+    wrap.innerHTML = html;
+  };
+
+  window.dxDiaExport = function(){
+    var list = diaList();
+    if (!list.length){ alert('Sem entradas para exportar.'); return; }
+    var ini = lsGet(KEY_PROF_INIT, ''); var year = lsGet(KEY_PROF_YEAR, ''); var usf = lsGet(KEY_PROF_USF, '');
+    var lines = [
+      'Diário formativo — Internato MGF',
+      'Interno: ' + (ini || '—') + (year ? ' · Ano ' + year : '') + (usf ? ' · ' + usf : ''),
+      'Exportado: ' + (new Date()).toISOString().slice(0,16).replace('T',' '),
+      'Total: ' + list.length + ' entradas',
+      ''.padEnd(70,'═'),
+      ''
+    ];
+    list.slice().reverse().forEach(function(e){
+      lines.push((e.data || avFmtDate(e.ts)) + ' · ' + e.titulo);
+      if (e.tags && e.tags.length) lines.push('  [' + e.tags.join(', ') + ']');
+      lines.push('');
+      lines.push(e.conteudo);
+      lines.push('');
+      lines.push(''.padEnd(70,'─'));
+      lines.push('');
+    });
+    var blob = new Blob([lines.join('\n')], {type:'text/plain;charset=utf-8'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'diario_mgf_' + (new Date()).toISOString().slice(0,10) + '.txt';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  };
+
+  // ── Ditado por voz (Web Speech API, pt-PT) ──────────────────────────
+  var DIA_REC = null;     // instância SpeechRecognition
+  var DIA_REC_ON = false;
+
+  window.dxDiaDictate = function(){
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    var btn = document.getElementById('dia-mic');
+    var ta = document.getElementById('dia-content');
+    if (!SR){
+      if (btn) btn.disabled = true;
+      alert('Reconhecimento de voz não suportado neste navegador.\nUse o Chrome ou o Edge para ditado em pt-PT.');
+      return;
+    }
+    if (DIA_REC_ON && DIA_REC){
+      try { DIA_REC.stop(); } catch(_e){}
+      return;
+    }
+    DIA_REC = new SR();
+    DIA_REC.lang = 'pt-PT';
+    DIA_REC.continuous = true;
+    DIA_REC.interimResults = false;
+    DIA_REC.onstart = function(){
+      DIA_REC_ON = true;
+      if (btn) { btn.classList.add('on'); btn.textContent = '■'; btn.title = 'Parar ditado'; }
+      if (ta) ta.classList.add('rec');
+    };
+    DIA_REC.onresult = function(ev){
+      if (!ta) return;
+      var txt = '';
+      for (var i = ev.resultIndex; i < ev.results.length; i++){
+        if (ev.results[i].isFinal) txt += ev.results[i][0].transcript;
+      }
+      if (txt){
+        var sep = (ta.value && !/\s$/.test(ta.value)) ? ' ' : '';
+        ta.value += sep + txt.trim() + ' ';
+      }
+    };
+    DIA_REC.onerror = function(ev){
+      console.warn('[dia-mic]', ev.error);
+      if (ev.error === 'not-allowed' || ev.error === 'service-not-allowed'){
+        alert('Permissão de microfone negada. Autorize no navegador para usar o ditado.');
+      }
+    };
+    DIA_REC.onend = function(){
+      DIA_REC_ON = false;
+      if (btn) { btn.classList.remove('on'); btn.textContent = '🎙'; btn.title = 'Ditar (pt-PT)'; }
+      if (ta) ta.classList.remove('rec');
+    };
+    try { DIA_REC.start(); } catch(e){ console.warn('[dia-mic start]', e); }
+  };
+
+  function dxDiaInit(){
+    var dEl = document.getElementById('dia-date');
+    if (dEl && !dEl.value) dEl.value = diaToday();
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    var btn = document.getElementById('dia-mic');
+    if (!SR && btn){ btn.disabled = true; btn.title = 'Ditado não suportado neste navegador'; }
+    diaRenderTagsBuffer();
+    window.dxDiaRender();
+    diaUpdateCount();
+  }
+
+  // ══════════════════════════════════════════════════════════════════════
+  // FASE 5 — Journal Club
+  // Apreciação crítica de artigos com templates CASP (RCT, SR, Cohort) e
+  // AMSTAR-2 (revisão sistemática). Cada item: resposta Y/N/CT/NA +
+  // comentário opcional. Citação manual + links DOI / PubMed.
+  // ══════════════════════════════════════════════════════════════════════
+
+  var JC_TEMPLATES = {
+    rct: {
+      label: 'CASP — RCT',
+      ref: 'CASP UK (Critical Appraisal Skills Programme)',
+      items: [
+        'O ensaio aborda uma questão claramente formulada (PICO)?',
+        'A atribuição dos doentes a tratamento foi randomizada?',
+        'Todos os doentes que entraram no estudo foram contabilizados na conclusão (ITT)?',
+        'Doentes, equipa clínica e investigadores estavam cegos ao tratamento?',
+        'Os grupos eram semelhantes no início do ensaio?',
+        'Tirando o tratamento experimental, os grupos foram tratados de forma equivalente?',
+        'Quão grande foi o efeito do tratamento (medida de efeito principal)?',
+        'Quão preciso foi o efeito do tratamento estimado (IC 95%)?',
+        'Os resultados podem ser aplicados à minha população / contexto?',
+        'Foram considerados todos os resultados clinicamente importantes?',
+        'Os benefícios valem os danos e os custos?',
+      ]
+    },
+    sr: {
+      label: 'CASP — Revisão sistemática',
+      ref: 'CASP UK',
+      items: [
+        'A revisão aborda uma questão claramente formulada?',
+        'Os autores procuraram o tipo de estudo certo?',
+        'Acha que todos os estudos relevantes foram incluídos?',
+        'Os autores avaliaram a qualidade dos estudos incluídos?',
+        'Se os resultados foram combinados (meta-análise), foi razoável fazê-lo?',
+        'Quais são os resultados globais da revisão?',
+        'Quão precisos são os resultados (IC 95%, heterogeneidade)?',
+        'Os resultados podem ser aplicados à minha população?',
+        'Foram considerados todos os outcomes importantes?',
+        'Os benefícios valem os danos e os custos?',
+      ]
+    },
+    cohort: {
+      label: 'CASP — Coorte',
+      ref: 'CASP UK',
+      items: [
+        'O estudo aborda uma questão claramente formulada?',
+        'A coorte foi recrutada de forma aceitável?',
+        'A exposição foi medida com precisão para minimizar viés?',
+        'O outcome foi medido com precisão para minimizar viés?',
+        'Os autores identificaram todos os fatores de confundimento importantes?',
+        'Tomaram em conta os fatores de confundimento na análise?',
+        'O follow-up foi suficientemente completo?',
+        'O follow-up foi suficientemente longo?',
+        'Quais são os resultados (medida de associação)?',
+        'Quão precisos são os resultados?',
+        'Acredita nos resultados?',
+        'Os resultados podem ser aplicados à minha população?',
+      ]
+    },
+    amstar2: {
+      label: 'AMSTAR-2',
+      ref: 'Shea BJ et al. BMJ 2017',
+      items: [
+        'Componentes PICO da pergunta de investigação descritos?',
+        'Métodos pré-definidos (protocolo) com qualquer desvio justificado?',
+        'Justificação dos desenhos dos estudos incluídos?',
+        'Estratégia de pesquisa abrangente (≥2 bases, lit. cinzenta)?',
+        'Selecção de estudos em duplicado?',
+        'Extracção de dados em duplicado?',
+        'Lista de excluídos com justificação?',
+        'Descrição adequada dos estudos incluídos (PICO + desenho)?',
+        'Avaliação satisfatória do risco de viés (RoB) dos estudos?',
+        'Fontes de financiamento dos estudos primários relatadas?',
+        'Métodos estatísticos apropriados (se houve meta-análise)?',
+        'Avaliação do impacto do RoB nos resultados (se meta-análise)?',
+        'RoB considerado na interpretação dos resultados?',
+        'Heterogeneidade explicada / discutida?',
+        'Avaliação adequada do viés de publicação (se ≥10 estudos)?',
+        'Conflitos de interesse + financiamento da revisão relatados?',
+      ]
+    }
+  };
+
+  // Estado em construção (não persistido até guardar)
+  var JC_DRAFT = { tipo:'', respostas:{} };
+
+  function jcList(){
+    try { return JSON.parse(lsGet(KEY_JC_LIST,'[]')) || []; } catch(e){ return []; }
+  }
+  function jcSetList(arr){ lsSet(KEY_JC_LIST, JSON.stringify(arr)); }
+
+  function jcUpdateCount(){
+    var c = document.getElementById('jc-count');
+    if (!c) return;
+    var n = jcList().length;
+    c.textContent = n ? (n + ' sessões guardadas') : '';
+  }
+
+  window.dxJCDoiUpdate = function(){
+    var doi = ((document.getElementById('jc-art-doi')||{}).value || '').trim();
+    var pmid = ((document.getElementById('jc-art-pmid')||{}).value || '').trim();
+    var aD = document.getElementById('jc-link-doi');
+    var aP = document.getElementById('jc-link-pmid');
+    if (aD){
+      if (doi){ aD.href = 'https://doi.org/' + encodeURIComponent(doi).replace(/%2F/g,'/'); aD.classList.remove('disabled'); }
+      else   { aD.href = '#'; aD.classList.add('disabled'); }
+    }
+    if (aP){
+      if (pmid && /^\d+$/.test(pmid)){ aP.href = 'https://pubmed.ncbi.nlm.nih.gov/' + pmid + '/'; aP.classList.remove('disabled'); }
+      else                          { aP.href = '#'; aP.classList.add('disabled'); }
+    }
+  };
+
+  function jcUpdateProg(){
+    var el = document.getElementById('jc-prog');
+    if (!el) return;
+    var t = JC_DRAFT.tipo;
+    if (!t || !JC_TEMPLATES[t]){ el.textContent = '—'; return; }
+    var total = JC_TEMPLATES[t].items.length;
+    var resp = 0;
+    Object.keys(JC_DRAFT.respostas).forEach(function(k){
+      if (JC_DRAFT.respostas[k] && JC_DRAFT.respostas[k].r) resp++;
+    });
+    el.textContent = resp + ' / ' + total + ' itens';
+  }
+
+  window.dxJCRespSet = function(itemIdx, valor){
+    var k = String(itemIdx);
+    JC_DRAFT.respostas[k] = JC_DRAFT.respostas[k] || {};
+    JC_DRAFT.respostas[k].r = valor;
+    var box = document.getElementById('jc-item-' + itemIdx);
+    if (box){
+      box.classList.add('has-resp');
+      box.querySelectorAll('.jc-radio').forEach(function(b){
+        b.classList.toggle('on', b.dataset.v === valor);
+      });
+    }
+    jcUpdateProg();
+  };
+
+  window.dxJCRespCom = function(itemIdx, val){
+    var k = String(itemIdx);
+    JC_DRAFT.respostas[k] = JC_DRAFT.respostas[k] || {};
+    JC_DRAFT.respostas[k].c = val;
+  };
+
+  window.dxJCRenderTpl = function(){
+    var sel = document.getElementById('jc-tpl');
+    var wrap = document.getElementById('jc-tpl-wrap');
+    if (!sel || !wrap) return;
+    var t = sel.value;
+    JC_DRAFT.tipo = t;
+    JC_DRAFT.respostas = {};
+    if (!t || !JC_TEMPLATES[t]){
+      wrap.innerHTML = '<div class="jc-tpl-empty">Escolha um template acima para iniciar a apreciação crítica.</div>';
+      jcUpdateProg();
+      return;
+    }
+    var tpl = JC_TEMPLATES[t];
+    var html = '<div style="font-size:11px;color:var(--muted);font-style:italic;margin-bottom:8px">' + lbEscHtml(tpl.label) + ' · ' + lbEscHtml(tpl.ref) + '</div>';
+    tpl.items.forEach(function(q, i){
+      html += '<div class="jc-item" id="jc-item-' + i + '">'
+           +   '<div class="jc-q"><span class="jc-q-n">' + (i+1) + '.</span><span class="jc-q-t">' + lbEscHtml(q) + '</span></div>'
+           +   '<div class="jc-radio-group" role="radiogroup" aria-label="Resposta item ' + (i+1) + '">'
+           +     '<button type="button" class="jc-radio y"  data-v="Y"  onclick="dxJCRespSet(' + i + ',\'Y\')">Sim</button>'
+           +     '<button type="button" class="jc-radio n"  data-v="N"  onclick="dxJCRespSet(' + i + ',\'N\')">Não</button>'
+           +     '<button type="button" class="jc-radio ct" data-v="CT" onclick="dxJCRespSet(' + i + ',\'CT\')">Não diz</button>'
+           +     '<button type="button" class="jc-radio na" data-v="NA" onclick="dxJCRespSet(' + i + ',\'NA\')">N/A</button>'
+           +   '</div>'
+           +   '<textarea class="jc-com" placeholder="comentário (opcional)" oninput="dxJCRespCom(' + i + ', this.value)" aria-label="Comentário item ' + (i+1) + '"></textarea>'
+           + '</div>';
+    });
+    wrap.innerHTML = html;
+    jcUpdateProg();
+  };
+
+  window.dxJCSave = function(){
+    var titulo = ((document.getElementById('jc-art-tit')||{}).value || '').trim();
+    if (!titulo){ alert('Indique pelo menos o título do artigo.'); return; }
+    if (!JC_DRAFT.tipo){ alert('Escolha um template de apreciação crítica.'); return; }
+    var artigo = {
+      titulo: titulo,
+      autores: ((document.getElementById('jc-art-aut')||{}).value || '').trim(),
+      revista: ((document.getElementById('jc-art-rev')||{}).value || '').trim(),
+      ano:     ((document.getElementById('jc-art-ano')||{}).value || '').trim(),
+      doi:     ((document.getElementById('jc-art-doi')||{}).value || '').trim(),
+      pmid:    ((document.getElementById('jc-art-pmid')||{}).value || '').trim(),
+    };
+    var concl = ((document.getElementById('jc-concl')||{}).value || '').trim();
+    var apli  = ((document.getElementById('jc-apli')||{}).value || '').trim();
+    var list = jcList();
+    list.unshift({
+      id: 'jc' + Date.now() + Math.floor(Math.random()*1000),
+      ts: Date.now(),
+      data: diaToday(),
+      artigo: artigo,
+      tipo: JC_DRAFT.tipo,
+      respostas: JSON.parse(JSON.stringify(JC_DRAFT.respostas)),
+      concl: concl,
+      apli: apli
+    });
+    if (list.length > 500) list = list.slice(0, 500);
+    jcSetList(list);
+
+    // Reset
+    ['jc-art-tit','jc-art-aut','jc-art-rev','jc-art-ano','jc-art-doi','jc-art-pmid','jc-concl','jc-apli'].forEach(function(id){
+      var el = document.getElementById(id); if (el) el.value = '';
+    });
+    var sel = document.getElementById('jc-tpl'); if (sel) sel.value = '';
+    JC_DRAFT = { tipo:'', respostas:{} };
+    window.dxJCDoiUpdate();
+    window.dxJCRenderTpl();
+    window.dxJCRender();
+    jcUpdateCount();
+  };
+
+  window.dxJCDelete = function(id){
+    var list = jcList().filter(function(e){ return e.id !== id; });
+    jcSetList(list);
+    window.dxJCRender();
+    jcUpdateCount();
+  };
+
+  window.dxJCToggle = function(id){
+    var el = document.getElementById(id);
+    if (el) el.classList.toggle('open');
+  };
+
+  function jcRespLabel(r){
+    return ({Y:'Sim', N:'Não', CT:'Não diz', NA:'N/A'})[r] || r;
+  }
+
+  window.dxJCRender = function(){
+    var wrap = document.getElementById('jc-list-wrap');
+    if (!wrap) return;
+    var fT = (document.getElementById('jc-filt-tpl')||{}).value || '';
+    var q = ((document.getElementById('jc-filt-q')||{}).value || '').toLowerCase().trim();
+    var list = jcList();
+    if (fT) list = list.filter(function(e){ return e.tipo === fT; });
+    if (q) list = list.filter(function(e){
+      var a = e.artigo || {};
+      return (a.titulo||'').toLowerCase().indexOf(q) >= 0
+          || (a.autores||'').toLowerCase().indexOf(q) >= 0
+          || (e.concl||'').toLowerCase().indexOf(q) >= 0;
+    });
+    if (!list.length){
+      wrap.innerHTML = '<div class="lb-empty">' + (fT||q ? 'Sem sessões com estes filtros.' : 'Sem sessões guardadas. Use o cartão acima para a primeira apreciação crítica.') + '</div>';
+      return;
+    }
+    var max = 30;
+    var html = list.slice(0, max).map(function(e){
+      var a = e.artigo || {};
+      var tpl = JC_TEMPLATES[e.tipo];
+      var nResp = 0; Object.keys(e.respostas||{}).forEach(function(k){ if (e.respostas[k] && e.respostas[k].r) nResp++; });
+      var nTotal = tpl ? tpl.items.length : 0;
+      var nSim = 0, nNao = 0;
+      Object.keys(e.respostas||{}).forEach(function(k){
+        if (e.respostas[k]){
+          if (e.respostas[k].r === 'Y') nSim++;
+          else if (e.respostas[k].r === 'N') nNao++;
+        }
+      });
+      var refStr = [a.autores, a.revista, a.ano].filter(function(x){ return x; }).join(' · ');
+      var doiHtml = '';
+      if (a.doi)  doiHtml += ' <a href="https://doi.org/' + lbEscHtml(a.doi) + '" target="_blank" rel="noopener" style="font-size:10px;color:#7a5c20;text-decoration:none;border:1px solid #bda060;padding:1px 5px;border-radius:3px;background:#fbf3da">↗ DOI</a>';
+      if (a.pmid && /^\d+$/.test(a.pmid)) doiHtml += ' <a href="https://pubmed.ncbi.nlm.nih.gov/' + lbEscHtml(a.pmid) + '/" target="_blank" rel="noopener" style="font-size:10px;color:#7a5c20;text-decoration:none;border:1px solid #bda060;padding:1px 5px;border-radius:3px;background:#fbf3da">↗ PMID</a>';
+      var bodyItems = '';
+      if (tpl){
+        bodyItems = tpl.items.map(function(qq, i){
+          var rec = (e.respostas||{})[String(i)] || {};
+          if (!rec.r) return '';
+          var rcls = (rec.r||'').toLowerCase();
+          return '<div class="jb-q"><b>' + (i+1) + '.</b> ' + lbEscHtml(qq) + ' <span class="resp ' + rcls + '">' + jcRespLabel(rec.r) + '</span>'
+               + (rec.c ? '<div class="jb-c">' + lbEscHtml(rec.c) + '</div>' : '')
+               + '</div>';
+        }).join('');
+      }
+      var conclHtml = '';
+      if (e.concl) conclHtml += '<div class="jb-concl"><b>Conclusão:</b> ' + lbEscHtml(e.concl) + '</div>';
+      if (e.apli)  conclHtml += '<div class="jb-concl"><b>Aplicabilidade:</b> ' + lbEscHtml(e.apli) + '</div>';
+      return '<div class="jc-entry" id="jce-' + lbEscHtml(e.id) + '">'
+           + '<div class="je-hdr">'
+           +   '<span class="je-d">' + lbEscHtml(e.data || avFmtDate(e.ts)) + '</span>'
+           +   '<span class="je-tt" onclick="dxJCToggle(\'jce-' + lbEscHtml(e.id) + '\')" title="Clicar para expandir/colapsar">' + lbEscHtml(a.titulo) + doiHtml + '</span>'
+           +   '<button type="button" class="je-x" aria-label="Remover sessão" onclick="dxJCDelete(\'' + lbEscHtml(e.id) + '\')">×</button>'
+           + '</div>'
+           + (refStr ? '<div class="je-meta">' + lbEscHtml(refStr) + '</div>' : '')
+           + '<div class="je-meta" style="margin-top:6px"><span class="je-tpl">' + lbEscHtml(tpl ? tpl.label : e.tipo) + '</span>'
+           + '<span class="je-score">' + nResp + '/' + nTotal + ' · ✓ ' + nSim + ' · ✗ ' + nNao + '</span></div>'
+           + '<div class="je-body">' + bodyItems + conclHtml + '</div>'
+           + '</div>';
+    }).join('');
+    if (list.length > max) html += '<div class="lb-empty">… mais ' + (list.length-max) + ' sessões</div>';
+    wrap.innerHTML = html;
+  };
+
+  window.dxJCExport = function(){
+    var list = jcList();
+    if (!list.length){ alert('Sem sessões para exportar.'); return; }
+    var ini = lsGet(KEY_PROF_INIT, ''); var year = lsGet(KEY_PROF_YEAR, ''); var usf = lsGet(KEY_PROF_USF, '');
+    var lines = [
+      'Journal Club — Internato MGF',
+      'Interno: ' + (ini || '—') + (year ? ' · Ano ' + year : '') + (usf ? ' · ' + usf : ''),
+      'Exportado: ' + (new Date()).toISOString().slice(0,16).replace('T',' '),
+      'Total: ' + list.length + ' sessões',
+      ''.padEnd(70,'═'),
+      ''
+    ];
+    list.slice().reverse().forEach(function(e){
+      var a = e.artigo || {};
+      var tpl = JC_TEMPLATES[e.tipo];
+      lines.push((e.data || avFmtDate(e.ts)) + ' · ' + (a.titulo || '—'));
+      var ref = [a.autores, a.revista, a.ano].filter(function(x){ return x; }).join(' · ');
+      if (ref) lines.push('  ' + ref);
+      if (a.doi)  lines.push('  DOI: ' + a.doi);
+      if (a.pmid) lines.push('  PMID: ' + a.pmid);
+      lines.push('  Template: ' + (tpl ? tpl.label : e.tipo));
+      if (tpl){
+        tpl.items.forEach(function(qq, i){
+          var rec = (e.respostas||{})[String(i)] || {};
+          if (!rec.r) return;
+          lines.push('   ' + (i+1) + '. ' + qq + ' → ' + jcRespLabel(rec.r));
+          if (rec.c) lines.push('      ' + rec.c.replace(/\n/g,'\n      '));
+        });
+      }
+      if (e.concl) lines.push('  Conclusão: ' + e.concl);
+      if (e.apli)  lines.push('  Aplicabilidade: ' + e.apli);
+      lines.push('');
+      lines.push(''.padEnd(70,'─'));
+      lines.push('');
+    });
+    var blob = new Blob([lines.join('\n')], {type:'text/plain;charset=utf-8'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'journal_club_mgf_' + (new Date()).toISOString().slice(0,10) + '.txt';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  };
+
+  function dxJCInit(){
+    window.dxJCRenderTpl();
+    window.dxJCDoiUpdate();
+    window.dxJCRender();
+    jcUpdateCount();
+  }
+
+
+  // ══════════════════════════════════════════════════════════════════════
+  // LOGBOOK MGF — Fase 2
+  // ----------------------------------------------------------------------
+  // Estrutura alinhada com a Portaria n.º 125/2019, de 30 de abril
+  // (https://diariodarepublica.pt/dr/detalhe/portaria/125-2019-122195237)
+  // que actualiza o programa de formação da especialidade de MGF:
+  //   • Formação especializada total: 48 meses
+  //   • MGF1 (11m) → MGF2 (22m) → MGF3 (11m) — em USF/UCSP de colocação
+  //   • Formações complementares durante MGF2: Saúde Infantil e Juvenil
+  //     (2m), Saúde da Mulher (2m), Saúde Mental (2m)
+  //   • Cuidados em situações de urgência/emergência: distribuído entre
+  //     MGF1 (2.º semestre) e MGF2 — inclui blocos de 96h em pediatria e
+  //     96h em ginecologia/obstetrícia, mais cirurgia, ortotraumatologia,
+  //     medicina interna e psiquiatria.
+  //   • Estágio opcional: durante MGF2.
+  //
+  // Os mínimos quantitativos por acto (campo `min`) estão a `null`. A
+  // Portaria 125/2019 fixa duração e estrutura mas NÃO fixa números
+  // mínimos de actos — esses estão nas cadernetas regionais das ARS
+  // (Norte 2024, LVT, Centro, Alentejo, Algarve), que diferem entre si.
+  // Próxima ronda da Fase 2: carregar caderneta da ARS aplicável e
+  // preencher os mínimos. Esta tabela é o ÚNICO local a editar.
+  // ══════════════════════════════════════════════════════════════════════
+
+  // Estrutura confirmada pela Caderneta IM ARS Norte 2024 + Portaria 125/2019:
+  //   • Urgência/Emergência NÃO é estágio autónomo — está incorporada nos
+  //     estágios principais e complementares (cir/ort em MGF1, MI em MGF2,
+  //     ped em S.Infantil, gin/obs em S.Mulher, psq em S.Mental).
+  //   • Mínimos confirmados:
+  //       - MGF3: ≥1500 consultas totais, ≥200 saúde infantil (≤18a),
+  //               ≥200 saúde da mulher (incl. grávidas)
+  //       - Urgência: 8 turnos×12h em cirurgia, 8 em ortotraumatologia,
+  //         12 em medicina interna, 8 em pediatria, 8 em gin/obs,
+  //         4 em psiquiatria
+  //       - 5 meses de áreas opcionais durante MGF2
+  //       - 1 mês em unidade c/ população diferente da de colocação
+  //   • Os actos sem `min` ficam em contagem absoluta — números detalhados
+  //     por procedimento (ECG, espirometria, citologia, etc.) requerem
+  //     consulta da Caderneta de Estágio + Guião de Formação (documentos
+  //     separados, não incluídos nesta caderneta).
+  //   • Convenção: `unidade:'turnos_12h'` significa cada registo = 1 turno
+  //     de 12 horas (display mostra horas equivalentes); `agregado:true`
+  //     significa que a rubrica é apenas display e a contagem soma vários
+  //     tipos via `agrega:[...]` — não aparece no dropdown do formulário.
+
+  var INT_ESTAGIOS = [
+    { id:'mgf1', label:'MGF1', meses:11, principal:true, fase:'inicial', actos:[
+      { id:'cons_prog',     label:'Consulta programada',                 min:null },
+      { id:'cons_aguda',    label:'Consulta de doença aguda',            min:null },
+      { id:'cons_dom',      label:'Visita domiciliária',                 min:null },
+      { id:'sd_infantil',   label:'Consulta de saúde infantil/juvenil',  min:null },
+      { id:'sd_mulher',     label:'Consulta de saúde da mulher',         min:null },
+      { id:'plan_familiar', label:'Planeamento familiar',                min:null },
+      { id:'idoso',         label:'Saúde do idoso',                      min:null },
+      { id:'cronico',       label:'Doente crónico / multimorbilidade',   min:null },
+      { id:'peq_cir',       label:'Pequena cirurgia / procedimentos',    min:null },
+      { id:'urg_cir',       label:'Urgência de cirurgia',                min:8,  unidade:'turnos_12h' },
+      { id:'urg_ort',       label:'Urgência de ortotraumatologia',       min:8,  unidade:'turnos_12h' },
+      { id:'form_curta',    label:'Formação curta (objectivo cumulativo: 160 h)', min:null, unidade:'sessoes' },
+    ]},
+    { id:'mgf2', label:'MGF2', meses:22, principal:true, fase:'intermédia', actos:[
+      { id:'cons_prog',     label:'Consulta programada',                 min:null },
+      { id:'cons_aguda',    label:'Consulta de doença aguda',            min:null },
+      { id:'cons_dom',      label:'Visita domiciliária',                 min:null },
+      { id:'sd_infantil',   label:'Consulta de saúde infantil/juvenil',  min:null },
+      { id:'sd_mulher',     label:'Consulta de saúde da mulher',         min:null },
+      { id:'plan_familiar', label:'Planeamento familiar',                min:null },
+      { id:'idoso',         label:'Saúde do idoso',                      min:null },
+      { id:'cronico',       label:'Doente crónico / multimorbilidade',   min:null },
+      { id:'peq_cir',       label:'Pequena cirurgia / procedimentos',    min:null },
+      { id:'urg_mi',        label:'Urgência de medicina interna',        min:12, unidade:'turnos_12h' },
+      { id:'pop_dif',       label:'Mês em unidade c/ população diferente', min:1,  unidade:'meses' },
+      { id:'form_curta',    label:'Formação curta (objectivo cumulativo: 160 h)', min:null, unidade:'sessoes' },
+    ]},
+    { id:'mgf3', label:'MGF3', meses:11, principal:true, fase:'final', actos:[
+      { id:'_total_cons',   label:'Total de consultas (em autonomia)',   min:1500, agregado:true,
+        agrega:['cons_prog','cons_aguda','sd_infantil','sd_mulher','plan_familiar','idoso','cronico'] },
+      { id:'cons_prog',     label:'Consulta programada',                 min:null },
+      { id:'cons_aguda',    label:'Consulta de doença aguda',            min:null },
+      { id:'cons_dom',      label:'Visita domiciliária',                 min:null },
+      { id:'sd_infantil',   label:'Saúde infantil / juvenil (≤18 anos)', min:200 },
+      { id:'sd_mulher',     label:'Saúde da mulher (incl. grávidas)',    min:200 },
+      { id:'plan_familiar', label:'Planeamento familiar',                min:null },
+      { id:'idoso',         label:'Saúde do idoso',                      min:null },
+      { id:'cronico',       label:'Doente crónico / multimorbilidade',   min:null },
+      { id:'peq_cir',       label:'Pequena cirurgia / procedimentos',    min:null },
+      { id:'form_curta',    label:'Formação curta (objectivo cumulativo: 160 h)', min:null, unidade:'sessoes' },
+    ]},
+    { id:'sij', label:'Saúde Infantil e Juvenil', meses:2, complementar:true, actos:[
+      { id:'sip',        label:'Consulta de saúde infantil periódica (PNSIJ)', min:null },
+      { id:'urg_ped',    label:'Urgência pediátrica',                    min:8,  unidade:'turnos_12h' },
+      { id:'int_ped',    label:'Internamento pediátrico',                min:null },
+      { id:'vacina_ped', label:'Vacinação',                              min:null },
+      { id:'adolesc',    label:'Consulta do adolescente',                min:null },
+    ]},
+    { id:'smul', label:'Saúde da Mulher', meses:2, complementar:true, actos:[
+      { id:'pre_natal',  label:'Consulta pré-natal / vigilância',        min:null },
+      { id:'pos_parto',  label:'Consulta pós-parto / puerpério',         min:null },
+      { id:'parto',      label:'Parto / sala de partos',                 min:null },
+      { id:'gin',        label:'Consulta de ginecologia',                min:null },
+      { id:'urg_gin',    label:'Urgência de ginecologia/obstetrícia',    min:8,  unidade:'turnos_12h' },
+      { id:'eco_obs',    label:'Ecografia obstétrica',                   min:null },
+      { id:'ctg',        label:'Cardiotocografia',                       min:null },
+      { id:'plan_smul',  label:'Planeamento familiar',                   min:null },
+    ]},
+    { id:'smen', label:'Saúde Mental', meses:2, complementar:true, actos:[
+      { id:'cons_psq',   label:'Consulta de psiquiatria',                min:null },
+      { id:'urg_psq',    label:'Urgência de psiquiatria',                min:4,  unidade:'turnos_12h' },
+      { id:'int_psq',    label:'Internamento psiquiátrico',              min:null },
+      { id:'breve',      label:'Intervenção breve / motivacional',       min:null },
+    ]},
+    // ── Estágios opcionais (durante MGF2, até 5 meses no total) ────────
+    { id:'ger', label:'Geriatria (opcional)', meses:null, opcional:true, actos:[
+      { id:'cons_ger',  label:'Consulta de geriatria',                   min:null },
+      { id:'cga',       label:'Avaliação multidimensional do idoso (CGA)', min:null },
+      { id:'dom_idoso', label:'Visita domiciliária ao idoso',            min:null },
+      { id:'demencia',  label:'Consulta de demência / cognição',         min:null },
+      { id:'quedas',    label:'Avaliação de quedas / mobilidade',        min:null },
+      { id:'int_ger',   label:'Internamento (UCC / UMDR)',               min:null },
+    ]},
+    { id:'cp', label:'Cuidados Continuados / Paliativos (opcional)', meses:null, opcional:true, actos:[
+      { id:'vd_pal',    label:'Visita domiciliária paliativa',           min:null },
+      { id:'sintomas',  label:'Controlo de sintomas',                    min:null },
+      { id:'cf',        label:'Conferência familiar',                    min:null },
+      { id:'int_cp',    label:'Internamento (ECCI / UMDR / ULDM / Pal.)', min:null },
+      { id:'sedacao',   label:'Sedação paliativa',                       min:null },
+      { id:'mas_not',   label:'Comunicação de más notícias / fim de vida', min:null },
+      { id:'cuidador',  label:'Avaliação do cuidador / sobrecarga',      min:null },
+    ]},
+    { id:'dor', label:'Medicina da Dor (opcional)', meses:null, opcional:true, actos:[
+      { id:'cons_dor',  label:'Consulta de dor crónica',                 min:null },
+      { id:'aval_dor',  label:'Avaliação multidimensional da dor (BPI, neuropática)', min:null },
+      { id:'proc_dor',  label:'Procedimento (bloqueio, infiltração, RF)',min:null },
+      { id:'reun_dor',  label:'Reunião multidisciplinar de dor',         min:null },
+      { id:'opioides',  label:'Ajuste de opioides / titulação',          min:null },
+      { id:'dor_onco',  label:'Consulta de dor oncológica',              min:null },
+    ]},
+    { id:'esp', label:'Especialidade hospitalar (opcional, genérica)', meses:null, opcional:true, actos:[
+      { id:'cons_esp',  label:'Consulta de especialidade',               min:null },
+      { id:'enf_esp',   label:'Enfermaria / internamento',               min:null },
+      { id:'urg_esp',   label:'Urgência da especialidade',               min:null },
+      { id:'sessao_h',  label:'Sessão clínica hospitalar',               min:null },
+      { id:'proc_tec',  label:'Procedimento técnico',                    min:null },
+      { id:'reun_md',   label:'Reunião multidisciplinar',                min:null },
+    ]},
+    { id:'card', label:'Cardiologia (opcional)', meses:null, opcional:true, actos:[
+      { id:'cons_card', label:'Consulta de cardiologia',                 min:null },
+      { id:'enf_card',  label:'Enfermaria de cardiologia',               min:null },
+      { id:'ecg',       label:'ECG',                                     min:null },
+      { id:'eco_cor',   label:'Ecocardiograma',                          min:null },
+      { id:'prov_esf',  label:'Prova de esforço',                        min:null },
+      { id:'urg_card',  label:'Urgência cardiovascular',                 min:null },
+    ]},
+    { id:'derm', label:'Dermatologia (opcional)', meses:null, opcional:true, actos:[
+      { id:'cons_derm', label:'Consulta de dermatologia',                min:null },
+      { id:'dermato',   label:'Dermatoscopia',                           min:null },
+      { id:'biopsia_d', label:'Biopsia cutânea',                         min:null },
+      { id:'crioter',   label:'Crioterapia',                             min:null },
+      { id:'peq_cir_d', label:'Pequena cirurgia dermatológica',          min:null },
+    ]},
+    { id:'reum', label:'Reumatologia (opcional)', meses:null, opcional:true, actos:[
+      { id:'cons_reum', label:'Consulta de reumatologia',                min:null },
+      { id:'enf_reum',  label:'Enfermaria de reumatologia',              min:null },
+      { id:'infiltr',   label:'Infiltração articular',                   min:null },
+      { id:'capil',     label:'Capilaroscopia',                          min:null },
+    ]},
+    { id:'endo', label:'Endocrinologia / Diabetes (opcional)', meses:null, opcional:true, actos:[
+      { id:'cons_endo', label:'Consulta de endocrinologia / diabetes',   min:null },
+      { id:'enf_endo',  label:'Enfermaria de endocrinologia',            min:null },
+      { id:'pe_diab',   label:'Pé diabético',                            min:null },
+      { id:'tiroide',   label:'Patologia da tiroide',                    min:null },
+    ]},
+    { id:'neur', label:'Neurologia (opcional)', meses:null, opcional:true, actos:[
+      { id:'cons_neur', label:'Consulta de neurologia',                  min:null },
+      { id:'enf_neur',  label:'Enfermaria de neurologia',                min:null },
+      { id:'urg_avc',   label:'Urgência neurológica / via verde AVC',    min:null },
+      { id:'eeg',       label:'EEG',                                     min:null },
+    ]},
+    { id:'gast', label:'Gastrenterologia (opcional)', meses:null, opcional:true, actos:[
+      { id:'cons_gast', label:'Consulta de gastrenterologia',            min:null },
+      { id:'enf_gast',  label:'Enfermaria de gastrenterologia',          min:null },
+      { id:'endosc',    label:'Endoscopia digestiva',                    min:null },
+    ]},
+    { id:'opc', label:'Outro estágio opcional (livre)', meses:null, opcional:true, actos:[
+      { id:'livre',     label:'Acto (descrição obrigatória)',            min:null },
+    ]},
+  ];
+
+  // Tipos de acto transversais — disponíveis em qualquer estágio
+  var INT_ACTOS_GLOB = [
+    { id:'reuniao',      label:'Reunião formativa' },
+    { id:'sessao',       label:'Sessão clínica' },
+    { id:'formacao',     label:'Formação externa / curso' },
+    { id:'investigacao', label:'Investigação / publicação' },
+  ];
+
+  // Cursos curriculares obrigatórios (Caderneta IM ARS Norte 2024)
+  var INT_CURSOS = [
+    { id:'mgf1_intro', estagio:'mgf1', label:'Introdução à Medicina Geral e Familiar' },
+    { id:'mgf1_com',   estagio:'mgf1', label:'Comunicação em Consulta em CSP' },
+    { id:'mgf2a_inv',  estagio:'mgf2', label:'Introdução às Metodologias de Investigação (2.º ano)' },
+    { id:'mgf2a_qual', estagio:'mgf2', label:'Melhoria Contínua da Qualidade e Projeto de Intervenção (2.º ano)' },
+    { id:'mgf2a_pal',  estagio:'mgf2', label:'Cuidados Paliativos (2.º ano)' },
+    { id:'mgf2b_top',  estagio:'mgf2', label:'Técnicas de Organização e Planeamento — TOP-MGF (3.º ano)' },
+  ];
+
+  var KEY_LOG_LIST    = 'dx_int_log_entries';
+  var KEY_LOG_ESTAGIO = 'dx_int_log_estagio_atual';
+  var KEY_LOG_CURSOS  = 'dx_int_log_cursos';
+
+  function lbEscHtml(s){
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+    });
+  }
+
+  function lbEstagio(id){
+    for (var i=0;i<INT_ESTAGIOS.length;i++) if (INT_ESTAGIOS[i].id===id) return INT_ESTAGIOS[i];
+    return null;
+  }
+
+  function lbActoLabel(estagioId, actoId){
+    var e = lbEstagio(estagioId);
+    if (e) for (var i=0;i<e.actos.length;i++) if (e.actos[i].id===actoId) return e.actos[i].label;
+    for (var j=0;j<INT_ACTOS_GLOB.length;j++) if (INT_ACTOS_GLOB[j].id===actoId) return INT_ACTOS_GLOB[j].label;
+    return actoId;
+  }
+
+  function lbList(){
+    try { return JSON.parse(lsGet(KEY_LOG_LIST,'[]')) || []; } catch(e){ return []; }
+  }
+  function lbSetList(arr){ lsSet(KEY_LOG_LIST, JSON.stringify(arr)); }
+
+  function lbFillEstagioSelect(selEl, includeAll){
+    if (!selEl) return;
+    var prev = selEl.value;
+    selEl.innerHTML = '';
+    if (includeAll){
+      var oa = document.createElement('option');
+      oa.value = ''; oa.textContent = 'Todos os estágios';
+      selEl.appendChild(oa);
+    }
+    var grupos = [
+      { titulo:'Principais',     filtro: function(e){ return e.principal; } },
+      { titulo:'Complementares', filtro: function(e){ return e.complementar; } },
+      { titulo:'Opcionais',      filtro: function(e){ return e.opcional; } },
+    ];
+    grupos.forEach(function(g){
+      var lista = INT_ESTAGIOS.filter(g.filtro);
+      if (!lista.length) return;
+      var og = document.createElement('optgroup');
+      og.label = g.titulo;
+      lista.forEach(function(e){
+        var o = document.createElement('option');
+        o.value = e.id;
+        o.textContent = e.label + (e.meses ? ' · ' + e.meses + 'm' : '');
+        og.appendChild(o);
+      });
+      selEl.appendChild(og);
+    });
+    selEl.value = prev || (includeAll ? '' : INT_ESTAGIOS[0].id);
+  }
+
+  function lbFillTipoSelect(estagioId){
+    var sel = document.getElementById('lb-tipo');
+    if (!sel) return;
+    sel.innerHTML = '';
+    var e = lbEstagio(estagioId);
+    var actos = (e && e.actos) ? e.actos.filter(function(a){ return !a.agregado; }) : [];
+    actos.forEach(function(a){
+      var o = document.createElement('option');
+      o.value = a.id; o.textContent = a.label;
+      sel.appendChild(o);
+    });
+    if (actos.length){
+      var sep = document.createElement('option');
+      sep.disabled = true; sep.textContent = '── transversais ──';
+      sel.appendChild(sep);
+    }
+    INT_ACTOS_GLOB.forEach(function(a){
+      var o = document.createElement('option');
+      o.value = a.id; o.textContent = a.label;
+      sel.appendChild(o);
+    });
+  }
+
+  function lbUpdateMeta(estagioId){
+    var meta = document.getElementById('lb-bar-meta');
+    if (!meta) return;
+    var e = lbEstagio(estagioId);
+    if (!e){ meta.textContent = ''; return; }
+    var tag = e.principal ? 'principal' : (e.complementar ? 'complementar' : (e.opcional ? 'opcional' : ''));
+    var dur = e.meses ? (e.meses + ' meses') : 'duração distribuída';
+    meta.textContent = tag ? (tag + ' · ' + dur) : dur;
+  }
+
+  function lbUpdateCount(){
+    var c = document.getElementById('lb-count');
+    if (!c) return;
+    var n = lbList().length;
+    c.textContent = n ? (n + ' registos no total') : '';
+  }
+
+  window.dxLogEstagioSet = function(id){
+    if (!lbEstagio(id)) return;
+    lsSet(KEY_LOG_ESTAGIO, id);
+    lbFillTipoSelect(id);
+    lbUpdateMeta(id);
+    window.dxLogRenderProg();
+  };
+
+  window.dxLogSave = function(){
+    var d = (document.getElementById('lb-data')||{}).value || '';
+    var t = (document.getElementById('lb-tipo')||{}).value || '';
+    var desc = ((document.getElementById('lb-desc')||{}).value || '').trim();
+    var est = lsGet(KEY_LOG_ESTAGIO, INT_ESTAGIOS[0].id);
+    if (!d){ alert('Indique a data do registo.'); return; }
+    if (!t){ alert('Indique o tipo de acto.'); return; }
+    if (t === 'livre' && !desc){ alert('No estágio opcional, descrição é obrigatória.'); return; }
+    var list = lbList();
+    list.unshift({
+      id: 'l' + Date.now() + Math.floor(Math.random()*1000),
+      ts: Date.now(),
+      data: d,
+      estagio: est,
+      tipo: t,
+      desc: desc.slice(0,160)
+    });
+    if (list.length > 5000) list = list.slice(0, 5000);
+    lbSetList(list);
+    var de = document.getElementById('lb-desc'); if (de) de.value = '';
+    window.dxLogRender();
+    window.dxLogRenderProg();
+    lbUpdateCount();
+  };
+
+  window.dxLogDelete = function(id){
+    var list = lbList().filter(function(e){ return e.id !== id; });
+    lbSetList(list);
+    window.dxLogRender();
+    window.dxLogRenderProg();
+    lbUpdateCount();
+  };
+
+  window.dxLogRender = function(){
+    var wrap = document.getElementById('lb-list-wrap');
+    if (!wrap) return;
+    var fEst = (document.getElementById('lb-filt-estagio')||{}).value || '';
+    var q = ((document.getElementById('lb-filt-q')||{}).value || '').toLowerCase().trim();
+    var list = lbList();
+    if (fEst) list = list.filter(function(e){ return e.estagio === fEst; });
+    if (q) list = list.filter(function(e){
+      return (e.desc||'').toLowerCase().indexOf(q) >= 0
+          || lbActoLabel(e.estagio,e.tipo).toLowerCase().indexOf(q) >= 0;
+    });
+    if (!list.length){
+      wrap.innerHTML = '<div class="lb-empty">' + (fEst||q ? 'Sem registos com estes filtros.' : 'Sem registos ainda. Adicione o primeiro acima.') + '</div>';
+      return;
+    }
+    var max = 50;
+    var html = list.slice(0, max).map(function(e){
+      var est = lbEstagio(e.estagio);
+      var estLabel = est ? est.label : e.estagio;
+      var d = e.data || (new Date(e.ts)).toISOString().slice(0,10);
+      var isAuto = !!e.auto;
+      var icon = isAuto ? '<span class="le-auto-ic" title="Origem: SOAP automático (auto-contabilização)">↻ SOAP</span> ' : '';
+      var warn = e.warn ? '<span class="le-warn" title="SOAP contabilizado mas estágio não estava seleccionado — reclassifique se necessário">⚠ estágio default</span> ' : '';
+      var chips = isAuto ? lbReclassChips(e) : '';
+      return '<div class="lb-entry' + (isAuto ? ' lb-entry-auto' : '') + '">'
+           + '<span class="le-d">' + lbEscHtml(d) + '</span>'
+           + '<span class="le-e" title="' + lbEscHtml(estLabel) + '">' + lbEscHtml(estLabel) + '</span>'
+           + '<span class="le-t">' + icon + warn
+           + '<b>' + lbEscHtml(lbActoLabel(e.estagio, e.tipo)) + '</b>'
+           + (e.desc ? ' — ' + lbEscHtml(e.desc) : '')
+           + chips
+           + '</span>'
+           + '<button type="button" class="le-x" aria-label="Remover registo" onclick="dxLogDelete(\'' + lbEscHtml(e.id) + '\')">×</button>'
+           + '</div>';
+    }).join('');
+    if (list.length > max) html += '<div class="lb-empty">… mais ' + (list.length - max) + ' registos não mostrados (use os filtros para encontrar)</div>';
+    wrap.innerHTML = html;
+  };
+
+  window.dxLogRenderProg = function(){
+    var wrap = document.getElementById('lb-prog-wrap');
+    if (!wrap) return;
+    var est = lsGet(KEY_LOG_ESTAGIO, INT_ESTAGIOS[0].id);
+    var e = lbEstagio(est);
+    if (!e){ wrap.innerHTML = ''; return; }
+    var list = lbList().filter(function(x){ return x.estagio === est; });
+    var counts = {};
+    list.forEach(function(x){ counts[x.tipo] = (counts[x.tipo]||0) + 1; });
+    var rows = e.actos.map(function(a){
+      var c;
+      if (a.agregado && a.agrega) c = a.agrega.reduce(function(s,k){ return s + (counts[k]||0); }, 0);
+      else c = counts[a.id] || 0;
+      var min = a.min;
+      var lbl;
+      if (a.unidade === 'turnos_12h'){
+        if (min == null) lbl = c + ' turnos (' + (c*12) + ' h) / —';
+        else lbl = c + ' / ' + min + ' turnos · ' + (c*12) + ' / ' + (min*12) + ' h';
+      } else if (a.unidade === 'meses'){
+        lbl = c + ' / ' + (min == null ? '—' : min) + ' meses';
+      } else if (a.unidade === 'sessoes'){
+        lbl = (min == null) ? (c + ' sessões registadas') : (c + ' / ' + min + ' sessões');
+      } else {
+        lbl = c + ' / ' + (min == null ? '—' : min);
+      }
+      var pct, doneClass = '';
+      if (min == null) pct = 0;
+      else { pct = Math.min(100, Math.round((c/min)*100)); if (c >= min) doneClass = ' done'; }
+      return '<div class="lb-prog-row' + (a.agregado ? ' lb-prog-agg' : '') + '">'
+           + '<span class="lp-l">' + lbEscHtml(a.label) + '</span>'
+           + '<span class="lp-c">' + lbEscHtml(lbl) + '</span>'
+           + '<span class="lp-bar"><span class="' + doneClass + '" style="width:' + pct + '%"></span></span>'
+           + '</div>';
+    }).join('');
+    if (!rows) rows = '<div class="lb-prog-empty">Estágio sem rubricas configuradas.</div>';
+    wrap.innerHTML = rows;
+  };
+
+  window.dxLogExport = function(){
+    alert('Exportação PDF do logbook chega na próxima ronda da Fase 2.');
+  };
+
+  // ── Cursos curriculares obrigatórios ───────────────────────────────
+  function lbCursos(){
+    try { return JSON.parse(lsGet(KEY_LOG_CURSOS, '{}')) || {}; } catch(e){ return {}; }
+  }
+  function lbSetCursos(o){ lsSet(KEY_LOG_CURSOS, JSON.stringify(o)); }
+
+  window.dxCursoToggle = function(id, checked){
+    var o = lbCursos();
+    if (checked){
+      var t = new Date();
+      o[id] = t.getFullYear() + '-' + String(t.getMonth()+1).padStart(2,'0') + '-' + String(t.getDate()).padStart(2,'0');
+    } else {
+      delete o[id];
+    }
+    lbSetCursos(o);
+    dxCursoRender();
+  };
+
+  window.dxCursoData = function(id, data){
+    var o = lbCursos();
+    if (o[id] !== undefined) { o[id] = data || ''; lbSetCursos(o); }
+  };
+
+  function dxCursoRender(){
+    var wrap = document.getElementById('lb-cursos-wrap');
+    if (!wrap) return;
+    var done = lbCursos();
+    var grupos = {};
+    INT_CURSOS.forEach(function(c){
+      grupos[c.estagio] = grupos[c.estagio] || [];
+      grupos[c.estagio].push(c);
+    });
+    var nDone = Object.keys(done).length;
+    var nTotal = INT_CURSOS.length;
+    var html = '';
+    Object.keys(grupos).forEach(function(eId){
+      var e = lbEstagio(eId);
+      html += '<div class="lb-curso-grp"><div class="lb-curso-est">' + lbEscHtml(e ? e.label : eId) + '</div>';
+      grupos[eId].forEach(function(c){
+        var d = done[c.id];
+        var checked = (d !== undefined);
+        html += '<div class="lb-curso-row">'
+             + '<label><input type="checkbox" ' + (checked ? 'checked' : '') + ' onchange="dxCursoToggle(\'' + c.id + '\', this.checked)"> '
+             + lbEscHtml(c.label) + '</label>'
+             + '<input type="date" class="lb-curso-d" value="' + lbEscHtml(d || '') + '" '
+             + (checked ? '' : 'disabled ')
+             + 'onchange="dxCursoData(\'' + c.id + '\', this.value)" aria-label="Data de conclusão de ' + lbEscHtml(c.label) + '">'
+             + '</div>';
+      });
+      html += '</div>';
+    });
+    var hdr = '<div class="lb-curso-prog">' + nDone + ' / ' + nTotal + ' cursos concluídos</div>';
+    wrap.innerHTML = hdr + html;
+  }
+  window.dxCursoRender = dxCursoRender;
+
+  // ══════════════════════════════════════════════════════════════════════
+  // AUTO-CONTABILIZAÇÃO SOAP — Fase 2.6
+  // ----------------------------------------------------------------------
+  // Cada vez que o motor SOAP gera uma nota (window.generate), é criada
+  // automaticamente uma entrada no logbook com flag `auto:true, src:'soap'`.
+  // Mapeamento por tipo de encontro (window.enc):
+  //   con  → cons_prog    (consulta programada)
+  //   urg  → cons_aguda   (consulta de doença aguda)
+  //   vd   → cons_dom     (visita domiciliária)
+  //   int  → contextual   (rubrica de internamento do estágio actual:
+  //                        int_ped em S.Infantil, int_psq em S.Mental,
+  //                        int_ger / int_cp / enf_* em opcionais; se
+  //                        não houver rubrica adequada, ignora silentemente)
+  // ══════════════════════════════════════════════════════════════════════
+
+  // Devolve id da rubrica de internamento de um estágio, ou null se não tem.
+  function lbInternamentoId(estagio){
+    var e = lbEstagio(estagio);
+    if (!e) return null;
+    for (var i=0;i<e.actos.length;i++){
+      var id = e.actos[i].id;
+      if (/^(int_|enf_)/.test(id)) return id;
+    }
+    return null;
+  }
+
+  // Mapa para reclassificação dos estágios principais (Portaria 125/2019:
+  // sub-categorias relevantes para mínimos do MGF3 + outras frequentes).
+  var LB_RECLASS_PRINCIPAIS = [
+    { id:'sd_infantil',   label:'saúde infantil' },
+    { id:'sd_mulher',     label:'saúde da mulher' },
+    { id:'plan_familiar', label:'planeamento' },
+    { id:'idoso',         label:'idoso' },
+    { id:'cronico',       label:'crónico' },
+    { id:'cons_dom',      label:'domiciliária' },
+    { id:'cons_aguda',    label:'aguda' },
+  ];
+
+  function lbReclassChips(entry){
+    var e = lbEstagio(entry.estagio);
+    if (!e) return '';
+    // Apenas para entradas auto cujo tipo seja consulta-base e estágio principal
+    if (!e.principal) return '';
+    if (entry.tipo !== 'cons_prog' && entry.tipo !== 'cons_aguda' && entry.tipo !== 'cons_dom') return '';
+    var actoIds = e.actos.map(function(a){ return a.id; });
+    var alvos = LB_RECLASS_PRINCIPAIS.filter(function(c){
+      return c.id !== entry.tipo && actoIds.indexOf(c.id) >= 0;
+    });
+    if (!alvos.length) return '';
+    var html = '<span class="le-chips" role="group" aria-label="Reclassificar consulta">';
+    alvos.forEach(function(c){
+      html += '<button type="button" class="le-chip" onclick="dxLogReclass(\'' + lbEscHtml(entry.id) + '\',\'' + c.id + '\')">→ ' + lbEscHtml(c.label) + '</button>';
+    });
+    html += '</span>';
+    return html;
+  }
+
+  window.dxLogReclass = function(id, novoTipo){
+    var list = lbList();
+    for (var i=0;i<list.length;i++) if (list[i].id===id){
+      list[i].tipo = novoTipo;
+      list[i].warn = false;
+      break;
+    }
+    lbSetList(list);
+    window.dxLogRender();
+    window.dxLogRenderProg();
+    lbUpdateCount();
+  };
+
+  function lbToday(){
+    var t = new Date();
+    return t.getFullYear() + '-' + String(t.getMonth()+1).padStart(2,'0') + '-' + String(t.getDate()).padStart(2,'0');
+  }
+
+  function dxLogToast(msg, isWarn){
+    var el = document.getElementById('lb-toast');
+    if (!el){
+      el = document.createElement('div');
+      el.id = 'lb-toast';
+      el.className = 'lb-toast';
+      document.body.appendChild(el);
+    }
+    el.classList.toggle('warn', !!isWarn);
+    el.textContent = msg;
+    el.classList.add('on');
+    clearTimeout(el._tm);
+    el._tm = setTimeout(function(){ el.classList.remove('on'); }, isWarn ? 5000 : 2800);
+  }
+
+  // Chamada após cada window.generate(). Cria entrada auto no logbook.
+  function dxLogAutoFromSOAP(){
+    var enc = window.enc || '';
+    if (!enc) return;
+    var tipo = '';
+    if (enc === 'con')      tipo = 'cons_prog';
+    else if (enc === 'urg') tipo = 'cons_aguda';
+    else if (enc === 'vd')  tipo = 'cons_dom';
+    else if (enc === 'int'){
+      var estCur = lsGet(KEY_LOG_ESTAGIO, '') || INT_ESTAGIOS[0].id;
+      tipo = lbInternamentoId(estCur);
+      if (!tipo) return; // estágio sem rubrica de internamento: ignora
+    } else return;
+
+    var estagio = lsGet(KEY_LOG_ESTAGIO, '');
+    var noEstagio = !estagio;
+    if (noEstagio) estagio = INT_ESTAGIOS[0].id;
+    // Para `int`, garantir que o estágio escolhido tem a rubrica
+    if (enc === 'int' && !lbInternamentoId(estagio)) return;
+
+    var label = '';
+    try { if (typeof window.buildEncounterLabel === 'function') label = window.buildEncounterLabel(); } catch(_e){}
+    if (!label){
+      var encNames = { con:'Consulta', urg:'Urgência', vd:'Visita domiciliária', int:'Internamento' };
+      label = encNames[enc] || enc;
+    }
+
+    var list = lbList();
+    list.unshift({
+      id: 'l' + Date.now() + Math.floor(Math.random()*1000),
+      ts: Date.now(),
+      data: lbToday(),
+      estagio: estagio,
+      tipo: tipo,
+      desc: label.slice(0,160),
+      auto: true,
+      src: 'soap',
+      warn: noEstagio || undefined
+    });
+    if (list.length > 5000) list = list.slice(0, 5000);
+    lbSetList(list);
+
+    if (typeof window.dxLogRender === 'function') window.dxLogRender();
+    if (typeof window.dxLogRenderProg === 'function') window.dxLogRenderProg();
+    lbUpdateCount();
+
+    var msg = '✓ SOAP contabilizado no logbook (' + label + ')';
+    if (noEstagio) msg = '⚠ SOAP contabilizado em MGF1 (default) — escolha o estágio actual no Internato';
+    dxLogToast(msg, noEstagio);
+  }
+
+  // Patch window.generate para auto-contabilizar logo após gerar.
+  function patchGenerateForLogbook(){
+    if (typeof window.generate !== 'function') return;
+    if (window._dxIntLogPatched) return;
+    var orig = window.generate;
+    window.generate = function(){
+      var r = orig.apply(this, arguments);
+      try { dxLogAutoFromSOAP(); } catch(e){ console.warn('[dx-int-log auto]', e); }
+      return r;
+    };
+    window._dxIntLogPatched = true;
+  }
+
+  // Migra registos antigos do estágio "urg" (removido na Fase 2.5 — a
+  // urgência passou a estar distribuída pelos estágios em que ocorre).
+  function lbMigrateUrg(){
+    var map = { urg_cir:'mgf1', urg_ort:'mgf1', urg_mi:'mgf2',
+                urg_pedu:'sij', urg_gin:'smul', urg_psq2:'smen' };
+    var tipoMap = { urg_pedu:'urg_ped', urg_psq2:'urg_psq' };
+    var list = lbList(); var changed = false;
+    list.forEach(function(e){
+      if (e.estagio === 'urg' && map[e.tipo]){
+        e.estagio = map[e.tipo];
+        if (tipoMap[e.tipo]) e.tipo = tipoMap[e.tipo];
+        changed = true;
+      }
+    });
+    if (changed) lbSetList(list);
+  }
+
+  function dxLogInit(){
+    lbMigrateUrg();
+    var sel = document.getElementById('lb-estagio');
+    var fil = document.getElementById('lb-filt-estagio');
+    lbFillEstagioSelect(sel, false);
+    lbFillEstagioSelect(fil, true);
+    var cur = lsGet(KEY_LOG_ESTAGIO, INT_ESTAGIOS[0].id);
+    if (!lbEstagio(cur)) cur = INT_ESTAGIOS[0].id;
+    if (sel) sel.value = cur;
+    lbFillTipoSelect(cur);
+    lbUpdateMeta(cur);
+    var dEl = document.getElementById('lb-data');
+    if (dEl && !dEl.value){
+      var t = new Date();
+      dEl.value = t.getFullYear() + '-' + String(t.getMonth()+1).padStart(2,'0') + '-' + String(t.getDate()).padStart(2,'0');
+    }
+    lbUpdateCount();
+    window.dxLogRender();
+    window.dxLogRenderProg();
+    dxCursoRender();
+  }
 
   // ── Init ────────────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', function(){
     dxIntProfileLoad();
     dxOMRestore();
     dxIntAvalCount();
+    window.dxOMHistRender();
+    window.dxAnualHistRender();
+    window.dxProvaRender();
+    dxFinalRestore();
+    dxLogInit();
+    dxDiaInit();
+    dxJCInit();
+    patchGenerateForLogbook();
     window.dxModeSet(lsGet(KEY_MODE, 'soap'));
     window.dxIntTab(lsGet(KEY_TAB, 'log'));
   });
