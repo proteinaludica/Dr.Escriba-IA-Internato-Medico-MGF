@@ -759,6 +759,94 @@ body.dark .dia-entry{background:#1a1d2e;border-color:#2a2d40}
 body.dark .dia-entry .de-tt,body.dark .dia-entry .de-body{color:#dde1f0}
 body.dark .dia-entry .de-tag{background:#2a2010;border-color:#5a4020;color:#dcc480}
 body.dark .dia-entry .de-est{color:#7a80a0;border-color:#2a2d40}
+
+/* ── Journal Club (Fase 5) ─────────────────────────────────────────── */
+.jc-bib{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+@media (max-width:680px){.jc-bib{grid-template-columns:1fr}}
+.jc-bib .jc-fld input{width:100%;padding:8px 10px;background:#faf9f7;border:1px solid var(--bd);border-radius:7px;font-family:inherit;font-size:13px;color:#1a1916;outline:none;box-sizing:border-box}
+.jc-bib .jc-fld input:focus{border-color:#bda060;background:#fff}
+.jc-bib .jc-fld label{display:block;font-size:12px;font-weight:500;color:#1a1916;margin-bottom:6px}
+.jc-bib .jc-fld label .opt{font-weight:400;color:var(--muted);font-size:11px}
+.jc-bib .jc-fld.full{grid-column:1/-1}
+.jc-doi-links{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.jc-doi-links a{font-size:11px;padding:3px 10px;border:1px solid #bda060;background:#fbf3da;color:#7a5c20;border-radius:4px;text-decoration:none;font-family:inherit}
+.jc-doi-links a:hover{background:#bda060;color:#fff}
+.jc-doi-links a.disabled{pointer-events:none;opacity:.4}
+.jc-tpl-bar{display:flex;gap:8px;align-items:center;margin-bottom:14px;padding:10px 14px;background:#fbf3da;border:1px solid #e5cf8c;border-radius:8px;flex-wrap:wrap}
+.jc-tpl-bar label{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#7a5c20;font-weight:600}
+.jc-tpl-bar select{padding:6px 10px;border:1px solid #d5c79a;border-radius:5px;font-size:13px;background:#fff;color:#1a1916;font-family:inherit;outline:none;min-width:240px}
+.jc-tpl-bar select:focus{border-color:#bda060}
+.jc-tpl-bar .jc-prog{margin-left:auto;font-size:11px;color:#7a5c20;font-family:'SF Mono',Consolas,monospace;font-weight:600}
+.jc-item{padding:10px 0;border-bottom:1px dashed var(--bd)}
+.jc-item:last-child{border-bottom:0}
+.jc-item .jc-q{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.5;color:#1a1916}
+.jc-item .jc-q-n{font-family:'SF Mono',Consolas,monospace;font-size:11px;color:#7a5c20;font-weight:600;min-width:24px;flex-shrink:0;padding-top:1px}
+.jc-item .jc-q-t{flex:1}
+.jc-radio-group{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.jc-radio{padding:4px 10px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;border:1px solid var(--bd);border-radius:5px;background:#faf9f7;color:var(--muted);cursor:pointer;font-family:inherit;transition:all .12s}
+.jc-radio:hover{background:#fff;color:#1a1916}
+.jc-radio.on.y{background:#2a6020;color:#fff;border-color:#2a6020}
+.jc-radio.on.n{background:#a02020;color:#fff;border-color:#a02020}
+.jc-radio.on.ct{background:#a07020;color:#fff;border-color:#a07020}
+.jc-radio.on.na{background:#5a5a60;color:#fff;border-color:#5a5a60}
+.jc-com{width:100%;margin-top:8px;padding:6px 10px;background:#faf9f7;border:1px solid var(--bd);border-radius:5px;font-family:inherit;font-size:12px;line-height:1.5;color:#1a1916;outline:none;resize:vertical;min-height:32px;display:none}
+.jc-item.has-resp .jc-com{display:block}
+.jc-com:focus{border-color:#bda060;background:#fff}
+.jc-tpl-empty{text-align:center;color:var(--muted);font-style:italic;padding:18px;font-size:13px}
+.jc-concl{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media (max-width:680px){.jc-concl{grid-template-columns:1fr}}
+.jc-concl textarea{width:100%;padding:8px 10px;background:#faf9f7;border:1px solid var(--bd);border-radius:7px;font-family:inherit;font-size:13px;line-height:1.5;color:#1a1916;outline:none;resize:vertical;min-height:70px;box-sizing:border-box}
+.jc-concl textarea:focus{border-color:#bda060;background:#fff}
+.jc-concl label{display:block;font-size:12px;font-weight:500;color:#1a1916;margin-bottom:6px}
+.jc-concl label .opt{font-weight:400;color:var(--muted);font-size:11px}
+.jc-entry{padding:12px 14px;border:1px solid var(--bd);border-radius:8px;margin-bottom:10px;background:#fff}
+.jc-entry:last-child{margin-bottom:0}
+.jc-entry .je-hdr{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.jc-entry .je-d{font-family:'SF Mono',Consolas,monospace;font-size:11px;color:var(--muted);min-width:90px}
+.jc-entry .je-tt{font-size:14px;font-weight:600;color:#1a1916;flex:1;line-height:1.3;cursor:pointer}
+.jc-entry .je-tt:hover{color:#7a5c20}
+.jc-entry .je-x{background:none;border:0;color:var(--muted);cursor:pointer;font-size:16px;line-height:1;padding:4px 6px;border-radius:4px;font-family:inherit}
+.jc-entry .je-x:hover{background:#f4dfdf;color:#a02020}
+.jc-entry .je-meta{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.4}
+.jc-entry .je-tpl{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#7a5c20;background:#fbf3da;border:1px solid #e5cf8c;padding:1px 7px;border-radius:3px;font-weight:600;display:inline-block}
+.jc-entry .je-score{font-family:'SF Mono',Consolas,monospace;font-size:11px;color:#7a5c20;font-weight:600;margin-left:6px}
+.jc-entry .je-body{display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--bd);font-size:12px;line-height:1.6;color:#1a1916}
+.jc-entry.open .je-body{display:block}
+.jc-entry .je-body .jb-q{margin-bottom:6px}
+.jc-entry .je-body .jb-q b{color:#1a1916;font-weight:600}
+.jc-entry .je-body .jb-q .resp{display:inline-block;font-size:10px;font-weight:600;text-transform:uppercase;padding:1px 6px;border-radius:3px;margin-left:4px}
+.jc-entry .je-body .jb-q .resp.y{background:#2a6020;color:#fff}
+.jc-entry .je-body .jb-q .resp.n{background:#a02020;color:#fff}
+.jc-entry .je-body .jb-q .resp.ct{background:#a07020;color:#fff}
+.jc-entry .je-body .jb-q .resp.na{background:#5a5a60;color:#fff}
+.jc-entry .je-body .jb-c{color:var(--muted);font-style:italic;font-size:11px;margin-left:8px}
+.jc-entry .je-body .jb-concl{margin-top:8px;padding-top:8px;border-top:1px dashed var(--bd)}
+body.dark .jc-bib .jc-fld label{color:#dde1f0}
+body.dark .jc-bib .jc-fld input{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .jc-bib .jc-fld input:focus{background:#1a1d2e;border-color:#bda060}
+body.dark .jc-doi-links a{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .jc-doi-links a:hover{background:#bda060;color:#1a1916}
+body.dark .jc-tpl-bar{background:#2a2010;border-color:#5a4020}
+body.dark .jc-tpl-bar label,body.dark .jc-tpl-bar .jc-prog{color:#dcc480}
+body.dark .jc-tpl-bar select{background:#0f1117;border-color:#3a3d50;color:#dde1f0}
+body.dark .jc-item{border-color:#2a2d40}
+body.dark .jc-item .jc-q{color:#dde1f0}
+body.dark .jc-item .jc-q-n{color:#dcc480}
+body.dark .jc-radio{background:#1e2235;border-color:#2a2d40;color:#7a80a0}
+body.dark .jc-radio:hover{background:#262a42;color:#dde1f0}
+body.dark .jc-com{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .jc-com:focus{background:#1a1d2e;border-color:#bda060}
+body.dark .jc-concl label{color:#dde1f0}
+body.dark .jc-concl textarea{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .jc-concl textarea:focus{background:#1a1d2e;border-color:#bda060}
+body.dark .jc-entry{background:#1a1d2e;border-color:#2a2d40}
+body.dark .jc-entry .je-tt,body.dark .jc-entry .je-body{color:#dde1f0}
+body.dark .jc-entry .je-meta{color:#7a80a0}
+body.dark .jc-entry .je-tpl{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .jc-entry .je-score{color:#dcc480}
+body.dark .jc-entry .je-body .jb-q b{color:#dde1f0}
+body.dark .jc-entry .je-body .jb-c{color:#7a80a0}
+body.dark .jc-entry .je-body .jb-concl{border-color:#2a2d40}
 </style>
 </head>
 <body>
@@ -3692,10 +3780,88 @@ body.dark .dia-entry .de-est{color:#7a80a0;border-color:#2a2d40}
 
   <!-- JOURNAL CLUB -->
   <div class="panel-int" id="pi-jc" role="tabpanel" aria-labelledby="tab-int-jc">
-    <div class="int-stub">
-      <h3>Journal Club</h3>
-      <p>Apontamentos sobre artigos discutidos em sessão. Suporte a citações DOI / PubMed, templates CASP / AMSTAR para apreciação crítica.</p>
-      <span class="int-fase">Fase 2 — em construção</span>
+    <div class="om-card">
+      <div class="om-h">Nova sessão de Journal Club</div>
+
+      <div class="jc-bib">
+        <div class="jc-fld full">
+          <label>Título do artigo <span class="opt">obrigatório</span></label>
+          <input type="text" id="jc-art-tit" maxlength="240" placeholder="ex.: Effect of finerenone on chronic kidney disease outcomes in type 2 diabetes" autocomplete="off">
+        </div>
+        <div class="jc-fld full">
+          <label>Autores <span class="opt">primeiro autor et al. ou lista</span></label>
+          <input type="text" id="jc-art-aut" maxlength="240" placeholder="ex.: Bakris GL, Agarwal R, Anker SD, et al." autocomplete="off">
+        </div>
+        <div class="jc-fld">
+          <label>Revista</label>
+          <input type="text" id="jc-art-rev" maxlength="120" placeholder="ex.: N Engl J Med" autocomplete="off">
+        </div>
+        <div class="jc-fld">
+          <label>Ano</label>
+          <input type="text" id="jc-art-ano" maxlength="6" placeholder="ex.: 2020" autocomplete="off" inputmode="numeric">
+        </div>
+        <div class="jc-fld">
+          <label>DOI <span class="opt">opcional</span></label>
+          <input type="text" id="jc-art-doi" maxlength="120" placeholder="ex.: 10.1056/NEJMoa2025845" oninput="dxJCDoiUpdate()" autocomplete="off">
+        </div>
+        <div class="jc-fld">
+          <label>PMID <span class="opt">opcional</span></label>
+          <input type="text" id="jc-art-pmid" maxlength="20" placeholder="ex.: 33264825" oninput="dxJCDoiUpdate()" autocomplete="off" inputmode="numeric">
+        </div>
+        <div class="jc-fld full">
+          <div class="jc-doi-links" id="jc-doi-links" aria-label="Links externos">
+            <a id="jc-link-doi" class="disabled" href="#" target="_blank" rel="noopener">↗ doi.org</a>
+            <a id="jc-link-pmid" class="disabled" href="#" target="_blank" rel="noopener">↗ PubMed</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="jc-tpl-bar">
+        <label for="jc-tpl">Template de apreciação crítica</label>
+        <select id="jc-tpl" onchange="dxJCRenderTpl()" aria-label="Template CASP / AMSTAR">
+          <option value="">— escolher —</option>
+          <option value="rct">CASP — Ensaio clínico randomizado (RCT)</option>
+          <option value="sr">CASP — Revisão sistemática</option>
+          <option value="cohort">CASP — Coorte</option>
+          <option value="amstar2">AMSTAR-2 — Revisão sistemática (16 itens)</option>
+        </select>
+        <span class="jc-prog" id="jc-prog">—</span>
+      </div>
+
+      <div id="jc-tpl-wrap"></div>
+
+      <div class="jc-concl">
+        <div>
+          <label>Conclusão / mensagem-chave</label>
+          <textarea id="jc-concl" rows="3" placeholder="ex.: finerenone reduziu progressão de DRC e eventos CV na DM2 com albuminúria, mas com risco aumentado de hipercaliemia."></textarea>
+        </div>
+        <div>
+          <label>Aplicabilidade ao meu doente / contexto</label>
+          <textarea id="jc-apli" rows="3" placeholder="ex.: aplicável aos meus utentes DM2+DRC G3 com albuminúria; vigiar K+; rever quando IRA."></textarea>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:8px;justify-content:flex-end;align-items:center;margin-top:12px">
+        <span id="jc-count" style="font-size:11px;color:var(--muted);margin-right:auto"></span>
+        <button class="btn-c" type="button" onclick="dxJCSave()" style="background:#bda060;color:#fff;border-color:#bda060;padding:7px 16px;font-weight:500">Guardar sessão</button>
+      </div>
+    </div>
+
+    <div class="om-card" style="margin-top:14px">
+      <div class="om-h">Sessões anteriores
+        <span class="dia-bar-r">
+          <input type="search" id="jc-filt-q" oninput="dxJCRender()" placeholder="procurar…" aria-label="Procurar nas sessões">
+          <select id="jc-filt-tpl" onchange="dxJCRender()" aria-label="Filtrar por template">
+            <option value="">Todos os templates</option>
+            <option value="rct">RCT</option>
+            <option value="sr">SR</option>
+            <option value="cohort">Coorte</option>
+            <option value="amstar2">AMSTAR-2</option>
+          </select>
+          <button type="button" onclick="dxJCExport()" title="Exportar sessões em ficheiro de texto">↓ TXT</button>
+        </span>
+      </div>
+      <div id="jc-list-wrap"></div>
     </div>
   </div>
 </div>
@@ -9352,6 +9518,7 @@ function relAdd(el, kind){
   var KEY_PROVA_LIST = 'dx_int_aval_provas';     // {1:{date,nota}, 2:{...}, 3:{...}, 4:{...}}
   var KEY_FINAL_SNAP = 'dx_int_aval_final';      // {ts, disc, est, prat, teor, val}
   var KEY_DIA_LIST   = 'dx_int_diario';          // [{id, ts, data, titulo, tags:[], conteudo, estagio}]
+  var KEY_JC_LIST    = 'dx_int_jc_sessoes';      // [{id, ts, data, artigo:{...}, tipo, respostas:{...}, concl, apli}]
 
   function lsGet(k, dflt){ try { var v = localStorage.getItem(k); return v == null ? dflt : v; } catch(e){ return dflt; } }
   function lsSet(k, v){ try { localStorage.setItem(k, v); } catch(e){} }
@@ -9999,6 +10166,352 @@ function relAdd(el, kind){
     diaRenderTagsBuffer();
     window.dxDiaRender();
     diaUpdateCount();
+  }
+
+  // ══════════════════════════════════════════════════════════════════════
+  // FASE 5 — Journal Club
+  // Apreciação crítica de artigos com templates CASP (RCT, SR, Cohort) e
+  // AMSTAR-2 (revisão sistemática). Cada item: resposta Y/N/CT/NA +
+  // comentário opcional. Citação manual + links DOI / PubMed.
+  // ══════════════════════════════════════════════════════════════════════
+
+  var JC_TEMPLATES = {
+    rct: {
+      label: 'CASP — RCT',
+      ref: 'CASP UK (Critical Appraisal Skills Programme)',
+      items: [
+        'O ensaio aborda uma questão claramente formulada (PICO)?',
+        'A atribuição dos doentes a tratamento foi randomizada?',
+        'Todos os doentes que entraram no estudo foram contabilizados na conclusão (ITT)?',
+        'Doentes, equipa clínica e investigadores estavam cegos ao tratamento?',
+        'Os grupos eram semelhantes no início do ensaio?',
+        'Tirando o tratamento experimental, os grupos foram tratados de forma equivalente?',
+        'Quão grande foi o efeito do tratamento (medida de efeito principal)?',
+        'Quão preciso foi o efeito do tratamento estimado (IC 95%)?',
+        'Os resultados podem ser aplicados à minha população / contexto?',
+        'Foram considerados todos os resultados clinicamente importantes?',
+        'Os benefícios valem os danos e os custos?',
+      ]
+    },
+    sr: {
+      label: 'CASP — Revisão sistemática',
+      ref: 'CASP UK',
+      items: [
+        'A revisão aborda uma questão claramente formulada?',
+        'Os autores procuraram o tipo de estudo certo?',
+        'Acha que todos os estudos relevantes foram incluídos?',
+        'Os autores avaliaram a qualidade dos estudos incluídos?',
+        'Se os resultados foram combinados (meta-análise), foi razoável fazê-lo?',
+        'Quais são os resultados globais da revisão?',
+        'Quão precisos são os resultados (IC 95%, heterogeneidade)?',
+        'Os resultados podem ser aplicados à minha população?',
+        'Foram considerados todos os outcomes importantes?',
+        'Os benefícios valem os danos e os custos?',
+      ]
+    },
+    cohort: {
+      label: 'CASP — Coorte',
+      ref: 'CASP UK',
+      items: [
+        'O estudo aborda uma questão claramente formulada?',
+        'A coorte foi recrutada de forma aceitável?',
+        'A exposição foi medida com precisão para minimizar viés?',
+        'O outcome foi medido com precisão para minimizar viés?',
+        'Os autores identificaram todos os fatores de confundimento importantes?',
+        'Tomaram em conta os fatores de confundimento na análise?',
+        'O follow-up foi suficientemente completo?',
+        'O follow-up foi suficientemente longo?',
+        'Quais são os resultados (medida de associação)?',
+        'Quão precisos são os resultados?',
+        'Acredita nos resultados?',
+        'Os resultados podem ser aplicados à minha população?',
+      ]
+    },
+    amstar2: {
+      label: 'AMSTAR-2',
+      ref: 'Shea BJ et al. BMJ 2017',
+      items: [
+        'Componentes PICO da pergunta de investigação descritos?',
+        'Métodos pré-definidos (protocolo) com qualquer desvio justificado?',
+        'Justificação dos desenhos dos estudos incluídos?',
+        'Estratégia de pesquisa abrangente (≥2 bases, lit. cinzenta)?',
+        'Selecção de estudos em duplicado?',
+        'Extracção de dados em duplicado?',
+        'Lista de excluídos com justificação?',
+        'Descrição adequada dos estudos incluídos (PICO + desenho)?',
+        'Avaliação satisfatória do risco de viés (RoB) dos estudos?',
+        'Fontes de financiamento dos estudos primários relatadas?',
+        'Métodos estatísticos apropriados (se houve meta-análise)?',
+        'Avaliação do impacto do RoB nos resultados (se meta-análise)?',
+        'RoB considerado na interpretação dos resultados?',
+        'Heterogeneidade explicada / discutida?',
+        'Avaliação adequada do viés de publicação (se ≥10 estudos)?',
+        'Conflitos de interesse + financiamento da revisão relatados?',
+      ]
+    }
+  };
+
+  // Estado em construção (não persistido até guardar)
+  var JC_DRAFT = { tipo:'', respostas:{} };
+
+  function jcList(){
+    try { return JSON.parse(lsGet(KEY_JC_LIST,'[]')) || []; } catch(e){ return []; }
+  }
+  function jcSetList(arr){ lsSet(KEY_JC_LIST, JSON.stringify(arr)); }
+
+  function jcUpdateCount(){
+    var c = document.getElementById('jc-count');
+    if (!c) return;
+    var n = jcList().length;
+    c.textContent = n ? (n + ' sessões guardadas') : '';
+  }
+
+  window.dxJCDoiUpdate = function(){
+    var doi = ((document.getElementById('jc-art-doi')||{}).value || '').trim();
+    var pmid = ((document.getElementById('jc-art-pmid')||{}).value || '').trim();
+    var aD = document.getElementById('jc-link-doi');
+    var aP = document.getElementById('jc-link-pmid');
+    if (aD){
+      if (doi){ aD.href = 'https://doi.org/' + encodeURIComponent(doi).replace(/%2F/g,'/'); aD.classList.remove('disabled'); }
+      else   { aD.href = '#'; aD.classList.add('disabled'); }
+    }
+    if (aP){
+      if (pmid && /^\d+$/.test(pmid)){ aP.href = 'https://pubmed.ncbi.nlm.nih.gov/' + pmid + '/'; aP.classList.remove('disabled'); }
+      else                          { aP.href = '#'; aP.classList.add('disabled'); }
+    }
+  };
+
+  function jcUpdateProg(){
+    var el = document.getElementById('jc-prog');
+    if (!el) return;
+    var t = JC_DRAFT.tipo;
+    if (!t || !JC_TEMPLATES[t]){ el.textContent = '—'; return; }
+    var total = JC_TEMPLATES[t].items.length;
+    var resp = 0;
+    Object.keys(JC_DRAFT.respostas).forEach(function(k){
+      if (JC_DRAFT.respostas[k] && JC_DRAFT.respostas[k].r) resp++;
+    });
+    el.textContent = resp + ' / ' + total + ' itens';
+  }
+
+  window.dxJCRespSet = function(itemIdx, valor){
+    var k = String(itemIdx);
+    JC_DRAFT.respostas[k] = JC_DRAFT.respostas[k] || {};
+    JC_DRAFT.respostas[k].r = valor;
+    var box = document.getElementById('jc-item-' + itemIdx);
+    if (box){
+      box.classList.add('has-resp');
+      box.querySelectorAll('.jc-radio').forEach(function(b){
+        b.classList.toggle('on', b.dataset.v === valor);
+      });
+    }
+    jcUpdateProg();
+  };
+
+  window.dxJCRespCom = function(itemIdx, val){
+    var k = String(itemIdx);
+    JC_DRAFT.respostas[k] = JC_DRAFT.respostas[k] || {};
+    JC_DRAFT.respostas[k].c = val;
+  };
+
+  window.dxJCRenderTpl = function(){
+    var sel = document.getElementById('jc-tpl');
+    var wrap = document.getElementById('jc-tpl-wrap');
+    if (!sel || !wrap) return;
+    var t = sel.value;
+    JC_DRAFT.tipo = t;
+    JC_DRAFT.respostas = {};
+    if (!t || !JC_TEMPLATES[t]){
+      wrap.innerHTML = '<div class="jc-tpl-empty">Escolha um template acima para iniciar a apreciação crítica.</div>';
+      jcUpdateProg();
+      return;
+    }
+    var tpl = JC_TEMPLATES[t];
+    var html = '<div style="font-size:11px;color:var(--muted);font-style:italic;margin-bottom:8px">' + lbEscHtml(tpl.label) + ' · ' + lbEscHtml(tpl.ref) + '</div>';
+    tpl.items.forEach(function(q, i){
+      html += '<div class="jc-item" id="jc-item-' + i + '">'
+           +   '<div class="jc-q"><span class="jc-q-n">' + (i+1) + '.</span><span class="jc-q-t">' + lbEscHtml(q) + '</span></div>'
+           +   '<div class="jc-radio-group" role="radiogroup" aria-label="Resposta item ' + (i+1) + '">'
+           +     '<button type="button" class="jc-radio y"  data-v="Y"  onclick="dxJCRespSet(' + i + ',\'Y\')">Sim</button>'
+           +     '<button type="button" class="jc-radio n"  data-v="N"  onclick="dxJCRespSet(' + i + ',\'N\')">Não</button>'
+           +     '<button type="button" class="jc-radio ct" data-v="CT" onclick="dxJCRespSet(' + i + ',\'CT\')">Não diz</button>'
+           +     '<button type="button" class="jc-radio na" data-v="NA" onclick="dxJCRespSet(' + i + ',\'NA\')">N/A</button>'
+           +   '</div>'
+           +   '<textarea class="jc-com" placeholder="comentário (opcional)" oninput="dxJCRespCom(' + i + ', this.value)" aria-label="Comentário item ' + (i+1) + '"></textarea>'
+           + '</div>';
+    });
+    wrap.innerHTML = html;
+    jcUpdateProg();
+  };
+
+  window.dxJCSave = function(){
+    var titulo = ((document.getElementById('jc-art-tit')||{}).value || '').trim();
+    if (!titulo){ alert('Indique pelo menos o título do artigo.'); return; }
+    if (!JC_DRAFT.tipo){ alert('Escolha um template de apreciação crítica.'); return; }
+    var artigo = {
+      titulo: titulo,
+      autores: ((document.getElementById('jc-art-aut')||{}).value || '').trim(),
+      revista: ((document.getElementById('jc-art-rev')||{}).value || '').trim(),
+      ano:     ((document.getElementById('jc-art-ano')||{}).value || '').trim(),
+      doi:     ((document.getElementById('jc-art-doi')||{}).value || '').trim(),
+      pmid:    ((document.getElementById('jc-art-pmid')||{}).value || '').trim(),
+    };
+    var concl = ((document.getElementById('jc-concl')||{}).value || '').trim();
+    var apli  = ((document.getElementById('jc-apli')||{}).value || '').trim();
+    var list = jcList();
+    list.unshift({
+      id: 'jc' + Date.now() + Math.floor(Math.random()*1000),
+      ts: Date.now(),
+      data: diaToday(),
+      artigo: artigo,
+      tipo: JC_DRAFT.tipo,
+      respostas: JSON.parse(JSON.stringify(JC_DRAFT.respostas)),
+      concl: concl,
+      apli: apli
+    });
+    if (list.length > 500) list = list.slice(0, 500);
+    jcSetList(list);
+
+    // Reset
+    ['jc-art-tit','jc-art-aut','jc-art-rev','jc-art-ano','jc-art-doi','jc-art-pmid','jc-concl','jc-apli'].forEach(function(id){
+      var el = document.getElementById(id); if (el) el.value = '';
+    });
+    var sel = document.getElementById('jc-tpl'); if (sel) sel.value = '';
+    JC_DRAFT = { tipo:'', respostas:{} };
+    window.dxJCDoiUpdate();
+    window.dxJCRenderTpl();
+    window.dxJCRender();
+    jcUpdateCount();
+  };
+
+  window.dxJCDelete = function(id){
+    var list = jcList().filter(function(e){ return e.id !== id; });
+    jcSetList(list);
+    window.dxJCRender();
+    jcUpdateCount();
+  };
+
+  window.dxJCToggle = function(id){
+    var el = document.getElementById(id);
+    if (el) el.classList.toggle('open');
+  };
+
+  function jcRespLabel(r){
+    return ({Y:'Sim', N:'Não', CT:'Não diz', NA:'N/A'})[r] || r;
+  }
+
+  window.dxJCRender = function(){
+    var wrap = document.getElementById('jc-list-wrap');
+    if (!wrap) return;
+    var fT = (document.getElementById('jc-filt-tpl')||{}).value || '';
+    var q = ((document.getElementById('jc-filt-q')||{}).value || '').toLowerCase().trim();
+    var list = jcList();
+    if (fT) list = list.filter(function(e){ return e.tipo === fT; });
+    if (q) list = list.filter(function(e){
+      var a = e.artigo || {};
+      return (a.titulo||'').toLowerCase().indexOf(q) >= 0
+          || (a.autores||'').toLowerCase().indexOf(q) >= 0
+          || (e.concl||'').toLowerCase().indexOf(q) >= 0;
+    });
+    if (!list.length){
+      wrap.innerHTML = '<div class="lb-empty">' + (fT||q ? 'Sem sessões com estes filtros.' : 'Sem sessões guardadas. Use o cartão acima para a primeira apreciação crítica.') + '</div>';
+      return;
+    }
+    var max = 30;
+    var html = list.slice(0, max).map(function(e){
+      var a = e.artigo || {};
+      var tpl = JC_TEMPLATES[e.tipo];
+      var nResp = 0; Object.keys(e.respostas||{}).forEach(function(k){ if (e.respostas[k] && e.respostas[k].r) nResp++; });
+      var nTotal = tpl ? tpl.items.length : 0;
+      var nSim = 0, nNao = 0;
+      Object.keys(e.respostas||{}).forEach(function(k){
+        if (e.respostas[k]){
+          if (e.respostas[k].r === 'Y') nSim++;
+          else if (e.respostas[k].r === 'N') nNao++;
+        }
+      });
+      var refStr = [a.autores, a.revista, a.ano].filter(function(x){ return x; }).join(' · ');
+      var doiHtml = '';
+      if (a.doi)  doiHtml += ' <a href="https://doi.org/' + lbEscHtml(a.doi) + '" target="_blank" rel="noopener" style="font-size:10px;color:#7a5c20;text-decoration:none;border:1px solid #bda060;padding:1px 5px;border-radius:3px;background:#fbf3da">↗ DOI</a>';
+      if (a.pmid && /^\d+$/.test(a.pmid)) doiHtml += ' <a href="https://pubmed.ncbi.nlm.nih.gov/' + lbEscHtml(a.pmid) + '/" target="_blank" rel="noopener" style="font-size:10px;color:#7a5c20;text-decoration:none;border:1px solid #bda060;padding:1px 5px;border-radius:3px;background:#fbf3da">↗ PMID</a>';
+      var bodyItems = '';
+      if (tpl){
+        bodyItems = tpl.items.map(function(qq, i){
+          var rec = (e.respostas||{})[String(i)] || {};
+          if (!rec.r) return '';
+          var rcls = (rec.r||'').toLowerCase();
+          return '<div class="jb-q"><b>' + (i+1) + '.</b> ' + lbEscHtml(qq) + ' <span class="resp ' + rcls + '">' + jcRespLabel(rec.r) + '</span>'
+               + (rec.c ? '<div class="jb-c">' + lbEscHtml(rec.c) + '</div>' : '')
+               + '</div>';
+        }).join('');
+      }
+      var conclHtml = '';
+      if (e.concl) conclHtml += '<div class="jb-concl"><b>Conclusão:</b> ' + lbEscHtml(e.concl) + '</div>';
+      if (e.apli)  conclHtml += '<div class="jb-concl"><b>Aplicabilidade:</b> ' + lbEscHtml(e.apli) + '</div>';
+      return '<div class="jc-entry" id="jce-' + lbEscHtml(e.id) + '">'
+           + '<div class="je-hdr">'
+           +   '<span class="je-d">' + lbEscHtml(e.data || avFmtDate(e.ts)) + '</span>'
+           +   '<span class="je-tt" onclick="dxJCToggle(\'jce-' + lbEscHtml(e.id) + '\')" title="Clicar para expandir/colapsar">' + lbEscHtml(a.titulo) + doiHtml + '</span>'
+           +   '<button type="button" class="je-x" aria-label="Remover sessão" onclick="dxJCDelete(\'' + lbEscHtml(e.id) + '\')">×</button>'
+           + '</div>'
+           + (refStr ? '<div class="je-meta">' + lbEscHtml(refStr) + '</div>' : '')
+           + '<div class="je-meta" style="margin-top:6px"><span class="je-tpl">' + lbEscHtml(tpl ? tpl.label : e.tipo) + '</span>'
+           + '<span class="je-score">' + nResp + '/' + nTotal + ' · ✓ ' + nSim + ' · ✗ ' + nNao + '</span></div>'
+           + '<div class="je-body">' + bodyItems + conclHtml + '</div>'
+           + '</div>';
+    }).join('');
+    if (list.length > max) html += '<div class="lb-empty">… mais ' + (list.length-max) + ' sessões</div>';
+    wrap.innerHTML = html;
+  };
+
+  window.dxJCExport = function(){
+    var list = jcList();
+    if (!list.length){ alert('Sem sessões para exportar.'); return; }
+    var ini = lsGet(KEY_PROF_INIT, ''); var year = lsGet(KEY_PROF_YEAR, ''); var usf = lsGet(KEY_PROF_USF, '');
+    var lines = [
+      'Journal Club — Internato MGF',
+      'Interno: ' + (ini || '—') + (year ? ' · Ano ' + year : '') + (usf ? ' · ' + usf : ''),
+      'Exportado: ' + (new Date()).toISOString().slice(0,16).replace('T',' '),
+      'Total: ' + list.length + ' sessões',
+      ''.padEnd(70,'═'),
+      ''
+    ];
+    list.slice().reverse().forEach(function(e){
+      var a = e.artigo || {};
+      var tpl = JC_TEMPLATES[e.tipo];
+      lines.push((e.data || avFmtDate(e.ts)) + ' · ' + (a.titulo || '—'));
+      var ref = [a.autores, a.revista, a.ano].filter(function(x){ return x; }).join(' · ');
+      if (ref) lines.push('  ' + ref);
+      if (a.doi)  lines.push('  DOI: ' + a.doi);
+      if (a.pmid) lines.push('  PMID: ' + a.pmid);
+      lines.push('  Template: ' + (tpl ? tpl.label : e.tipo));
+      if (tpl){
+        tpl.items.forEach(function(qq, i){
+          var rec = (e.respostas||{})[String(i)] || {};
+          if (!rec.r) return;
+          lines.push('   ' + (i+1) + '. ' + qq + ' → ' + jcRespLabel(rec.r));
+          if (rec.c) lines.push('      ' + rec.c.replace(/\n/g,'\n      '));
+        });
+      }
+      if (e.concl) lines.push('  Conclusão: ' + e.concl);
+      if (e.apli)  lines.push('  Aplicabilidade: ' + e.apli);
+      lines.push('');
+      lines.push(''.padEnd(70,'─'));
+      lines.push('');
+    });
+    var blob = new Blob([lines.join('\n')], {type:'text/plain;charset=utf-8'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'journal_club_mgf_' + (new Date()).toISOString().slice(0,10) + '.txt';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  };
+
+  function dxJCInit(){
+    window.dxJCRenderTpl();
+    window.dxJCDoiUpdate();
+    window.dxJCRender();
+    jcUpdateCount();
   }
 
 
@@ -10687,6 +11200,7 @@ function relAdd(el, kind){
     dxFinalRestore();
     dxLogInit();
     dxDiaInit();
+    dxJCInit();
     patchGenerateForLogbook();
     window.dxModeSet(lsGet(KEY_MODE, 'soap'));
     window.dxIntTab(lsGet(KEY_TAB, 'log'));
