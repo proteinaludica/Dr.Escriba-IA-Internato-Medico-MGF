@@ -610,6 +610,26 @@ body.dark .lb-curso-est{color:#dcc480;border-color:#2a2d40}
 body.dark .lb-curso-row label{color:#dde1f0}
 body.dark .lb-curso-row .lb-curso-d{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
 body.dark .lb-curso-row .lb-curso-d:focus{background:#1a1d2e;border-color:#bda060}
+
+/* ── Auto-contabilização SOAP (Fase 2.6) ─────────────────────────── */
+.lb-entry-auto{background:linear-gradient(to right, rgba(189,160,96,0.06), transparent 30%);padding-left:8px;border-radius:6px}
+.le-auto-ic{display:inline-block;font-size:10px;font-family:'SF Mono',Consolas,monospace;color:#7a5c20;background:#fbf3da;border:1px solid #e5cf8c;padding:1px 6px;border-radius:3px;letter-spacing:.05em;font-weight:600;vertical-align:middle;margin-right:2px}
+.le-warn{display:inline-block;font-size:10px;color:#a07020;background:#fbe5c8;border:1px solid #e5b888;padding:1px 6px;border-radius:3px;font-weight:500;vertical-align:middle;margin-right:2px}
+.le-chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.le-chip{font-size:10px;padding:2px 8px;border:1px solid #d5c79a;border-radius:10px;background:#faf6e8;color:#7a5c20;cursor:pointer;font-family:inherit;line-height:1.4}
+.le-chip:hover{background:#bda060;color:#fff;border-color:#bda060}
+.le-chip:focus-visible{outline:2px solid #2563eb;outline-offset:1px}
+.lb-toast{position:fixed;bottom:20px;right:20px;padding:11px 16px;background:#1a1916;color:#fff;border-radius:7px;font-size:13px;font-family:inherit;box-shadow:0 4px 14px rgba(0,0,0,0.25);opacity:0;transform:translateY(8px);transition:opacity .2s, transform .2s;pointer-events:none;z-index:10000;max-width:360px;line-height:1.4}
+.lb-toast.on{opacity:1;transform:translateY(0)}
+.lb-toast.warn{background:#7a4a10;border:1px solid #bda060}
+@media (max-width:600px){.lb-toast{left:12px;right:12px;bottom:12px;max-width:none}}
+body.dark .lb-entry-auto{background:linear-gradient(to right, rgba(220,196,128,0.06), transparent 30%)}
+body.dark .le-auto-ic{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .le-warn{background:#3a2a10;border-color:#5a4020;color:#dcc480}
+body.dark .le-chip{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .le-chip:hover{background:#bda060;color:#1a1916;border-color:#bda060}
+body.dark .lb-toast{background:#0f1117;border:1px solid #2a2d40}
+body.dark .lb-toast.warn{background:#3a2a10;border-color:#5a4020}
 </style>
 </head>
 <body>
@@ -9279,8 +9299,80 @@ function relAdd(el, kind){
       { id:'int_psq',    label:'Internamento psiquiátrico',              min:null },
       { id:'breve',      label:'Intervenção breve / motivacional',       min:null },
     ]},
-    { id:'opc', label:'Estágio opcional (até 5 meses durante MGF2)', meses:null, opcional:true, actos:[
-      { id:'livre',      label:'Acto (descrição obrigatória)',           min:null },
+    // ── Estágios opcionais (durante MGF2, até 5 meses no total) ────────
+    { id:'ger', label:'Geriatria (opcional)', meses:null, opcional:true, actos:[
+      { id:'cons_ger',  label:'Consulta de geriatria',                   min:null },
+      { id:'cga',       label:'Avaliação multidimensional do idoso (CGA)', min:null },
+      { id:'dom_idoso', label:'Visita domiciliária ao idoso',            min:null },
+      { id:'demencia',  label:'Consulta de demência / cognição',         min:null },
+      { id:'quedas',    label:'Avaliação de quedas / mobilidade',        min:null },
+      { id:'int_ger',   label:'Internamento (UCC / UMDR)',               min:null },
+    ]},
+    { id:'cp', label:'Cuidados Continuados / Paliativos (opcional)', meses:null, opcional:true, actos:[
+      { id:'vd_pal',    label:'Visita domiciliária paliativa',           min:null },
+      { id:'sintomas',  label:'Controlo de sintomas',                    min:null },
+      { id:'cf',        label:'Conferência familiar',                    min:null },
+      { id:'int_cp',    label:'Internamento (ECCI / UMDR / ULDM / Pal.)', min:null },
+      { id:'sedacao',   label:'Sedação paliativa',                       min:null },
+      { id:'mas_not',   label:'Comunicação de más notícias / fim de vida', min:null },
+      { id:'cuidador',  label:'Avaliação do cuidador / sobrecarga',      min:null },
+    ]},
+    { id:'dor', label:'Medicina da Dor (opcional)', meses:null, opcional:true, actos:[
+      { id:'cons_dor',  label:'Consulta de dor crónica',                 min:null },
+      { id:'aval_dor',  label:'Avaliação multidimensional da dor (BPI, neuropática)', min:null },
+      { id:'proc_dor',  label:'Procedimento (bloqueio, infiltração, RF)',min:null },
+      { id:'reun_dor',  label:'Reunião multidisciplinar de dor',         min:null },
+      { id:'opioides',  label:'Ajuste de opioides / titulação',          min:null },
+      { id:'dor_onco',  label:'Consulta de dor oncológica',              min:null },
+    ]},
+    { id:'esp', label:'Especialidade hospitalar (opcional, genérica)', meses:null, opcional:true, actos:[
+      { id:'cons_esp',  label:'Consulta de especialidade',               min:null },
+      { id:'enf_esp',   label:'Enfermaria / internamento',               min:null },
+      { id:'urg_esp',   label:'Urgência da especialidade',               min:null },
+      { id:'sessao_h',  label:'Sessão clínica hospitalar',               min:null },
+      { id:'proc_tec',  label:'Procedimento técnico',                    min:null },
+      { id:'reun_md',   label:'Reunião multidisciplinar',                min:null },
+    ]},
+    { id:'card', label:'Cardiologia (opcional)', meses:null, opcional:true, actos:[
+      { id:'cons_card', label:'Consulta de cardiologia',                 min:null },
+      { id:'enf_card',  label:'Enfermaria de cardiologia',               min:null },
+      { id:'ecg',       label:'ECG',                                     min:null },
+      { id:'eco_cor',   label:'Ecocardiograma',                          min:null },
+      { id:'prov_esf',  label:'Prova de esforço',                        min:null },
+      { id:'urg_card',  label:'Urgência cardiovascular',                 min:null },
+    ]},
+    { id:'derm', label:'Dermatologia (opcional)', meses:null, opcional:true, actos:[
+      { id:'cons_derm', label:'Consulta de dermatologia',                min:null },
+      { id:'dermato',   label:'Dermatoscopia',                           min:null },
+      { id:'biopsia_d', label:'Biopsia cutânea',                         min:null },
+      { id:'crioter',   label:'Crioterapia',                             min:null },
+      { id:'peq_cir_d', label:'Pequena cirurgia dermatológica',          min:null },
+    ]},
+    { id:'reum', label:'Reumatologia (opcional)', meses:null, opcional:true, actos:[
+      { id:'cons_reum', label:'Consulta de reumatologia',                min:null },
+      { id:'enf_reum',  label:'Enfermaria de reumatologia',              min:null },
+      { id:'infiltr',   label:'Infiltração articular',                   min:null },
+      { id:'capil',     label:'Capilaroscopia',                          min:null },
+    ]},
+    { id:'endo', label:'Endocrinologia / Diabetes (opcional)', meses:null, opcional:true, actos:[
+      { id:'cons_endo', label:'Consulta de endocrinologia / diabetes',   min:null },
+      { id:'enf_endo',  label:'Enfermaria de endocrinologia',            min:null },
+      { id:'pe_diab',   label:'Pé diabético',                            min:null },
+      { id:'tiroide',   label:'Patologia da tiroide',                    min:null },
+    ]},
+    { id:'neur', label:'Neurologia (opcional)', meses:null, opcional:true, actos:[
+      { id:'cons_neur', label:'Consulta de neurologia',                  min:null },
+      { id:'enf_neur',  label:'Enfermaria de neurologia',                min:null },
+      { id:'urg_avc',   label:'Urgência neurológica / via verde AVC',    min:null },
+      { id:'eeg',       label:'EEG',                                     min:null },
+    ]},
+    { id:'gast', label:'Gastrenterologia (opcional)', meses:null, opcional:true, actos:[
+      { id:'cons_gast', label:'Consulta de gastrenterologia',            min:null },
+      { id:'enf_gast',  label:'Enfermaria de gastrenterologia',          min:null },
+      { id:'endosc',    label:'Endoscopia digestiva',                    min:null },
+    ]},
+    { id:'opc', label:'Outro estágio opcional (livre)', meses:null, opcional:true, actos:[
+      { id:'livre',     label:'Acto (descrição obrigatória)',            min:null },
     ]},
   ];
 
@@ -9338,11 +9430,23 @@ function relAdd(el, kind){
       oa.value = ''; oa.textContent = 'Todos os estágios';
       selEl.appendChild(oa);
     }
-    INT_ESTAGIOS.forEach(function(e){
-      var o = document.createElement('option');
-      o.value = e.id;
-      o.textContent = e.label + (e.meses ? ' (' + e.meses + 'm)' : '');
-      selEl.appendChild(o);
+    var grupos = [
+      { titulo:'Principais',     filtro: function(e){ return e.principal; } },
+      { titulo:'Complementares', filtro: function(e){ return e.complementar; } },
+      { titulo:'Opcionais',      filtro: function(e){ return e.opcional; } },
+    ];
+    grupos.forEach(function(g){
+      var lista = INT_ESTAGIOS.filter(g.filtro);
+      if (!lista.length) return;
+      var og = document.createElement('optgroup');
+      og.label = g.titulo;
+      lista.forEach(function(e){
+        var o = document.createElement('option');
+        o.value = e.id;
+        o.textContent = e.label + (e.meses ? ' · ' + e.meses + 'm' : '');
+        og.appendChild(o);
+      });
+      selEl.appendChild(og);
     });
     selEl.value = prev || (includeAll ? '' : INT_ESTAGIOS[0].id);
   }
@@ -9448,10 +9552,18 @@ function relAdd(el, kind){
       var est = lbEstagio(e.estagio);
       var estLabel = est ? est.label : e.estagio;
       var d = e.data || (new Date(e.ts)).toISOString().slice(0,10);
-      return '<div class="lb-entry">'
+      var isAuto = !!e.auto;
+      var icon = isAuto ? '<span class="le-auto-ic" title="Origem: SOAP automático (auto-contabilização)">↻ SOAP</span> ' : '';
+      var warn = e.warn ? '<span class="le-warn" title="SOAP contabilizado mas estágio não estava seleccionado — reclassifique se necessário">⚠ estágio default</span> ' : '';
+      var chips = isAuto ? lbReclassChips(e) : '';
+      return '<div class="lb-entry' + (isAuto ? ' lb-entry-auto' : '') + '">'
            + '<span class="le-d">' + lbEscHtml(d) + '</span>'
            + '<span class="le-e" title="' + lbEscHtml(estLabel) + '">' + lbEscHtml(estLabel) + '</span>'
-           + '<span class="le-t"><b>' + lbEscHtml(lbActoLabel(e.estagio, e.tipo)) + '</b>' + (e.desc ? ' — ' + lbEscHtml(e.desc) : '') + '</span>'
+           + '<span class="le-t">' + icon + warn
+           + '<b>' + lbEscHtml(lbActoLabel(e.estagio, e.tipo)) + '</b>'
+           + (e.desc ? ' — ' + lbEscHtml(e.desc) : '')
+           + chips
+           + '</span>'
            + '<button type="button" class="le-x" aria-label="Remover registo" onclick="dxLogDelete(\'' + lbEscHtml(e.id) + '\')">×</button>'
            + '</div>';
     }).join('');
@@ -9557,6 +9669,160 @@ function relAdd(el, kind){
   }
   window.dxCursoRender = dxCursoRender;
 
+  // ══════════════════════════════════════════════════════════════════════
+  // AUTO-CONTABILIZAÇÃO SOAP — Fase 2.6
+  // ----------------------------------------------------------------------
+  // Cada vez que o motor SOAP gera uma nota (window.generate), é criada
+  // automaticamente uma entrada no logbook com flag `auto:true, src:'soap'`.
+  // Mapeamento por tipo de encontro (window.enc):
+  //   con  → cons_prog    (consulta programada)
+  //   urg  → cons_aguda   (consulta de doença aguda)
+  //   vd   → cons_dom     (visita domiciliária)
+  //   int  → contextual   (rubrica de internamento do estágio actual:
+  //                        int_ped em S.Infantil, int_psq em S.Mental,
+  //                        int_ger / int_cp / enf_* em opcionais; se
+  //                        não houver rubrica adequada, ignora silentemente)
+  // ══════════════════════════════════════════════════════════════════════
+
+  // Devolve id da rubrica de internamento de um estágio, ou null se não tem.
+  function lbInternamentoId(estagio){
+    var e = lbEstagio(estagio);
+    if (!e) return null;
+    for (var i=0;i<e.actos.length;i++){
+      var id = e.actos[i].id;
+      if (/^(int_|enf_)/.test(id)) return id;
+    }
+    return null;
+  }
+
+  // Mapa para reclassificação dos estágios principais (Portaria 125/2019:
+  // sub-categorias relevantes para mínimos do MGF3 + outras frequentes).
+  var LB_RECLASS_PRINCIPAIS = [
+    { id:'sd_infantil',   label:'saúde infantil' },
+    { id:'sd_mulher',     label:'saúde da mulher' },
+    { id:'plan_familiar', label:'planeamento' },
+    { id:'idoso',         label:'idoso' },
+    { id:'cronico',       label:'crónico' },
+    { id:'cons_dom',      label:'domiciliária' },
+    { id:'cons_aguda',    label:'aguda' },
+  ];
+
+  function lbReclassChips(entry){
+    var e = lbEstagio(entry.estagio);
+    if (!e) return '';
+    // Apenas para entradas auto cujo tipo seja consulta-base e estágio principal
+    if (!e.principal) return '';
+    if (entry.tipo !== 'cons_prog' && entry.tipo !== 'cons_aguda' && entry.tipo !== 'cons_dom') return '';
+    var actoIds = e.actos.map(function(a){ return a.id; });
+    var alvos = LB_RECLASS_PRINCIPAIS.filter(function(c){
+      return c.id !== entry.tipo && actoIds.indexOf(c.id) >= 0;
+    });
+    if (!alvos.length) return '';
+    var html = '<span class="le-chips" role="group" aria-label="Reclassificar consulta">';
+    alvos.forEach(function(c){
+      html += '<button type="button" class="le-chip" onclick="dxLogReclass(\'' + lbEscHtml(entry.id) + '\',\'' + c.id + '\')">→ ' + lbEscHtml(c.label) + '</button>';
+    });
+    html += '</span>';
+    return html;
+  }
+
+  window.dxLogReclass = function(id, novoTipo){
+    var list = lbList();
+    for (var i=0;i<list.length;i++) if (list[i].id===id){
+      list[i].tipo = novoTipo;
+      list[i].warn = false;
+      break;
+    }
+    lbSetList(list);
+    window.dxLogRender();
+    window.dxLogRenderProg();
+    lbUpdateCount();
+  };
+
+  function lbToday(){
+    var t = new Date();
+    return t.getFullYear() + '-' + String(t.getMonth()+1).padStart(2,'0') + '-' + String(t.getDate()).padStart(2,'0');
+  }
+
+  function dxLogToast(msg, isWarn){
+    var el = document.getElementById('lb-toast');
+    if (!el){
+      el = document.createElement('div');
+      el.id = 'lb-toast';
+      el.className = 'lb-toast';
+      document.body.appendChild(el);
+    }
+    el.classList.toggle('warn', !!isWarn);
+    el.textContent = msg;
+    el.classList.add('on');
+    clearTimeout(el._tm);
+    el._tm = setTimeout(function(){ el.classList.remove('on'); }, isWarn ? 5000 : 2800);
+  }
+
+  // Chamada após cada window.generate(). Cria entrada auto no logbook.
+  function dxLogAutoFromSOAP(){
+    var enc = window.enc || '';
+    if (!enc) return;
+    var tipo = '';
+    if (enc === 'con')      tipo = 'cons_prog';
+    else if (enc === 'urg') tipo = 'cons_aguda';
+    else if (enc === 'vd')  tipo = 'cons_dom';
+    else if (enc === 'int'){
+      var estCur = lsGet(KEY_LOG_ESTAGIO, '') || INT_ESTAGIOS[0].id;
+      tipo = lbInternamentoId(estCur);
+      if (!tipo) return; // estágio sem rubrica de internamento: ignora
+    } else return;
+
+    var estagio = lsGet(KEY_LOG_ESTAGIO, '');
+    var noEstagio = !estagio;
+    if (noEstagio) estagio = INT_ESTAGIOS[0].id;
+    // Para `int`, garantir que o estágio escolhido tem a rubrica
+    if (enc === 'int' && !lbInternamentoId(estagio)) return;
+
+    var label = '';
+    try { if (typeof window.buildEncounterLabel === 'function') label = window.buildEncounterLabel(); } catch(_e){}
+    if (!label){
+      var encNames = { con:'Consulta', urg:'Urgência', vd:'Visita domiciliária', int:'Internamento' };
+      label = encNames[enc] || enc;
+    }
+
+    var list = lbList();
+    list.unshift({
+      id: 'l' + Date.now() + Math.floor(Math.random()*1000),
+      ts: Date.now(),
+      data: lbToday(),
+      estagio: estagio,
+      tipo: tipo,
+      desc: label.slice(0,160),
+      auto: true,
+      src: 'soap',
+      warn: noEstagio || undefined
+    });
+    if (list.length > 5000) list = list.slice(0, 5000);
+    lbSetList(list);
+
+    if (typeof window.dxLogRender === 'function') window.dxLogRender();
+    if (typeof window.dxLogRenderProg === 'function') window.dxLogRenderProg();
+    lbUpdateCount();
+
+    var msg = '✓ SOAP contabilizado no logbook (' + label + ')';
+    if (noEstagio) msg = '⚠ SOAP contabilizado em MGF1 (default) — escolha o estágio actual no Internato';
+    dxLogToast(msg, noEstagio);
+  }
+
+  // Patch window.generate para auto-contabilizar logo após gerar.
+  function patchGenerateForLogbook(){
+    if (typeof window.generate !== 'function') return;
+    if (window._dxIntLogPatched) return;
+    var orig = window.generate;
+    window.generate = function(){
+      var r = orig.apply(this, arguments);
+      try { dxLogAutoFromSOAP(); } catch(e){ console.warn('[dx-int-log auto]', e); }
+      return r;
+    };
+    window._dxIntLogPatched = true;
+  }
+
   // Migra registos antigos do estágio "urg" (removido na Fase 2.5 — a
   // urgência passou a estar distribuída pelos estágios em que ocorre).
   function lbMigrateUrg(){
@@ -9602,6 +9868,7 @@ function relAdd(el, kind){
     dxOMRestore();
     dxIntAvalCount();
     dxLogInit();
+    patchGenerateForLogbook();
     window.dxModeSet(lsGet(KEY_MODE, 'soap'));
     window.dxIntTab(lsGet(KEY_TAB, 'log'));
   });
