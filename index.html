@@ -530,6 +530,66 @@ body.dark .om-scale-btn:hover{border-color:#bda060;background:#262a42}
 body.dark .om-scale-btn.on{background:#bda060;color:#1a1916}
 body.dark .om-fld textarea{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
 body.dark .om-fld textarea:focus{border-color:#bda060;background:#1a1d2e}
+
+/* ── Logbook (Fase 2) ─────────────────────────────────────────────── */
+.lb-bar{background:#fbf3da;border:1px solid #e5cf8c;border-radius:10px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.lb-bar-l{display:flex;align-items:center;gap:8px}
+.lb-bar-l select{padding:5px 9px;border:1px solid #d5c79a;border-radius:5px;font-size:13px;background:#fff;color:#1a1916;font-family:inherit;outline:none;min-width:220px}
+.lb-bar-l select:focus{border-color:#bda060}
+.lb-bar-r{margin-left:auto;font-size:11px;color:#7a5c20;font-style:italic}
+.lb-grid{display:grid;grid-template-columns:150px 1fr 2fr;gap:12px;align-items:end}
+.lb-col label{display:block;font-size:12px;font-weight:500;color:#1a1916;margin-bottom:6px}
+.lb-col label .opt{font-weight:400;color:var(--muted);font-size:11px}
+.lb-col input,.lb-col select{width:100%;padding:8px 10px;background:#faf9f7;border:1px solid var(--bd);border-radius:7px;font-family:inherit;font-size:13px;color:#1a1916;outline:none;box-sizing:border-box}
+.lb-col input:focus,.lb-col select:focus{border-color:#bda060;background:#fff}
+@media (max-width:680px){.lb-grid{grid-template-columns:1fr}}
+.lb-prog-row{display:grid;grid-template-columns:1fr auto 90px;gap:10px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--bd);font-size:13px}
+.lb-prog-row:last-child{border-bottom:0}
+.lb-prog-row .lp-l{color:#1a1916}
+.lb-prog-row .lp-c{font-family:'SF Mono',Consolas,monospace;font-size:12px;color:#7a5c20;font-weight:600;white-space:nowrap}
+.lb-prog-row .lp-bar{height:6px;background:#fbf3da;border-radius:3px;overflow:hidden}
+.lb-prog-row .lp-bar > span{display:block;height:100%;background:#bda060;transition:width .25s}
+.lb-prog-row .lp-bar > span.done{background:#3a8a3a}
+.lb-prog-empty{color:var(--muted);font-size:12px;padding:12px;text-align:center}
+.lb-prog-note{font-size:11px;color:var(--muted);font-style:italic;margin-top:10px;padding-top:8px;border-top:1px dashed var(--bd)}
+.lb-list-bar{display:flex;gap:6px;align-items:center;font-weight:400;text-transform:none;letter-spacing:normal;margin-left:auto}
+.lb-list-bar select,.lb-list-bar input{font-size:11px;padding:4px 8px;border-radius:4px;border:1px solid var(--bd);background:#fff;color:#1a1916;font-family:inherit;outline:none}
+.lb-list-bar input{width:130px}
+.lb-list-bar button{font-size:11px;padding:4px 10px;border-radius:4px;border:1px solid #bda060;background:#fbf3da;color:#7a5c20;cursor:pointer;font-family:inherit}
+.lb-list-bar button:hover{background:#f5e5b8}
+.lb-entry{display:grid;grid-template-columns:90px 170px 1fr auto;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd);font-size:13px;align-items:center}
+.lb-entry:last-child{border-bottom:0}
+.lb-entry .le-d{font-family:'SF Mono',Consolas,monospace;font-size:11px;color:var(--muted)}
+.lb-entry .le-e{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#7a5c20;background:#fbf3da;padding:2px 7px;border-radius:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-entry .le-t{color:#1a1916;line-height:1.4}
+.lb-entry .le-t b{font-weight:600}
+.lb-entry .le-x{background:none;border:0;color:var(--muted);cursor:pointer;font-size:18px;line-height:1;padding:4px 8px;border-radius:4px;font-family:inherit}
+.lb-entry .le-x:hover{background:#f4dfdf;color:#a02020}
+@media (max-width:680px){
+  .lb-entry{grid-template-columns:1fr auto;grid-template-rows:auto auto auto;row-gap:4px}
+  .lb-entry .le-d{grid-row:1;grid-column:1}
+  .lb-entry .le-x{grid-row:1;grid-column:2}
+  .lb-entry .le-e{grid-row:2;grid-column:1}
+  .lb-entry .le-t{grid-row:3;grid-column:1/-1}
+}
+.lb-empty{color:var(--muted);font-size:12px;padding:18px;text-align:center;font-style:italic}
+body.dark .lb-bar{background:#2a2010;border-color:#5a4020}
+body.dark .lb-bar-l select{background:#0f1117;border-color:#3a3d50;color:#dde1f0}
+body.dark .lb-bar-r{color:#dcc480}
+body.dark .lb-col input,body.dark .lb-col select{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .lb-col input:focus,body.dark .lb-col select:focus{background:#1a1d2e;border-color:#bda060}
+body.dark .lb-prog-row .lp-l{color:#dde1f0}
+body.dark .lb-prog-row .lp-c{color:#dcc480}
+body.dark .lb-prog-row .lp-bar{background:#2a2010}
+body.dark .lb-prog-row{border-color:#2a2d40}
+body.dark .lb-prog-note{color:#7a80a0;border-color:#2a2d40}
+body.dark .lb-list-bar select,body.dark .lb-list-bar input{background:#0f1117;border-color:#3a3d50;color:#dde1f0}
+body.dark .lb-list-bar button{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .lb-entry{border-color:#2a2d40}
+body.dark .lb-entry .le-d{color:#7a80a0}
+body.dark .lb-entry .le-e{background:#2a2010;color:#dcc480}
+body.dark .lb-entry .le-t{color:#dde1f0}
+body.dark .lb-empty{color:#7a80a0}
 </style>
 </head>
 <body>
@@ -3191,10 +3251,51 @@ body.dark .om-fld textarea:focus{border-color:#bda060;background:#1a1d2e}
 
   <!-- LOGBOOK -->
   <div class="panel-int on" id="pi-log" role="tabpanel" aria-labelledby="tab-int-log">
-    <div class="int-stub">
-      <h3>Logbook clínico</h3>
-      <p>Registo dos actos clínicos exigidos pela Ordem dos Médicos durante o internato (consultas programadas, urgências, visitas domiciliárias, intervenções, reuniões formativas). Entradas datadas, com tipo e descrição breve.</p>
-      <span class="int-fase">Fase 2 — em construção</span>
+    <div class="lb-bar" role="region" aria-label="Estágio activo">
+      <div class="lb-bar-l">
+        <span class="ip-l">Estágio</span>
+        <select id="lb-estagio" onchange="dxLogEstagioSet(this.value)" aria-label="Estágio em curso"></select>
+      </div>
+      <div class="lb-bar-r" id="lb-bar-meta"></div>
+    </div>
+
+    <div class="om-card">
+      <div class="om-h">Novo registo</div>
+      <div class="lb-grid">
+        <div class="lb-col">
+          <label>Data <span class="opt">obrigatório</span></label>
+          <input type="date" id="lb-data" aria-label="Data do registo">
+        </div>
+        <div class="lb-col">
+          <label>Tipo de acto <span class="opt">conforme estágio</span></label>
+          <select id="lb-tipo" aria-label="Tipo de acto"></select>
+        </div>
+        <div class="lb-col">
+          <label>Descrição <span class="opt">opcional — sem PII do doente</span></label>
+          <input type="text" id="lb-desc" maxlength="160" placeholder="ex.: HTA descompensada, ajuste de IECA + diurético">
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;align-items:center;margin-top:12px">
+        <span id="lb-count" style="font-size:11px;color:var(--muted);margin-right:auto"></span>
+        <button class="btn-c" type="button" onclick="dxLogSave()" style="background:#bda060;color:#fff;border-color:#bda060;padding:7px 16px;font-weight:500">Guardar registo</button>
+      </div>
+    </div>
+
+    <div class="om-card">
+      <div class="om-h">Progresso do estágio actual</div>
+      <div id="lb-prog-wrap"></div>
+      <div class="lb-prog-note">Mínimos quantitativos por acto serão preenchidos a partir da caderneta da ARS aplicável (Portaria 125/2019 fixa estrutura e duração; números mínimos estão nas cadernetas regionais — Norte, LVT, Centro, Alentejo, Algarve). Por agora apenas contagem absoluta.</div>
+    </div>
+
+    <div class="om-card">
+      <div class="om-h">Registos
+        <span class="lb-list-bar">
+          <select id="lb-filt-estagio" onchange="dxLogRender()" aria-label="Filtrar por estágio"><option value="">Todos os estágios</option></select>
+          <input type="search" id="lb-filt-q" oninput="dxLogRender()" placeholder="procurar…" aria-label="Procurar nos registos">
+          <button type="button" onclick="dxLogExport()" title="Exportar logbook em PDF (em construção)">PDF</button>
+        </span>
+      </div>
+      <div id="lb-list-wrap"></div>
     </div>
   </div>
 
@@ -9042,11 +9143,319 @@ function relAdd(el, kind){
     alert('Avaliação guardada (' + list.length + ' no total).\nHistórico filtrável e exportação chegam na Fase 2.');
   };
 
+  // ══════════════════════════════════════════════════════════════════════
+  // LOGBOOK MGF — Fase 2
+  // ----------------------------------------------------------------------
+  // Estrutura alinhada com a Portaria n.º 125/2019, de 30 de abril
+  // (https://diariodarepublica.pt/dr/detalhe/portaria/125-2019-122195237)
+  // que actualiza o programa de formação da especialidade de MGF:
+  //   • Formação especializada total: 48 meses
+  //   • MGF1 (11m) → MGF2 (22m) → MGF3 (11m) — em USF/UCSP de colocação
+  //   • Formações complementares durante MGF2: Saúde Infantil e Juvenil
+  //     (2m), Saúde da Mulher (2m), Saúde Mental (2m)
+  //   • Cuidados em situações de urgência/emergência: distribuído entre
+  //     MGF1 (2.º semestre) e MGF2 — inclui blocos de 96h em pediatria e
+  //     96h em ginecologia/obstetrícia, mais cirurgia, ortotraumatologia,
+  //     medicina interna e psiquiatria.
+  //   • Estágio opcional: durante MGF2.
+  //
+  // Os mínimos quantitativos por acto (campo `min`) estão a `null`. A
+  // Portaria 125/2019 fixa duração e estrutura mas NÃO fixa números
+  // mínimos de actos — esses estão nas cadernetas regionais das ARS
+  // (Norte 2024, LVT, Centro, Alentejo, Algarve), que diferem entre si.
+  // Próxima ronda da Fase 2: carregar caderneta da ARS aplicável e
+  // preencher os mínimos. Esta tabela é o ÚNICO local a editar.
+  // ══════════════════════════════════════════════════════════════════════
+
+  var INT_ESTAGIOS = [
+    { id:'mgf1', label:'MGF1', meses:11, principal:true, fase:'inicial', actos:[
+      { id:'cons_prog',     label:'Consulta programada',                 min:null },
+      { id:'cons_aguda',    label:'Consulta de doença aguda',            min:null },
+      { id:'cons_dom',      label:'Visita domiciliária',                 min:null },
+      { id:'sd_infantil',   label:'Consulta de saúde infantil/juvenil',  min:null },
+      { id:'sd_mulher',     label:'Consulta de saúde da mulher',         min:null },
+      { id:'plan_familiar', label:'Planeamento familiar',                min:null },
+      { id:'idoso',         label:'Saúde do idoso',                      min:null },
+      { id:'cronico',       label:'Doente crónico / multimorbilidade',   min:null },
+      { id:'peq_cir',       label:'Pequena cirurgia / procedimentos',    min:null },
+    ]},
+    { id:'mgf2', label:'MGF2', meses:22, principal:true, fase:'intermédia', actos:[
+      { id:'cons_prog',     label:'Consulta programada',                 min:null },
+      { id:'cons_aguda',    label:'Consulta de doença aguda',            min:null },
+      { id:'cons_dom',      label:'Visita domiciliária',                 min:null },
+      { id:'sd_infantil',   label:'Consulta de saúde infantil/juvenil',  min:null },
+      { id:'sd_mulher',     label:'Consulta de saúde da mulher',         min:null },
+      { id:'plan_familiar', label:'Planeamento familiar',                min:null },
+      { id:'idoso',         label:'Saúde do idoso',                      min:null },
+      { id:'cronico',       label:'Doente crónico / multimorbilidade',   min:null },
+      { id:'peq_cir',       label:'Pequena cirurgia / procedimentos',    min:null },
+    ]},
+    { id:'mgf3', label:'MGF3', meses:11, principal:true, fase:'final', actos:[
+      { id:'cons_prog',     label:'Consulta programada',                 min:null },
+      { id:'cons_aguda',    label:'Consulta de doença aguda',            min:null },
+      { id:'cons_dom',      label:'Visita domiciliária',                 min:null },
+      { id:'sd_infantil',   label:'Consulta de saúde infantil/juvenil',  min:null },
+      { id:'sd_mulher',     label:'Consulta de saúde da mulher',         min:null },
+      { id:'plan_familiar', label:'Planeamento familiar',                min:null },
+      { id:'idoso',         label:'Saúde do idoso',                      min:null },
+      { id:'cronico',       label:'Doente crónico / multimorbilidade',   min:null },
+      { id:'peq_cir',       label:'Pequena cirurgia / procedimentos',    min:null },
+    ]},
+    { id:'sij', label:'Saúde Infantil e Juvenil', meses:2, complementar:true, actos:[
+      { id:'sip',           label:'Consulta de saúde infantil periódica (PNSIJ)', min:null },
+      { id:'urg_ped',       label:'Urgência pediátrica',                 min:null },
+      { id:'int_ped',       label:'Internamento pediátrico',             min:null },
+      { id:'vacina_ped',    label:'Vacinação',                           min:null },
+      { id:'adolesc',       label:'Consulta do adolescente',             min:null },
+    ]},
+    { id:'smul', label:'Saúde da Mulher', meses:2, complementar:true, actos:[
+      { id:'pre_natal',     label:'Consulta pré-natal / vigilância',     min:null },
+      { id:'pos_parto',     label:'Consulta pós-parto / puerpério',      min:null },
+      { id:'parto',         label:'Parto / sala de partos',              min:null },
+      { id:'gin',           label:'Consulta de ginecologia',             min:null },
+      { id:'eco_obs',       label:'Ecografia obstétrica',                min:null },
+      { id:'ctg',           label:'Cardiotocografia',                    min:null },
+      { id:'plan_smul',     label:'Planeamento familiar',                min:null },
+    ]},
+    { id:'smen', label:'Saúde Mental', meses:2, complementar:true, actos:[
+      { id:'cons_psq',      label:'Consulta de psiquiatria',             min:null },
+      { id:'urg_psq',       label:'Urgência psiquiátrica',               min:null },
+      { id:'int_psq',       label:'Internamento psiquiátrico',           min:null },
+      { id:'breve',         label:'Intervenção breve / motivacional',    min:null },
+    ]},
+    { id:'urg', label:'Urgência / Emergência', meses:null, complementar:true, actos:[
+      { id:'urg_cir',       label:'Urgência de cirurgia',                min:null },
+      { id:'urg_ort',       label:'Urgência de ortotraumatologia',       min:null },
+      { id:'urg_gin',       label:'Urgência de ginecologia/obstetrícia (96h)', min:null },
+      { id:'urg_pedu',      label:'Urgência pediátrica (96h)',           min:null },
+      { id:'urg_mi',        label:'Urgência de medicina interna',        min:null },
+      { id:'urg_psq2',      label:'Urgência de psiquiatria',             min:null },
+    ]},
+    { id:'opc', label:'Estágio opcional', meses:null, opcional:true, actos:[
+      { id:'livre',         label:'Acto (descrição obrigatória)',        min:null },
+    ]},
+  ];
+
+  // Tipos de acto transversais — disponíveis em qualquer estágio
+  var INT_ACTOS_GLOB = [
+    { id:'reuniao',      label:'Reunião formativa' },
+    { id:'sessao',       label:'Sessão clínica' },
+    { id:'formacao',     label:'Formação externa / curso' },
+    { id:'investigacao', label:'Investigação / publicação' },
+  ];
+
+  var KEY_LOG_LIST    = 'dx_int_log_entries';
+  var KEY_LOG_ESTAGIO = 'dx_int_log_estagio_atual';
+
+  function lbEscHtml(s){
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+    });
+  }
+
+  function lbEstagio(id){
+    for (var i=0;i<INT_ESTAGIOS.length;i++) if (INT_ESTAGIOS[i].id===id) return INT_ESTAGIOS[i];
+    return null;
+  }
+
+  function lbActoLabel(estagioId, actoId){
+    var e = lbEstagio(estagioId);
+    if (e) for (var i=0;i<e.actos.length;i++) if (e.actos[i].id===actoId) return e.actos[i].label;
+    for (var j=0;j<INT_ACTOS_GLOB.length;j++) if (INT_ACTOS_GLOB[j].id===actoId) return INT_ACTOS_GLOB[j].label;
+    return actoId;
+  }
+
+  function lbList(){
+    try { return JSON.parse(lsGet(KEY_LOG_LIST,'[]')) || []; } catch(e){ return []; }
+  }
+  function lbSetList(arr){ lsSet(KEY_LOG_LIST, JSON.stringify(arr)); }
+
+  function lbFillEstagioSelect(selEl, includeAll){
+    if (!selEl) return;
+    var prev = selEl.value;
+    selEl.innerHTML = '';
+    if (includeAll){
+      var oa = document.createElement('option');
+      oa.value = ''; oa.textContent = 'Todos os estágios';
+      selEl.appendChild(oa);
+    }
+    INT_ESTAGIOS.forEach(function(e){
+      var o = document.createElement('option');
+      o.value = e.id;
+      o.textContent = e.label + (e.meses ? ' (' + e.meses + 'm)' : '');
+      selEl.appendChild(o);
+    });
+    selEl.value = prev || (includeAll ? '' : INT_ESTAGIOS[0].id);
+  }
+
+  function lbFillTipoSelect(estagioId){
+    var sel = document.getElementById('lb-tipo');
+    if (!sel) return;
+    sel.innerHTML = '';
+    var e = lbEstagio(estagioId);
+    var actos = (e && e.actos) ? e.actos : [];
+    actos.forEach(function(a){
+      var o = document.createElement('option');
+      o.value = a.id; o.textContent = a.label;
+      sel.appendChild(o);
+    });
+    if (actos.length){
+      var sep = document.createElement('option');
+      sep.disabled = true; sep.textContent = '── transversais ──';
+      sel.appendChild(sep);
+    }
+    INT_ACTOS_GLOB.forEach(function(a){
+      var o = document.createElement('option');
+      o.value = a.id; o.textContent = a.label;
+      sel.appendChild(o);
+    });
+  }
+
+  function lbUpdateMeta(estagioId){
+    var meta = document.getElementById('lb-bar-meta');
+    if (!meta) return;
+    var e = lbEstagio(estagioId);
+    if (!e){ meta.textContent = ''; return; }
+    var tag = e.principal ? 'principal' : (e.complementar ? 'complementar' : (e.opcional ? 'opcional' : ''));
+    var dur = e.meses ? (e.meses + ' meses') : 'duração distribuída';
+    meta.textContent = tag ? (tag + ' · ' + dur) : dur;
+  }
+
+  function lbUpdateCount(){
+    var c = document.getElementById('lb-count');
+    if (!c) return;
+    var n = lbList().length;
+    c.textContent = n ? (n + ' registos no total') : '';
+  }
+
+  window.dxLogEstagioSet = function(id){
+    if (!lbEstagio(id)) return;
+    lsSet(KEY_LOG_ESTAGIO, id);
+    lbFillTipoSelect(id);
+    lbUpdateMeta(id);
+    window.dxLogRenderProg();
+  };
+
+  window.dxLogSave = function(){
+    var d = (document.getElementById('lb-data')||{}).value || '';
+    var t = (document.getElementById('lb-tipo')||{}).value || '';
+    var desc = ((document.getElementById('lb-desc')||{}).value || '').trim();
+    var est = lsGet(KEY_LOG_ESTAGIO, INT_ESTAGIOS[0].id);
+    if (!d){ alert('Indique a data do registo.'); return; }
+    if (!t){ alert('Indique o tipo de acto.'); return; }
+    if (t === 'livre' && !desc){ alert('No estágio opcional, descrição é obrigatória.'); return; }
+    var list = lbList();
+    list.unshift({
+      id: 'l' + Date.now() + Math.floor(Math.random()*1000),
+      ts: Date.now(),
+      data: d,
+      estagio: est,
+      tipo: t,
+      desc: desc.slice(0,160)
+    });
+    if (list.length > 5000) list = list.slice(0, 5000);
+    lbSetList(list);
+    var de = document.getElementById('lb-desc'); if (de) de.value = '';
+    window.dxLogRender();
+    window.dxLogRenderProg();
+    lbUpdateCount();
+  };
+
+  window.dxLogDelete = function(id){
+    var list = lbList().filter(function(e){ return e.id !== id; });
+    lbSetList(list);
+    window.dxLogRender();
+    window.dxLogRenderProg();
+    lbUpdateCount();
+  };
+
+  window.dxLogRender = function(){
+    var wrap = document.getElementById('lb-list-wrap');
+    if (!wrap) return;
+    var fEst = (document.getElementById('lb-filt-estagio')||{}).value || '';
+    var q = ((document.getElementById('lb-filt-q')||{}).value || '').toLowerCase().trim();
+    var list = lbList();
+    if (fEst) list = list.filter(function(e){ return e.estagio === fEst; });
+    if (q) list = list.filter(function(e){
+      return (e.desc||'').toLowerCase().indexOf(q) >= 0
+          || lbActoLabel(e.estagio,e.tipo).toLowerCase().indexOf(q) >= 0;
+    });
+    if (!list.length){
+      wrap.innerHTML = '<div class="lb-empty">' + (fEst||q ? 'Sem registos com estes filtros.' : 'Sem registos ainda. Adicione o primeiro acima.') + '</div>';
+      return;
+    }
+    var max = 50;
+    var html = list.slice(0, max).map(function(e){
+      var est = lbEstagio(e.estagio);
+      var estLabel = est ? est.label : e.estagio;
+      var d = e.data || (new Date(e.ts)).toISOString().slice(0,10);
+      return '<div class="lb-entry">'
+           + '<span class="le-d">' + lbEscHtml(d) + '</span>'
+           + '<span class="le-e" title="' + lbEscHtml(estLabel) + '">' + lbEscHtml(estLabel) + '</span>'
+           + '<span class="le-t"><b>' + lbEscHtml(lbActoLabel(e.estagio, e.tipo)) + '</b>' + (e.desc ? ' — ' + lbEscHtml(e.desc) : '') + '</span>'
+           + '<button type="button" class="le-x" aria-label="Remover registo" onclick="dxLogDelete(\'' + lbEscHtml(e.id) + '\')">×</button>'
+           + '</div>';
+    }).join('');
+    if (list.length > max) html += '<div class="lb-empty">… mais ' + (list.length - max) + ' registos não mostrados (use os filtros para encontrar)</div>';
+    wrap.innerHTML = html;
+  };
+
+  window.dxLogRenderProg = function(){
+    var wrap = document.getElementById('lb-prog-wrap');
+    if (!wrap) return;
+    var est = lsGet(KEY_LOG_ESTAGIO, INT_ESTAGIOS[0].id);
+    var e = lbEstagio(est);
+    if (!e){ wrap.innerHTML = ''; return; }
+    var list = lbList().filter(function(x){ return x.estagio === est; });
+    var counts = {};
+    list.forEach(function(x){ counts[x.tipo] = (counts[x.tipo]||0) + 1; });
+    var rows = e.actos.map(function(a){
+      var c = counts[a.id] || 0;
+      var min = a.min;
+      var lbl = (min == null) ? (c + ' / —') : (c + ' / ' + min);
+      var pct, doneClass = '';
+      if (min == null) pct = 0;
+      else { pct = Math.min(100, Math.round((c/min)*100)); if (c >= min) doneClass = ' done'; }
+      return '<div class="lb-prog-row">'
+           + '<span class="lp-l">' + lbEscHtml(a.label) + '</span>'
+           + '<span class="lp-c">' + lbl + '</span>'
+           + '<span class="lp-bar"><span class="' + doneClass + '" style="width:' + pct + '%"></span></span>'
+           + '</div>';
+    }).join('');
+    if (!rows) rows = '<div class="lb-prog-empty">Estágio sem rubricas configuradas.</div>';
+    wrap.innerHTML = rows;
+  };
+
+  window.dxLogExport = function(){
+    alert('Exportação PDF do logbook chega na próxima ronda da Fase 2 (após carregar caderneta da ARS aplicável e fixar mínimos oficiais).');
+  };
+
+  function dxLogInit(){
+    var sel = document.getElementById('lb-estagio');
+    var fil = document.getElementById('lb-filt-estagio');
+    lbFillEstagioSelect(sel, false);
+    lbFillEstagioSelect(fil, true);
+    var cur = lsGet(KEY_LOG_ESTAGIO, INT_ESTAGIOS[0].id);
+    if (!lbEstagio(cur)) cur = INT_ESTAGIOS[0].id;
+    if (sel) sel.value = cur;
+    lbFillTipoSelect(cur);
+    lbUpdateMeta(cur);
+    var dEl = document.getElementById('lb-data');
+    if (dEl && !dEl.value){
+      var t = new Date();
+      dEl.value = t.getFullYear() + '-' + String(t.getMonth()+1).padStart(2,'0') + '-' + String(t.getDate()).padStart(2,'0');
+    }
+    lbUpdateCount();
+    window.dxLogRender();
+    window.dxLogRenderProg();
+  }
+
   // ── Init ────────────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', function(){
     dxIntProfileLoad();
     dxOMRestore();
     dxIntAvalCount();
+    dxLogInit();
     window.dxModeSet(lsGet(KEY_MODE, 'soap'));
     window.dxIntTab(lsGet(KEY_TAB, 'log'));
   });
