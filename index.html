@@ -887,6 +887,49 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, a:focus-visib
   .dia-mic.on{animation:none !important}
   .lb-toast{transition:none !important}
 }
+
+/* ── PR #3 — Polish + restantes ─────────────────────────────────── */
+/* B3: chip primário "sugerir tags" */
+.dia-tags-sugg .sgg-pri{border-color:#bda060;color:#7a5c20;font-weight:600;background:#fbf3da;border-style:solid}
+.dia-tags-sugg .sgg-pri:hover{background:#bda060;color:#fff;border-color:#bda060}
+body.dark .dia-tags-sugg .sgg-pri{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .dia-tags-sugg .sgg-pri:hover{background:#bda060;color:#1a1916;border-color:#bda060}
+
+/* B4: lembretes contextuais no Logbook */
+.lb-reminders{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.lb-reminder{display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:center;padding:8px 12px;font-size:12px;background:#f4f0e0;border:1px solid #d5c79a;border-radius:6px;color:#5a4010;line-height:1.4}
+.lb-reminder.crit{background:#fce5e5;border-color:#d09090;color:#5a1010}
+.lb-reminder .lr-i{font-size:13px;text-align:center}
+.lb-reminder .lr-x{background:none;border:0;color:inherit;cursor:pointer;font-size:14px;line-height:1;padding:2px 6px;opacity:.5;font-family:inherit}
+.lb-reminder .lr-x:hover{opacity:1}
+body.dark .lb-reminder{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .lb-reminder.crit{background:#3a1010;border-color:#5a2020;color:#f0a0a0}
+
+/* B5: validação de inputs */
+.dx-invalid{border-color:#d09090 !important;background:#fcf6f6 !important}
+.dx-warn-tip{display:block;font-size:11px;color:#a02020;margin-top:4px;line-height:1.3}
+body.dark .dx-invalid{background:#2a1010 !important;border-color:#a02020 !important}
+body.dark .dx-warn-tip{color:#f0a0a0}
+
+/* C3: resumo do ano */
+.av-resumo-card{background:linear-gradient(to right, #fbf3da 0%, transparent 60%);border:1px solid #e5cf8c}
+.av-resumo-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:10px}
+.av-resumo-tile{padding:10px 12px;background:#fff;border:1px solid var(--bd);border-radius:7px}
+.av-resumo-tile .art-l{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#7a5c20;font-weight:600;margin-bottom:4px}
+.av-resumo-tile .art-v{font-family:'SF Mono',Consolas,monospace;font-size:18px;font-weight:600;color:#1a1916;line-height:1.1}
+.av-resumo-tile .art-x{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.3}
+body.dark .av-resumo-card{background:linear-gradient(to right, #2a2010 0%, transparent 60%);border-color:#5a4020}
+body.dark .av-resumo-tile{background:#1a1d2e;border-color:#2a2d40}
+body.dark .av-resumo-tile .art-l{color:#dcc480}
+body.dark .av-resumo-tile .art-v{color:#dde1f0}
+body.dark .av-resumo-tile .art-x{color:#7a80a0}
+
+/* C5: última reflexão no header do Logbook */
+.lb-last-dia{font-size:11px;color:#7a5c20;font-style:italic;display:inline-flex;align-items:center;gap:4px;cursor:pointer;padding-right:10px;margin-right:auto}
+.lb-last-dia:hover{text-decoration:underline}
+.lb-last-dia:empty{display:none}
+body.dark .lb-last-dia{color:#dcc480}
+.lb-bar-r{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
 </style>
 </head>
 <body>
@@ -3554,8 +3597,13 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, a:focus-visib
         <span class="ip-l">Estágio</span>
         <select id="lb-estagio" onchange="dxLogEstagioSet(this.value)" aria-label="Estágio em curso"></select>
       </div>
-      <div class="lb-bar-r" id="lb-bar-meta"></div>
+      <div class="lb-bar-r">
+        <span id="lb-last-dia" class="lb-last-dia"></span>
+        <span id="lb-bar-meta"></span>
+      </div>
     </div>
+
+    <div id="lb-reminders" class="lb-reminders" role="region" aria-live="polite" aria-label="Lembretes contextuais" style="display:none"></div>
 
     <div class="om-card">
       <div class="om-h">Novo registo</div>
@@ -3604,6 +3652,10 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, a:focus-visib
 
   <!-- AVALIAÇÕES (rubricas OM) -->
   <div class="panel-int" id="pi-aval" role="tabpanel" aria-labelledby="tab-int-aval">
+    <div class="om-card av-resumo-card" id="av-resumo-card" style="display:none">
+      <div class="om-h">Resumo do ano <span style="margin-left:auto;font-weight:400;text-transform:none;letter-spacing:normal;font-size:11px;color:var(--muted)">cross-feature: logbook + avaliações</span></div>
+      <div id="av-resumo-wrap"></div>
+    </div>
     <div class="om-card">
       <div class="om-h">Nova avaliação formativa</div>
 
@@ -3781,6 +3833,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, a:focus-visib
           <input type="text" id="dia-tag-input" placeholder="adicionar tag…" onkeydown="dxDiaTagKey(event)" autocomplete="off">
         </div>
         <div class="dia-tags-sugg">
+          <button type="button" class="sgg sgg-pri" onclick="dxDiaSuggestTags()" title="Sugerir tags a partir do conteúdo escrito">💡 sugerir do conteúdo</button>
           <button type="button" class="sgg" onclick="dxDiaTagAdd('caso clínico')">caso clínico</button>
           <button type="button" class="sgg" onclick="dxDiaTagAdd('reflexão')">reflexão</button>
           <button type="button" class="sgg" onclick="dxDiaTagAdd('dilema ético')">dilema ético</button>
@@ -11511,6 +11564,383 @@ function relAdd(el, kind){
     window[name]._dxConfirmed = true;
   }
 
+  // ══════════════════════════════════════════════════════════════════════
+  // PR #3 — POLISH + RESTANTES (B3+B4+B5+C3+C4+C5+D2+D3+D4)
+  // ══════════════════════════════════════════════════════════════════════
+
+  // ── D2: debounce helper ─────────────────────────────────────────────
+  function _debounce(fn, ms){
+    var t = null;
+    return function(){
+      var args = arguments, ctx = this;
+      clearTimeout(t);
+      t = setTimeout(function(){ fn.apply(ctx, args); }, ms);
+    };
+  }
+
+  // ── D4: helper try/safe (D3 também) ─────────────────────────────────
+  function _safe(fn, name){
+    return function(){
+      try { return fn.apply(this, arguments); }
+      catch(e){ try { console.warn('[dx-int]' + (name?(' '+name):''), e); } catch(_){} }
+    };
+  }
+
+  // ── B3: Auto-sugestão de tags no Diário ─────────────────────────────
+  // Heurísticas determinísticas sobre o conteúdo escrito. Conjunto curado
+  // alinhado com as 12 tags pré-definidas mostradas como sugestões.
+  var DIA_TAG_RULES = [
+    { tag:'caso clínico',       re:/\b(caso|doente|utente|utenta|paciente|sr[a]?\s+\w|d[ªa]\s+\w)\b/i },
+    { tag:'reflexão',           re:/\b(reflit|reflect|reflex|pens[ae]i|questionei|questiono|fiquei a pensar|levou-me a)\b/i },
+    { tag:'dilema ético',       re:/\b([ée]tic[oa]?|dilema|consentimento|autonomia|confidencial|sigilo|princ[íi]pi)\b/i },
+    { tag:'comunicação',        re:/\b(comunic|explic|informa[çc][ãa]o|negocia[çc][ãa]o|m[áa]s\s+not[íi]cias?|entrevista|escuta)\b/i },
+    { tag:'erro / quase-erro',  re:/\b(erro|engano|esqueci|perdi|quase|near[- ]miss|adverso|incidente|n[ãa]o\s+detectei)\b/i },
+    { tag:'aprendizagem',       re:/\b(aprend|perceb|compreend|descobri|insight|tomei consci[êe]ncia|fiquei a saber)\b/i },
+    { tag:'sessão clínica',     re:/\b(sess[ãa]o\s+cl[íi]nica|apresent[aâê]|caso\s+cl[íi]nico\s+\w*\s+apresent)\b/i },
+    { tag:'reunião',            re:/\b(reuni[ãa]o|equipa|usf|brief|debrief)\b/i },
+    { tag:'formação',           re:/\b(curso|forma[çc][ãa]o|workshop|congresso|webinar|jornadas?)\b/i },
+    { tag:'relação médico-doente', re:/\b(rela[çc][ãa]o|empat|rapport|al[ií]anc[ae]\s+terap|confian[çc]a)\b/i },
+    { tag:'multimorbilidade',   re:/\b(multimorb|polimedica|polifarm|comorbil|polipatolog)\b/i },
+    { tag:'fim de vida',        re:/\b(fim\s+de\s+vida|paliativ|terminal|morte|luto|sedaç|distan[áa]si)\b/i },
+  ];
+
+  window.dxDiaSuggestTags = _safe(function(){
+    var ta = document.getElementById('dia-content');
+    var tit = document.getElementById('dia-title');
+    var content = ((ta && ta.value) || '') + ' ' + ((tit && tit.value) || '');
+    if (!content.trim()){ alert('Escreva primeiro o título e/ou conteúdo da reflexão para o sistema sugerir tags relevantes.'); return; }
+    var added = [];
+    DIA_TAG_RULES.forEach(function(r){
+      if (r.re.test(content)){
+        if (typeof DIA_TAGS_BUFFER !== 'undefined' && DIA_TAGS_BUFFER.indexOf(r.tag) < 0){
+          window.dxDiaTagAdd(r.tag);
+          added.push(r.tag);
+        }
+      }
+    });
+    if (!added.length) dxLogToast('Nenhuma tag sugerida — tente palavras-chave como "caso", "reflexão", "comunicação", "erro", etc.');
+    else dxLogToast('✓ ' + added.length + ' tag(s) adicionadas: ' + added.join(', '));
+  }, 'dxDiaSuggestTags');
+
+  // ── B4: Lembretes contextuais no Logbook ────────────────────────────
+  // Calcula avisos não-intrusivos a partir do estado actual do logbook
+  // e das avaliações. Cada lembrete é dispensável (botão ×) e não persiste
+  // no localStorage — recalculado a cada render.
+  function dxLogReminders(){
+    var box = document.getElementById('lb-reminders');
+    if (!box) return;
+    var rems = [];
+    try {
+      var entries = lbList();
+      var est = lsGet(KEY_LOG_ESTAGIO, '') || INT_ESTAGIOS[0].id;
+      var hoje = Date.now();
+      var DAY = 86400000;
+
+      // R1: cumprimento de mínimos do estágio actual (se há min definido)
+      var e = lbEstagio(est);
+      if (e){
+        var counts = {};
+        entries.filter(function(x){ return x.estagio === est; }).forEach(function(x){
+          counts[x.tipo] = (counts[x.tipo] || 0) + 1;
+        });
+        e.actos.forEach(function(a){
+          if (a.min == null) return;
+          var c;
+          if (a.agregado && a.agrega) c = a.agrega.reduce(function(s,k){ return s + (counts[k]||0); }, 0);
+          else c = counts[a.id] || 0;
+          if (c < a.min){
+            var falta = a.min - c;
+            var pct = Math.round((c/a.min)*100);
+            // só mostra se está perto OU já tem ≥1 registo (evita ruído em estágios não iniciados)
+            if (c > 0 || pct >= 30 || pct === 0 && a.min <= 12){
+              rems.push({
+                ic: pct >= 75 ? '🟢' : (pct >= 50 ? '🟡' : '🔴'),
+                msg: 'Faltam ' + falta + ' de ' + a.min + ' em "' + a.label + '" (' + pct + '%)',
+                crit: pct < 25 && c > 0
+              });
+            }
+          }
+        });
+      }
+
+      // R2: estágio inactivo há > 14 dias (se estágio principal e tem registos antigos)
+      if (e && e.principal){
+        var ultimo = entries.filter(function(x){ return x.estagio === est; })[0];
+        if (ultimo && (hoje - ultimo.ts) > 14*DAY){
+          var dias = Math.floor((hoje - ultimo.ts) / DAY);
+          rems.push({ ic:'⏱', msg:'Sem registos no estágio ' + e.label + ' há ' + dias + ' dias', crit:false });
+        }
+      }
+
+      // R3: nenhuma avaliação formativa no último mês
+      var fList = [];
+      try { fList = JSON.parse(lsGet(KEY_AVAL_LIST, '[]')) || []; } catch(_){}
+      if (fList.length){
+        var ultF = fList[0];
+        if (ultF && (hoje - ultF.ts) > 30*DAY){
+          var diasF = Math.floor((hoje - ultF.ts) / DAY);
+          rems.push({ ic:'📋', msg:'Nenhuma avaliação formativa (Mini-CEX/DOPS/CbD/MSF) há ' + diasF + ' dias', crit:false });
+        }
+      } else if (entries.length >= 30){
+        // Tem actividade no logbook mas zero avaliações
+        rems.push({ ic:'📋', msg:'Sem avaliações formativas guardadas — registe Mini-CEX/DOPS/CbD/MSF na tab Avaliações', crit:false });
+      }
+    } catch(_e){}
+
+    if (!rems.length){ box.innerHTML = ''; box.style.display = 'none'; return; }
+    box.innerHTML = rems.slice(0, 4).map(function(r){
+      return '<div class="lb-reminder' + (r.crit?' crit':'') + '">'
+           + '<span class="lr-i" aria-hidden="true">' + r.ic + '</span>'
+           + '<span>' + lbEscHtml(r.msg) + '</span>'
+           + '<button type="button" class="lr-x" aria-label="Dispensar" onclick="this.parentNode.style.display=\'none\'">×</button>'
+           + '</div>';
+    }).join('');
+    box.style.display = '';
+  }
+  window.dxLogReminders = dxLogReminders;
+
+  // ── B5: Validação inteligente de inputs ────────────────────────────
+  function _markInvalid(el, tip){
+    if (!el) return;
+    el.classList.add('dx-invalid');
+    var parent = el.parentNode;
+    var existing = parent && parent.querySelector('.dx-warn-tip[data-for="'+el.id+'"]');
+    if (tip){
+      if (!existing){
+        existing = document.createElement('span');
+        existing.className = 'dx-warn-tip';
+        existing.setAttribute('data-for', el.id);
+        if (parent) parent.appendChild(existing);
+      }
+      existing.textContent = tip;
+    }
+  }
+  function _clearInvalid(el){
+    if (!el) return;
+    el.classList.remove('dx-invalid');
+    var parent = el.parentNode;
+    if (parent){
+      var t = parent.querySelector('.dx-warn-tip[data-for="'+el.id+'"]');
+      if (t) t.remove();
+    }
+  }
+
+  function _validateDate(el){
+    if (!el || !el.value) return _clearInvalid(el);
+    try {
+      var d = new Date(el.value);
+      if (d > new Date()){ _markInvalid(el, 'Data no futuro — confirma?'); return; }
+    } catch(_){}
+    _clearInvalid(el);
+  }
+  function _validateNota20(el){
+    if (!el || el.value === '' || el.value == null) return _clearInvalid(el);
+    var n = parseFloat(el.value);
+    if (isNaN(n)){ return _clearInvalid(el); }
+    if (n < 0 || n > 20){ _markInvalid(el, 'Fora do intervalo 0-20'); return; }
+    _clearInvalid(el);
+  }
+  function _validatePII(el){
+    if (!el || !el.value) return _clearInvalid(el);
+    var v = el.value.trim();
+    // Iniciais com mais de 2 espaços ou >5 chars sugerem nome completo
+    if ((v.split(/\s+/).filter(function(x){return x.length;}).length > 2) || v.length > 5){
+      _markInvalid(el, 'Use só iniciais (ex.: RG) — não nomes completos');
+      return;
+    }
+    _clearInvalid(el);
+  }
+
+  function applyValidations(){
+    // datas (logbook, diário, avaliação anual)
+    ['lb-data','dia-date','av-an-date'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el && !el._dxV){ el.addEventListener('change', function(){ _validateDate(el); }); el._dxV = true; }
+    });
+    // notas 0-20 (anual P1-P4, calculadora final, provas)
+    ['av-an-p1','av-an-p2','av-an-p3','av-an-p4','av-f-disc','av-f-est','av-f-prat','av-f-teor'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el && !el._dxV){ el.addEventListener('blur', function(){ _validateNota20(el); }); el._dxV = true; }
+    });
+    // notas das provas (renderizadas dinamicamente — listener delegado no wrap)
+    var pw = document.getElementById('av-prova-wrap');
+    if (pw && !pw._dxV){
+      pw.addEventListener('blur', function(ev){
+        if (ev.target && ev.target.matches('input[type="number"]')) _validateNota20(ev.target);
+      }, true);
+      pw._dxV = true;
+    }
+    // Iniciais (PII)
+    var ie = document.getElementById('int-prof-init');
+    if (ie && !ie._dxV){ ie.addEventListener('blur', function(){ _validatePII(ie); }); ie._dxV = true; }
+  }
+
+  // ── C3: Resumo do ano (cross-feature: logbook + avaliações) ─────────
+  function dxAvalResumo(){
+    var box = document.getElementById('av-resumo-card');
+    var wrap = document.getElementById('av-resumo-wrap');
+    if (!box || !wrap) return;
+    var year = lsGet(KEY_PROF_YEAR, '');
+    if (!year){ box.style.display = 'none'; return; }
+    box.style.display = '';
+
+    // Mapear ano de internato → estágio principal correspondente
+    var estagioByYear = { '1':'mgf1', '2':'mgf2', '3':'mgf2', '4':'mgf3' };
+    var estId = estagioByYear[year];
+    var est = estId ? lbEstagio(estId) : null;
+
+    // Logbook: contagem total no estágio
+    var entries = [];
+    try { entries = lbList(); } catch(_){}
+    var nLog = estId ? entries.filter(function(x){ return x.estagio === estId; }).length : 0;
+    var nLogTotal = entries.length;
+
+    // Cumprimento de mínimos (só conta actos com min definido)
+    var cumprMsg = '—';
+    if (est){
+      var counts = {}; entries.filter(function(x){ return x.estagio === estId; }).forEach(function(x){
+        counts[x.tipo] = (counts[x.tipo]||0) + 1;
+      });
+      var withMin = est.actos.filter(function(a){ return a.min != null; });
+      if (withMin.length){
+        var done = 0;
+        withMin.forEach(function(a){
+          var c;
+          if (a.agregado && a.agrega) c = a.agrega.reduce(function(s,k){ return s + (counts[k]||0); }, 0);
+          else c = counts[a.id] || 0;
+          if (c >= a.min) done++;
+        });
+        cumprMsg = done + ' / ' + withMin.length + ' rubricas';
+      } else {
+        cumprMsg = 'sem mínimos definidos';
+      }
+    }
+
+    // Avaliações formativas do ano
+    var fList = [];
+    try { fList = JSON.parse(lsGet(KEY_AVAL_LIST, '[]')) || []; } catch(_){}
+    var nForm = fList.filter(function(f){ return String(f.year) === String(year); }).length;
+
+    // Provas de conhecimentos
+    var provas = {}; try { provas = JSON.parse(lsGet(KEY_PROVA_LIST, '{}')) || {}; } catch(_){}
+    var prv = provas[year] || {};
+    var prvSt = '—';
+    if (prv.nota != null && prv.nota !== ''){
+      var n = parseFloat(prv.nota);
+      if (!isNaN(n)) prvSt = n.toFixed(1) + '/20 ' + (n >= 10 ? '✓' : '✗');
+    }
+
+    // Avaliação anual
+    var anuais = []; try { anuais = JSON.parse(lsGet(KEY_ANUAL_LIST, '[]')) || []; } catch(_){}
+    var anualY = anuais.filter(function(a){ return String(a.year) === String(year); })[0];
+    var anualSt = anualY ? (anualY.score.toFixed(2) + '/20 ' + (anualY.score >= 10 ? '✓' : '✗')) : '—';
+
+    var tiles = [
+      { l:'Ano · Estágio',     v: 'Ano ' + year, x: est ? est.label : '—' },
+      { l:'Registos logbook',  v: nLog, x: 'do total ' + nLogTotal },
+      { l:'Cumprimento mínimos', v: cumprMsg, x: '' },
+      { l:'Formativas (Mini-CEX…)', v: nForm, x: nForm ? 'guardadas' : 'sem registo' },
+      { l:'Prova de conhecimentos', v: prvSt, x: '' },
+      { l:'Avaliação anual',   v: anualSt, x: '' },
+    ];
+    wrap.innerHTML = '<div class="av-resumo-grid">' + tiles.map(function(t){
+      return '<div class="av-resumo-tile"><div class="art-l">' + lbEscHtml(t.l) + '</div><div class="art-v">' + lbEscHtml(t.v) + '</div>' + (t.x ? '<div class="art-x">' + lbEscHtml(t.x) + '</div>' : '') + '</div>';
+    }).join('') + '</div>';
+  }
+  window.dxAvalResumo = dxAvalResumo;
+
+  // ── C4: Estágio activo sugere ano em Avaliação anual ────────────────
+  // mgf1 → 1; mgf2 → 2 ou 3 (escolhe 2 se vazio); mgf3 → 4
+  function dxAvalSyncYearFromEstagio(){
+    var est = lsGet(KEY_LOG_ESTAGIO, '');
+    var yearEl = document.getElementById('av-an-year');
+    if (!yearEl || yearEl.value) return; // só sugere se vazio
+    var map = { mgf1:'1', mgf2:'2', mgf3:'4' };
+    var sugg = map[est];
+    if (sugg) yearEl.value = sugg;
+  }
+
+  // ── C5: Última reflexão do Diário no header do Logbook ──────────────
+  function dxLogShowLastDia(){
+    var el = document.getElementById('lb-last-dia');
+    if (!el) return;
+    var list = [];
+    try { list = JSON.parse(lsGet(KEY_DIA_LIST, '[]')) || []; } catch(_){}
+    if (!list.length){ el.innerHTML = ''; el.removeAttribute('title'); el.onclick = null; return; }
+    var last = list[0];
+    var dias = Math.floor((Date.now() - last.ts) / 86400000);
+    var quando = dias === 0 ? 'hoje' : (dias === 1 ? 'ontem' : (dias + ' dias'));
+    var preview = (last.titulo || '').slice(0, 40);
+    el.innerHTML = '📔 Última reflexão: <b>' + lbEscHtml(quando) + '</b> · ' + lbEscHtml(preview);
+    el.title = 'Clicar abre a tab Diário';
+    el.onclick = function(){ window.dxIntTab('dia'); };
+  }
+  window.dxLogShowLastDia = dxLogShowLastDia;
+
+  // ── D2: aplicar debounce a search inputs ─────────────────────────────
+  function applyDebounce(){
+    var pairs = [
+      { id:'lb-filt-q',  fn: window.dxLogRender },
+      { id:'dia-filt-q', fn: window.dxDiaRender },
+      { id:'jc-filt-q',  fn: window.dxJCRender }
+    ];
+    pairs.forEach(function(p){
+      var el = document.getElementById(p.id);
+      if (el && !el._dxDeb && typeof p.fn === 'function'){
+        var deb = _debounce(p.fn, 200);
+        el.removeAttribute('oninput');
+        el.addEventListener('input', deb);
+        el._dxDeb = true;
+      }
+    });
+  }
+
+  // ── Hook re-render de progresso e lembretes em conjunto ─────────────
+  // Quando o logbook re-renderiza (save/delete/estágio), também atualiza
+  // o banner de lembretes (B4) e a última reflexão (C5).
+  function patchLogRenderForExtras(){
+    var orig = window.dxLogRenderProg;
+    if (typeof orig !== 'function' || orig._dxExtras) return;
+    window.dxLogRenderProg = function(){
+      var r = orig.apply(this, arguments);
+      try { dxLogReminders(); } catch(_){}
+      try { dxLogShowLastDia(); } catch(_){}
+      return r;
+    };
+    window.dxLogRenderProg._dxExtras = true;
+    // Mesma coisa quando o estágio é trocado
+    var origSet = window.dxLogEstagioSet;
+    if (typeof origSet === 'function' && !origSet._dxExtras){
+      window.dxLogEstagioSet = function(id){
+        var r = origSet.apply(this, arguments);
+        try { dxLogReminders(); } catch(_){}
+        try { dxAvalSyncYearFromEstagio(); } catch(_){}
+        return r;
+      };
+      window.dxLogEstagioSet._dxExtras = true;
+    }
+    // Re-render do diário também actualiza C5
+    var origDia = window.dxDiaRender;
+    if (typeof origDia === 'function' && !origDia._dxExtras){
+      window.dxDiaRender = function(){
+        var r = origDia.apply(this, arguments);
+        try { dxLogShowLastDia(); } catch(_){}
+        return r;
+      };
+      window.dxDiaRender._dxExtras = true;
+    }
+    // Quando a tab Avaliações abrir, re-renderiza o resumo
+    var origTab = window.dxIntTab;
+    if (typeof origTab === 'function' && !origTab._dxExtras){
+      window.dxIntTab = function(t){
+        var r = origTab.apply(this, arguments);
+        if (t === 'aval'){ try { dxAvalResumo(); } catch(_){} }
+        return r;
+      };
+      window.dxIntTab._dxExtras = true;
+    }
+  }
+
   function applyDeleteConfirms(){
     _wrapDelete('dxLogDelete',
       function(id){ return lbList().filter(function(e){ return e.id === id; })[0]; },
@@ -11549,6 +11979,12 @@ function relAdd(el, kind){
     patchGenerateForLogbook();
     patchGenerateForAlerts();
     applyDeleteConfirms();
+    patchLogRenderForExtras();
+    applyDebounce();
+    applyValidations();
+    try { dxLogReminders(); } catch(_){}
+    try { dxLogShowLastDia(); } catch(_){}
+    try { dxAvalResumo(); } catch(_){}
     window.dxModeSet(lsGet(KEY_MODE, 'soap'));
     window.dxIntTab(lsGet(KEY_TAB, 'log'));
   });
