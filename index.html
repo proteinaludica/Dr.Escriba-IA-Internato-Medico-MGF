@@ -930,6 +930,45 @@ body.dark .av-resumo-tile .art-x{color:#7a80a0}
 .lb-last-dia:empty{display:none}
 body.dark .lb-last-dia{color:#dcc480}
 .lb-bar-r{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+
+/* ── Currículo (Fase 6.1) ────────────────────────────────────────── */
+.cur-intro{background:#fbf3da;border:1px solid #e5cf8c;border-radius:10px;padding:12px 16px;margin-bottom:14px}
+.cur-intro .cur-lead{font-size:13px;line-height:1.55;color:#5a4010;margin:0}
+.cur-intro .cur-lead-note{font-size:11px;line-height:1.5;color:#7a5c20;margin:8px 0 0 0;font-style:italic}
+.cur-card{background:#fff;border:1px solid var(--bd);border-radius:10px;margin-bottom:12px;overflow:hidden}
+.cur-card[open]{border-color:#bda060}
+.cur-card > summary{padding:12px 16px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:#7a5c20;cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;user-select:none}
+.cur-card > summary::-webkit-details-marker{display:none}
+.cur-card > summary::before{content:'▸';display:inline-block;font-size:11px;color:#bda060;transition:transform .15s}
+.cur-card[open] > summary::before{transform:rotate(90deg)}
+.cur-card > summary::after{content:'';width:3px;height:14px;background:#bda060;border-radius:2px;order:-1}
+.cur-card > summary .cur-future{margin-left:auto;font-size:10px;font-weight:500;text-transform:none;letter-spacing:normal;color:var(--muted);font-style:italic;background:#fbf3da;border:1px dashed #e5cf8c;padding:2px 8px;border-radius:3px}
+.cur-card[open] > summary{border-bottom:1px dashed var(--bd);background:#fefbef}
+.cur-card > *:not(summary){padding:14px 16px}
+.cur-grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 !important}
+@media (max-width:680px){.cur-grid2{grid-template-columns:1fr}}
+.cur-fld{padding:0 !important;margin-bottom:0}
+.cur-card > .cur-fld{margin-bottom:10px}
+.cur-card > .cur-fld:last-child{margin-bottom:0}
+.cur-fld label{display:block;font-size:12px;font-weight:500;color:#1a1916;margin-bottom:6px}
+.cur-fld label .opt{font-weight:400;color:var(--muted);font-size:11px}
+.cur-fld input,.cur-fld textarea{width:100%;padding:8px 10px;background:#faf9f7;border:1px solid var(--bd);border-radius:7px;font-family:inherit;font-size:13px;line-height:1.55;color:#1a1916;outline:none;box-sizing:border-box;resize:vertical}
+.cur-fld input:focus,.cur-fld textarea:focus{border-color:#bda060;background:#fff}
+.cur-toolbar{display:flex;align-items:center;gap:12px;padding:14px 0;flex-wrap:wrap}
+.cur-toolbar .cur-status{font-size:11px;color:var(--muted);font-style:italic;flex:1}
+.cur-toolbar .cur-status.saved{color:#2a6020}
+body.dark .cur-intro{background:#2a2010;border-color:#5a4020}
+body.dark .cur-intro .cur-lead{color:#f0d890}
+body.dark .cur-intro .cur-lead-note{color:#dcc480}
+body.dark .cur-card{background:#1a1d2e;border-color:#2a2d40}
+body.dark .cur-card[open]{border-color:#bda060}
+body.dark .cur-card > summary{color:#dcc480}
+body.dark .cur-card[open] > summary{background:#1e2235;border-color:#2a2d40}
+body.dark .cur-card > summary .cur-future{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .cur-fld label{color:#dde1f0}
+body.dark .cur-fld input,body.dark .cur-fld textarea{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .cur-fld input:focus,body.dark .cur-fld textarea:focus{background:#1a1d2e;border-color:#bda060}
+body.dark .cur-toolbar .cur-status.saved{color:#80c080}
 </style>
 </head>
 <body>
@@ -3572,6 +3611,7 @@ body.dark .lb-last-dia{color:#dcc480}
   <div class="tab-int" id="tab-int-aval" role="tab" tabindex="-1" aria-selected="false" aria-controls="pi-aval" onclick="dxIntTab('aval')" onkeydown="dxIntTabKey(event,'aval')"><div class="tib" aria-hidden="true">A</div>Avaliações</div>
   <div class="tab-int" id="tab-int-dia" role="tab" tabindex="-1" aria-selected="false" aria-controls="pi-dia" onclick="dxIntTab('dia')" onkeydown="dxIntTabKey(event,'dia')"><div class="tib" aria-hidden="true">D</div>Diário</div>
   <div class="tab-int" id="tab-int-jc" role="tab" tabindex="-1" aria-selected="false" aria-controls="pi-jc" onclick="dxIntTab('jc')" onkeydown="dxIntTabKey(event,'jc')"><div class="tib" aria-hidden="true">J</div>Journal Club</div>
+  <div class="tab-int" id="tab-int-cur" role="tab" tabindex="-1" aria-selected="false" aria-controls="pi-cur" onclick="dxIntTab('cur')" onkeydown="dxIntTabKey(event,'cur')"><div class="tib" aria-hidden="true">C</div>Currículo</div>
 </div>
 
 <div id="panel-internato" role="region" aria-label="Internato MGF">
@@ -3959,6 +3999,179 @@ body.dark .lb-last-dia{color:#dcc480}
         </span>
       </div>
       <div id="jc-list-wrap"></div>
+    </div>
+  </div>
+
+  <!-- CURRÍCULO (Fase 6.1) -->
+  <div class="panel-int" id="pi-cur" role="tabpanel" aria-labelledby="tab-int-cur">
+    <div class="cur-intro">
+      <p class="cur-lead">Editor estruturado do <b>currículo final do internato</b> — peça que acompanha a discussão curricular (40% da nota da prova de discussão, conforme Portaria 125/2019, art.º 31.º). Cada secção guarda automaticamente. Use o botão <b>↓ Compilar</b> no fim para exportar tudo em ficheiro de texto.</p>
+      <p class="cur-lead-note">Esta fase (6.1) tem editores de texto livre. Cálculos automáticos da lista de utentes (Graffar, Duvall, pirâmide etária) chegam na 6.2; auto-geração de quadros do logbook na 6.4; export PDF na 6.5.</p>
+    </div>
+
+    <details class="cur-card" open>
+      <summary class="om-h">1 · Identificação e biografia</summary>
+      <div class="cur-grid2">
+        <div class="cur-fld"><label>Nome completo</label><input type="text" id="cur-id-nome" maxlength="120" autocomplete="off"></div>
+        <div class="cur-fld"><label>Cédula OM</label><input type="text" id="cur-id-cedula" maxlength="20" autocomplete="off"></div>
+        <div class="cur-fld"><label>Data de início do internato</label><input type="date" id="cur-id-inicio"></div>
+        <div class="cur-fld"><label>Data prevista de fim</label><input type="date" id="cur-id-fim"></div>
+        <div class="cur-fld"><label>USF / UCSP de colocação</label><input type="text" id="cur-id-usf" maxlength="120" autocomplete="off"></div>
+        <div class="cur-fld"><label>ULS / ARS</label><input type="text" id="cur-id-uls" maxlength="120" autocomplete="off"></div>
+      </div>
+      <div class="cur-fld" style="margin-top:10px">
+        <label>Biografia profissional <span class="opt">formação base, percurso pré-internato, motivação para MGF</span></label>
+        <textarea id="cur-id-bio" rows="6" placeholder="Licenciei-me em… Optei por MGF porque…"></textarea>
+      </div>
+    </details>
+
+    <details class="cur-card">
+      <summary class="om-h">2 · Contexto local</summary>
+      <div class="cur-grid2">
+        <div class="cur-fld"><label>Concelho</label><input type="text" id="cur-ctx-concelho" maxlength="80" autocomplete="off" placeholder="ex.: Funchal"></div>
+        <div class="cur-fld"><label>Freguesia</label><input type="text" id="cur-ctx-freguesia" maxlength="80" autocomplete="off" placeholder="ex.: Sé"></div>
+      </div>
+      <div class="cur-fld" style="margin-top:10px">
+        <label>Resenha histórica do concelho <span class="opt">factos relevantes para o exercício clínico local</span></label>
+        <textarea id="cur-ctx-historia" rows="4" placeholder="O concelho foi fundado em… Caracteriza-se por…"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Caracterização demográfica <span class="opt">população, faixas etárias, evolução (cite INE/Censos)</span></label>
+        <textarea id="cur-ctx-demo" rows="4" placeholder="Segundo o Censo 2021, o concelho tem…"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Dados sócio-económicos</label>
+        <textarea id="cur-ctx-socio" rows="4" placeholder="Actividade económica predominante… Taxa de desemprego… Rendimento médio…"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Dados de educação</label>
+        <textarea id="cur-ctx-edu" rows="3" placeholder="Distribuição da escolaridade… Estabelecimentos de ensino…"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Recursos de saúde e sociais</label>
+        <textarea id="cur-ctx-recursos" rows="4" placeholder="Hospitais de referência… USF/UCSP… IPSS… Estruturas de apoio social…"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Centro de Saúde / USF / UCSP <span class="opt">organização, equipa, lista de utentes, horário</span></label>
+        <textarea id="cur-ctx-cs" rows="5" placeholder="O CS foi criado em… A equipa multidisciplinar é composta por… Horário de funcionamento…"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Programas de vigilância e promoção da saúde <span class="opt">PNV, PNSIJ, PNSM, planeamento, oncológico, etc.</span></label>
+        <textarea id="cur-ctx-programas" rows="4" placeholder="Os programas em curso na unidade incluem…"></textarea>
+      </div>
+    </details>
+
+    <details class="cur-card">
+      <summary class="om-h">3 · Caracterização da lista de utentes <span class="cur-future">cálculos automáticos na Fase 6.2</span></summary>
+      <div class="cur-fld">
+        <label>Caracterização demográfica da lista</label>
+        <textarea id="cur-lst-demo" rows="5" placeholder="A lista de utentes é composta por X pessoas, distribuídas por… (Fase 6.2 vai dar pirâmide etária automática)"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Estado civil, escolaridade, situação profissional</label>
+        <textarea id="cur-lst-perfil" rows="4"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Classificação social de Graffar <span class="opt">distribuição por classes I-V</span></label>
+        <textarea id="cur-lst-graffar" rows="3" placeholder="(Fase 6.2 vai dar calculadora Graffar)"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Tipo de famílias e fases do ciclo de Duvall</label>
+        <textarea id="cur-lst-duvall" rows="4" placeholder="(Fase 6.2 vai dar calculadora Duvall)"></textarea>
+      </div>
+    </details>
+
+    <details class="cur-card">
+      <summary class="om-h">4 · Caracterização da actividade profissional <span class="cur-future">tabelas auto-geradas na Fase 6.4</span></summary>
+      <div class="cur-fld">
+        <label>Utentes observados <span class="opt">distribuição etária / sexo / motivos</span></label>
+        <textarea id="cur-act-observ" rows="4" placeholder="Durante o internato observei X utentes em consulta… (Fase 6.4 puxa do logbook)"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Consulta de saúde do adulto e idoso</label>
+        <textarea id="cur-act-adultoidoso" rows="4"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Grupos de risco <span class="opt">DM2, hipertensos, dislipidémicos, etc.</span></label>
+        <textarea id="cur-act-risco" rows="4"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Grupos vulneráveis <span class="opt">saúde infantil/juvenil, planeamento, materna, domiciliárias</span></label>
+        <textarea id="cur-act-vuln" rows="4"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Problemas de saúde activos</label>
+        <textarea id="cur-act-problemas" rows="3"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Saúde mental</label>
+        <textarea id="cur-act-mental" rows="3"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Serviço de Urgência</label>
+        <textarea id="cur-act-urg" rows="3"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Indicadores de gestão da consulta</label>
+        <textarea id="cur-act-indic" rows="4"></textarea>
+      </div>
+    </details>
+
+    <details class="cur-card">
+      <summary class="om-h">5 · Formação complementar e produção</summary>
+      <div class="cur-fld">
+        <label>Cursos pós-graduados <span class="opt">um por linha: nome · instituição · ano · duração</span></label>
+        <textarea id="cur-for-cursos" rows="5" placeholder="Curso de Cuidados Paliativos · Faculdade X · 2024 · 60 h"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Actividades de formação <span class="opt">orientação a alunos, internos do ano comum, etc.</span></label>
+        <textarea id="cur-for-formacao" rows="4"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Actividades de investigação <span class="opt">projectos, ensaios, papel desempenhado</span></label>
+        <textarea id="cur-for-invest" rows="4"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Trabalhos publicados <span class="opt">referência completa: autores · título · revista · ano · DOI</span></label>
+        <textarea id="cur-for-pub" rows="5"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Participação em grupos de trabalho</label>
+        <textarea id="cur-for-grupos" rows="3"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Congressos, jornadas e encontros</label>
+        <textarea id="cur-for-congressos" rows="4"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Palestras / comunicações orais</label>
+        <textarea id="cur-for-palestras" rows="3"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Outros projectos</label>
+        <textarea id="cur-for-outros" rows="3"></textarea>
+      </div>
+    </details>
+
+    <details class="cur-card">
+      <summary class="om-h">6 · Reflexão crítica e análise global</summary>
+      <div class="cur-fld">
+        <label>Comentário e análise crítica do internato</label>
+        <textarea id="cur-ref-critica" rows="8" placeholder="Reflexão sobre o percurso, dificuldades, aprendizagens, sugestões…"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Análise global</label>
+        <textarea id="cur-ref-global" rows="6"></textarea>
+      </div>
+      <div class="cur-fld">
+        <label>Comentário final</label>
+        <textarea id="cur-ref-final" rows="4"></textarea>
+      </div>
+    </details>
+
+    <div class="cur-toolbar" role="region" aria-label="Acções do currículo">
+      <span id="cur-status" class="cur-status" aria-live="polite"></span>
+      <button type="button" class="btn-c" onclick="dxCurExport()" style="background:#bda060;color:#fff;border-color:#bda060;padding:7px 16px;font-weight:500">↓ Compilar e exportar TXT</button>
     </div>
   </div>
 </div>
@@ -9640,7 +9853,7 @@ function relAdd(el, kind){
   };
 
   // ── Tabs internas ───────────────────────────────────────────────────
-  var INT_TABS = ['log','aval','dia','jc'];
+  var INT_TABS = ['log','aval','dia','jc','cur'];
   window.dxIntTab = function(t){
     if (INT_TABS.indexOf(t) < 0) return;
     INT_TABS.forEach(function(k){
@@ -11532,7 +11745,7 @@ function relAdd(el, kind){
 
   // ── D1: Keyboard navigation nas tabs internas ───────────────────────
   window.dxIntTabKey = function(ev, k){
-    var tabs = ['log','aval','dia','jc'];
+    var tabs = ['log','aval','dia','jc','cur'];
     var i = tabs.indexOf(k); if (i < 0) return;
     var target = null;
     if (ev.key === 'ArrowRight'){ target = tabs[(i+1) % tabs.length]; }
@@ -11964,6 +12177,163 @@ function relAdd(el, kind){
       false);
   }
 
+  // ══════════════════════════════════════════════════════════════════════
+  // FASE 6.1 — Currículo final do internato (foundation)
+  // Editores de texto livre por secção, persistência por campo, export TXT.
+  // Cálculos automáticos (Graffar, Duvall, pirâmide etária) ficam para 6.2;
+  // auto-geração de quadros do logbook para 6.4; export PDF para 6.5.
+  // ══════════════════════════════════════════════════════════════════════
+
+  var KEY_CUR = 'dx_int_curric_v1';
+
+  // Mapa de secções → ids dos inputs/textareas. Ordem usada também no export.
+  var CUR_SECTIONS = [
+    { id:'1', titulo:'Identificação e biografia', fields:[
+      ['cur-id-nome','Nome completo'], ['cur-id-cedula','Cédula OM'],
+      ['cur-id-inicio','Data de início'], ['cur-id-fim','Data prevista de fim'],
+      ['cur-id-usf','USF / UCSP'], ['cur-id-uls','ULS / ARS'],
+      ['cur-id-bio','Biografia profissional']
+    ]},
+    { id:'2', titulo:'Contexto local', fields:[
+      ['cur-ctx-concelho','Concelho'], ['cur-ctx-freguesia','Freguesia'],
+      ['cur-ctx-historia','Resenha histórica'], ['cur-ctx-demo','Demografia'],
+      ['cur-ctx-socio','Sócio-económico'], ['cur-ctx-edu','Educação'],
+      ['cur-ctx-recursos','Recursos saúde e sociais'],
+      ['cur-ctx-cs','Centro de Saúde / USF / UCSP'],
+      ['cur-ctx-programas','Programas de vigilância e promoção']
+    ]},
+    { id:'3', titulo:'Caracterização da lista de utentes', fields:[
+      ['cur-lst-demo','Demografia da lista'],
+      ['cur-lst-perfil','Estado civil / escolaridade / profissão'],
+      ['cur-lst-graffar','Classificação social de Graffar'],
+      ['cur-lst-duvall','Tipo de famílias e ciclo de Duvall']
+    ]},
+    { id:'4', titulo:'Caracterização da actividade profissional', fields:[
+      ['cur-act-observ','Utentes observados'],
+      ['cur-act-adultoidoso','Saúde do adulto e idoso'],
+      ['cur-act-risco','Grupos de risco'],
+      ['cur-act-vuln','Grupos vulneráveis'],
+      ['cur-act-problemas','Problemas de saúde activos'],
+      ['cur-act-mental','Saúde mental'],
+      ['cur-act-urg','Serviço de Urgência'],
+      ['cur-act-indic','Indicadores de gestão da consulta']
+    ]},
+    { id:'5', titulo:'Formação complementar e produção', fields:[
+      ['cur-for-cursos','Cursos pós-graduados'],
+      ['cur-for-formacao','Actividades de formação'],
+      ['cur-for-invest','Actividades de investigação'],
+      ['cur-for-pub','Trabalhos publicados'],
+      ['cur-for-grupos','Grupos de trabalho'],
+      ['cur-for-congressos','Congressos / jornadas'],
+      ['cur-for-palestras','Palestras / comunicações'],
+      ['cur-for-outros','Outros projectos']
+    ]},
+    { id:'6', titulo:'Reflexão crítica e análise global', fields:[
+      ['cur-ref-critica','Comentário e análise crítica'],
+      ['cur-ref-global','Análise global'],
+      ['cur-ref-final','Comentário final']
+    ]}
+  ];
+
+  function curLoad(){
+    try { return JSON.parse(lsGet(KEY_CUR, '{}')) || {}; } catch(e){ return {}; }
+  }
+  function curSet(o){ lsSet(KEY_CUR, JSON.stringify(o)); }
+
+  function curStatus(msg, ok){
+    var el = document.getElementById('cur-status');
+    if (!el) return;
+    el.textContent = msg || '';
+    el.classList.toggle('saved', !!ok);
+  }
+
+  var _curSaveDeb = _debounce(function(){
+    var o = curLoad();
+    CUR_SECTIONS.forEach(function(sec){
+      sec.fields.forEach(function(f){
+        var el = document.getElementById(f[0]);
+        if (el) o[f[0]] = el.value;
+      });
+    });
+    curSet(o);
+    curStatus('✓ guardado ' + (new Date()).toLocaleTimeString().slice(0,5), true);
+  }, 350);
+
+  function dxCurRestore(){
+    var o = curLoad();
+    CUR_SECTIONS.forEach(function(sec){
+      sec.fields.forEach(function(f){
+        var el = document.getElementById(f[0]);
+        if (el && o[f[0]] != null) el.value = o[f[0]];
+      });
+    });
+  }
+
+  function curBindAutoSave(){
+    CUR_SECTIONS.forEach(function(sec){
+      sec.fields.forEach(function(f){
+        var el = document.getElementById(f[0]);
+        if (el && !el._dxCurBound){
+          el.addEventListener('input', function(){ curStatus('a guardar…', false); _curSaveDeb(); });
+          el._dxCurBound = true;
+        }
+      });
+    });
+  }
+
+  window.dxCurExport = function(){
+    var o = curLoad();
+    var ini = lsGet(KEY_PROF_INIT, ''); var year = lsGet(KEY_PROF_YEAR, ''); var usf = lsGet(KEY_PROF_USF, '');
+    var nome = (o['cur-id-nome'] || '').trim();
+    var lines = [];
+    var sep = ''.padEnd(70, '═');
+    var sub = ''.padEnd(70, '─');
+    lines.push(sep);
+    lines.push('CURRÍCULO FINAL DE INTERNATO — Medicina Geral e Familiar');
+    if (nome) lines.push(nome);
+    lines.push('Exportado: ' + (new Date()).toISOString().slice(0,16).replace('T',' '));
+    lines.push(sep);
+    lines.push('');
+
+    CUR_SECTIONS.forEach(function(sec){
+      lines.push(sep);
+      lines.push(sec.id + '. ' + sec.titulo.toUpperCase());
+      lines.push(sep);
+      lines.push('');
+      sec.fields.forEach(function(f){
+        var v = (o[f[0]] || '').trim();
+        if (!v) return;
+        lines.push(f[1] + ':');
+        lines.push(sub);
+        lines.push(v);
+        lines.push('');
+      });
+    });
+
+    lines.push(sep);
+    lines.push('FIM DO CURRÍCULO');
+    lines.push(sep);
+
+    var txt = lines.join('\n');
+    if (txt.indexOf('\n') < 0 || txt.length < 250){
+      alert('Currículo praticamente vazio. Preencha pelo menos algumas secções antes de exportar.');
+      return;
+    }
+    var blob = new Blob([txt], { type: 'text/plain;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    var safeName = (nome || ini || 'mgf').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'');
+    a.download = 'curriculo_' + safeName + '_' + (new Date()).toISOString().slice(0,10) + '.txt';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  };
+
+  function dxCurInit(){
+    dxCurRestore();
+    curBindAutoSave();
+    curStatus('', false);
+  }
+
   // ── Init ────────────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', function(){
     dxIntProfileLoad();
@@ -11976,6 +12346,7 @@ function relAdd(el, kind){
     dxLogInit();
     dxDiaInit();
     dxJCInit();
+    dxCurInit();
     patchGenerateForLogbook();
     patchGenerateForAlerts();
     applyDeleteConfirms();
