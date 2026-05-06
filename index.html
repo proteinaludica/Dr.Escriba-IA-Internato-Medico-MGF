@@ -630,6 +630,72 @@ body.dark .le-chip{background:#2a2010;border-color:#5a4020;color:#dcc480}
 body.dark .le-chip:hover{background:#bda060;color:#1a1916;border-color:#bda060}
 body.dark .lb-toast{background:#0f1117;border:1px solid #2a2d40}
 body.dark .lb-toast.warn{background:#3a2a10;border-color:#5a4020}
+
+/* ── Avaliações Fase 3 ─────────────────────────────────────────────── */
+.av-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:end;margin-bottom:14px}
+@media (max-width:680px){.av-grid{grid-template-columns:1fr}}
+.av-grid .av-fld{margin-bottom:0}
+.av-fld label{display:block;font-size:12px;font-weight:500;color:#1a1916;margin-bottom:6px}
+.av-fld label .opt{font-weight:400;color:var(--muted);font-size:11px}
+.av-fld label .pesoEl{float:right;font-family:'SF Mono',Consolas,monospace;font-size:10px;text-transform:uppercase;color:#7a5c20;background:#fbf3da;border:1px solid #e5cf8c;padding:1px 6px;border-radius:3px;font-weight:600}
+.av-fld input[type="number"],.av-fld input[type="date"],.av-fld select{width:100%;padding:8px 10px;background:#faf9f7;border:1px solid var(--bd);border-radius:7px;font-family:inherit;font-size:13px;color:#1a1916;outline:none;box-sizing:border-box}
+.av-fld input:focus,.av-fld select:focus{border-color:#bda060;background:#fff}
+.av-score{display:flex;align-items:center;gap:14px;padding:12px 14px;background:#fbf3da;border:1px solid #e5cf8c;border-radius:8px;margin-top:12px}
+.av-score .av-s-l{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#7a5c20;font-weight:600}
+.av-score .av-s-v{font-family:'SF Mono',Consolas,monospace;font-size:24px;font-weight:600;color:#7a5c20;line-height:1}
+.av-score .av-s-x{font-size:11px;color:var(--muted)}
+.av-score .av-s-formula{margin-left:auto;font-family:'SF Mono',Consolas,monospace;font-size:10px;color:var(--muted);line-height:1.4;text-align:right}
+.av-row{display:grid;grid-template-columns:80px 1fr 110px 110px auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--bd);font-size:13px}
+.av-row:last-child{border-bottom:0}
+.av-row .ar-y{font-family:'SF Mono',Consolas,monospace;font-size:11px;color:var(--muted)}
+.av-row .ar-l{color:#1a1916;line-height:1.4}
+.av-row .ar-l b{font-weight:600}
+.av-row .ar-l .sub{font-size:11px;color:var(--muted);display:block}
+.av-row input[type="date"],.av-row input[type="number"]{padding:5px 8px;border:1px solid var(--bd);border-radius:5px;font-size:12px;font-family:inherit;background:#faf9f7;color:#1a1916;outline:none;width:100%;box-sizing:border-box}
+.av-row input:focus{border-color:#bda060;background:#fff}
+.av-row .ar-st{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;text-align:right;padding:3px 8px;border-radius:4px;white-space:nowrap}
+.av-row .ar-st.ok{background:#e0f0e0;color:#2a6020;border:1px solid #a0d0a0}
+.av-row .ar-st.no{background:#f4dfdf;color:#a02020;border:1px solid #d0a0a0}
+.av-row .ar-st.--{background:#f4f0e0;color:var(--muted);border:1px solid var(--bd)}
+@media (max-width:680px){.av-row{grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto}.av-row .ar-y{grid-column:1}.av-row .ar-st{grid-column:2;text-align:right}.av-row .ar-l{grid-column:1/-1}.av-row input[type="date"]{grid-column:1}.av-row input[type="number"]{grid-column:2}}
+.av-hist-bar{display:flex;gap:6px;align-items:center;font-weight:400;text-transform:none;letter-spacing:normal;margin-left:auto}
+.av-hist-bar select,.av-hist-bar input{font-size:11px;padding:4px 8px;border-radius:4px;border:1px solid var(--bd);background:#fff;color:#1a1916;font-family:inherit;outline:none}
+.av-hist-bar button{font-size:11px;padding:4px 10px;border-radius:4px;border:1px solid #bda060;background:#fbf3da;color:#7a5c20;cursor:pointer;font-family:inherit}
+.av-hist-bar button:hover{background:#f5e5b8}
+.av-hist-row{display:grid;grid-template-columns:90px 100px 70px 1fr auto;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--bd);font-size:13px}
+.av-hist-row:last-child{border-bottom:0}
+.av-hist-row .ah-d{font-family:'SF Mono',Consolas,monospace;font-size:11px;color:var(--muted)}
+.av-hist-row .ah-i{font-size:11px;text-transform:uppercase;letter-spacing:.05em;background:#fbf3da;color:#7a5c20;padding:2px 7px;border-radius:4px;font-weight:600;text-align:center}
+.av-hist-row .ah-s{font-family:'SF Mono',Consolas,monospace;font-size:14px;color:#7a5c20;font-weight:600;text-align:center}
+.av-hist-row .ah-n{color:#1a1916;line-height:1.4;font-size:12px}
+.av-hist-row .ah-x{background:none;border:0;color:var(--muted);cursor:pointer;font-size:16px;line-height:1;padding:4px 6px;border-radius:4px;font-family:inherit}
+.av-hist-row .ah-x:hover{background:#f4dfdf;color:#a02020}
+@media (max-width:680px){.av-hist-row{grid-template-columns:1fr auto;grid-template-rows:auto auto}.av-hist-row .ah-d{grid-row:1;grid-column:1}.av-hist-row .ah-x{grid-row:1;grid-column:2}.av-hist-row .ah-i{grid-row:2;grid-column:1;justify-self:start}.av-hist-row .ah-s{grid-row:2;grid-column:2;text-align:right}.av-hist-row .ah-n{grid-column:1/-1}}
+.av-final-out{padding:14px 18px;background:linear-gradient(135deg,#fbf3da 0%,#f5e5b8 100%);border:1px solid #bda060;border-radius:10px;margin-top:14px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.av-final-out .af-l{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#7a5c20;font-weight:600}
+.av-final-out .af-v{font-family:'SF Mono',Consolas,monospace;font-size:32px;font-weight:600;color:#7a5c20;line-height:1}
+.av-final-out .af-x{font-size:11px;color:#7a5c20;line-height:1.4;flex:1;font-family:'SF Mono',Consolas,monospace}
+.av-final-out.invalid .af-v{color:#a02020}
+body.dark .av-fld label{color:#dde1f0}
+body.dark .av-fld label .pesoEl{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .av-fld input,body.dark .av-fld select{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .av-fld input:focus,body.dark .av-fld select:focus{background:#1a1d2e;border-color:#bda060}
+body.dark .av-score{background:#2a2010;border-color:#5a4020}
+body.dark .av-score .av-s-l,body.dark .av-score .av-s-v{color:#dcc480}
+body.dark .av-row .ar-l{color:#dde1f0}
+body.dark .av-row{border-color:#2a2d40}
+body.dark .av-row input{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .av-row input:focus{background:#1a1d2e;border-color:#bda060}
+body.dark .av-row .ar-st.ok{background:#10301a;color:#80c080;border-color:#2a6020}
+body.dark .av-row .ar-st.no{background:#301010;color:#d08080;border-color:#602020}
+body.dark .av-row .ar-st.--{background:#1a1d2e;color:#7a80a0;border-color:#2a2d40}
+body.dark .av-hist-bar select,body.dark .av-hist-bar input{background:#0f1117;border-color:#3a3d50;color:#dde1f0}
+body.dark .av-hist-bar button{background:#2a2010;border-color:#5a4020;color:#dcc480}
+body.dark .av-hist-row{border-color:#2a2d40}
+body.dark .av-hist-row .ah-i,body.dark .av-hist-row .ah-s{background:#2a2010;color:#dcc480}
+body.dark .av-hist-row .ah-n{color:#dde1f0}
+body.dark .av-final-out{background:linear-gradient(135deg,#2a2010 0%,#3a2a10 100%);border-color:#bda060}
+body.dark .av-final-out .af-l,body.dark .av-final-out .af-v,body.dark .av-final-out .af-x{color:#dcc480}
 </style>
 </head>
 <body>
@@ -3382,10 +3448,121 @@ body.dark .lb-toast.warn{background:#3a2a10;border-color:#5a4020}
       </div>
     </div>
 
-    <div class="int-stub" style="margin-top:14px">
-      <h3>Histórico e relatório periódico</h3>
-      <p>Lista das avaliações guardadas, filtros por instrumento e período, exportação para reunião com tutor / orientador formativo.</p>
-      <span class="int-fase">Fase 2 — em construção</span>
+    <div class="om-card" style="margin-top:14px">
+      <div class="om-h">Histórico de avaliações formativas
+        <span class="av-hist-bar">
+          <select id="av-fh-instr" onchange="dxOMHistRender()" aria-label="Filtrar por instrumento">
+            <option value="">Todos os instrumentos</option>
+            <option value="minicex">Mini-CEX</option>
+            <option value="dops">DOPS</option>
+            <option value="cbd">CbD</option>
+            <option value="msf">MSF</option>
+          </select>
+          <select id="av-fh-year" onchange="dxOMHistRender()" aria-label="Filtrar por ano">
+            <option value="">Todos os anos</option>
+            <option value="1">Ano 1</option>
+            <option value="2">Ano 2</option>
+            <option value="3">Ano 3</option>
+            <option value="4">Ano 4</option>
+          </select>
+          <button type="button" onclick="dxOMHistExport()" title="Exportar para ficheiro de texto">↓ TXT</button>
+        </span>
+      </div>
+      <div id="av-hist-wrap"></div>
+    </div>
+
+    <!-- Avaliação anual de desempenho (Caderneta IM ARS Norte 2024) -->
+    <div class="om-card" style="margin-top:14px">
+      <div class="om-h">Avaliação anual de desempenho
+        <span style="margin-left:auto;font-weight:400;text-transform:none;letter-spacing:normal;font-size:11px;color:var(--muted)">4 parâmetros ponderados · escala 0-20</span>
+      </div>
+      <div class="av-grid">
+        <div class="av-fld">
+          <label>Ano de internato <span class="opt">obrigatório</span></label>
+          <select id="av-an-year" onchange="dxAnualScoreCalc()" aria-label="Ano de internato">
+            <option value="">—</option>
+            <option value="1">Ano 1 (MGF1)</option>
+            <option value="2">Ano 2 (MGF2 — 1.º)</option>
+            <option value="3">Ano 3 (MGF2 — 2.º)</option>
+            <option value="4">Ano 4 (MGF3)</option>
+          </select>
+        </div>
+        <div class="av-fld">
+          <label>Data da avaliação</label>
+          <input type="date" id="av-an-date" aria-label="Data da avaliação anual">
+        </div>
+        <div class="av-fld">
+          <label>Capacidade de execução técnica <span class="pesoEl">peso ×4</span></label>
+          <input type="number" id="av-an-p1" min="0" max="20" step="0.1" oninput="dxAnualScoreCalc()" aria-label="Capacidade de execução técnica (0-20)">
+        </div>
+        <div class="av-fld">
+          <label>Interesse pela valorização profissional <span class="pesoEl">peso ×2</span></label>
+          <input type="number" id="av-an-p2" min="0" max="20" step="0.1" oninput="dxAnualScoreCalc()" aria-label="Interesse pela valorização profissional (0-20)">
+        </div>
+        <div class="av-fld">
+          <label>Responsabilidade profissional <span class="pesoEl">peso ×3</span></label>
+          <input type="number" id="av-an-p3" min="0" max="20" step="0.1" oninput="dxAnualScoreCalc()" aria-label="Responsabilidade profissional (0-20)">
+        </div>
+        <div class="av-fld">
+          <label>Relações humanas no trabalho <span class="pesoEl">peso ×1</span></label>
+          <input type="number" id="av-an-p4" min="0" max="20" step="0.1" oninput="dxAnualScoreCalc()" aria-label="Relações humanas no trabalho (0-20)">
+        </div>
+      </div>
+      <div class="om-fld">
+        <label>Notas <span class="opt">opcional — pontos fortes, áreas a desenvolver</span></label>
+        <textarea id="av-an-notes" rows="2" placeholder="ex.: bom desempenho geral; aprofundar gestão de polimedicação no idoso." oninput="dxAnualScoreCalc()"></textarea>
+      </div>
+      <div class="av-score" role="status" aria-live="polite">
+        <span class="av-s-l">Pontuação ponderada</span>
+        <span class="av-s-v" id="av-an-score">—</span>
+        <span class="av-s-x">/ 20</span>
+        <span class="av-s-formula">(P1×4 + P2×2 + P3×3 + P4×1) / 10</span>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+        <button class="btn-c" type="button" onclick="dxAnualSave()" style="background:#bda060;color:#fff;border-color:#bda060;padding:7px 16px;font-weight:500">Guardar avaliação anual</button>
+      </div>
+      <div id="av-an-hist-wrap" style="margin-top:14px"></div>
+    </div>
+
+    <!-- Avaliação de conhecimentos -->
+    <div class="om-card" style="margin-top:14px">
+      <div class="om-h">Avaliação de conhecimentos
+        <span style="margin-left:auto;font-weight:400;text-transform:none;letter-spacing:normal;font-size:11px;color:var(--muted)">aprovação ≥ 10 / 20</span>
+      </div>
+      <div id="av-prova-wrap"></div>
+    </div>
+
+    <!-- Calculadora da avaliação final -->
+    <div class="om-card" style="margin-top:14px">
+      <div class="om-h">Calculadora da avaliação final
+        <span style="margin-left:auto;font-weight:400;text-transform:none;letter-spacing:normal;font-size:11px;color:var(--muted)">Portaria 125/2019 · 3 provas</span>
+      </div>
+      <div class="av-grid">
+        <div class="av-fld">
+          <label>Discussão curricular — defesa <span class="opt">peso 60%</span></label>
+          <input type="number" id="av-f-disc" min="0" max="20" step="0.01" oninput="dxFinalCalc()">
+        </div>
+        <div class="av-fld">
+          <label>Média dos estágios <span class="opt">peso 40%</span></label>
+          <input type="number" id="av-f-est" min="0" max="20" step="0.01" oninput="dxFinalCalc()">
+        </div>
+        <div class="av-fld">
+          <label>Prova prática <span class="opt">3 casos clínicos</span></label>
+          <input type="number" id="av-f-prat" min="0" max="20" step="0.01" oninput="dxFinalCalc()">
+        </div>
+        <div class="av-fld">
+          <label>Prova teórica <span class="opt">nacional escrita</span></label>
+          <input type="number" id="av-f-teor" min="0" max="20" step="0.01" oninput="dxFinalCalc()">
+        </div>
+      </div>
+      <div class="av-final-out" id="av-f-out">
+        <span class="af-l">Classificação final</span>
+        <span class="af-v" id="av-f-val">—</span>
+        <span class="af-x" id="av-f-bd">((discussão × 0,6 + estágios × 0,4) + prática + teórica) / 3</span>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+        <button class="btn-c" type="button" onclick="dxFinalSave()" style="background:#bda060;color:#fff;border-color:#bda060;padding:7px 16px;font-weight:500">Guardar snapshot final</button>
+      </div>
     </div>
   </div>
 
@@ -9056,6 +9233,9 @@ function relAdd(el, kind){
   var KEY_AVAL_SCORE = 'dx_int_aval_current_score';
   var KEY_AVAL_NOTES = 'dx_int_aval_current_notes';
   var KEY_AVAL_LIST  = 'dx_int_avaliacoes';
+  var KEY_ANUAL_LIST = 'dx_int_aval_anual';      // [{id, ts, year, date, p1, p2, p3, p4, score, notes}]
+  var KEY_PROVA_LIST = 'dx_int_aval_provas';     // {1:{date,nota}, 2:{...}, 3:{...}, 4:{...}}
+  var KEY_FINAL_SNAP = 'dx_int_aval_final';      // {ts, disc, est, prat, teor, val}
 
   function lsGet(k, dflt){ try { var v = localStorage.getItem(k); return v == null ? dflt : v; } catch(e){ return dflt; } }
   function lsSet(k, v){ try { localStorage.setItem(k, v); } catch(e){} }
@@ -9167,13 +9347,14 @@ function relAdd(el, kind){
     var list;
     try { list = JSON.parse(lsGet(KEY_AVAL_LIST, '[]')) || []; } catch(e){ list = []; }
     list.unshift({
+      id: 'a' + Date.now() + Math.floor(Math.random()*1000),
       ts: Date.now(),
       instr: instr,
       score: score,
       notes: notes,
       year: lsGet(KEY_PROF_YEAR, '')
     });
-    if (list.length > 200) list = list.slice(0, 200);
+    if (list.length > 500) list = list.slice(0, 500);
     lsSet(KEY_AVAL_LIST, JSON.stringify(list));
     lsSet(KEY_AVAL_INSTR, '');
     lsSet(KEY_AVAL_SCORE, '');
@@ -9185,8 +9366,274 @@ function relAdd(el, kind){
     var ne = document.getElementById('int-aval-notes');
     if (ne) ne.value = '';
     dxIntAvalCount();
-    alert('Avaliação guardada (' + list.length + ' no total).\nHistórico filtrável e exportação chegam na Fase 2.');
+    if (typeof window.dxOMHistRender === 'function') window.dxOMHistRender();
   };
+
+  // ══════════════════════════════════════════════════════════════════════
+  // FASE 3 — Avaliações
+  // Caderneta IM ARS Norte 2024 + Portaria 125/2019:
+  //   • Avaliação contínua/formativa (Mini-CEX/DOPS/CbD/MSF) — já existe
+  //   • Avaliação anual de desempenho — 4 parâmetros ponderados
+  //     P1 execução técnica × 4 + P2 valorização × 2 + P3 responsabilidade
+  //     × 3 + P4 relações humanas × 1 = score / 10 (escala 0-20)
+  //   • Avaliação de conhecimentos — uma prova por ano (escrita/oral)
+  //   • Avaliação final — 3 provas combinadas pela fórmula:
+  //     ((discussão × 0,6 + estágios × 0,4) + prática + teórica) / 3
+  // ══════════════════════════════════════════════════════════════════════
+
+  var INSTR_LABELS = { minicex:'Mini-CEX', dops:'DOPS', cbd:'CbD', msf:'MSF' };
+  var SCORE_LABELS = { '1':'muito abaixo','2':'abaixo','3':'limiar','4':'esperado','5':'acima','6':'excelente' };
+
+  function avFmtDate(ts){
+    if (!ts) return '';
+    var d = new Date(ts);
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+
+  // ── Histórico das avaliações formativas ─────────────────────────────
+  window.dxOMHistRender = function(){
+    var wrap = document.getElementById('av-hist-wrap');
+    if (!wrap) return;
+    var list;
+    try { list = JSON.parse(lsGet(KEY_AVAL_LIST, '[]')) || []; } catch(e){ list = []; }
+    var fInstr = (document.getElementById('av-fh-instr')||{}).value || '';
+    var fYear  = (document.getElementById('av-fh-year') ||{}).value || '';
+    if (fInstr) list = list.filter(function(e){ return e.instr === fInstr; });
+    if (fYear)  list = list.filter(function(e){ return String(e.year) === fYear; });
+    if (!list.length){
+      wrap.innerHTML = '<div class="lb-empty">' + (fInstr||fYear ? 'Sem avaliações com estes filtros.' : 'Sem avaliações guardadas. Use o cartão acima para registar a primeira.') + '</div>';
+      return;
+    }
+    var max = 60;
+    var html = list.slice(0, max).map(function(e){
+      var d = avFmtDate(e.ts);
+      var iLabel = INSTR_LABELS[e.instr] || e.instr;
+      var sLabel = SCORE_LABELS[e.score] || '';
+      var yearStr = e.year ? ('Ano ' + e.year + (sLabel ? ' · ' : '')) : '';
+      var notes = e.notes ? lbEscHtml(e.notes) : '<span style="color:var(--muted);font-style:italic">sem notas</span>';
+      return '<div class="av-hist-row">'
+           + '<span class="ah-d">' + lbEscHtml(d) + '</span>'
+           + '<span class="ah-i">' + lbEscHtml(iLabel) + '</span>'
+           + '<span class="ah-s">' + lbEscHtml(e.score) + '/6</span>'
+           + '<span class="ah-n"><i style="color:var(--muted);font-size:11px">' + yearStr + sLabel + '</i><br>' + notes + '</span>'
+           + '<button type="button" class="ah-x" aria-label="Remover" onclick="dxOMHistDelete(\'' + lbEscHtml(e.id || ('ts'+e.ts)) + '\')">×</button>'
+           + '</div>';
+    }).join('');
+    if (list.length > max) html += '<div class="lb-empty">… mais ' + (list.length-max) + ' não mostrados</div>';
+    wrap.innerHTML = html;
+  };
+
+  window.dxOMHistDelete = function(id){
+    var list;
+    try { list = JSON.parse(lsGet(KEY_AVAL_LIST, '[]')) || []; } catch(e){ list = []; }
+    list = list.filter(function(e){ return (e.id || ('ts'+e.ts)) !== id; });
+    lsSet(KEY_AVAL_LIST, JSON.stringify(list));
+    dxIntAvalCount();
+    window.dxOMHistRender();
+  };
+
+  window.dxOMHistExport = function(){
+    var list;
+    try { list = JSON.parse(lsGet(KEY_AVAL_LIST, '[]')) || []; } catch(e){ list = []; }
+    if (!list.length){ alert('Sem avaliações para exportar.'); return; }
+    var ini = lsGet(KEY_PROF_INIT, ''); var year = lsGet(KEY_PROF_YEAR, ''); var usf = lsGet(KEY_PROF_USF, '');
+    var lines = [
+      'Avaliações formativas — Internato MGF',
+      'Interno: ' + (ini || '—') + (year ? ' · Ano ' + year : '') + (usf ? ' · ' + usf : ''),
+      'Exportado: ' + (new Date()).toISOString().slice(0,16).replace('T',' '),
+      'Total: ' + list.length + ' avaliações',
+      ''.padEnd(60,'─'),
+    ];
+    list.forEach(function(e){
+      var iLabel = INSTR_LABELS[e.instr] || e.instr;
+      var sLabel = SCORE_LABELS[e.score] || '';
+      lines.push(avFmtDate(e.ts) + ' · ' + iLabel + ' · ' + e.score + '/6 (' + sLabel + ')' + (e.year ? ' · Ano ' + e.year : ''));
+      if (e.notes) lines.push('  ' + e.notes.replace(/\n/g,'\n  '));
+      lines.push('');
+    });
+    var txt = lines.join('\n');
+    var blob = new Blob([txt], {type:'text/plain;charset=utf-8'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'avaliacoes_mgf_' + (new Date()).toISOString().slice(0,10) + '.txt';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  };
+
+  // ── Avaliação anual de desempenho ────────────────────────────────────
+  function avAnualScore(p1, p2, p3, p4){
+    if (p1 === '' || p2 === '' || p3 === '' || p4 === '') return null;
+    var a = parseFloat(p1), b = parseFloat(p2), c = parseFloat(p3), d = parseFloat(p4);
+    if (isNaN(a)||isNaN(b)||isNaN(c)||isNaN(d)) return null;
+    return (a*4 + b*2 + c*3 + d*1) / 10;
+  }
+
+  window.dxAnualScoreCalc = function(){
+    var p1 = (document.getElementById('av-an-p1')||{}).value;
+    var p2 = (document.getElementById('av-an-p2')||{}).value;
+    var p3 = (document.getElementById('av-an-p3')||{}).value;
+    var p4 = (document.getElementById('av-an-p4')||{}).value;
+    var s = avAnualScore(p1, p2, p3, p4);
+    var el = document.getElementById('av-an-score');
+    if (el) el.textContent = s == null ? '—' : (Math.round(s*100)/100).toFixed(2);
+  };
+
+  window.dxAnualSave = function(){
+    var year = (document.getElementById('av-an-year')||{}).value;
+    var date = (document.getElementById('av-an-date')||{}).value;
+    var p1 = (document.getElementById('av-an-p1')||{}).value;
+    var p2 = (document.getElementById('av-an-p2')||{}).value;
+    var p3 = (document.getElementById('av-an-p3')||{}).value;
+    var p4 = (document.getElementById('av-an-p4')||{}).value;
+    var notes = ((document.getElementById('av-an-notes')||{}).value || '').trim();
+    if (!year){ alert('Indique o ano de internato.'); return; }
+    var s = avAnualScore(p1, p2, p3, p4);
+    if (s == null){ alert('Preencha os 4 parâmetros (escala 0-20).'); return; }
+    if (!date) date = avFmtDate(Date.now());
+    var list;
+    try { list = JSON.parse(lsGet(KEY_ANUAL_LIST, '[]')) || []; } catch(e){ list = []; }
+    list.unshift({
+      id: 'an' + Date.now() + Math.floor(Math.random()*1000),
+      ts: Date.now(), year: year, date: date,
+      p1: parseFloat(p1), p2: parseFloat(p2), p3: parseFloat(p3), p4: parseFloat(p4),
+      score: Math.round(s*100)/100,
+      notes: notes
+    });
+    if (list.length > 50) list = list.slice(0, 50);
+    lsSet(KEY_ANUAL_LIST, JSON.stringify(list));
+    ['av-an-year','av-an-date','av-an-p1','av-an-p2','av-an-p3','av-an-p4','av-an-notes'].forEach(function(id){
+      var el = document.getElementById(id); if (el) el.value = '';
+    });
+    window.dxAnualScoreCalc();
+    window.dxAnualHistRender();
+  };
+
+  window.dxAnualDelete = function(id){
+    var list;
+    try { list = JSON.parse(lsGet(KEY_ANUAL_LIST, '[]')) || []; } catch(e){ list = []; }
+    list = list.filter(function(e){ return e.id !== id; });
+    lsSet(KEY_ANUAL_LIST, JSON.stringify(list));
+    window.dxAnualHistRender();
+  };
+
+  window.dxAnualHistRender = function(){
+    var wrap = document.getElementById('av-an-hist-wrap');
+    if (!wrap) return;
+    var list;
+    try { list = JSON.parse(lsGet(KEY_ANUAL_LIST, '[]')) || []; } catch(e){ list = []; }
+    if (!list.length){ wrap.innerHTML = ''; return; }
+    var rows = list.map(function(e){
+      var aprov = e.score >= 10;
+      return '<div class="av-row">'
+           + '<span class="ar-y">' + lbEscHtml(e.date) + '</span>'
+           + '<span class="ar-l"><b>Ano ' + lbEscHtml(e.year) + '</b>'
+           + '<span class="sub">P1: ' + e.p1 + ' · P2: ' + e.p2 + ' · P3: ' + e.p3 + ' · P4: ' + e.p4 + (e.notes ? ' — ' + lbEscHtml(e.notes.slice(0,80)) + (e.notes.length>80?'…':'') : '') + '</span></span>'
+           + '<span class="ah-s" style="font-size:18px">' + e.score.toFixed(2) + '</span>'
+           + '<span class="ar-st ' + (aprov?'ok':'no') + '">' + (aprov?'Aprovado':'Reprovado') + '</span>'
+           + '<button type="button" class="ah-x" aria-label="Remover" onclick="dxAnualDelete(\'' + lbEscHtml(e.id) + '\')">×</button>'
+           + '</div>';
+    }).join('');
+    wrap.innerHTML = '<div style="font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#7a5c20;font-weight:600;margin-bottom:6px;padding-bottom:4px;border-bottom:1px dashed var(--bd)">Histórico de avaliações anuais</div>' + rows;
+  };
+
+  // ── Provas de conhecimentos (1.º, 2.º, 3.º, 4.º ano) ─────────────────
+  var AV_PROVAS = [
+    { ano:1, label:'1.º ano — final do MGF1', tipo:'prova escrita nacional · ≤ 120 min' },
+    { ano:2, label:'2.º ano — após 1.º ano de MGF2', tipo:'prova oral regional · ≤ 60 min' },
+    { ano:3, label:'3.º ano — final do 2.º ano de MGF2', tipo:'prova escrita nacional · ≤ 120 min' },
+    { ano:4, label:'4.º ano — final do MGF3', tipo:'prova oral regional · ≤ 60 min' },
+  ];
+
+  function avProvas(){
+    try { return JSON.parse(lsGet(KEY_PROVA_LIST, '{}')) || {}; } catch(e){ return {}; }
+  }
+  function avSetProvas(o){ lsSet(KEY_PROVA_LIST, JSON.stringify(o)); }
+
+  window.dxProvaSet = function(ano, campo, valor){
+    var o = avProvas();
+    o[ano] = o[ano] || {};
+    o[ano][campo] = valor;
+    avSetProvas(o);
+    var st = document.getElementById('av-prova-st-' + ano);
+    if (st){
+      var nota = parseFloat(o[ano].nota);
+      if (isNaN(nota) || !o[ano].nota){ st.className = 'ar-st --'; st.textContent = 'Por fazer'; }
+      else if (nota >= 10){ st.className = 'ar-st ok'; st.textContent = 'Aprovado'; }
+      else { st.className = 'ar-st no'; st.textContent = 'Reprovado'; }
+    }
+  };
+
+  window.dxProvaRender = function(){
+    var wrap = document.getElementById('av-prova-wrap');
+    if (!wrap) return;
+    var o = avProvas();
+    var html = AV_PROVAS.map(function(p){
+      var rec = o[p.ano] || {};
+      var nota = parseFloat(rec.nota);
+      var stClass = '--', stTxt = 'Por fazer';
+      if (!isNaN(nota) && rec.nota !== '' && rec.nota != null){
+        if (nota >= 10){ stClass = 'ok'; stTxt = 'Aprovado'; }
+        else { stClass = 'no'; stTxt = 'Reprovado'; }
+      }
+      return '<div class="av-row">'
+           + '<span class="ar-y">Ano ' + p.ano + '</span>'
+           + '<span class="ar-l"><b>' + lbEscHtml(p.label) + '</b><span class="sub">' + lbEscHtml(p.tipo) + '</span></span>'
+           + '<input type="date" value="' + lbEscHtml(rec.date || '') + '" onchange="dxProvaSet(' + p.ano + ',\'date\', this.value)" aria-label="Data da prova ano ' + p.ano + '">'
+           + '<input type="number" min="0" max="20" step="0.01" value="' + lbEscHtml(rec.nota || '') + '" placeholder="—" oninput="dxProvaSet(' + p.ano + ',\'nota\', this.value)" aria-label="Nota da prova ano ' + p.ano + ' (0-20)">'
+           + '<span class="ar-st ' + stClass + '" id="av-prova-st-' + p.ano + '">' + stTxt + '</span>'
+           + '</div>';
+    }).join('');
+    wrap.innerHTML = html;
+  };
+
+  // ── Calculadora da avaliação final ───────────────────────────────────
+  function avFinalCompute(disc, est, prat, teor){
+    var d = parseFloat(disc), e = parseFloat(est), p = parseFloat(prat), t = parseFloat(teor);
+    if (isNaN(d)||isNaN(e)||isNaN(p)||isNaN(t)) return null;
+    var p1 = d*0.6 + e*0.4;
+    return (p1 + p + t) / 3;
+  }
+
+  window.dxFinalCalc = function(){
+    var d = (document.getElementById('av-f-disc')||{}).value;
+    var e = (document.getElementById('av-f-est') ||{}).value;
+    var p = (document.getElementById('av-f-prat')||{}).value;
+    var t = (document.getElementById('av-f-teor')||{}).value;
+    var v = avFinalCompute(d, e, p, t);
+    var elV = document.getElementById('av-f-val');
+    var elB = document.getElementById('av-f-bd');
+    var box = document.getElementById('av-f-out');
+    if (elV) elV.textContent = (v == null) ? '—' : v.toFixed(2);
+    if (elB) elB.textContent = (v == null)
+        ? '((discussão × 0,6 + estágios × 0,4) + prática + teórica) / 3'
+        : '= ((' + d + ' × 0,6 + ' + e + ' × 0,4) + ' + p + ' + ' + t + ') / 3';
+    if (box) box.classList.toggle('invalid', v != null && v < 10);
+  };
+
+  window.dxFinalSave = function(){
+    var d = (document.getElementById('av-f-disc')||{}).value;
+    var e = (document.getElementById('av-f-est') ||{}).value;
+    var p = (document.getElementById('av-f-prat')||{}).value;
+    var t = (document.getElementById('av-f-teor')||{}).value;
+    var v = avFinalCompute(d, e, p, t);
+    if (v == null){ alert('Preencha as 4 notas para guardar o snapshot.'); return; }
+    var snap = { ts: Date.now(), disc: parseFloat(d), est: parseFloat(e), prat: parseFloat(p), teor: parseFloat(t), val: Math.round(v*100)/100 };
+    lsSet(KEY_FINAL_SNAP, JSON.stringify(snap));
+    alert('Snapshot guardado: ' + snap.val.toFixed(2) + ' / 20');
+  };
+
+  function dxFinalRestore(){
+    var snap;
+    try { snap = JSON.parse(lsGet(KEY_FINAL_SNAP, 'null')); } catch(e){ snap = null; }
+    if (!snap) return;
+    var setIf = function(id, v){ var el = document.getElementById(id); if (el && el.value === '') el.value = v; };
+    setIf('av-f-disc', snap.disc);
+    setIf('av-f-est',  snap.est);
+    setIf('av-f-prat', snap.prat);
+    setIf('av-f-teor', snap.teor);
+    window.dxFinalCalc();
+  }
+
 
   // ══════════════════════════════════════════════════════════════════════
   // LOGBOOK MGF — Fase 2
@@ -9867,6 +10314,10 @@ function relAdd(el, kind){
     dxIntProfileLoad();
     dxOMRestore();
     dxIntAvalCount();
+    window.dxOMHistRender();
+    window.dxAnualHistRender();
+    window.dxProvaRender();
+    dxFinalRestore();
     dxLogInit();
     patchGenerateForLogbook();
     window.dxModeSet(lsGet(KEY_MODE, 'soap'));
