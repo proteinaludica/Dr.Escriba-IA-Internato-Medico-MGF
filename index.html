@@ -590,6 +590,26 @@ body.dark .lb-entry .le-d{color:#7a80a0}
 body.dark .lb-entry .le-e{background:#2a2010;color:#dcc480}
 body.dark .lb-entry .le-t{color:#dde1f0}
 body.dark .lb-empty{color:#7a80a0}
+.lb-prog-row.lb-prog-agg{background:rgba(189,160,96,0.08);border-radius:6px;padding-left:8px;padding-right:8px;font-weight:500}
+.lb-prog-row.lb-prog-agg .lp-l{color:#7a5c20}
+body.dark .lb-prog-row.lb-prog-agg{background:rgba(220,196,128,0.08)}
+body.dark .lb-prog-row.lb-prog-agg .lp-l{color:#dcc480}
+.lb-curso-prog{font-size:11px;color:var(--muted);margin-bottom:10px;font-family:'SF Mono',Consolas,monospace;font-weight:600}
+.lb-curso-grp{margin-bottom:14px}
+.lb-curso-grp:last-child{margin-bottom:0}
+.lb-curso-est{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#7a5c20;font-weight:600;margin-bottom:6px;padding-bottom:4px;border-bottom:1px dashed var(--bd)}
+.lb-curso-row{display:grid;grid-template-columns:1fr 140px;gap:10px;align-items:center;padding:5px 0;font-size:13px}
+.lb-curso-row label{display:flex;align-items:center;gap:8px;cursor:pointer;color:#1a1916;line-height:1.4}
+.lb-curso-row input[type="checkbox"]{accent-color:#bda060;width:15px;height:15px;flex-shrink:0;cursor:pointer}
+.lb-curso-row .lb-curso-d{padding:4px 8px;border:1px solid var(--bd);border-radius:5px;font-size:12px;font-family:'SF Mono',Consolas,monospace;background:#faf9f7;color:#1a1916;outline:none;font-family:inherit}
+.lb-curso-row .lb-curso-d:focus{border-color:#bda060;background:#fff}
+.lb-curso-row .lb-curso-d:disabled{opacity:.4;cursor:not-allowed}
+@media (max-width:680px){.lb-curso-row{grid-template-columns:1fr;gap:4px}.lb-curso-row .lb-curso-d{justify-self:start}}
+body.dark .lb-curso-prog{color:#7a80a0}
+body.dark .lb-curso-est{color:#dcc480;border-color:#2a2d40}
+body.dark .lb-curso-row label{color:#dde1f0}
+body.dark .lb-curso-row .lb-curso-d{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .lb-curso-row .lb-curso-d:focus{background:#1a1d2e;border-color:#bda060}
 </style>
 </head>
 <body>
@@ -3284,7 +3304,12 @@ body.dark .lb-empty{color:#7a80a0}
     <div class="om-card">
       <div class="om-h">Progresso do estágio actual</div>
       <div id="lb-prog-wrap"></div>
-      <div class="lb-prog-note">Mínimos quantitativos por acto serão preenchidos a partir da caderneta da ARS aplicável (Portaria 125/2019 fixa estrutura e duração; números mínimos estão nas cadernetas regionais — Norte, LVT, Centro, Alentejo, Algarve). Por agora apenas contagem absoluta.</div>
+      <div class="lb-prog-note">Mínimos confirmados na <b>Caderneta IM ARS Norte 2024</b> (Portaria 125/2019): MGF3 — ≥ 1500 consultas em autonomia, ≥ 200 em saúde infantil/juvenil (≤ 18 a) e ≥ 200 em saúde da mulher; turnos de urgência por área; 1 mês em unidade c/ população diferente em MGF2. Os actos sem mínimo numérico ficam em contagem absoluta — o detalhe por procedimento (ECG, espirometria, citologia, etc.) está na <i>Caderneta de Estágio</i> e <i>Guião de Formação</i>, documentos separados. Horário: 32 h clínicas + 8 h não-clínicas / semana.</div>
+    </div>
+
+    <div class="om-card">
+      <div class="om-h">Cursos curriculares obrigatórios</div>
+      <div id="lb-cursos-wrap"></div>
     </div>
 
     <div class="om-card">
@@ -9167,6 +9192,27 @@ function relAdd(el, kind){
   // preencher os mínimos. Esta tabela é o ÚNICO local a editar.
   // ══════════════════════════════════════════════════════════════════════
 
+  // Estrutura confirmada pela Caderneta IM ARS Norte 2024 + Portaria 125/2019:
+  //   • Urgência/Emergência NÃO é estágio autónomo — está incorporada nos
+  //     estágios principais e complementares (cir/ort em MGF1, MI em MGF2,
+  //     ped em S.Infantil, gin/obs em S.Mulher, psq em S.Mental).
+  //   • Mínimos confirmados:
+  //       - MGF3: ≥1500 consultas totais, ≥200 saúde infantil (≤18a),
+  //               ≥200 saúde da mulher (incl. grávidas)
+  //       - Urgência: 8 turnos×12h em cirurgia, 8 em ortotraumatologia,
+  //         12 em medicina interna, 8 em pediatria, 8 em gin/obs,
+  //         4 em psiquiatria
+  //       - 5 meses de áreas opcionais durante MGF2
+  //       - 1 mês em unidade c/ população diferente da de colocação
+  //   • Os actos sem `min` ficam em contagem absoluta — números detalhados
+  //     por procedimento (ECG, espirometria, citologia, etc.) requerem
+  //     consulta da Caderneta de Estágio + Guião de Formação (documentos
+  //     separados, não incluídos nesta caderneta).
+  //   • Convenção: `unidade:'turnos_12h'` significa cada registo = 1 turno
+  //     de 12 horas (display mostra horas equivalentes); `agregado:true`
+  //     significa que a rubrica é apenas display e a contagem soma vários
+  //     tipos via `agrega:[...]` — não aparece no dropdown do formulário.
+
   var INT_ESTAGIOS = [
     { id:'mgf1', label:'MGF1', meses:11, principal:true, fase:'inicial', actos:[
       { id:'cons_prog',     label:'Consulta programada',                 min:null },
@@ -9178,6 +9224,9 @@ function relAdd(el, kind){
       { id:'idoso',         label:'Saúde do idoso',                      min:null },
       { id:'cronico',       label:'Doente crónico / multimorbilidade',   min:null },
       { id:'peq_cir',       label:'Pequena cirurgia / procedimentos',    min:null },
+      { id:'urg_cir',       label:'Urgência de cirurgia',                min:8,  unidade:'turnos_12h' },
+      { id:'urg_ort',       label:'Urgência de ortotraumatologia',       min:8,  unidade:'turnos_12h' },
+      { id:'form_curta',    label:'Formação curta (objectivo cumulativo: 160 h)', min:null, unidade:'sessoes' },
     ]},
     { id:'mgf2', label:'MGF2', meses:22, principal:true, fase:'intermédia', actos:[
       { id:'cons_prog',     label:'Consulta programada',                 min:null },
@@ -9189,50 +9238,49 @@ function relAdd(el, kind){
       { id:'idoso',         label:'Saúde do idoso',                      min:null },
       { id:'cronico',       label:'Doente crónico / multimorbilidade',   min:null },
       { id:'peq_cir',       label:'Pequena cirurgia / procedimentos',    min:null },
+      { id:'urg_mi',        label:'Urgência de medicina interna',        min:12, unidade:'turnos_12h' },
+      { id:'pop_dif',       label:'Mês em unidade c/ população diferente', min:1,  unidade:'meses' },
+      { id:'form_curta',    label:'Formação curta (objectivo cumulativo: 160 h)', min:null, unidade:'sessoes' },
     ]},
     { id:'mgf3', label:'MGF3', meses:11, principal:true, fase:'final', actos:[
+      { id:'_total_cons',   label:'Total de consultas (em autonomia)',   min:1500, agregado:true,
+        agrega:['cons_prog','cons_aguda','sd_infantil','sd_mulher','plan_familiar','idoso','cronico'] },
       { id:'cons_prog',     label:'Consulta programada',                 min:null },
       { id:'cons_aguda',    label:'Consulta de doença aguda',            min:null },
       { id:'cons_dom',      label:'Visita domiciliária',                 min:null },
-      { id:'sd_infantil',   label:'Consulta de saúde infantil/juvenil',  min:null },
-      { id:'sd_mulher',     label:'Consulta de saúde da mulher',         min:null },
+      { id:'sd_infantil',   label:'Saúde infantil / juvenil (≤18 anos)', min:200 },
+      { id:'sd_mulher',     label:'Saúde da mulher (incl. grávidas)',    min:200 },
       { id:'plan_familiar', label:'Planeamento familiar',                min:null },
       { id:'idoso',         label:'Saúde do idoso',                      min:null },
       { id:'cronico',       label:'Doente crónico / multimorbilidade',   min:null },
       { id:'peq_cir',       label:'Pequena cirurgia / procedimentos',    min:null },
+      { id:'form_curta',    label:'Formação curta (objectivo cumulativo: 160 h)', min:null, unidade:'sessoes' },
     ]},
     { id:'sij', label:'Saúde Infantil e Juvenil', meses:2, complementar:true, actos:[
-      { id:'sip',           label:'Consulta de saúde infantil periódica (PNSIJ)', min:null },
-      { id:'urg_ped',       label:'Urgência pediátrica',                 min:null },
-      { id:'int_ped',       label:'Internamento pediátrico',             min:null },
-      { id:'vacina_ped',    label:'Vacinação',                           min:null },
-      { id:'adolesc',       label:'Consulta do adolescente',             min:null },
+      { id:'sip',        label:'Consulta de saúde infantil periódica (PNSIJ)', min:null },
+      { id:'urg_ped',    label:'Urgência pediátrica',                    min:8,  unidade:'turnos_12h' },
+      { id:'int_ped',    label:'Internamento pediátrico',                min:null },
+      { id:'vacina_ped', label:'Vacinação',                              min:null },
+      { id:'adolesc',    label:'Consulta do adolescente',                min:null },
     ]},
     { id:'smul', label:'Saúde da Mulher', meses:2, complementar:true, actos:[
-      { id:'pre_natal',     label:'Consulta pré-natal / vigilância',     min:null },
-      { id:'pos_parto',     label:'Consulta pós-parto / puerpério',      min:null },
-      { id:'parto',         label:'Parto / sala de partos',              min:null },
-      { id:'gin',           label:'Consulta de ginecologia',             min:null },
-      { id:'eco_obs',       label:'Ecografia obstétrica',                min:null },
-      { id:'ctg',           label:'Cardiotocografia',                    min:null },
-      { id:'plan_smul',     label:'Planeamento familiar',                min:null },
+      { id:'pre_natal',  label:'Consulta pré-natal / vigilância',        min:null },
+      { id:'pos_parto',  label:'Consulta pós-parto / puerpério',         min:null },
+      { id:'parto',      label:'Parto / sala de partos',                 min:null },
+      { id:'gin',        label:'Consulta de ginecologia',                min:null },
+      { id:'urg_gin',    label:'Urgência de ginecologia/obstetrícia',    min:8,  unidade:'turnos_12h' },
+      { id:'eco_obs',    label:'Ecografia obstétrica',                   min:null },
+      { id:'ctg',        label:'Cardiotocografia',                       min:null },
+      { id:'plan_smul',  label:'Planeamento familiar',                   min:null },
     ]},
     { id:'smen', label:'Saúde Mental', meses:2, complementar:true, actos:[
-      { id:'cons_psq',      label:'Consulta de psiquiatria',             min:null },
-      { id:'urg_psq',       label:'Urgência psiquiátrica',               min:null },
-      { id:'int_psq',       label:'Internamento psiquiátrico',           min:null },
-      { id:'breve',         label:'Intervenção breve / motivacional',    min:null },
+      { id:'cons_psq',   label:'Consulta de psiquiatria',                min:null },
+      { id:'urg_psq',    label:'Urgência de psiquiatria',                min:4,  unidade:'turnos_12h' },
+      { id:'int_psq',    label:'Internamento psiquiátrico',              min:null },
+      { id:'breve',      label:'Intervenção breve / motivacional',       min:null },
     ]},
-    { id:'urg', label:'Urgência / Emergência', meses:null, complementar:true, actos:[
-      { id:'urg_cir',       label:'Urgência de cirurgia',                min:null },
-      { id:'urg_ort',       label:'Urgência de ortotraumatologia',       min:null },
-      { id:'urg_gin',       label:'Urgência de ginecologia/obstetrícia (96h)', min:null },
-      { id:'urg_pedu',      label:'Urgência pediátrica (96h)',           min:null },
-      { id:'urg_mi',        label:'Urgência de medicina interna',        min:null },
-      { id:'urg_psq2',      label:'Urgência de psiquiatria',             min:null },
-    ]},
-    { id:'opc', label:'Estágio opcional', meses:null, opcional:true, actos:[
-      { id:'livre',         label:'Acto (descrição obrigatória)',        min:null },
+    { id:'opc', label:'Estágio opcional (até 5 meses durante MGF2)', meses:null, opcional:true, actos:[
+      { id:'livre',      label:'Acto (descrição obrigatória)',           min:null },
     ]},
   ];
 
@@ -9244,8 +9292,19 @@ function relAdd(el, kind){
     { id:'investigacao', label:'Investigação / publicação' },
   ];
 
+  // Cursos curriculares obrigatórios (Caderneta IM ARS Norte 2024)
+  var INT_CURSOS = [
+    { id:'mgf1_intro', estagio:'mgf1', label:'Introdução à Medicina Geral e Familiar' },
+    { id:'mgf1_com',   estagio:'mgf1', label:'Comunicação em Consulta em CSP' },
+    { id:'mgf2a_inv',  estagio:'mgf2', label:'Introdução às Metodologias de Investigação (2.º ano)' },
+    { id:'mgf2a_qual', estagio:'mgf2', label:'Melhoria Contínua da Qualidade e Projeto de Intervenção (2.º ano)' },
+    { id:'mgf2a_pal',  estagio:'mgf2', label:'Cuidados Paliativos (2.º ano)' },
+    { id:'mgf2b_top',  estagio:'mgf2', label:'Técnicas de Organização e Planeamento — TOP-MGF (3.º ano)' },
+  ];
+
   var KEY_LOG_LIST    = 'dx_int_log_entries';
   var KEY_LOG_ESTAGIO = 'dx_int_log_estagio_atual';
+  var KEY_LOG_CURSOS  = 'dx_int_log_cursos';
 
   function lbEscHtml(s){
     return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
@@ -9293,7 +9352,7 @@ function relAdd(el, kind){
     if (!sel) return;
     sel.innerHTML = '';
     var e = lbEstagio(estagioId);
-    var actos = (e && e.actos) ? e.actos : [];
+    var actos = (e && e.actos) ? e.actos.filter(function(a){ return !a.agregado; }) : [];
     actos.forEach(function(a){
       var o = document.createElement('option');
       o.value = a.id; o.textContent = a.label;
@@ -9410,15 +9469,27 @@ function relAdd(el, kind){
     var counts = {};
     list.forEach(function(x){ counts[x.tipo] = (counts[x.tipo]||0) + 1; });
     var rows = e.actos.map(function(a){
-      var c = counts[a.id] || 0;
+      var c;
+      if (a.agregado && a.agrega) c = a.agrega.reduce(function(s,k){ return s + (counts[k]||0); }, 0);
+      else c = counts[a.id] || 0;
       var min = a.min;
-      var lbl = (min == null) ? (c + ' / —') : (c + ' / ' + min);
+      var lbl;
+      if (a.unidade === 'turnos_12h'){
+        if (min == null) lbl = c + ' turnos (' + (c*12) + ' h) / —';
+        else lbl = c + ' / ' + min + ' turnos · ' + (c*12) + ' / ' + (min*12) + ' h';
+      } else if (a.unidade === 'meses'){
+        lbl = c + ' / ' + (min == null ? '—' : min) + ' meses';
+      } else if (a.unidade === 'sessoes'){
+        lbl = (min == null) ? (c + ' sessões registadas') : (c + ' / ' + min + ' sessões');
+      } else {
+        lbl = c + ' / ' + (min == null ? '—' : min);
+      }
       var pct, doneClass = '';
       if (min == null) pct = 0;
       else { pct = Math.min(100, Math.round((c/min)*100)); if (c >= min) doneClass = ' done'; }
-      return '<div class="lb-prog-row">'
+      return '<div class="lb-prog-row' + (a.agregado ? ' lb-prog-agg' : '') + '">'
            + '<span class="lp-l">' + lbEscHtml(a.label) + '</span>'
-           + '<span class="lp-c">' + lbl + '</span>'
+           + '<span class="lp-c">' + lbEscHtml(lbl) + '</span>'
            + '<span class="lp-bar"><span class="' + doneClass + '" style="width:' + pct + '%"></span></span>'
            + '</div>';
     }).join('');
@@ -9427,10 +9498,84 @@ function relAdd(el, kind){
   };
 
   window.dxLogExport = function(){
-    alert('Exportação PDF do logbook chega na próxima ronda da Fase 2 (após carregar caderneta da ARS aplicável e fixar mínimos oficiais).');
+    alert('Exportação PDF do logbook chega na próxima ronda da Fase 2.');
   };
 
+  // ── Cursos curriculares obrigatórios ───────────────────────────────
+  function lbCursos(){
+    try { return JSON.parse(lsGet(KEY_LOG_CURSOS, '{}')) || {}; } catch(e){ return {}; }
+  }
+  function lbSetCursos(o){ lsSet(KEY_LOG_CURSOS, JSON.stringify(o)); }
+
+  window.dxCursoToggle = function(id, checked){
+    var o = lbCursos();
+    if (checked){
+      var t = new Date();
+      o[id] = t.getFullYear() + '-' + String(t.getMonth()+1).padStart(2,'0') + '-' + String(t.getDate()).padStart(2,'0');
+    } else {
+      delete o[id];
+    }
+    lbSetCursos(o);
+    dxCursoRender();
+  };
+
+  window.dxCursoData = function(id, data){
+    var o = lbCursos();
+    if (o[id] !== undefined) { o[id] = data || ''; lbSetCursos(o); }
+  };
+
+  function dxCursoRender(){
+    var wrap = document.getElementById('lb-cursos-wrap');
+    if (!wrap) return;
+    var done = lbCursos();
+    var grupos = {};
+    INT_CURSOS.forEach(function(c){
+      grupos[c.estagio] = grupos[c.estagio] || [];
+      grupos[c.estagio].push(c);
+    });
+    var nDone = Object.keys(done).length;
+    var nTotal = INT_CURSOS.length;
+    var html = '';
+    Object.keys(grupos).forEach(function(eId){
+      var e = lbEstagio(eId);
+      html += '<div class="lb-curso-grp"><div class="lb-curso-est">' + lbEscHtml(e ? e.label : eId) + '</div>';
+      grupos[eId].forEach(function(c){
+        var d = done[c.id];
+        var checked = (d !== undefined);
+        html += '<div class="lb-curso-row">'
+             + '<label><input type="checkbox" ' + (checked ? 'checked' : '') + ' onchange="dxCursoToggle(\'' + c.id + '\', this.checked)"> '
+             + lbEscHtml(c.label) + '</label>'
+             + '<input type="date" class="lb-curso-d" value="' + lbEscHtml(d || '') + '" '
+             + (checked ? '' : 'disabled ')
+             + 'onchange="dxCursoData(\'' + c.id + '\', this.value)" aria-label="Data de conclusão de ' + lbEscHtml(c.label) + '">'
+             + '</div>';
+      });
+      html += '</div>';
+    });
+    var hdr = '<div class="lb-curso-prog">' + nDone + ' / ' + nTotal + ' cursos concluídos</div>';
+    wrap.innerHTML = hdr + html;
+  }
+  window.dxCursoRender = dxCursoRender;
+
+  // Migra registos antigos do estágio "urg" (removido na Fase 2.5 — a
+  // urgência passou a estar distribuída pelos estágios em que ocorre).
+  function lbMigrateUrg(){
+    var map = { urg_cir:'mgf1', urg_ort:'mgf1', urg_mi:'mgf2',
+                urg_pedu:'sij', urg_gin:'smul', urg_psq2:'smen' };
+    var tipoMap = { urg_pedu:'urg_ped', urg_psq2:'urg_psq' };
+    var list = lbList(); var changed = false;
+    list.forEach(function(e){
+      if (e.estagio === 'urg' && map[e.tipo]){
+        e.estagio = map[e.tipo];
+        if (tipoMap[e.tipo]) e.tipo = tipoMap[e.tipo];
+        changed = true;
+      }
+    });
+    if (changed) lbSetList(list);
+  }
+
   function dxLogInit(){
+    lbMigrateUrg();
     var sel = document.getElementById('lb-estagio');
     var fil = document.getElementById('lb-filt-estagio');
     lbFillEstagioSelect(sel, false);
@@ -9448,6 +9593,7 @@ function relAdd(el, kind){
     lbUpdateCount();
     window.dxLogRender();
     window.dxLogRenderProg();
+    dxCursoRender();
   }
 
   // ── Init ────────────────────────────────────────────────────────────
