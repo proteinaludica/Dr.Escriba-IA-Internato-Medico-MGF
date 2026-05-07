@@ -1080,6 +1080,29 @@ body.dark .cur-icpc-tbl td:nth-child(5){color:#dcc480}
 body.dark .cur-icpc-tbl input{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
 body.dark .cur-icpc-tbl input:focus{background:#1a1d2e;border-color:#bda060}
 body.dark #cur-icpc-bar{background:#1a1d2e;border-color:#2a2d40}
+
+/* ── Currículo Fase 6.4 — auto-quadros do logbook ───────────────────────── */
+.cur-auto-card .cur-auto-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:8px 12px;background:#fefbef;border-bottom:1px dashed #e5cf8c;font-size:11px;color:#5a4010}
+.cur-auto-card .cur-auto-actions #cur-auto-summary{flex:1;font-style:italic}
+.cur-auto-card .cur-auto-actions #cur-auto-summary strong{color:#7a5c20;font-style:normal;font-weight:600}
+.cur-auto-card .cur-auto-refresh{background:#bda060;color:#fff;border-color:#bda060;font-size:11px;padding:4px 10px}
+.cur-auto-card .cur-auto-refresh:hover{background:#a68a4f;border-color:#a68a4f}
+.cur-auto-card .cur-auto-h{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:#7a5c20;margin:14px 0 6px 0;padding:0 !important}
+.cur-auto-card .cur-auto-h:first-child{margin-top:6px}
+.cur-auto-card .cur-pat-tbl tbody tr.cur-auto-warn td:nth-child(5),
+.cur-auto-card .cur-pat-tbl tbody tr.cur-auto-warn th{color:#a04020}
+.cur-auto-card .cur-pat-tbl tbody tr.cur-auto-ok td:nth-child(5){color:#2a6020}
+.cur-auto-card .cur-pat-tbl tbody tr.cur-auto-empty td{font-style:italic;color:var(--muted);text-align:center}
+.cur-auto-card #cur-auto-top-bar,
+.cur-auto-card #cur-auto-month{width:100%;height:auto;display:block;background:#fff;border:1px solid var(--bd);border-radius:6px;margin:6px 0 8px 0}
+body.dark .cur-auto-card .cur-auto-actions{background:#1e2235;border-color:#5a4020;color:#dcc480}
+body.dark .cur-auto-card .cur-auto-actions #cur-auto-summary strong{color:#f0d890}
+body.dark .cur-auto-card .cur-auto-h{color:#dcc480}
+body.dark .cur-auto-card .cur-pat-tbl tbody tr.cur-auto-ok td:nth-child(5){color:#80c080}
+body.dark .cur-auto-card .cur-pat-tbl tbody tr.cur-auto-warn td:nth-child(5),
+body.dark .cur-auto-card .cur-pat-tbl tbody tr.cur-auto-warn th{color:#e08070}
+body.dark .cur-auto-card #cur-auto-top-bar,
+body.dark .cur-auto-card #cur-auto-month{background:#1a1d2e;border-color:#2a2d40}
 </style>
 </head>
 <body>
@@ -4231,10 +4254,43 @@ body.dark #cur-icpc-bar{background:#1a1d2e;border-color:#2a2d40}
     </details>
 
     <details class="cur-card">
-      <summary class="om-h">4 · Caracterização da actividade profissional <span class="cur-future">tabelas auto-geradas na Fase 6.4</span></summary>
+      <summary class="om-h">4 · Caracterização da actividade profissional</summary>
       <div class="cur-fld">
         <label>Utentes observados <span class="opt">distribuição etária / sexo / motivos</span></label>
-        <textarea id="cur-act-observ" rows="4" placeholder="Durante o internato observei X utentes em consulta… (Fase 6.4 puxa do logbook)"></textarea>
+        <textarea id="cur-act-observ" rows="4" placeholder="Síntese livre. Os auto-quadros abaixo extraem totais, mínimos e top actos directamente do logbook."></textarea>
+      </div>
+
+      <div class="cur-fld">
+        <label>Auto-quadros do logbook <span class="opt">leitura automática dos registos guardados</span></label>
+        <details class="cur-pat-card cur-auto-card" open>
+          <summary>Resumo da actividade <span class="cur-pat-hint">computado a partir do logbook</span></summary>
+          <div class="cur-auto-actions">
+            <button type="button" class="btn-c cur-auto-refresh" onclick="dxCurAutoRender()" title="Recomputar a partir do logbook">↻ Actualizar</button>
+            <span id="cur-auto-summary"></span>
+          </div>
+
+          <h4 class="cur-auto-h">Q-α · Actividade por estágio</h4>
+          <table class="cur-pat-tbl" aria-label="Actividade por estágio">
+            <thead><tr><th>Estágio</th><th>Meses</th><th>Total actos</th><th>Actos distintos</th></tr></thead>
+            <tbody id="cur-auto-est-tbody"></tbody>
+          </table>
+
+          <h4 class="cur-auto-h">Q-β · Cumprimento de mínimos</h4>
+          <table class="cur-pat-tbl" aria-label="Cumprimento de mínimos por acto regulado">
+            <thead><tr><th>Estágio</th><th>Acto</th><th>Realizado</th><th>Mínimo</th><th>%</th></tr></thead>
+            <tbody id="cur-auto-min-tbody"></tbody>
+          </table>
+
+          <h4 class="cur-auto-h">Q-γ · Top 10 actos mais frequentes</h4>
+          <table class="cur-icpc-tbl" aria-label="Top actos">
+            <thead><tr><th>#</th><th colspan="2">Acto</th><th>N</th><th>%</th></tr></thead>
+            <tbody id="cur-auto-top-tbody"></tbody>
+          </table>
+          <svg id="cur-auto-top-bar" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Top actos — gráfico"></svg>
+
+          <h4 class="cur-auto-h">Q-δ · Cronograma mensal</h4>
+          <svg id="cur-auto-month" viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Actividade mensal"></svg>
+        </details>
       </div>
       <div class="cur-fld">
         <label>Consulta de saúde do adulto e idoso</label>
@@ -12862,8 +12918,292 @@ function relAdd(el, kind){
     svg.innerHTML = s;
   }
 
+  // ── Fase 6.4 — auto-quadros a partir do logbook ───────────────────────
+  function _curResolveActoLabel(actoId){
+    if (typeof INT_ACTOS_GLOB !== 'undefined'){
+      for (var j = 0; j < INT_ACTOS_GLOB.length; j++){
+        if (INT_ACTOS_GLOB[j].id === actoId) return INT_ACTOS_GLOB[j].label;
+      }
+    }
+    if (typeof INT_ESTAGIOS !== 'undefined'){
+      for (var i = 0; i < INT_ESTAGIOS.length; i++){
+        var es = INT_ESTAGIOS[i];
+        for (var k = 0; k < (es.actos || []).length; k++){
+          if (es.actos[k].id === actoId) return es.actos[k].label;
+        }
+      }
+    }
+    return actoId;
+  }
+
+  function _curAutoCompute(){
+    var list = [];
+    try { list = (typeof lbList === 'function' ? lbList() : []) || []; } catch(_){ list = []; }
+
+    var counts = {};
+    list.forEach(function(e){
+      if (!e || !e.estagio || !e.tipo) return;
+      counts[e.estagio + '::' + e.tipo] = (counts[e.estagio + '::' + e.tipo] || 0) + 1;
+    });
+
+    // Q-α — actividade por estágio
+    var perEstagio = {};
+    list.forEach(function(e){
+      if (!e || !e.estagio) return;
+      var bucket = perEstagio[e.estagio] || (perEstagio[e.estagio] = { total:0, actos:{} });
+      bucket.total++;
+      if (e.tipo) bucket.actos[e.tipo] = (bucket.actos[e.tipo] || 0) + 1;
+    });
+    var qa = [];
+    if (typeof INT_ESTAGIOS !== 'undefined'){
+      INT_ESTAGIOS.forEach(function(est){
+        var b = perEstagio[est.id];
+        if (!b || b.total === 0) return; // só mostra estágios com actividade
+        qa.push({
+          id: est.id,
+          label: est.label,
+          meses: est.meses,
+          total: b.total,
+          distintos: Object.keys(b.actos).length
+        });
+      });
+    }
+
+    // Q-β — cumprimento de mínimos
+    var qb = [];
+    if (typeof INT_ESTAGIOS !== 'undefined'){
+      INT_ESTAGIOS.forEach(function(est){
+        (est.actos || []).forEach(function(acto){
+          if (acto.min == null) return;
+          var realizado = 0;
+          if (acto.agregado && Array.isArray(acto.agrega)){
+            acto.agrega.forEach(function(aid){ realizado += (counts[est.id + '::' + aid] || 0); });
+          } else {
+            realizado = counts[est.id + '::' + acto.id] || 0;
+          }
+          var pct = acto.min > 0 ? (100 * realizado / acto.min) : null;
+          qb.push({
+            estagio: est.label,
+            acto: acto.label,
+            realizado: realizado,
+            min: acto.min,
+            unidade: acto.unidade || 'actos',
+            pct: pct
+          });
+        });
+      });
+    }
+
+    // Q-γ — top 10 actos
+    var actoTotals = {};
+    list.forEach(function(e){
+      if (!e || !e.tipo) return;
+      actoTotals[e.tipo] = (actoTotals[e.tipo] || 0) + 1;
+    });
+    var qc = Object.keys(actoTotals).map(function(k){
+      return { tipo:k, label: _curResolveActoLabel(k), n: actoTotals[k] };
+    }).sort(function(a,b){ return b.n - a.n; }).slice(0, 10);
+
+    // Q-δ — cronograma mensal (YYYY-MM → N)
+    var byMonth = {};
+    list.forEach(function(e){
+      if (!e || !e.data) return;
+      var m = String(e.data).slice(0, 7);
+      if (!/^\d{4}-\d{2}$/.test(m)) return;
+      byMonth[m] = (byMonth[m] || 0) + 1;
+    });
+    var qd = Object.keys(byMonth).sort().map(function(m){ return { m:m, n:byMonth[m] }; });
+
+    return { total: list.length, qa: qa, qb: qb, qc: qc, qd: qd };
+  }
+
+  function _curAutoRenderTbls(d){
+    var sumEl = document.getElementById('cur-auto-summary');
+    if (sumEl){
+      if (d.total === 0){
+        sumEl.innerHTML = 'Sem registos no logbook. Adicione actos na tab <strong>L — Logbook</strong> para gerar os auto-quadros.';
+      } else {
+        sumEl.innerHTML = 'Total de registos no logbook: <strong>' + d.total + '</strong>'
+          + ' · Estágios com actividade: <strong>' + d.qa.length + '</strong>'
+          + ' · Mínimos avaliados: <strong>' + d.qb.length + '</strong>'
+          + ' · Meses com actividade: <strong>' + d.qd.length + '</strong>';
+      }
+    }
+    var esTb = document.getElementById('cur-auto-est-tbody');
+    if (esTb){
+      if (d.qa.length === 0){
+        esTb.innerHTML = '<tr class="cur-auto-empty"><td colspan="4">— sem actividade registada —</td></tr>';
+      } else {
+        esTb.innerHTML = d.qa.map(function(r){
+          var meses = (r.meses == null) ? '—' : (r.meses + ' m');
+          return '<tr><th scope="row">' + r.label + '</th><td>' + meses + '</td><td>' + r.total + '</td><td>' + r.distintos + '</td></tr>';
+        }).join('');
+      }
+    }
+    var minTb = document.getElementById('cur-auto-min-tbody');
+    if (minTb){
+      if (d.qb.length === 0){
+        minTb.innerHTML = '<tr class="cur-auto-empty"><td colspan="5">— sem mínimos avaliados —</td></tr>';
+      } else {
+        minTb.innerHTML = d.qb.map(function(r){
+          var pctTxt = r.pct == null ? '—' : (r.pct.toFixed(0) + '%');
+          var cls = r.pct == null ? '' : (r.pct >= 100 ? 'cur-auto-ok' : (r.pct >= 50 ? '' : 'cur-auto-warn'));
+          var unidShort = r.unidade === 'turnos_12h' ? ' turnos' : (r.unidade === 'meses' ? ' m' : (r.unidade === 'sessoes' ? ' ses.' : ''));
+          return '<tr' + (cls ? ' class="'+cls+'"' : '') + '>'
+            + '<th scope="row">' + r.estagio + '</th>'
+            + '<td>' + r.acto + '</td>'
+            + '<td>' + r.realizado + unidShort + '</td>'
+            + '<td>' + r.min + unidShort + '</td>'
+            + '<td>' + pctTxt + '</td>'
+            + '</tr>';
+        }).join('');
+      }
+    }
+    var topTb = document.getElementById('cur-auto-top-tbody');
+    if (topTb){
+      if (d.qc.length === 0){
+        topTb.innerHTML = '<tr class="cur-auto-empty"><td colspan="5">— sem registos —</td></tr>';
+      } else {
+        var totTop = 0; d.qc.forEach(function(r){ totTop += r.n; });
+        topTb.innerHTML = d.qc.map(function(r, idx){
+          var pct = totTop > 0 ? (100 * r.n / totTop).toFixed(1) + '%' : '—';
+          return '<tr><td>' + (idx+1) + '</td><td colspan="2">' + r.label + '</td><td>' + r.n + '</td><td>' + pct + '</td></tr>';
+        }).join('');
+      }
+    }
+  }
+
+  function _curAutoRenderTopBar(d){
+    var svg = document.getElementById('cur-auto-top-bar');
+    if (!svg) return;
+    var rows = d.qc;
+    var W = 600, rowH = 22, gap = 4, topPad = 24, botPad = 12, leftPad = 220;
+    if (!rows.length){
+      svg.setAttribute('viewBox', '0 0 ' + W + ' 60');
+      svg.innerHTML = '<text x="'+W/2+'" y="34" text-anchor="middle" font-size="11" fill="#7a5c20" font-style="italic">Sem actos no logbook.</text>';
+      return;
+    }
+    var max = rows[0].n || 1;
+    var barMax = W - leftPad - 60;
+    var H = topPad + rows.length * (rowH + gap) + botPad;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    var s = '<text x="'+(W/2)+'" y="14" text-anchor="middle" font-size="11" fill="#7a5c20" font-weight="600">Top actos — frequência absoluta</text>';
+    rows.forEach(function(r, idx){
+      var y = topPad + idx * (rowH + gap);
+      var w = (r.n / max) * barMax;
+      var label = (r.label || r.tipo).slice(0, 32).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+      s += '<text x="' + (leftPad - 8) + '" y="' + (y + rowH/2 + 4) + '" text-anchor="end" font-size="10" fill="#5a4010">' + label + '</text>';
+      s += '<rect x="' + leftPad + '" y="' + y + '" width="' + w + '" height="' + rowH + '" fill="#bda060" opacity="0.85"/>';
+      s += '<text x="' + (leftPad + w + 6) + '" y="' + (y + rowH/2 + 4) + '" font-size="10" fill="#5a4010">' + r.n + '</text>';
+    });
+    svg.innerHTML = s;
+  }
+
+  function _curAutoRenderMonth(d){
+    var svg = document.getElementById('cur-auto-month');
+    if (!svg) return;
+    var months = d.qd;
+    var W = 600, topPad = 28, botPad = 28, leftPad = 36, rightPad = 12;
+    if (!months.length){
+      svg.setAttribute('viewBox', '0 0 ' + W + ' 60');
+      svg.innerHTML = '<text x="'+W/2+'" y="34" text-anchor="middle" font-size="11" fill="#7a5c20" font-style="italic">Sem actividade datada no logbook.</text>';
+      return;
+    }
+    var H = 220;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    var maxN = months.reduce(function(a,r){ return Math.max(a, r.n); }, 1);
+    var avail = W - leftPad - rightPad;
+    var bw = Math.min(28, avail / months.length - 2);
+    var step = avail / months.length;
+    var plotH = H - topPad - botPad;
+    var s = '<text x="'+(W/2)+'" y="16" text-anchor="middle" font-size="11" fill="#7a5c20" font-weight="600">Cronograma mensal — N.º de registos por mês</text>';
+    // Eixo Y: 0, max
+    s += '<text x="'+(leftPad-4)+'" y="'+(topPad+4)+'" text-anchor="end" font-size="9" fill="#5a4010">' + maxN + '</text>';
+    s += '<text x="'+(leftPad-4)+'" y="'+(topPad+plotH)+'" text-anchor="end" font-size="9" fill="#5a4010">0</text>';
+    s += '<line x1="'+leftPad+'" y1="'+(topPad+plotH)+'" x2="'+(W-rightPad)+'" y2="'+(topPad+plotH)+'" stroke="#5a4010" stroke-width="0.5"/>';
+    months.forEach(function(r, idx){
+      var x = leftPad + idx * step + (step - bw)/2;
+      var h = (r.n / maxN) * plotH;
+      var y = topPad + plotH - h;
+      s += '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + h.toFixed(1) + '" fill="#bda060" opacity="0.85"/>';
+      if (r.n > 0){
+        s += '<text x="' + (x + bw/2).toFixed(1) + '" y="' + (y - 2).toFixed(1) + '" text-anchor="middle" font-size="9" fill="#5a4010">' + r.n + '</text>';
+      }
+      // Etiqueta de mês: alterna posição se muitos meses para legibilidade
+      var showLabel = months.length <= 18 || (idx % Math.ceil(months.length / 18) === 0);
+      if (showLabel){
+        var lx = x + bw/2;
+        var ly = topPad + plotH + 14;
+        s += '<text x="' + lx.toFixed(1) + '" y="' + ly + '" text-anchor="middle" font-size="9" fill="#7a5c20">' + r.m + '</text>';
+      }
+    });
+    svg.innerHTML = s;
+  }
+
+  window.dxCurAutoRender = function(){
+    try {
+      var d = _curAutoCompute();
+      _curAutoRenderTbls(d);
+      _curAutoRenderTopBar(d);
+      _curAutoRenderMonth(d);
+    } catch(e){ try { console.warn('[dx-cur auto]', e); } catch(_){} }
+  };
+
   // ── Fase 6.3 — export TXT da secção 4 ─────────────────────────────────
   function _curExportSection4(o, lines, sub){
+    // Fase 6.4 — auto-quadros do logbook (prepend)
+    try {
+      var d = _curAutoCompute();
+      if (d.total > 0){
+        lines.push('Auto-quadros do logbook (registos: ' + d.total + ')');
+        lines.push(sub);
+
+        if (d.qa.length){
+          lines.push('  Q-α · Actividade por estágio:');
+          lines.push('    ' + 'Estágio'.padEnd(28) + ' ' + 'Meses'.padStart(6) + ' ' + 'Total'.padStart(7) + ' ' + 'Distintos'.padStart(10));
+          d.qa.forEach(function(r){
+            var meses = (r.meses == null) ? '—' : (r.meses + 'm');
+            lines.push('    ' + (r.label || '').slice(0,28).padEnd(28) + ' ' + String(meses).padStart(6) + ' ' + String(r.total).padStart(7) + ' ' + String(r.distintos).padStart(10));
+          });
+          lines.push('');
+        }
+
+        if (d.qb.length){
+          lines.push('  Q-β · Cumprimento de mínimos:');
+          lines.push('    ' + 'Estágio'.padEnd(10) + ' ' + 'Acto'.padEnd(38) + ' ' + 'Real.'.padStart(7) + ' ' + 'Min.'.padStart(6) + '   %');
+          d.qb.forEach(function(r){
+            var pctTxt = r.pct == null ? '—' : (r.pct.toFixed(0) + '%');
+            var unidShort = r.unidade === 'turnos_12h' ? 't' : (r.unidade === 'meses' ? 'm' : (r.unidade === 'sessoes' ? 's' : ''));
+            lines.push('    ' + (r.estagio || '').slice(0,10).padEnd(10) + ' '
+              + (r.acto || '').slice(0,38).padEnd(38) + ' '
+              + (String(r.realizado) + unidShort).padStart(7) + ' '
+              + (String(r.min) + unidShort).padStart(6) + '   ' + pctTxt);
+          });
+          lines.push('');
+        }
+
+        if (d.qc.length){
+          var totQc = 0; d.qc.forEach(function(r){ totQc += r.n; });
+          lines.push('  Q-γ · Top 10 actos mais frequentes (n=' + totQc + '):');
+          d.qc.forEach(function(r, i){
+            var pct = totQc > 0 ? (100*r.n/totQc).toFixed(1) + '%' : '—';
+            lines.push('    ' + String(i+1).padStart(2) + '. ' + (r.label || r.tipo).slice(0,42).padEnd(42) + ' ' + String(r.n).padStart(5) + '   ' + pct);
+          });
+          lines.push('');
+        }
+
+        if (d.qd.length){
+          lines.push('  Q-δ · Cronograma mensal (' + d.qd.length + ' meses com actividade):');
+          var maxN = d.qd.reduce(function(a,r){ return Math.max(a, r.n); }, 1);
+          d.qd.forEach(function(r){
+            var bars = Math.max(1, Math.round((r.n / maxN) * 30));
+            lines.push('    ' + r.m + '  ' + (new Array(bars+1).join('█')) + ' ' + r.n);
+          });
+          lines.push('');
+        }
+      }
+    } catch(_){}
+
     function _exportIndicBlock(titulo, prefix, indicators){
       var den = +(o['cur-'+prefix+'-1'] || 0);
       var anyVal = false;
@@ -13082,7 +13422,22 @@ function relAdd(el, kind){
     curBindAutoSave();
     try { dxCurPyramidRender(); dxCurGraffarRender(); dxCurDuvallRender(); } catch(_){}
     try { dxCurDm2Render(); dxCurHtaRender(); dxCurIcpcRender(); } catch(_){}
+    try { dxCurAutoRender(); } catch(_){}
     curStatus('', false);
+
+    // Re-render dos auto-quadros quando o utilizador volta à tab Currículo
+    // (logbook pode ter sido alterado entretanto). Idempotente.
+    try {
+      if (!window._dxCurAutoTabHook && typeof window.dxIntTab === 'function'){
+        var origIntTab = window.dxIntTab;
+        window.dxIntTab = function(id){
+          var r = origIntTab.apply(this, arguments);
+          if (id === 'cur') { try { dxCurAutoRender(); } catch(_){} }
+          return r;
+        };
+        window._dxCurAutoTabHook = true;
+      }
+    } catch(_){}
   }
 
   // ── Init ────────────────────────────────────────────────────────────
