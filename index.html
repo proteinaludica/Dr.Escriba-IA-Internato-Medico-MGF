@@ -1020,6 +1020,66 @@ body.dark .cur-duvall thead th{background:#2a2010;color:#dcc480;border-color:#5a
 body.dark .cur-duvall tfoot th{background:#1e2235;color:#dcc480;border-color:#5a4020}
 body.dark .cur-duvall input{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
 body.dark .cur-duvall input:focus{background:#1a1d2e;border-color:#bda060}
+
+/* ── Currículo Fase 6.3 — registos clínicos por patologia (DM2/HTA/ICPC-2) ─── */
+.cur-pat-card{background:#fbf3da;border:1px solid #e5cf8c;border-radius:7px;margin-bottom:8px;overflow:hidden;padding:0 !important}
+.cur-pat-card[open]{background:#fefbef}
+.cur-pat-card > summary{padding:8px 12px;font-size:12px;font-weight:600;color:#5a4010;cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;user-select:none;background:#fbf3da}
+.cur-pat-card > summary::-webkit-details-marker{display:none}
+.cur-pat-card > summary::before{content:'▸';display:inline-block;font-size:11px;color:#bda060;transition:transform .15s}
+.cur-pat-card[open] > summary::before{transform:rotate(90deg)}
+.cur-pat-card[open] > summary{border-bottom:1px dashed #e5cf8c}
+.cur-pat-card .cur-pat-hint{margin-left:auto;font-size:10px;font-weight:500;color:var(--muted);font-style:italic}
+.cur-pat-card > *:not(summary){padding:10px 12px}
+.cur-pat-tbl{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border:1px solid var(--bd);border-radius:6px;overflow:hidden;margin-bottom:8px}
+.cur-pat-tbl th,.cur-pat-tbl td{padding:5px 10px;text-align:left;border-bottom:1px solid var(--bd)}
+.cur-pat-tbl thead th{background:#fbf3da;color:#7a5c20;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid #e5cf8c}
+.cur-pat-tbl tbody tr:last-child td,.cur-pat-tbl tbody tr:last-child th{border-bottom:none}
+.cur-pat-tbl tbody tr.cur-pat-den{background:#fefbef}
+.cur-pat-tbl tbody tr.cur-pat-den th{font-weight:600;color:#5a4010}
+.cur-pat-tbl td:nth-child(2){width:90px}
+.cur-pat-tbl td:nth-child(3){width:70px;text-align:right;font-weight:500;color:#5a4010}
+.cur-pat-tbl input{width:100%;padding:4px 6px;background:#faf9f7;border:1px solid var(--bd);border-radius:5px;font:inherit;font-size:12px;text-align:right;color:#1a1916;outline:none;box-sizing:border-box}
+.cur-pat-tbl input:focus{border-color:#bda060;background:#fff}
+.cur-pat-card textarea{width:100%;padding:8px 10px;background:#fff;border:1px solid var(--bd);border-radius:6px;font:inherit;font-size:13px;line-height:1.55;color:#1a1916;outline:none;box-sizing:border-box;resize:vertical}
+.cur-pat-card textarea:focus{border-color:#bda060}
+.cur-icpc-tbl{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border:1px solid var(--bd);border-radius:6px;overflow:hidden;margin-bottom:8px;table-layout:fixed}
+.cur-icpc-tbl th,.cur-icpc-tbl td{padding:5px 8px;text-align:left;border-bottom:1px solid var(--bd)}
+.cur-icpc-tbl thead th{background:#fbf3da;color:#7a5c20;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid #e5cf8c}
+.cur-icpc-tbl tfoot th{background:#fefbef;color:#5a4010;border-bottom:none;border-top:1px solid #e5cf8c;font-weight:600}
+.cur-icpc-tbl th:nth-child(1){width:36px;text-align:right;color:var(--muted)}
+.cur-icpc-tbl th:nth-child(2){width:64px}
+.cur-icpc-tbl th:nth-child(4){width:80px}
+.cur-icpc-tbl th:nth-child(5){width:60px;text-align:right}
+.cur-icpc-tbl td:nth-child(1){text-align:right;color:var(--muted);font-weight:500}
+.cur-icpc-tbl td:nth-child(5){text-align:right;color:#5a4010;font-weight:500}
+.cur-icpc-tbl input{width:100%;padding:4px 6px;background:#faf9f7;border:1px solid var(--bd);border-radius:5px;font:inherit;font-size:12px;color:#1a1916;outline:none;box-sizing:border-box}
+.cur-icpc-tbl td:nth-child(2) input{text-transform:uppercase;text-align:center;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px}
+.cur-icpc-tbl td:nth-child(4) input{text-align:right}
+.cur-icpc-tbl input:focus{border-color:#bda060;background:#fff}
+#cur-icpc-bar{width:100%;height:auto;display:block;background:#fff;border:1px solid var(--bd);border-radius:6px;margin-bottom:8px}
+body.dark .cur-pat-card{background:#2a2010;border-color:#5a4020}
+body.dark .cur-pat-card[open]{background:#1e2235}
+body.dark .cur-pat-card > summary{background:#2a2010;color:#dcc480;border-color:#5a4020}
+body.dark .cur-pat-card[open] > summary{background:#1e2235}
+body.dark .cur-pat-tbl{background:#1a1d2e;border-color:#2a2d40}
+body.dark .cur-pat-tbl thead th{background:#2a2010;color:#dcc480;border-color:#5a4020}
+body.dark .cur-pat-tbl th,body.dark .cur-pat-tbl td{border-color:#2a2d40}
+body.dark .cur-pat-tbl tbody tr.cur-pat-den{background:#1e2235}
+body.dark .cur-pat-tbl tbody tr.cur-pat-den th{color:#dcc480}
+body.dark .cur-pat-tbl td:nth-child(3){color:#dcc480}
+body.dark .cur-pat-tbl input{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .cur-pat-tbl input:focus{background:#1a1d2e;border-color:#bda060}
+body.dark .cur-pat-card textarea{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .cur-pat-card textarea:focus{background:#1a1d2e;border-color:#bda060}
+body.dark .cur-icpc-tbl{background:#1a1d2e;border-color:#2a2d40}
+body.dark .cur-icpc-tbl thead th{background:#2a2010;color:#dcc480;border-color:#5a4020}
+body.dark .cur-icpc-tbl tfoot th{background:#1e2235;color:#dcc480;border-color:#5a4020}
+body.dark .cur-icpc-tbl th,body.dark .cur-icpc-tbl td{border-color:#2a2d40}
+body.dark .cur-icpc-tbl td:nth-child(5){color:#dcc480}
+body.dark .cur-icpc-tbl input{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .cur-icpc-tbl input:focus{background:#1a1d2e;border-color:#bda060}
+body.dark #cur-icpc-bar{background:#1a1d2e;border-color:#2a2d40}
 </style>
 </head>
 <body>
@@ -4184,6 +4244,40 @@ body.dark .cur-duvall input:focus{background:#1a1d2e;border-color:#bda060}
         <label>Grupos de risco <span class="opt">DM2, hipertensos, dislipidémicos, etc.</span></label>
         <textarea id="cur-act-risco" rows="4"></textarea>
       </div>
+
+      <div class="cur-fld">
+        <label>Indicadores estruturados de seguimento <span class="opt">DM2, HTA, top problemas activos (ICPC-2)</span></label>
+
+        <details class="cur-pat-card">
+          <summary>Diabetes mellitus tipo 2</summary>
+          <table class="cur-pat-tbl" id="cur-dm2-tbl" aria-label="Indicadores DM2">
+            <thead><tr><th scope="col">Indicador</th><th scope="col">N.º</th><th scope="col">%</th></tr></thead>
+            <tbody id="cur-dm2-tbody"></tbody>
+          </table>
+          <textarea id="cur-dm2-coment" rows="2" placeholder="Comentário (opcional). Os cortes apresentados são genéricos; substitua se a sua ULS/USF usa outros."></textarea>
+        </details>
+
+        <details class="cur-pat-card">
+          <summary>Hipertensão arterial</summary>
+          <table class="cur-pat-tbl" id="cur-hta-tbl" aria-label="Indicadores HTA">
+            <thead><tr><th scope="col">Indicador</th><th scope="col">N.º</th><th scope="col">%</th></tr></thead>
+            <tbody id="cur-hta-tbody"></tbody>
+          </table>
+          <textarea id="cur-hta-coment" rows="2" placeholder="Comentário (opcional)."></textarea>
+        </details>
+
+        <details class="cur-pat-card">
+          <summary>Top problemas activos (ICPC-2) <span class="cur-pat-hint">10 mais frequentes na lista</span></summary>
+          <table class="cur-icpc-tbl" id="cur-icpc-tbl" aria-label="Top problemas activos por código ICPC-2">
+            <thead><tr><th scope="col">#</th><th scope="col">Cód.</th><th scope="col">Descrição</th><th scope="col">N.º</th><th scope="col">%</th></tr></thead>
+            <tbody id="cur-icpc-tbody"></tbody>
+            <tfoot><tr><th scope="row" colspan="3">Total dos 10 problemas</th><th id="cur-icpc-tot">0</th><th></th></tr></tfoot>
+          </table>
+          <svg id="cur-icpc-bar" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Distribuição dos 10 problemas mais frequentes"></svg>
+          <textarea id="cur-icpc-coment" rows="2" placeholder="Comentário (opcional). O denominador da % é a soma dos 10 problemas listados, não a lista total."></textarea>
+        </details>
+      </div>
+
       <div class="cur-fld">
         <label>Grupos vulneráveis <span class="opt">saúde infantil/juvenil, planeamento, materna, domiciliárias</span></label>
         <textarea id="cur-act-vuln" rows="4"></textarea>
@@ -12401,6 +12495,48 @@ function relAdd(el, kind){
     for (var d = 1; d <= 8; d++) sec.fields.push(['cur-duvall-'+d, null]);
   })();
 
+  // ── Fase 6.3 — registos clínicos por patologia (DM2, HTA, ICPC-2) ───
+  var CUR_DM2_INDIC = [
+    'Total com diagnóstico de DM2',
+    'Com PA registada nos últimos 12 m',
+    'Com IMC registado nos últimos 12 m',
+    'Com HbA1c registada nos últimos 6 m',
+    'Com último HbA1c < 8%',
+    'Com último HbA1c < 7%',
+    'Com fundoscopia nos últimos 24 m',
+    'Com microalbuminúria nos últimos 12 m',
+    'Com avaliação podológica nos últimos 12 m',
+    'Com vacina antigripal sazonal'
+  ];
+
+  var CUR_HTA_INDIC = [
+    'Total com diagnóstico de HTA',
+    'Com PA registada nos últimos 6 m',
+    'Com PA controlada (alvo individualizado)',
+    'Com avaliação CV completa nos últimos 24 m',
+    'Com risco CV calculado (SCORE2 / SCORE2-OP)',
+    'Com vacina antigripal sazonal'
+  ];
+
+  var CUR_ICPC_ROWS = 10;
+
+  // Marcar sec4 como custom para o export tratar os blocos estruturados
+  CUR_SECTIONS[3].custom = 'dm2_hta_icpc';
+
+  (function _curExtendSec4(){
+    var sec = CUR_SECTIONS[3];
+    for (var i = 1; i <= CUR_DM2_INDIC.length; i++) sec.fields.push(['cur-dm2-'+i, null]);
+    sec.fields.push(['cur-dm2-coment', 'Comentário DM2']);
+    for (var j = 1; j <= CUR_HTA_INDIC.length; j++) sec.fields.push(['cur-hta-'+j, null]);
+    sec.fields.push(['cur-hta-coment', 'Comentário HTA']);
+    for (var k = 1; k <= CUR_ICPC_ROWS; k++){
+      sec.fields.push(['cur-icpc-'+k+'-cod', null]);
+      sec.fields.push(['cur-icpc-'+k+'-desc', null]);
+      sec.fields.push(['cur-icpc-'+k+'-n', null]);
+    }
+    sec.fields.push(['cur-icpc-coment', 'Comentário Top problemas']);
+  })();
+
   function curLoad(){
     try { return JSON.parse(lsGet(KEY_CUR, '{}')) || {}; } catch(e){ return {}; }
   }
@@ -12447,6 +12583,9 @@ function relAdd(el, kind){
             if (fid.indexOf('cur-pop-') === 0) dxCurPyramidRender();
             else if (fid.indexOf('cur-graffar-') === 0) dxCurGraffarRender();
             else if (fid.indexOf('cur-duvall-') === 0) dxCurDuvallRender();
+            else if (fid.indexOf('cur-dm2-') === 0 && fid !== 'cur-dm2-coment') dxCurDm2Render();
+            else if (fid.indexOf('cur-hta-') === 0 && fid !== 'cur-hta-coment') dxCurHtaRender();
+            else if (fid.indexOf('cur-icpc-') === 0 && fid !== 'cur-icpc-coment') dxCurIcpcRender();
           });
           // selects também disparam 'change'; 'input' já cobre, mas alguns
           // browsers antigos só emitem 'change' para <select> → defensivo
@@ -12611,6 +12750,171 @@ function relAdd(el, kind){
     svg.innerHTML = s;
   }
 
+  // ── Fase 6.3 — mount tabelas DM2 / HTA / ICPC-2 ───────────────────────
+  function _curMountIndicTbl(tbodyId, prefix, indicators){
+    var tbody = document.getElementById(tbodyId);
+    if (!tbody || tbody.children.length) return;
+    var html = '';
+    for (var i = 0; i < indicators.length; i++){
+      var safe = indicators[i].replace(/&/g,'&amp;').replace(/</g,'&lt;');
+      var rowCls = i === 0 ? 'cur-pat-den' : '';
+      var pctCell = i === 0 ? '<td>—</td>' : '<td id="cur-'+prefix+'-'+(i+1)+'-pct">—</td>';
+      html += '<tr' + (rowCls ? ' class="'+rowCls+'"' : '') + '>'
+        + '<th scope="row">' + safe + '</th>'
+        + '<td><input type="number" min="0" inputmode="numeric" id="cur-'+prefix+'-'+(i+1)+'" aria-label="' + safe.replace(/"/g,'&quot;') + '"></td>'
+        + pctCell
+        + '</tr>';
+    }
+    tbody.innerHTML = html;
+  }
+  function dxCurMountDm2(){ _curMountIndicTbl('cur-dm2-tbody', 'dm2', CUR_DM2_INDIC); }
+  function dxCurMountHta(){ _curMountIndicTbl('cur-hta-tbody', 'hta', CUR_HTA_INDIC); }
+
+  function dxCurMountIcpc(){
+    var tbody = document.getElementById('cur-icpc-tbody');
+    if (!tbody || tbody.children.length) return;
+    var html = '';
+    for (var i = 1; i <= CUR_ICPC_ROWS; i++){
+      html += '<tr>'
+        + '<td>' + i + '</td>'
+        + '<td><input type="text" maxlength="4" id="cur-icpc-'+i+'-cod" placeholder="ICPC" aria-label="Código ICPC-2 problema ' + i + '"></td>'
+        + '<td><input type="text" id="cur-icpc-'+i+'-desc" placeholder="Descrição" aria-label="Descrição problema ' + i + '"></td>'
+        + '<td><input type="number" min="0" inputmode="numeric" id="cur-icpc-'+i+'-n" aria-label="N.º utentes problema ' + i + '"></td>'
+        + '<td id="cur-icpc-'+i+'-pct">—</td>'
+        + '</tr>';
+    }
+    tbody.innerHTML = html;
+  }
+
+  // ── Fase 6.3 — render % e barras ──────────────────────────────────────
+  function _curRenderIndic(prefix, indicators){
+    var denEl = document.getElementById('cur-'+prefix+'-1');
+    var den = denEl ? +(denEl.value || 0) : 0;
+    for (var i = 2; i <= indicators.length; i++){
+      var n = +((document.getElementById('cur-'+prefix+'-'+i) || {}).value || 0);
+      var pctEl = document.getElementById('cur-'+prefix+'-'+i+'-pct');
+      if (!pctEl) continue;
+      if (den > 0){
+        var pct = 100 * n / den;
+        pctEl.textContent = pct.toFixed(0) + '%';
+        pctEl.style.color = (pct > 100) ? '#a04020' : '';
+      } else {
+        pctEl.textContent = '—';
+        pctEl.style.color = '';
+      }
+    }
+  }
+  function dxCurDm2Render(){ _curRenderIndic('dm2', CUR_DM2_INDIC); }
+  function dxCurHtaRender(){ _curRenderIndic('hta', CUR_HTA_INDIC); }
+
+  function dxCurIcpcRender(){
+    var rows = [], tot = 0;
+    for (var i = 1; i <= CUR_ICPC_ROWS; i++){
+      var cod = ((document.getElementById('cur-icpc-'+i+'-cod') || {}).value || '').trim().toUpperCase();
+      var desc = ((document.getElementById('cur-icpc-'+i+'-desc') || {}).value || '').trim();
+      var n = +((document.getElementById('cur-icpc-'+i+'-n') || {}).value || 0);
+      if (n < 0) n = 0;
+      rows.push({ cod:cod, desc:desc, n:n });
+      tot += n;
+    }
+    // Update % cells
+    for (var j = 0; j < rows.length; j++){
+      var pctEl = document.getElementById('cur-icpc-'+(j+1)+'-pct');
+      if (!pctEl) continue;
+      if (tot > 0 && rows[j].n > 0){
+        pctEl.textContent = (100 * rows[j].n / tot).toFixed(1) + '%';
+      } else {
+        pctEl.textContent = '—';
+      }
+    }
+    var totEl = document.getElementById('cur-icpc-tot');
+    if (totEl) totEl.textContent = tot;
+
+    // SVG bars: ordenadas pelo N decrescente (não reorganiza inputs, só desenha)
+    var svg = document.getElementById('cur-icpc-bar');
+    if (!svg) return;
+    var sorted = rows.map(function(r,idx){ return { rank:idx+1, cod:r.cod, desc:r.desc, n:r.n }; })
+                     .filter(function(r){ return r.n > 0; })
+                     .sort(function(a,b){ return b.n - a.n; });
+    var W = 600, rowH = 22, gap = 4, topPad = 24, botPad = 12, leftPad = 130;
+    if (sorted.length === 0){
+      svg.setAttribute('viewBox', '0 0 ' + W + ' 80');
+      svg.innerHTML = '<text x="'+W/2+'" y="44" text-anchor="middle" font-size="11" fill="#7a5c20" font-style="italic">Preencha cód./descrição/N para gerar o gráfico de barras.</text>';
+      return;
+    }
+    var maxN = sorted[0].n || 1;
+    var barMax = W - leftPad - 60;
+    var H = topPad + sorted.length * (rowH + gap) + botPad;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+
+    var s = '';
+    s += '<text x="'+(W/2)+'" y="14" text-anchor="middle" font-size="11" fill="#7a5c20" font-weight="600">Top problemas — ordenado por frequência</text>';
+    sorted.forEach(function(r, idx){
+      var y = topPad + idx * (rowH + gap);
+      var w = (r.n / maxN) * barMax;
+      var label = (r.cod || '?') + (r.desc ? ' · ' + r.desc.slice(0, 18) : '');
+      var labelSafe = label.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+      s += '<text x="' + (leftPad - 8) + '" y="' + (y + rowH/2 + 4) + '" text-anchor="end" font-size="10" fill="#5a4010">' + labelSafe + '</text>';
+      s += '<rect x="' + leftPad + '" y="' + y + '" width="' + w + '" height="' + rowH + '" fill="#bda060" opacity="0.85"/>';
+      var pct = tot > 0 ? (100*r.n/tot).toFixed(1) : '0';
+      s += '<text x="' + (leftPad + w + 6) + '" y="' + (y + rowH/2 + 4) + '" font-size="10" fill="#5a4010">' + r.n + ' (' + pct + '%)</text>';
+    });
+    svg.innerHTML = s;
+  }
+
+  // ── Fase 6.3 — export TXT da secção 4 ─────────────────────────────────
+  function _curExportSection4(o, lines, sub){
+    function _exportIndicBlock(titulo, prefix, indicators){
+      var den = +(o['cur-'+prefix+'-1'] || 0);
+      var anyVal = false;
+      for (var i = 1; i <= indicators.length; i++){
+        if (+(o['cur-'+prefix+'-'+i] || 0) > 0) { anyVal = true; break; }
+      }
+      if (!anyVal) return;
+      lines.push(titulo + ':');
+      lines.push(sub);
+      for (var k = 0; k < indicators.length; k++){
+        var n = +(o['cur-'+prefix+'-'+(k+1)] || 0);
+        var line = '  ' + indicators[k].padEnd(48, ' ') + ' ' + String(n).padStart(6);
+        if (k > 0 && den > 0) line += '   ' + (100*n/den).toFixed(0).padStart(3) + '%';
+        lines.push(line);
+      }
+      var coment = (o['cur-'+prefix+'-coment'] || '').trim();
+      if (coment){
+        lines.push('  Comentário: ' + coment);
+      }
+      lines.push('');
+    }
+
+    _exportIndicBlock('Diabetes mellitus tipo 2', 'dm2', CUR_DM2_INDIC);
+    _exportIndicBlock('Hipertensão arterial', 'hta', CUR_HTA_INDIC);
+
+    // Top ICPC-2
+    var rows = [], tot = 0;
+    for (var i = 1; i <= CUR_ICPC_ROWS; i++){
+      var cod = (o['cur-icpc-'+i+'-cod'] || '').trim().toUpperCase();
+      var desc = (o['cur-icpc-'+i+'-desc'] || '').trim();
+      var n = +(o['cur-icpc-'+i+'-n'] || 0);
+      if (cod || desc || n > 0) rows.push({ cod:cod, desc:desc, n:n });
+      tot += n;
+    }
+    if (rows.length){
+      lines.push('Top problemas activos (ICPC-2):');
+      lines.push(sub);
+      rows.sort(function(a,b){ return b.n - a.n; });
+      rows.forEach(function(r, idx){
+        var pct = tot > 0 && r.n > 0 ? (100*r.n/tot).toFixed(1) + '%' : '—';
+        var cod = (r.cod || '—').padEnd(5);
+        var desc = (r.desc || '(sem descrição)').slice(0, 38).padEnd(38);
+        lines.push('  ' + String(idx+1).padStart(2) + '. ' + cod + ' ' + desc + '  ' + String(r.n).padStart(5) + '   ' + pct);
+      });
+      lines.push('  Total dos 10 problemas: ' + tot);
+      var coment = (o['cur-icpc-coment'] || '').trim();
+      if (coment) lines.push('  Comentário: ' + coment);
+      lines.push('');
+    }
+  }
+
   // ── Fase 6.2 — migração silenciosa de campos da Fase 6.1 ──────────────
   function _curMigrate61to62(){
     var o = curLoad();
@@ -12733,6 +13037,8 @@ function relAdd(el, kind){
       lines.push('');
       if (sec.custom === 'pop_graffar_duvall'){
         _curExportSection3(o, lines, sub);
+      } else if (sec.custom === 'dm2_hta_icpc'){
+        _curExportSection4(o, lines, sub);
       }
       sec.fields.forEach(function(f){
         if (f[1] == null) return; // campos estruturados (auto-saved sem label) já tratados acima
@@ -12769,9 +13075,13 @@ function relAdd(el, kind){
     dxCurMountPopTable();
     dxCurMountGraffar();
     dxCurMountDuvall();
+    dxCurMountDm2();
+    dxCurMountHta();
+    dxCurMountIcpc();
     dxCurRestore();
     curBindAutoSave();
     try { dxCurPyramidRender(); dxCurGraffarRender(); dxCurDuvallRender(); } catch(_){}
+    try { dxCurDm2Render(); dxCurHtaRender(); dxCurIcpcRender(); } catch(_){}
     curStatus('', false);
   }
 
