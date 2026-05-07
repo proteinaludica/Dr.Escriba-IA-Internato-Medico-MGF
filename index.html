@@ -4410,7 +4410,9 @@ body.dark .cur-auto-card #cur-auto-month{background:#1a1d2e;border-color:#2a2d40
 
     <div class="cur-toolbar" role="region" aria-label="Acções do currículo">
       <span id="cur-status" class="cur-status" aria-live="polite"></span>
-      <button type="button" class="btn-c" onclick="dxCurExport()" style="background:#bda060;color:#fff;border-color:#bda060;padding:7px 16px;font-weight:500">↓ Compilar e exportar TXT</button>
+      <button type="button" class="btn-c" onclick="dxCurExport()" title="Exportar texto puro (.txt)">↓ TXT</button>
+      <button type="button" class="btn-c" onclick="dxCurExportHTML()" title="Exportar documento HTML estilizado (.html), pronto a abrir e imprimir">↓ HTML</button>
+      <button type="button" class="btn-c" onclick="dxCurPrintPDF()" style="background:#bda060;color:#fff;border-color:#bda060;font-weight:500" title="Abrir janela de impressão para guardar como PDF">🖨 Imprimir / PDF</button>
     </div>
   </div>
 </div>
@@ -13355,6 +13357,392 @@ function relAdd(el, kind){
       lines.push('');
     }
   }
+
+  // ── Fase 6.5 — exporter HTML / PDF do Currículo ──────────────────────
+  function _curEsc(s){
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];
+    });
+  }
+  function _curMl(s){ return _curEsc(s).replace(/\n/g, '<br>'); }
+
+  function _curPrintCss(){
+    return '@page{size:A4;margin:18mm 16mm}'
+      + '*{box-sizing:border-box}'
+      + 'html,body{margin:0;padding:0;background:#fff;color:#1a1a1a;font-family:Georgia,"Iowan Old Style",serif;font-size:10.5pt;line-height:1.5}'
+      + 'body{max-width:178mm;margin:0 auto;padding:6mm 0}'
+      + 'h1{font-size:22pt;margin:0 0 4mm 0;color:#1a1a1a;font-weight:600}'
+      + 'h2{font-size:14pt;color:#5a4010;border-bottom:2px solid #bda060;padding-bottom:2mm;margin:8mm 0 4mm 0;page-break-before:always;page-break-after:avoid}'
+      + 'h2.first{page-break-before:auto}'
+      + 'h3{font-size:12pt;color:#7a5c20;margin:6mm 0 2mm 0;page-break-after:avoid}'
+      + 'h4{font-size:10pt;text-transform:uppercase;letter-spacing:.5px;color:#7a5c20;margin:4mm 0 1mm 0;page-break-after:avoid}'
+      + 'p{margin:0 0 3mm 0}'
+      + 'table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:2mm 0 4mm 0;page-break-inside:auto}'
+      + 'thead{display:table-header-group}'
+      + 'tr{page-break-inside:avoid}'
+      + 'th,td{padding:1.5mm 3mm;border-bottom:1px solid #d4c8a0;text-align:left;vertical-align:top}'
+      + 'thead th{background:#fbf3da;font-weight:600;color:#5a4010;font-size:9pt;text-transform:uppercase;letter-spacing:.3px;border-bottom:1.5px solid #bda060}'
+      + 'tr.den th,tr.den td{background:#fefbef;font-weight:600;color:#5a4010}'
+      + 'td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}'
+      + '.field{margin:0 0 4mm 0;page-break-inside:avoid}'
+      + '.field .lbl{font-size:9pt;color:#7a5c20;font-weight:600;text-transform:uppercase;letter-spacing:.3px;margin-bottom:1mm}'
+      + '.field .val{white-space:pre-wrap}'
+      + '.cover{text-align:center;padding:36mm 0 16mm 0;border-bottom:2px solid #bda060;margin-bottom:8mm;page-break-after:always}'
+      + '.cover .title{font-size:26pt;font-weight:600;color:#5a4010;letter-spacing:.5px}'
+      + '.cover .sub{font-size:13pt;color:#7a5c20;margin-top:4mm;font-style:italic}'
+      + '.cover .meta{font-size:11pt;margin-top:14mm;color:#5a4010;line-height:1.7}'
+      + '.cover .nome{font-size:14pt;font-weight:600;color:#1a1a1a;margin-bottom:3mm}'
+      + '.cover .footnote{font-size:9pt;color:#7a5c20;margin-top:18mm;font-style:italic}'
+      + '.toc h2{page-break-before:auto}'
+      + '.toc ul{list-style:none;padding:0;margin:0}'
+      + '.toc li{padding:1.8mm 0;border-bottom:1px dotted #d4c8a0;font-size:11pt}'
+      + '.toc a{color:#1a1a1a;text-decoration:none}'
+      + '.summary{font-size:10pt;color:#5a4010;background:#fefbef;border-left:3px solid #bda060;padding:2mm 4mm;margin:2mm 0 4mm 0;page-break-inside:avoid}'
+      + '.summary strong{color:#5a4010}'
+      + '.qbox{margin:2mm 0 4mm 0;page-break-inside:avoid}'
+      + '.coment{margin:1mm 0 4mm 0;font-size:10pt;font-style:italic;color:#5a4010;background:#fefbef;padding:2mm 4mm;border-left:3px solid #bda060}'
+      + 'svg{max-width:100%;height:auto;display:block;page-break-inside:avoid}'
+      + '@media print{a{color:inherit;text-decoration:none}body{max-width:100%;padding:0}}';
+  }
+
+  function _curRenderFields(o, sec){
+    var html = '';
+    sec.fields.forEach(function(f){
+      if (f[1] == null) return;
+      var raw = o[f[0]];
+      var v = (raw == null ? '' : String(raw)).trim();
+      if (!v) return;
+      html += '<div class="field"><div class="lbl">' + _curEsc(f[1]) + '</div><div class="val">' + _curMl(v) + '</div></div>';
+    });
+    return html;
+  }
+
+  function _curBuildSec3Print(o){
+    var html = '';
+    var data = (o['cur-lst-data']||'').trim();
+    var fonte = (o['cur-lst-fonte']||'').trim();
+    var totalDecl = (o['cur-lst-total-decl']||'').toString().trim();
+    if (data || fonte || totalDecl){
+      var meta = [];
+      if (data)      meta.push('Data de extracção: ' + _curEsc(data));
+      if (fonte)     meta.push('Fonte: ' + _curEsc(fonte));
+      if (totalDecl) meta.push('Lista total declarada: ' + _curEsc(totalDecl) + ' utentes');
+      html += '<p class="summary">' + meta.join(' &nbsp;·&nbsp; ') + '</p>';
+    }
+
+    var rows = [], totM = 0, totF = 0;
+    for (var i = 0; i < CUR_AGE_GROUPS.length; i++){
+      var m = +(o['cur-pop-'+i+'-m'] || 0);
+      var f = +(o['cur-pop-'+i+'-f'] || 0);
+      rows.push({age:CUR_AGE_GROUPS[i], m:m, f:f});
+      totM += m; totF += f;
+    }
+    if (totM + totF > 0){
+      html += '<h3>Distribuição etária e por sexo</h3>';
+      html += '<table><thead><tr><th>Grupo etário</th><th class="num">Masculino</th><th class="num">Feminino</th><th class="num">Total</th></tr></thead><tbody>';
+      rows.forEach(function(r){
+        html += '<tr><th>' + r.age + '</th><td class="num">' + r.m + '</td><td class="num">' + r.f + '</td><td class="num">' + (r.m+r.f) + '</td></tr>';
+      });
+      html += '<tr class="den"><th>TOTAL</th><td class="num">' + totM + '</td><td class="num">' + totF + '</td><td class="num">' + (totM+totF) + '</td></tr>';
+      html += '</tbody></table>';
+
+      var py = document.getElementById('cur-pyramid');
+      if (py) html += '<div class="qbox">' + py.outerHTML + '</div>';
+
+      var jovens = 0, idosos = 0;
+      rows.forEach(function(r, idx){ if (idx<=2) jovens += r.m+r.f; if (idx>=13) idosos += r.m+r.f; });
+      var idIdx = jovens === 0 ? '∞' : Math.round(100*idosos/jovens);
+      var tot = totM + totF;
+      html += '<p class="summary">Total: <strong>' + tot + '</strong>'
+        + ' · M: <strong>' + totM + '</strong> (' + (100*totM/tot).toFixed(1) + '%)'
+        + ' · F: <strong>' + totF + '</strong> (' + (100*totF/tot).toFixed(1) + '%)'
+        + ' · 0–14: <strong>' + jovens + '</strong>'
+        + ' · ≥65: <strong>' + idosos + '</strong>'
+        + ' · Índice de envelhecimento: <strong>' + idIdx + '</strong></p>';
+    }
+
+    var perfil = (o['cur-lst-perfil']||'').trim();
+    if (perfil) html += '<h3>Estado civil, escolaridade, situação profissional</h3><div class="val">' + _curMl(perfil) + '</div>';
+
+    var grSoma = 0, grValid = 0;
+    for (var g = 1; g <= 5; g++){
+      var v = +(o['cur-graffar-'+g] || 0);
+      if (v) { grSoma += v; grValid++; }
+    }
+    if (grValid > 0){
+      html += '<h3>Classificação social de Graffar</h3>';
+      html += '<table><tbody>';
+      for (var g2 = 1; g2 <= 5; g2++){
+        var dim = CUR_GRAFFAR_DIMS[g2-1];
+        var v2 = +(o['cur-graffar-'+g2] || 0);
+        var desc = v2 ? (v2 + ' — ' + _curEsc(dim.opts[v2-1])) : '<span style="color:#888;font-style:italic">(não preenchido)</span>';
+        html += '<tr><th>' + _curEsc(dim.titulo) + '</th><td>' + desc + '</td></tr>';
+      }
+      html += '</tbody></table>';
+      if (grValid === 5){
+        html += '<p class="summary"><strong>Soma:</strong> ' + grSoma + ' &nbsp;→&nbsp; <strong>Classe ' + _curEsc(_curGraffarClasseLong(_curGraffarClasse(grSoma))) + '</strong></p>';
+      }
+      var grComent = (o['cur-lst-graffar-coment']||'').trim();
+      if (grComent) html += '<div class="coment">' + _curMl(grComent) + '</div>';
+    }
+
+    var dvTot = 0, hasDv = false, dvRows = [];
+    for (var dx = 1; dx <= 8; dx++){
+      var dv = +(o['cur-duvall-'+dx] || 0);
+      if (dv) hasDv = true;
+      dvRows.push(dv); dvTot += dv;
+    }
+    if (hasDv){
+      html += '<h3>Tipo de famílias e ciclo de Duvall</h3>';
+      html += '<table><thead><tr><th>Fase</th><th class="num">N.º</th><th class="num">%</th></tr></thead><tbody>';
+      for (var dx2 = 0; dx2 < 8; dx2++){
+        if (dvRows[dx2] > 0){
+          var pct = dvTot > 0 ? (100*dvRows[dx2]/dvTot).toFixed(1) + '%' : '—';
+          html += '<tr><th>' + _curEsc(CUR_DUVALL_STAGES[dx2]) + '</th><td class="num">' + dvRows[dx2] + '</td><td class="num">' + pct + '</td></tr>';
+        }
+      }
+      html += '<tr class="den"><th>Total</th><td class="num">' + dvTot + '</td><td class="num">100%</td></tr>';
+      html += '</tbody></table>';
+      var dvComent = (o['cur-lst-duvall-coment']||'').trim();
+      if (dvComent) html += '<div class="coment">' + _curMl(dvComent) + '</div>';
+    }
+    return html;
+  }
+
+  function _curBuildSec4Print(o){
+    var html = '';
+    function freeField(id, lbl){
+      var v = (o[id]||'').trim();
+      if (v) html += '<div class="field"><div class="lbl">' + _curEsc(lbl) + '</div><div class="val">' + _curMl(v) + '</div></div>';
+    }
+    freeField('cur-act-observ', 'Utentes observados');
+
+    try {
+      var d = _curAutoCompute();
+      if (d.total > 0){
+        html += '<h3>Auto-quadros do logbook (registos: ' + d.total + ')</h3>';
+        if (d.qa.length){
+          html += '<h4>Q-α · Actividade por estágio</h4>';
+          html += '<table><thead><tr><th>Estágio</th><th>Meses</th><th class="num">Total actos</th><th class="num">Distintos</th></tr></thead><tbody>';
+          d.qa.forEach(function(r){
+            var meses = r.meses == null ? '—' : (r.meses + ' m');
+            html += '<tr><th>' + _curEsc(r.label) + '</th><td>' + meses + '</td><td class="num">' + r.total + '</td><td class="num">' + r.distintos + '</td></tr>';
+          });
+          html += '</tbody></table>';
+        }
+        if (d.qb.length){
+          html += '<h4>Q-β · Cumprimento de mínimos</h4>';
+          html += '<table><thead><tr><th>Estágio</th><th>Acto</th><th class="num">Realizado</th><th class="num">Mínimo</th><th class="num">%</th></tr></thead><tbody>';
+          d.qb.forEach(function(r){
+            var pctTxt = r.pct == null ? '—' : (r.pct.toFixed(0) + '%');
+            var u = r.unidade === 'turnos_12h' ? ' t' : (r.unidade === 'meses' ? ' m' : (r.unidade === 'sessoes' ? ' s' : ''));
+            html += '<tr><th>' + _curEsc(r.estagio) + '</th><td>' + _curEsc(r.acto) + '</td><td class="num">' + r.realizado + u + '</td><td class="num">' + r.min + u + '</td><td class="num">' + pctTxt + '</td></tr>';
+          });
+          html += '</tbody></table>';
+        }
+        if (d.qc.length){
+          var totQc = 0; d.qc.forEach(function(r){ totQc += r.n; });
+          html += '<h4>Q-γ · Top 10 actos mais frequentes</h4>';
+          html += '<table><thead><tr><th class="num">#</th><th>Acto</th><th class="num">N</th><th class="num">%</th></tr></thead><tbody>';
+          d.qc.forEach(function(r, i){
+            var pct = totQc > 0 ? (100*r.n/totQc).toFixed(1) + '%' : '—';
+            html += '<tr><td class="num">' + (i+1) + '</td><td>' + _curEsc(r.label || r.tipo) + '</td><td class="num">' + r.n + '</td><td class="num">' + pct + '</td></tr>';
+          });
+          html += '</tbody></table>';
+          var topSvg = document.getElementById('cur-auto-top-bar');
+          if (topSvg) html += '<div class="qbox">' + topSvg.outerHTML + '</div>';
+        }
+        if (d.qd.length){
+          html += '<h4>Q-δ · Cronograma mensal (' + d.qd.length + ' meses com actividade)</h4>';
+          var monthSvg = document.getElementById('cur-auto-month');
+          if (monthSvg) html += '<div class="qbox">' + monthSvg.outerHTML + '</div>';
+        }
+      }
+    } catch(_){}
+
+    freeField('cur-act-adultoidoso', 'Saúde do adulto e idoso');
+    freeField('cur-act-risco', 'Grupos de risco');
+
+    function indicTbl(titulo, prefix, indicators){
+      var den = +(o['cur-'+prefix+'-1'] || 0);
+      var anyVal = false;
+      for (var i = 1; i <= indicators.length; i++) if (+(o['cur-'+prefix+'-'+i] || 0) > 0) { anyVal = true; break; }
+      if (!anyVal) return '';
+      var s = '<h3>' + _curEsc(titulo) + '</h3>';
+      s += '<table><thead><tr><th>Indicador</th><th class="num">N</th><th class="num">%</th></tr></thead><tbody>';
+      for (var k = 0; k < indicators.length; k++){
+        var n = +(o['cur-'+prefix+'-'+(k+1)] || 0);
+        var pct = (k > 0 && den > 0) ? (100*n/den).toFixed(0) + '%' : '—';
+        s += '<tr' + (k===0 ? ' class="den"' : '') + '><th>' + _curEsc(indicators[k]) + '</th><td class="num">' + n + '</td><td class="num">' + pct + '</td></tr>';
+      }
+      s += '</tbody></table>';
+      var coment = (o['cur-'+prefix+'-coment']||'').trim();
+      if (coment) s += '<div class="coment">' + _curMl(coment) + '</div>';
+      return s;
+    }
+    html += indicTbl('Diabetes mellitus tipo 2', 'dm2', CUR_DM2_INDIC);
+    html += indicTbl('Hipertensão arterial', 'hta', CUR_HTA_INDIC);
+
+    var icpcRows = [], icpcTot = 0;
+    for (var ii = 1; ii <= CUR_ICPC_ROWS; ii++){
+      var cod = (o['cur-icpc-'+ii+'-cod'] || '').trim().toUpperCase();
+      var desc = (o['cur-icpc-'+ii+'-desc'] || '').trim();
+      var n = +(o['cur-icpc-'+ii+'-n'] || 0);
+      if (cod || desc || n > 0) icpcRows.push({cod:cod, desc:desc, n:n});
+      icpcTot += n;
+    }
+    if (icpcRows.length){
+      icpcRows.sort(function(a,b){ return b.n - a.n; });
+      html += '<h3>Top problemas activos (ICPC-2)</h3>';
+      html += '<table><thead><tr><th class="num">#</th><th>Cód.</th><th>Descrição</th><th class="num">N</th><th class="num">%</th></tr></thead><tbody>';
+      icpcRows.forEach(function(r, idx){
+        var pct = icpcTot > 0 && r.n > 0 ? (100*r.n/icpcTot).toFixed(1) + '%' : '—';
+        html += '<tr><td class="num">' + (idx+1) + '</td><td>' + _curEsc(r.cod || '—') + '</td><td>' + _curEsc(r.desc) + '</td><td class="num">' + r.n + '</td><td class="num">' + pct + '</td></tr>';
+      });
+      html += '</tbody></table>';
+      var icpcSvg = document.getElementById('cur-icpc-bar');
+      if (icpcSvg) html += '<div class="qbox">' + icpcSvg.outerHTML + '</div>';
+      var icpcComent = (o['cur-icpc-coment']||'').trim();
+      if (icpcComent) html += '<div class="coment">' + _curMl(icpcComent) + '</div>';
+    }
+
+    freeField('cur-act-vuln', 'Grupos vulneráveis');
+    freeField('cur-act-problemas', 'Problemas de saúde activos');
+    freeField('cur-act-mental', 'Saúde mental');
+    freeField('cur-act-urg', 'Serviço de Urgência');
+    freeField('cur-act-indic', 'Indicadores de gestão da consulta');
+    return html;
+  }
+
+  function _curBuildPrintHTML(){
+    // Refresh dos renders para garantir SVGs actualizados
+    try { dxCurPyramidRender(); } catch(_){}
+    try { dxCurDm2Render(); dxCurHtaRender(); dxCurIcpcRender(); } catch(_){}
+    try { dxCurAutoRender(); } catch(_){}
+
+    var o = curLoad();
+    var nome = (o['cur-id-nome'] || '').trim();
+    var cedula = (o['cur-id-cedula'] || '').trim();
+    var inicio = (o['cur-id-inicio'] || '').trim();
+    var fim = (o['cur-id-fim'] || '').trim();
+    var usf = (o['cur-id-usf'] || '').trim();
+    var uls = (o['cur-id-uls'] || '').trim();
+    var dataExport = (new Date()).toISOString().slice(0,10);
+
+    var p = [];
+    p.push('<!DOCTYPE html><html lang="pt-PT"><head><meta charset="utf-8">');
+    p.push('<title>Currículo Final de Internato' + (nome ? ' — ' + _curEsc(nome) : '') + '</title>');
+    p.push('<style>' + _curPrintCss() + '</style>');
+    p.push('</head><body>');
+
+    // Capa
+    p.push('<section class="cover">');
+    p.push('<div class="title">Currículo Final de Internato</div>');
+    p.push('<div class="sub">Medicina Geral e Familiar</div>');
+    p.push('<div class="meta">');
+    if (nome) p.push('<div class="nome">' + _curEsc(nome) + '</div>');
+    if (cedula) p.push('<div>Cédula OM: ' + _curEsc(cedula) + '</div>');
+    if (usf || uls){
+      var ul = [usf, uls].filter(Boolean).join(' · ');
+      p.push('<div>' + _curEsc(ul) + '</div>');
+    }
+    if (inicio || fim){
+      var dur = (inicio || '?') + ' → ' + (fim || '?');
+      p.push('<div>Período: ' + _curEsc(dur) + '</div>');
+    }
+    p.push('</div>');
+    p.push('<div class="footnote">Compilado a ' + dataExport + ' · Dr. Escriba IA — Edição Internato MGF</div>');
+    p.push('</section>');
+
+    // Índice
+    p.push('<section class="toc"><h2 class="first">Índice</h2><ul>');
+    for (var s = 0; s < CUR_SECTIONS.length; s++){
+      p.push('<li><a href="#sec' + (s+1) + '">' + (s+1) + '. ' + _curEsc(CUR_SECTIONS[s].titulo) + '</a></li>');
+    }
+    p.push('</ul></section>');
+
+    // Secções 1, 2 — texto livre
+    for (var i = 0; i < 2; i++){
+      var sec = CUR_SECTIONS[i];
+      p.push('<section><h2 id="sec' + (i+1) + '">' + (i+1) + '. ' + _curEsc(sec.titulo) + '</h2>');
+      p.push(_curRenderFields(o, sec));
+      p.push('</section>');
+    }
+
+    // Secção 3 — populacional + Graffar + Duvall
+    p.push('<section><h2 id="sec3">3. ' + _curEsc(CUR_SECTIONS[2].titulo) + '</h2>');
+    p.push(_curBuildSec3Print(o));
+    p.push('</section>');
+
+    // Secção 4 — actividade + auto-quadros + DM2/HTA/ICPC
+    p.push('<section><h2 id="sec4">4. ' + _curEsc(CUR_SECTIONS[3].titulo) + '</h2>');
+    p.push(_curBuildSec4Print(o));
+    p.push('</section>');
+
+    // Secções 5, 6 — texto livre
+    for (var j = 4; j < 6; j++){
+      var sec2 = CUR_SECTIONS[j];
+      p.push('<section><h2 id="sec' + (j+1) + '">' + (j+1) + '. ' + _curEsc(sec2.titulo) + '</h2>');
+      p.push(_curRenderFields(o, sec2));
+      p.push('</section>');
+    }
+
+    p.push('</body></html>');
+    return p.join('\n');
+  }
+
+  function _curEmptyGuard(){
+    var o = curLoad();
+    var keys = Object.keys(o);
+    var any = false;
+    for (var i = 0; i < keys.length; i++){
+      var v = o[keys[i]];
+      if (v != null && String(v).trim() !== '') { any = true; break; }
+    }
+    if (!any){
+      try {
+        if (typeof _curAutoCompute === 'function' && _curAutoCompute().total > 0) any = true;
+      } catch(_){}
+    }
+    return any;
+  }
+
+  window.dxCurExportHTML = function(){
+    if (!_curEmptyGuard()){
+      alert('Currículo praticamente vazio. Preencha pelo menos algumas secções antes de exportar.');
+      return;
+    }
+    var html = _curBuildPrintHTML();
+    var o = curLoad();
+    var nome = (o['cur-id-nome'] || '').trim();
+    var ini = lsGet(KEY_PROF_INIT, '');
+    var safeName = (nome || ini || 'mgf').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'');
+    var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'curriculo_' + safeName + '_' + (new Date()).toISOString().slice(0,10) + '.html';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  };
+
+  window.dxCurPrintPDF = function(){
+    if (!_curEmptyGuard()){
+      alert('Currículo praticamente vazio. Preencha pelo menos algumas secções antes de imprimir.');
+      return;
+    }
+    var html = _curBuildPrintHTML();
+    var w = window.open('', '_blank');
+    if (!w){
+      alert('O bloqueador de pop-ups impediu a abertura da janela de impressão. Permita pop-ups para este site e tente de novo, ou use o botão HTML para descarregar o ficheiro e abri-lo separadamente.');
+      return;
+    }
+    w.document.open();
+    w.document.write(html);
+    w.document.close();
+    setTimeout(function(){
+      try { w.focus(); w.print(); } catch(_){}
+    }, 450);
+  };
 
   window.dxCurExport = function(){
     var o = curLoad();
