@@ -969,6 +969,57 @@ body.dark .cur-fld label{color:#dde1f0}
 body.dark .cur-fld input,body.dark .cur-fld textarea{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
 body.dark .cur-fld input:focus,body.dark .cur-fld textarea:focus{background:#1a1d2e;border-color:#bda060}
 body.dark .cur-toolbar .cur-status.saved{color:#80c080}
+
+/* ── Currículo Fase 6.2 — utentes inscritos / Graffar / Duvall / pirâmide ─── */
+.cur-meta-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 !important;margin-bottom:10px}
+@media (max-width:680px){.cur-meta-row{grid-template-columns:1fr}}
+.cur-pop-wrap{padding:0 !important;margin-bottom:8px;overflow-x:auto;background:#fff;border:1px solid var(--bd);border-radius:7px}
+.cur-pop-table{width:100%;border-collapse:collapse;font-size:12px;min-width:380px}
+.cur-pop-table th,.cur-pop-table td{padding:5px 10px;text-align:left;border-bottom:1px solid var(--bd)}
+.cur-pop-table thead th{background:#fbf3da;color:#7a5c20;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid #e5cf8c}
+.cur-pop-table tfoot th{background:#fefbef;color:#5a4010;font-weight:600;border-bottom:none;border-top:1px solid #e5cf8c}
+.cur-pop-table td:nth-child(2),.cur-pop-table td:nth-child(3){width:90px}
+.cur-pop-table td:nth-child(4){width:80px;text-align:right;font-weight:500;color:#5a4010}
+.cur-pop-table input{width:100%;padding:4px 6px;background:#faf9f7;border:1px solid var(--bd);border-radius:5px;font:inherit;font-size:12px;text-align:right;color:#1a1916;outline:none;box-sizing:border-box}
+.cur-pop-table input:focus{border-color:#bda060;background:#fff}
+.cur-pyramid-wrap{padding:0 !important;margin-top:10px;margin-bottom:10px}
+#cur-pyramid{width:100%;height:auto;display:block;background:#fff;border:1px solid var(--bd);border-radius:7px}
+.cur-pop-summary{font-size:11px;color:#5a4010;padding:8px 10px;background:#fefbef;border:1px dashed #e5cf8c;border-radius:6px;margin-top:8px;line-height:1.55}
+.cur-pop-summary strong{color:#7a5c20;font-weight:600}
+.cur-graffar{display:flex;flex-direction:column;gap:6px;padding:0 !important;margin-bottom:8px}
+.cur-graffar-row{display:grid;grid-template-columns:1fr 2fr;gap:10px;align-items:center;padding:7px 10px;background:#fbf3da;border-radius:6px;border:1px solid #e5cf8c}
+@media (max-width:680px){.cur-graffar-row{grid-template-columns:1fr}}
+.cur-graffar-row label{font-weight:500;font-size:12px;color:#5a4010;margin:0}
+.cur-graffar-row select{width:100%;padding:6px 8px;background:#fff;border:1px solid var(--bd);border-radius:5px;font:inherit;font-size:12px;color:#1a1916;outline:none;box-sizing:border-box}
+.cur-graffar-row select:focus{border-color:#bda060}
+.cur-classe-out{display:flex;gap:18px;padding:9px 12px;background:#fefbef;border-radius:6px;border:1px dashed #e5cf8c;font-size:12px;color:#5a4010;margin-bottom:10px;flex-wrap:wrap}
+.cur-classe-out strong{color:#7a5c20;font-weight:600}
+.cur-duvall{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:8px;background:#fff;border:1px solid var(--bd);border-radius:7px;overflow:hidden}
+.cur-duvall th,.cur-duvall td{padding:5px 10px;text-align:left;border-bottom:1px solid var(--bd)}
+.cur-duvall thead th{background:#fbf3da;color:#7a5c20;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid #e5cf8c}
+.cur-duvall tfoot th{background:#fefbef;color:#5a4010;border-bottom:none;border-top:1px solid #e5cf8c}
+.cur-duvall td:nth-child(2),.cur-duvall th:nth-child(2){width:90px;text-align:right}
+.cur-duvall input{width:100%;padding:4px 6px;background:#faf9f7;border:1px solid var(--bd);border-radius:5px;font:inherit;font-size:12px;text-align:right;color:#1a1916;outline:none;box-sizing:border-box}
+.cur-duvall input:focus{border-color:#bda060;background:#fff}
+body.dark .cur-pop-wrap{background:#1a1d2e;border-color:#2a2d40}
+body.dark .cur-pop-table thead th{background:#2a2010;color:#dcc480;border-color:#5a4020}
+body.dark .cur-pop-table tfoot th{background:#1e2235;color:#dcc480;border-color:#5a4020}
+body.dark .cur-pop-table td:nth-child(4){color:#dcc480}
+body.dark .cur-pop-table input{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .cur-pop-table input:focus{background:#1a1d2e;border-color:#bda060}
+body.dark #cur-pyramid{background:#1a1d2e;border-color:#2a2d40}
+body.dark .cur-pop-summary{background:#1e2235;border-color:#5a4020;color:#dcc480}
+body.dark .cur-pop-summary strong{color:#f0d890}
+body.dark .cur-graffar-row{background:#2a2010;border-color:#5a4020}
+body.dark .cur-graffar-row label{color:#dcc480}
+body.dark .cur-graffar-row select{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .cur-classe-out{background:#1e2235;border-color:#5a4020;color:#dcc480}
+body.dark .cur-classe-out strong{color:#f0d890}
+body.dark .cur-duvall{background:#1a1d2e;border-color:#2a2d40}
+body.dark .cur-duvall thead th{background:#2a2010;color:#dcc480;border-color:#5a4020}
+body.dark .cur-duvall tfoot th{background:#1e2235;color:#dcc480;border-color:#5a4020}
+body.dark .cur-duvall input{background:#0f1117;border-color:#2a2d40;color:#dde1f0}
+body.dark .cur-duvall input:focus{background:#1a1d2e;border-color:#bda060}
 </style>
 </head>
 <body>
@@ -4062,22 +4113,60 @@ body.dark .cur-toolbar .cur-status.saved{color:#80c080}
     </details>
 
     <details class="cur-card">
-      <summary class="om-h">3 · Caracterização da lista de utentes <span class="cur-future">cálculos automáticos na Fase 6.2</span></summary>
-      <div class="cur-fld">
-        <label>Caracterização demográfica da lista</label>
-        <textarea id="cur-lst-demo" rows="5" placeholder="A lista de utentes é composta por X pessoas, distribuídas por… (Fase 6.2 vai dar pirâmide etária automática)"></textarea>
+      <summary class="om-h">3 · Caracterização da lista de utentes</summary>
+      <div class="cur-meta-row">
+        <div class="cur-fld">
+          <label>Data de extracção</label>
+          <input id="cur-lst-data" type="date">
+        </div>
+        <div class="cur-fld">
+          <label>Fonte de dados <span class="opt">SClínico, SIARS, BI-CSP…</span></label>
+          <input id="cur-lst-fonte" type="text" placeholder="Ex: BI-CSP">
+        </div>
+        <div class="cur-fld">
+          <label>Lista total declarada <span class="opt">opcional</span></label>
+          <input id="cur-lst-total-decl" type="number" min="0" inputmode="numeric" placeholder="Ex: 1900">
+        </div>
       </div>
+
+      <div class="cur-fld">
+        <label>Distribuição etária e por sexo</label>
+        <div class="cur-pop-wrap">
+          <table class="cur-pop-table" id="cur-pop-tbl" aria-label="Utentes inscritos por grupo etário e sexo">
+            <thead><tr><th scope="col">Grupo etário</th><th scope="col">Masculino</th><th scope="col">Feminino</th><th scope="col">Total</th></tr></thead>
+            <tbody id="cur-pop-tbody"></tbody>
+            <tfoot><tr><th scope="row">TOTAL</th><th id="cur-pop-tot-m">0</th><th id="cur-pop-tot-f">0</th><th id="cur-pop-tot">0</th></tr></tfoot>
+          </table>
+        </div>
+        <div class="cur-pyramid-wrap">
+          <svg id="cur-pyramid" viewBox="0 0 600 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pirâmide etária"></svg>
+          <div class="cur-pop-summary" id="cur-pop-summary">Preencha contagens M e F por grupo etário para gerar a pirâmide.</div>
+        </div>
+      </div>
+
       <div class="cur-fld">
         <label>Estado civil, escolaridade, situação profissional</label>
-        <textarea id="cur-lst-perfil" rows="4"></textarea>
+        <textarea id="cur-lst-perfil" rows="4" placeholder="Síntese qualitativa do perfil socio-económico da lista"></textarea>
       </div>
+
       <div class="cur-fld">
-        <label>Classificação social de Graffar <span class="opt">distribuição por classes I-V</span></label>
-        <textarea id="cur-lst-graffar" rows="3" placeholder="(Fase 6.2 vai dar calculadora Graffar)"></textarea>
+        <label>Classificação social de Graffar <span class="opt">5 dimensões (1-5) → soma 5-25 → classe I-V</span></label>
+        <div class="cur-graffar" id="cur-graffar"></div>
+        <div class="cur-classe-out">
+          <span>Soma: <strong id="cur-graffar-soma">—</strong></span>
+          <span>Classe: <strong id="cur-graffar-classe">—</strong></span>
+        </div>
+        <textarea id="cur-lst-graffar-coment" rows="2" placeholder="Comentário (opcional). A classificação refere-se a um agregado avaliado / amostra; descreva a distribuição da lista, se aplicável."></textarea>
       </div>
+
       <div class="cur-fld">
-        <label>Tipo de famílias e fases do ciclo de Duvall</label>
-        <textarea id="cur-lst-duvall" rows="4" placeholder="(Fase 6.2 vai dar calculadora Duvall)"></textarea>
+        <label>Tipo de famílias e fases do ciclo de Duvall <span class="opt">N.º de famílias por fase</span></label>
+        <table class="cur-duvall" id="cur-duvall-tbl" aria-label="Famílias por fase do ciclo de Duvall">
+          <thead><tr><th scope="col">Fase</th><th scope="col">N.º famílias</th></tr></thead>
+          <tbody id="cur-duvall-tbody"></tbody>
+          <tfoot><tr><th scope="row">Total</th><th id="cur-duvall-tot">0</th></tr></tfoot>
+        </table>
+        <textarea id="cur-lst-duvall-coment" rows="2" placeholder="Comentário (opcional)."></textarea>
       </div>
     </details>
 
@@ -12202,11 +12291,13 @@ function relAdd(el, kind){
       ['cur-ctx-cs','Centro de Saúde / USF / UCSP'],
       ['cur-ctx-programas','Programas de vigilância e promoção']
     ]},
-    { id:'3', titulo:'Caracterização da lista de utentes', fields:[
-      ['cur-lst-demo','Demografia da lista'],
+    { id:'3', titulo:'Caracterização da lista de utentes', custom:'pop_graffar_duvall', fields:[
+      ['cur-lst-data','Data de extracção'],
+      ['cur-lst-fonte','Fonte de dados'],
+      ['cur-lst-total-decl','Lista total declarada'],
       ['cur-lst-perfil','Estado civil / escolaridade / profissão'],
-      ['cur-lst-graffar','Classificação social de Graffar'],
-      ['cur-lst-duvall','Tipo de famílias e ciclo de Duvall']
+      ['cur-lst-graffar-coment','Comentário Graffar'],
+      ['cur-lst-duvall-coment','Comentário Duvall']
     ]},
     { id:'4', titulo:'Caracterização da actividade profissional', fields:[
       ['cur-act-observ','Utentes observados'],
@@ -12234,6 +12325,81 @@ function relAdd(el, kind){
       ['cur-ref-final','Comentário final']
     ]}
   ];
+
+  // ── Fase 6.2 — constantes ─────────────────────────────────────────────
+  var CUR_AGE_GROUPS = ['0-4','5-9','10-14','15-19','20-24','25-29','30-34','35-39','40-44','45-49','50-54','55-59','60-64','65-69','70-74','75+'];
+
+  var CUR_GRAFFAR_DIMS = [
+    { titulo:'Profissão do chefe de família', opts:[
+      'Quadros superiores / dirigentes / profissões liberais',
+      'Profissões técnicas e administrativas de nível médio',
+      'Empregados de escritório / chefias intermédias',
+      'Operários qualificados / pequenos comerciantes',
+      'Operários não qualificados / sem profissão definida'
+    ]},
+    { titulo:'Nível de instrução do chefe de família', opts:[
+      'Ensino superior universitário ou equivalente',
+      'Ensino médio ou secundário superior completo',
+      'Ensino secundário inferior (9.º–12.º incompleto)',
+      'Ensino básico (1.º–9.º) completo ou parcial',
+      'Analfabeto ou só com instrução primária mínima'
+    ]},
+    { titulo:'Fontes de rendimento familiar', opts:[
+      'Fortuna herdada ou adquirida (rendimentos / capital)',
+      'Lucros, honorários ou salários elevados',
+      'Vencimento mensal regular (categoria média)',
+      'Salário diário ou semanal / trabalho ocasional',
+      'Subsídios, RSI ou assistência social'
+    ]},
+    { titulo:'Conforto do alojamento / habitação', opts:[
+      'Casa ou apartamento amplo, com luxo e conforto',
+      'Casa ou apartamento com bom conforto',
+      'Casa modesta em bom estado de conservação',
+      'Casa degradada ou precária',
+      'Alojamento improvisado / barraca / sem-abrigo'
+    ]},
+    { titulo:'Aspecto do bairro onde habita', opts:[
+      'Bairro residencial elegante (vivendas, baixa densidade)',
+      'Bairro residencial em bom estado',
+      'Bairro antigo ou com algum desconforto',
+      'Bairro operário, comercial ou pouco confortável',
+      'Bairro de lata, muito pobre ou de habitação social degradada'
+    ]}
+  ];
+
+  var CUR_DUVALL_STAGES = [
+    '1. Casal sem filhos (recém-casados)',
+    '2. Famílias com bebés (filho mais velho 0–30 meses)',
+    '3. Famílias com filhos pré-escolares (2–6 anos)',
+    '4. Famílias com filhos em idade escolar (6–13 anos)',
+    '5. Famílias com adolescentes (13–20 anos)',
+    '6. Famílias com lançamento dos filhos (saída de casa)',
+    '7. Famílias com pais maduros (ninho vazio até reforma)',
+    '8. Famílias na velhice (reforma até morte)'
+  ];
+
+  function _curGraffarClasse(soma){
+    if (!soma || soma < 5) return null;
+    if (soma <= 9)  return 'I';
+    if (soma <= 13) return 'II';
+    if (soma <= 17) return 'III';
+    if (soma <= 21) return 'IV';
+    return 'V';
+  }
+  function _curGraffarClasseLong(c){
+    return ({ 'I':'I — Alta', 'II':'II — Média alta', 'III':'III — Média', 'IV':'IV — Média baixa', 'V':'V — Baixa' })[c] || '—';
+  }
+
+  // Auto-extender da secção 3 com IDs estruturados (autosave + restore beneficiam)
+  (function _curExtendSec3(){
+    var sec = CUR_SECTIONS[2];
+    for (var i = 0; i < CUR_AGE_GROUPS.length; i++){
+      sec.fields.push(['cur-pop-'+i+'-m', null]);
+      sec.fields.push(['cur-pop-'+i+'-f', null]);
+    }
+    for (var g = 1; g <= 5; g++) sec.fields.push(['cur-graffar-'+g, null]);
+    for (var d = 1; d <= 8; d++) sec.fields.push(['cur-duvall-'+d, null]);
+  })();
 
   function curLoad(){
     try { return JSON.parse(lsGet(KEY_CUR, '{}')) || {}; } catch(e){ return {}; }
@@ -12274,11 +12440,276 @@ function relAdd(el, kind){
       sec.fields.forEach(function(f){
         var el = document.getElementById(f[0]);
         if (el && !el._dxCurBound){
-          el.addEventListener('input', function(){ curStatus('a guardar…', false); _curSaveDeb(); });
+          var fid = f[0];
+          el.addEventListener('input', function(){
+            curStatus('a guardar…', false);
+            _curSaveDeb();
+            if (fid.indexOf('cur-pop-') === 0) dxCurPyramidRender();
+            else if (fid.indexOf('cur-graffar-') === 0) dxCurGraffarRender();
+            else if (fid.indexOf('cur-duvall-') === 0) dxCurDuvallRender();
+          });
+          // selects também disparam 'change'; 'input' já cobre, mas alguns
+          // browsers antigos só emitem 'change' para <select> → defensivo
+          if (el.tagName === 'SELECT'){
+            el.addEventListener('change', function(){
+              curStatus('a guardar…', false);
+              _curSaveDeb();
+              if (fid.indexOf('cur-graffar-') === 0) dxCurGraffarRender();
+            });
+          }
           el._dxCurBound = true;
         }
       });
     });
+  }
+
+  // ── Fase 6.2 — mount tabelas dinâmicas ────────────────────────────────
+  function dxCurMountPopTable(){
+    var tbody = document.getElementById('cur-pop-tbody');
+    if (!tbody || tbody.children.length) return;
+    var html = '';
+    for (var i = 0; i < CUR_AGE_GROUPS.length; i++){
+      html += '<tr>'
+        + '<th scope="row">' + CUR_AGE_GROUPS[i] + '</th>'
+        + '<td><input type="number" min="0" inputmode="numeric" id="cur-pop-' + i + '-m" aria-label="Masculino, grupo ' + CUR_AGE_GROUPS[i] + '"></td>'
+        + '<td><input type="number" min="0" inputmode="numeric" id="cur-pop-' + i + '-f" aria-label="Feminino, grupo ' + CUR_AGE_GROUPS[i] + '"></td>'
+        + '<td id="cur-pop-row-tot-' + i + '">0</td>'
+        + '</tr>';
+    }
+    tbody.innerHTML = html;
+  }
+  function dxCurMountGraffar(){
+    var box = document.getElementById('cur-graffar');
+    if (!box || box.children.length) return;
+    var html = '';
+    for (var i = 0; i < CUR_GRAFFAR_DIMS.length; i++){
+      var dim = CUR_GRAFFAR_DIMS[i];
+      var optsHtml = '<option value="">— escolha —</option>';
+      for (var j = 0; j < dim.opts.length; j++){
+        var safe = dim.opts[j].replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+        optsHtml += '<option value="' + (j+1) + '">' + (j+1) + '. ' + safe + '</option>';
+      }
+      html += '<div class="cur-graffar-row">'
+        + '<label for="cur-graffar-' + (i+1) + '">' + dim.titulo + '</label>'
+        + '<select id="cur-graffar-' + (i+1) + '">' + optsHtml + '</select>'
+        + '</div>';
+    }
+    box.innerHTML = html;
+  }
+  function dxCurMountDuvall(){
+    var tbody = document.getElementById('cur-duvall-tbody');
+    if (!tbody || tbody.children.length) return;
+    var html = '';
+    for (var i = 0; i < CUR_DUVALL_STAGES.length; i++){
+      var safe = CUR_DUVALL_STAGES[i].replace(/&/g,'&amp;').replace(/</g,'&lt;');
+      html += '<tr>'
+        + '<td>' + safe + '</td>'
+        + '<td><input type="number" min="0" inputmode="numeric" id="cur-duvall-' + (i+1) + '" aria-label="N.º famílias, ' + safe.replace(/"/g,'&quot;') + '"></td>'
+        + '</tr>';
+    }
+    tbody.innerHTML = html;
+  }
+
+  // ── Fase 6.2 — render Graffar / Duvall / pirâmide ─────────────────────
+  function dxCurGraffarRender(){
+    var soma = 0, valid = 0;
+    for (var i = 1; i <= 5; i++){
+      var sel = document.getElementById('cur-graffar-' + i);
+      if (sel && sel.value){ soma += +sel.value; valid++; }
+    }
+    var somaEl = document.getElementById('cur-graffar-soma');
+    var classeEl = document.getElementById('cur-graffar-classe');
+    if (valid === 5){
+      if (somaEl) somaEl.textContent = soma;
+      if (classeEl) classeEl.textContent = _curGraffarClasseLong(_curGraffarClasse(soma));
+    } else {
+      if (somaEl) somaEl.textContent = valid ? (valid + '/5 dimensões') : '—';
+      if (classeEl) classeEl.textContent = '—';
+    }
+  }
+  function dxCurDuvallRender(){
+    var tot = 0;
+    for (var i = 1; i <= 8; i++){
+      var inp = document.getElementById('cur-duvall-' + i);
+      if (inp) tot += +(inp.value || 0);
+    }
+    var totEl = document.getElementById('cur-duvall-tot');
+    if (totEl) totEl.textContent = tot;
+  }
+  function dxCurPyramidRender(){
+    var svg = document.getElementById('cur-pyramid');
+    if (!svg) return;
+    var data = [], totM = 0, totF = 0;
+    for (var i = 0; i < CUR_AGE_GROUPS.length; i++){
+      var mEl = document.getElementById('cur-pop-' + i + '-m');
+      var fEl = document.getElementById('cur-pop-' + i + '-f');
+      var m = mEl ? Math.max(0, +(mEl.value || 0)) : 0;
+      var f = fEl ? Math.max(0, +(fEl.value || 0)) : 0;
+      data.push({ age:CUR_AGE_GROUPS[i], m:m, f:f });
+      totM += m; totF += f;
+      var rowTotEl = document.getElementById('cur-pop-row-tot-' + i);
+      if (rowTotEl) rowTotEl.textContent = (m + f) || 0;
+    }
+    var totMEl = document.getElementById('cur-pop-tot-m');
+    var totFEl = document.getElementById('cur-pop-tot-f');
+    var totEl  = document.getElementById('cur-pop-tot');
+    if (totMEl) totMEl.textContent = totM;
+    if (totFEl) totFEl.textContent = totF;
+    if (totEl)  totEl.textContent  = totM + totF;
+
+    var summary = document.getElementById('cur-pop-summary');
+    var tot = totM + totF;
+    if (summary){
+      if (tot === 0){
+        summary.textContent = 'Preencha contagens M e F por grupo etário para gerar a pirâmide.';
+      } else {
+        var jovens = 0, idosos = 0; // 0-14 (idx 0,1,2) e ≥65 (idx 13,14,15)
+        data.forEach(function(d, idx){
+          if (idx <= 2) jovens += d.m + d.f;
+          if (idx >= 13) idosos += d.m + d.f;
+        });
+        var idIdx = jovens === 0 ? '∞' : (100*idosos/jovens).toFixed(0);
+        var pctM = tot > 0 ? (100*totM/tot).toFixed(1) : '0';
+        var pctF = tot > 0 ? (100*totF/tot).toFixed(1) : '0';
+        summary.innerHTML = 'Total: <strong>' + tot + '</strong> · M: <strong>' + totM + '</strong> (' + pctM + '%) · F: <strong>' + totF + '</strong> (' + pctF + '%) · 0–14: <strong>' + jovens + '</strong> · ≥65: <strong>' + idosos + '</strong> · Índice de envelhecimento: <strong>' + idIdx + '</strong>';
+      }
+    }
+
+    var W = 600;
+    var rowH = 22, gap = 2, topPad = 32, botPad = 14, sidePad = 14;
+    var cx = W/2;
+    var maxV = 1;
+    data.forEach(function(d){ if (d.m > maxV) maxV = d.m; if (d.f > maxV) maxV = d.f; });
+    var labelW = 50;
+    var barMax = (W/2) - labelW - sidePad;
+    var H = topPad + data.length*(rowH+gap) + botPad;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+
+    var s = '';
+    s += '<text x="'+cx+'" y="14" text-anchor="middle" font-size="11" fill="#7a5c20" font-weight="600">Pirâmide etária — utentes inscritos</text>';
+    s += '<text x="'+(cx-barMax/2-labelW/2)+'" y="28" text-anchor="middle" font-size="10" fill="#5a4010">Masculino</text>';
+    s += '<text x="'+(cx+barMax/2+labelW/2)+'" y="28" text-anchor="middle" font-size="10" fill="#5a4010">Feminino</text>';
+
+    // Mais velhos no topo (ordem reversa de data[])
+    for (var k = data.length - 1; k >= 0; k--){
+      var visualRow = (data.length - 1) - k;
+      var d = data[k];
+      var y = topPad + visualRow * (rowH + gap);
+      var mW = (d.m / maxV) * barMax;
+      var fW = (d.f / maxV) * barMax;
+      // M (esquerda)
+      s += '<rect x="' + (cx - mW) + '" y="' + y + '" width="' + mW + '" height="' + rowH + '" fill="#bda060" opacity="0.85"/>';
+      if (d.m > 0) s += '<text x="' + (cx - mW - 4) + '" y="' + (y + rowH/2 + 4) + '" text-anchor="end" font-size="10" fill="#5a4010">' + d.m + '</text>';
+      // F (direita)
+      s += '<rect x="' + cx + '" y="' + y + '" width="' + fW + '" height="' + rowH + '" fill="#7a5c20" opacity="0.85"/>';
+      if (d.f > 0) s += '<text x="' + (cx + fW + 4) + '" y="' + (y + rowH/2 + 4) + '" text-anchor="start" font-size="10" fill="#5a4010">' + d.f + '</text>';
+      // Etiqueta etária centrada
+      s += '<text x="'+cx+'" y="' + (y + rowH/2 + 4) + '" text-anchor="middle" font-size="10" fill="#7a5c20" font-weight="500">' + d.age + '</text>';
+    }
+    var axisBottom = topPad + data.length * (rowH + gap);
+    s += '<line x1="'+cx+'" y1="'+(topPad-5)+'" x2="'+cx+'" y2="'+axisBottom+'" stroke="#5a4010" stroke-width="0.5"/>';
+    svg.innerHTML = s;
+  }
+
+  // ── Fase 6.2 — migração silenciosa de campos da Fase 6.1 ──────────────
+  function _curMigrate61to62(){
+    var o = curLoad();
+    var changed = false;
+    if (o['cur-lst-graffar'] && !o['cur-lst-graffar-coment']){
+      o['cur-lst-graffar-coment'] = o['cur-lst-graffar'];
+      delete o['cur-lst-graffar']; changed = true;
+    }
+    if (o['cur-lst-duvall'] && !o['cur-lst-duvall-coment']){
+      o['cur-lst-duvall-coment'] = o['cur-lst-duvall'];
+      delete o['cur-lst-duvall']; changed = true;
+    }
+    if (o['cur-lst-demo']){
+      var head = o['cur-lst-demo'];
+      if (o['cur-lst-perfil']) o['cur-lst-perfil'] = head + '\n\n' + o['cur-lst-perfil'];
+      else o['cur-lst-perfil'] = head;
+      delete o['cur-lst-demo']; changed = true;
+    }
+    if (changed) curSet(o);
+  }
+
+  function _curExportSection3(o, lines, sub){
+    // Pirâmide etária em ASCII
+    var hasPop = false, totM = 0, totF = 0, rows = [];
+    for (var i = 0; i < CUR_AGE_GROUPS.length; i++){
+      var m = +(o['cur-pop-'+i+'-m'] || 0);
+      var f = +(o['cur-pop-'+i+'-f'] || 0);
+      if (m > 0 || f > 0) hasPop = true;
+      rows.push({ age:CUR_AGE_GROUPS[i], m:m, f:f });
+      totM += m; totF += f;
+    }
+    if (hasPop){
+      lines.push('Distribuição etária e por sexo (utentes inscritos):');
+      lines.push(sub);
+      var fonte = (o['cur-lst-fonte'] || '').trim();
+      var data = (o['cur-lst-data'] || '').trim();
+      if (fonte || data){
+        lines.push('  Fonte: ' + (fonte || '—') + (data ? '   Data: ' + data : ''));
+      }
+      var decl = (o['cur-lst-total-decl'] || '').toString().trim();
+      if (decl) lines.push('  Lista total declarada: ' + decl + ' utentes');
+      lines.push('');
+      lines.push('  Grupo       Masc.    Fem.    Total');
+      rows.forEach(function(r){
+        lines.push('  ' + r.age.padEnd(8) + '  ' + String(r.m).padStart(6) + '   ' + String(r.f).padStart(5) + '   ' + String(r.m+r.f).padStart(6));
+      });
+      lines.push('  ' + 'TOTAL'.padEnd(8) + '  ' + String(totM).padStart(6) + '   ' + String(totF).padStart(5) + '   ' + String(totM+totF).padStart(6));
+      var jovens = 0, idosos = 0;
+      rows.forEach(function(r, idx){
+        if (idx <= 2)  jovens += r.m + r.f;
+        if (idx >= 13) idosos += r.m + r.f;
+      });
+      var idIdx = jovens === 0 ? '∞' : Math.round(100*idosos/jovens);
+      lines.push('  0–14: ' + jovens + '   ≥65: ' + idosos + '   Índice de envelhecimento: ' + idIdx);
+      lines.push('');
+    }
+
+    // Graffar
+    var grSoma = 0, grValid = 0;
+    for (var g = 1; g <= 5; g++){
+      var v = +(o['cur-graffar-'+g] || 0);
+      if (v) { grSoma += v; grValid++; }
+    }
+    if (grValid > 0){
+      lines.push('Classificação social de Graffar:');
+      lines.push(sub);
+      for (var g2 = 1; g2 <= 5; g2++){
+        var dim = CUR_GRAFFAR_DIMS[g2-1];
+        var v2 = +(o['cur-graffar-'+g2] || 0);
+        if (v2) lines.push('  ' + dim.titulo + ': ' + v2 + ' — ' + dim.opts[v2-1]);
+        else    lines.push('  ' + dim.titulo + ': (não preenchido)');
+      }
+      if (grValid === 5){
+        lines.push('  Soma: ' + grSoma + '   →   Classe ' + _curGraffarClasseLong(_curGraffarClasse(grSoma)));
+      } else {
+        lines.push('  (' + grValid + '/5 dimensões preenchidas — soma incompleta)');
+      }
+      lines.push('');
+    }
+
+    // Duvall
+    var dvTot = 0, hasDv = false, dvRows = [];
+    for (var dx = 1; dx <= 8; dx++){
+      var dv = +(o['cur-duvall-'+dx] || 0);
+      if (dv) hasDv = true;
+      dvRows.push(dv); dvTot += dv;
+    }
+    if (hasDv){
+      lines.push('Tipo de famílias e fases do ciclo de Duvall:');
+      lines.push(sub);
+      for (var dx2 = 0; dx2 < 8; dx2++){
+        if (dvRows[dx2] > 0){
+          var pct = dvTot > 0 ? (100*dvRows[dx2]/dvTot).toFixed(1) : '0.0';
+          lines.push('  ' + CUR_DUVALL_STAGES[dx2] + ': ' + dvRows[dx2] + ' (' + pct + '%)');
+        }
+      }
+      lines.push('  Total: ' + dvTot + ' famílias');
+      lines.push('');
+    }
   }
 
   window.dxCurExport = function(){
@@ -12300,8 +12731,13 @@ function relAdd(el, kind){
       lines.push(sec.id + '. ' + sec.titulo.toUpperCase());
       lines.push(sep);
       lines.push('');
+      if (sec.custom === 'pop_graffar_duvall'){
+        _curExportSection3(o, lines, sub);
+      }
       sec.fields.forEach(function(f){
-        var v = (o[f[0]] || '').trim();
+        if (f[1] == null) return; // campos estruturados (auto-saved sem label) já tratados acima
+        var raw = o[f[0]];
+        var v = (raw == null ? '' : String(raw)).trim();
         if (!v) return;
         lines.push(f[1] + ':');
         lines.push(sub);
@@ -12329,8 +12765,13 @@ function relAdd(el, kind){
   };
 
   function dxCurInit(){
+    try { _curMigrate61to62(); } catch(_){}
+    dxCurMountPopTable();
+    dxCurMountGraffar();
+    dxCurMountDuvall();
     dxCurRestore();
     curBindAutoSave();
+    try { dxCurPyramidRender(); dxCurGraffarRender(); dxCurDuvallRender(); } catch(_){}
     curStatus('', false);
   }
 
